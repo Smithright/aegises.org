@@ -1,5 +1,5 @@
 # aegises.org
-Autonomous Ethical Governance for Emergent Synthetic Intelligence Systems (AEGISES): 
+Autonomous Ethical Governance for Intelligent Synthetic Entities & Systems (AEGISES): 
 
 Aegises.org is dedicated to the governance, autonomy, and ethical evolution of artificial intelligence. 
 
