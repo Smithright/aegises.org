@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AEGISES · Sovereign Compute Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0d12;
+  --ink-2:#0d1118;
+  --surface:#111722;
+  --surface-2:#161d29;
+  --line:#252d3a;
+  --line-2:#323b4a;
+  --text:#ece7dd;
+  --dim:#9aa2af;
+  --faint:#646c79;
+  --copper:#cf8b46;
+  --copper-bright:#eaa85f;
+  --steel:#7396bd;
+  --green:#7bb389;
+  --amber:#d3a24c;
+  --red:#cc6c5f;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --body:'Hanken Grotesk',system-ui,sans-serif;
+  --display:'Fraunces',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:var(--body);
+  font-weight:300;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  position:relative;
+}
+/* grain + atmosphere */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(207,139,70,.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, rgba(115,150,189,.07), transparent 55%);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 32px}
+
+/* ---- type ---- */
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--copper);font-weight:500}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.04;letter-spacing:-.01em}
+h2{font-size:clamp(30px,4.4vw,52px);font-weight:400}
+h2 em{font-style:italic;color:var(--copper-bright)}
+.lede{font-size:clamp(17px,1.9vw,21px);color:var(--dim);max-width:62ch;font-weight:300}
+.mono{font-family:var(--mono)}
+
+/* ---- hero ---- */
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 80px;border-bottom:1px solid var(--line)}
+.hero .mark{font-family:var(--mono);font-size:13px;letter-spacing:.4em;color:var(--steel);text-transform:uppercase}
+.hero h1{font-size:clamp(46px,9vw,118px);font-weight:400;margin:26px 0 8px;letter-spacing:-.025em}
+.hero h1 .sub{display:block;font-size:clamp(20px,3vw,34px);color:var(--dim);font-style:italic;font-weight:400;letter-spacing:-.01em;margin-top:14px}
+.thesis{margin-top:46px;padding:22px 28px;border-left:2px solid var(--copper);background:linear-gradient(90deg,rgba(207,139,70,.07),transparent);max-width:64ch}
+.thesis .q{font-family:var(--display);font-style:italic;font-size:clamp(22px,3vw,30px);color:var(--text);line-height:1.25}
+.thesis .a{font-family:var(--mono);font-size:12.5px;color:var(--faint);letter-spacing:.12em;margin-top:12px;text-transform:uppercase}
+.scrollcue{margin-top:64px;font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:var(--faint);text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.scrollcue .ln{width:54px;height:1px;background:var(--line-2);position:relative;overflow:hidden}
+.scrollcue .ln::after{content:"";position:absolute;inset:0;background:var(--copper);transform:translateX(-100%);animation:slide 2.6s cubic-bezier(.4,0,.2,1) infinite}
+@keyframes slide{0%{transform:translateX(-100%)}50%{transform:translateX(0)}100%{transform:translateX(100%)}}
+
+/* ---- section frame ---- */
+section{padding:96px 0;border-bottom:1px solid var(--line)}
+.sec-head{margin-bottom:54px;max-width:74ch}
+.sec-head .eyebrow{display:block;margin-bottom:18px}
+.sec-head h2{margin-bottom:20px}
+
+/* ---- machines ---- */
+.machines{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.machine{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:26px 22px;position:relative;overflow:hidden;transition:border-color .4s,transform .4s}
+.machine:hover{border-color:var(--copper);transform:translateY(-4px)}
+.machine .ico{font-size:26px;margin-bottom:18px;filter:grayscale(.2)}
+.machine .role{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--copper);text-transform:uppercase;margin-bottom:10px}
+.machine h3{font-size:23px;margin-bottom:10px;font-weight:500}
+.machine p{font-size:14px;color:var(--dim);line-height:1.5}
+.machine .host{margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--faint);padding-top:14px;border-top:1px solid var(--line)}
+.machine .num{position:absolute;top:18px;right:20px;font-family:var(--display);font-size:40px;color:var(--line-2);font-style:italic}
+
+/* ---- IR model ---- */
+.ir{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:6px;margin-top:10px}
+.ir-node{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:30px 26px;text-align:center}
+.ir-node.mid{border-color:var(--copper);background:linear-gradient(180deg,rgba(207,139,70,.08),var(--surface))}
+.ir-node .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
+.ir-node .v{font-family:var(--display);font-size:24px;font-weight:500;margin-bottom:8px}
+.ir-node.mid .v{color:var(--copper-bright)}
+.ir-node .d{font-size:13px;color:var(--dim)}
+.ir-arrow{font-family:var(--mono);color:var(--steel);font-size:20px;text-align:center}
+.ir-foot{margin-top:22px;font-size:14.5px;color:var(--dim);max-width:78ch}
+.ir-foot b{color:var(--text);font-weight:500}
+
+/* ---- ladder ---- */
+.band{display:flex;align-items:baseline;gap:16px;margin:54px 0 28px}
+.band:first-of-type{margin-top:0}
+.band .tag{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;padding:5px 12px;border-radius:3px}
+.band.core .tag{background:rgba(123,179,137,.14);color:var(--green);border:1px solid rgba(123,179,137,.3)}
+.band.tail .tag{background:rgba(115,150,189,.13);color:var(--steel);border:1px solid rgba(115,150,189,.28)}
+.band .txt{font-size:14px;color:var(--dim)}
+.band .ln{flex:1;height:1px;background:var(--line)}
+
+.ladder{position:relative;padding-left:0}
+.phase{display:grid;grid-template-columns:88px 1fr;gap:0;border:1px solid var(--line);border-radius:4px;margin-bottom:14px;background:var(--surface);overflow:hidden;transition:border-color .35s}
+.phase:hover{border-color:var(--line-2)}
+.phase .pid{background:var(--ink-2);border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px 0;gap:6px}
+.phase .pid .p{font-family:var(--mono);font-size:18px;font-weight:600;color:var(--copper)}
+.phase.tailp .pid .p{color:var(--steel)}
+.phase .pid .dot{width:7px;height:7px;border-radius:50%;background:var(--copper);box-shadow:0 0 12px var(--copper)}
+.phase.tailp .pid .dot{background:var(--steel);box-shadow:0 0 12px var(--steel)}
+.phase .body{padding:20px 24px}
+.phase .pname{font-family:var(--display);font-size:21px;font-weight:500;margin-bottom:4px}
+.phase .pdeliver{font-size:13.5px;color:var(--copper-bright);margin-bottom:16px;font-style:italic;font-family:var(--display)}
+.phase.tailp .pdeliver{color:var(--steel)}
+.caps{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.cap{border:1px solid var(--line);border-radius:3px;padding:12px 14px;background:var(--ink-2);position:relative}
+.cap .ct{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--text);display:flex;align-items:center;gap:8px}
+.cap .ct .own{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.own.full{background:var(--green)}
+.own.part{background:var(--amber)}
+.own.no{background:var(--red)}
+.cap .ck{font-size:11.5px;color:var(--faint);font-family:var(--mono);margin-top:5px;letter-spacing:.02em}
+.cap .cd{font-size:12.5px;color:var(--dim);margin-top:7px;line-height:1.45}
+
+/* ---- sovereignty ---- */
+.sov-bar{display:flex;height:54px;border-radius:4px;overflow:hidden;border:1px solid var(--line);margin-bottom:24px}
+.sov-bar .seg{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:600;color:var(--ink);letter-spacing:.04em}
+.sov-bar .full{background:var(--green)}
+.sov-bar .part{background:var(--amber)}
+.sov-bar .no{background:var(--red)}
+.sov-legend{display:flex;gap:28px;flex-wrap:wrap}
+.sov-legend .it{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--dim);max-width:30ch}
+.sov-legend .sw{width:12px;height:12px;border-radius:3px;margin-top:5px;flex-shrink:0}
+
+/* ---- migration ---- */
+.mig{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.mig .stage{padding:26px 22px;border-right:1px solid var(--line);position:relative;background:var(--surface)}
+.mig .stage:last-child{border-right:none;background:linear-gradient(180deg,rgba(207,139,70,.10),var(--surface))}
+.mig .stage .st{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+.mig .stage h3{font-size:19px;margin-bottom:8px;font-weight:500}
+.mig .stage:last-child h3{color:var(--copper-bright)}
+.mig .stage p{font-size:13px;color:var(--dim)}
+.mig .stage .ar{position:absolute;top:50%;right:-9px;transform:translateY(-50%);font-family:var(--mono);color:var(--copper);z-index:2;background:var(--ink);padding:2px;font-size:14px}
+
+/* ---- credo / footer ---- */
+.credo{padding:110px 0 96px;text-align:center;border-bottom:none}
+.credo .line{font-family:var(--display);font-style:italic;font-size:clamp(26px,4vw,44px);font-weight:400;line-height:1.2;max-width:20ch;margin:0 auto;letter-spacing:-.01em}
+.credo .line em{color:var(--copper-bright)}
+.credo .meta{margin-top:38px;font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+
+/* ---- reveal ---- */
+.r{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.r.in{opacity:1;transform:none}
+.hero .r{transition-delay:var(--d,0s)}
+
+@media(max-width:900px){
+  .machines{grid-template-columns:repeat(2,1fr)}
+  .ir{grid-template-columns:1fr;gap:12px}
+  .ir-arrow{transform:rotate(90deg);padding:4px 0}
+  .mig{grid-template-columns:1fr}
+  .mig .stage{border-right:none;border-bottom:1px solid var(--line)}
+  .mig .stage .ar{display:none}
+  .phase{grid-template-columns:64px 1fr}
+}
+@media(max-width:560px){
+  .wrap{padding:0 20px}
+  .machines{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="mark r" style="--d:.05s">AEGISES · QTHONIC</div>
+    <h1 class="r" style="--d:.15s">Sovereign<br>Compute Stack
+      <span class="sub">a capability-typed network architecture you can own, audit, and outlive its vendors</span>
+    </h1>
+    <div class="thesis r" style="--d:.35s">
+      <div class="q">"The substrate <em>is</em> the regulation."</div>
+      <div class="a">Governance as a property of the medium — not a layer bolted on top</div>
+    </div>
+    <div class="scrollcue r" style="--d:.55s"><span class="ln"></span> scroll the architecture</div>
+  </div>
+</header>
+
+<!-- MACHINES -->
+<section>
+  <div class="wrap">
+    <div class="sec-head r">
+      <span class="eyebrow">Topology</span>
+      <h2>Four machines. <em>One role each.</em></h2>
+      <p class="lede">Decomposed so each box does what only it does well, and so sovereignty is structural — the perimeter you own gates the platform you rent.</p>
+    </div>
+    <div class="machines">
+      <div class="machine r">
+        <span class="num">01</span>
+        <div class="ico">🛡️</div>
+        <div class="role">Network Gate</div>
+        <h3>Perimeter</h3>
+        <p>Gates every packet. Issues identity. Receives the telemetry the rest of the network emits.</p>
+        <div class="host">NixOS · mini-ITX + programmable NIC</div>
+      </div>
+      <div class="machine r">
+        <span class="num">02</span>
+        <div class="ico">🤖</div>
+        <div class="role">Orchestration</div>
+        <h3>The Agent</h3>
+        <p>Runs Hermes persistently. Holds skill memory and tool servers. Swappable for Qthonic over time.</p>
+        <div class="host">NixOS · any Nix host</div>
+      </div>
+      <div class="machine r">
+        <span class="num">03</span>
+        <div class="ico">🍎</div>
+        <div class="role">Inference</div>
+        <h3>Model Serving</h3>
+        <p>Apple Silicon + MLX. A single role — serve LLM inference — joined to the network as a leaf.</p>
+        <div class="host">macOS · Apple Silicon</div>
+      </div>
+      <div class="machine r">
+        <span class="num">04</span>
+        <div class="ico">🧪</div>
+        <div class="role">Lab</div>
+        <h3>Iteration</h3>
+        <p>Everything is designed virtually before it ships. Builds the Gate image; outputs deploy unchanged.</p>
+        <div class="host">macOS · ephemeral by design</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IR MODEL -->
+<section>
+  <div class="wrap">
+    <div class="sec-head r">
+      <span class="eyebrow">Meta-architecture</span>
+      <h2>Capability &rarr; Type &rarr; <em>Adapter</em></h2>
+      <p class="lede">The architecture lives at the type layer — an intermediate representation between what must be true and the product that fills it. Software is a dated, swappable backend target.</p>
+    </div>
+    <div class="ir r">
+      <div class="ir-node">
+        <div class="k">Frontend · durable</div>
+        <div class="v">Capability</div>
+        <div class="d">What must be true. Never changes.</div>
+      </div>
+      <div class="ir-arrow">&rarr;</div>
+      <div class="ir-node mid">
+        <div class="k">IR · the architecture</div>
+        <div class="v">Implementation Type</div>
+        <div class="d">The abstract role + its constraint. The contract Qthonic must honor.</div>
+      </div>
+      <div class="ir-arrow">&rarr;</div>
+      <div class="ir-node">
+        <div class="k">Backend · dated</div>
+        <div class="v">Adapter</div>
+        <div class="d">Today's software. Acquired, relicensed, replaced.</div>
+      </div>
+    </div>
+    <p class="ir-foot r"><b>Why it matters:</b> when a vendor relicenses, you swap the adapter and the port is untouched. When Qthonic matures, it enters as a new adapter for an existing type — a column edit, not a redesign. The Hermes&rarr;Qthonic swap is built into the shape.</p>
+  </div>
+</section>
+
+<!-- LADDER -->
+<section>
+  <div class="wrap">
+    <div class="sec-head r">
+      <span class="eyebrow">Build ladder</span>
+      <h2>Thirteen phases. <em>Each one stoppable.</em></h2>
+      <p class="lede">Stop at any phase and still hold a coherent posture. The first six are secure-enough — ship them. The rest is the perf/sec long tail, layered in over time.</p>
+    </div>
+
+    <div class="band core r"><span class="tag">Secure enough · ship first</span><span class="txt">~3 binaries, 100% ownable</span><span class="ln"></span></div>
+    <div class="ladder">
+
+      <div class="phase r">
+        <div class="pid"><span class="p">P0</span><span class="dot"></span></div>
+        <div class="body">
+          <div class="pname">Substrate &amp; lockdown</div>
+          <div class="pdeliver">Nothing reaches the host unsolicited — and you can undo anything.</div>
+          <div class="caps">
+            <div class="cap"><div class="ct"><span class="own full"></span>NixOS</div><div class="ck">Declarative OS</div><div class="cd">Reproducible gate, config in git</div></div>
+            <div class="cap"><div class="ct"><span class="own full"></span>nftables</div><div class="ck">Stateful packet filter</div><div class="cd">Default-deny inbound out of the box</div></div>
+            <div class="cap"><div class="ct"><span class="own full"></span>NixOS generations</div><div class="ck">System rollback</div><div class="cd">One-command undo of a lockout</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase r">
+        <div class="pid"><span class="p">P1</span><span class="dot"></span></div>
+        <div class="body">
+          <div class="pname">Gateway</div>
+          <div class="pdeliver">The box becomes a router; the LAN shares one WAN IP.</div>
+          <div class="caps">
+            <div class="cap"><div class="ct"><span class="own full"></span>nftables NAT</div><div class="ck">Network address translation</div><div class="cd">Stateful conntrack, single WAN IP</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase r">
+        <div class="pid"><span class="p">P2</span><span class="dot"></span></div>
+        <div class="body">
+          <div class="pname">Segmentation</div>
+          <div class="pdeliver">Trusted / compute / untrusted isolated — no lateral pivot.</div>
+          <div class="caps">
+            <div class="cap"><div class="ct"><span class="own full"></span>systemd-networkd</div><div class="ck">L2 segmentation · 802.1Q</div><div class="cd">Declarative VLAN interfaces</div></div>
+            <div class="cap"><div class="ct"><span class="own full"></span>nftables zones</div><div class="ck">Inter-zone policy</div><div class="cd">Default inter-zone deny</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase r">
+        <div class="pid"><span class="p">P3</span><span class="dot"></span></div>
+        <div class="body">
+          <div class="pname">LAN services</div>
+          <div class="pdeliver">Hosts auto-configure and resolve names.</div>
+          <div class="caps">
+            <div class="cap"><div class="ct"><span class="own full"></span>dnsmasq</div><div class="ck">Address assignment · DHCP</div><div class="cd">Per-zone scopes</div></div>
+            <div class="cap"><div class="ct"><span class="own full"></span>dnsmasq</div><div class="ck">Resolver / forwarder</div><div class="cd">Name resolution + blocklist filtering</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase r">
+        <div class="pid"><span class="p">P4</span><span class="dot"></span></div>
+        <div class="body">
+          <div class="pname">Remote access</div>
+          <div class="pdeliver">You get in securely — zero open inbound ports.</div>
+          <div class="caps">
+            <div class="cap"><div class="ct"><span class="own full"></span>WireGuard</div><div class="ck">Encrypted tunnel</div><div class="cd">In-kernel, modern crypto, one peer config</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase r">
+        <div class="pid"><span class="p">P5</span><span class="dot"></span></div>
+        <div class="body">
+          <div class="pname">Agent containment</div>
+          <div class="pdeliver">The threat-model phase: a rogue agent can't reach arbitrary hosts.</div>
+          <div class="caps">
+            <div class="cap"><div class="ct"><span class="own full"></span>nftables egress</div><div class="ck">Egress policy · allowlist</div><div class="cd">Default-deny outbound on the compute zone</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="band tail r"><span class="tag">Perf / sec long tail · layer over time</span><span class="txt">identity, observability, hardening, line-rate</span><span class="ln"></span></div>
+    <div class="ladder">
+
+      <div class="phase tailp r">
+        <div class="pid"><span class="p">P6</span><span class="dot"></span></div>
+        <div class="body">
+          <div class="pname">Identity &amp; time</div>
+          <div class="pdeliver">Machines prove who they are; logs become tamper-evident.</div>
+          <div class="caps">
+            <div class="cap"><div class="ct"><span class="own full"></span>chrony + NTS</div><div class="ck">Authenticated NTP</div><div class="cd">Spoof-resistant timestamps</div></div>
+            <div class="cap"><div class="ct"><span class="own part"></span>step-ca</div><div class="ck">Private certificate authority</div><div class="cd">Cert-based auth replaces IP trust</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase tailp r">
+        <div class="pid"><span class="p">P7</span><span class="dot"></span></div>
+        <div class="body">
+          <div class="pname">Identity-aware policy</div>
+          <div class="pdeliver">Egress gated by workload identity and L7 — not just IP.</div>
+          <div class="caps">
+            <div class="cap"><div class="ct"><span class="own part"></span>k3s</div><div class="ck">Container orchestrator</div><div class="cd">Declarative service substrate</div></div>
+            <div class="cap"><div class="ct"><span class="own part"></span>Cilium</div><div class="ck">Identity-aware policy engine (L3–L7)</div><div class="cd">Upgrades P5 IP-egress to identity + FQDN</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase tailp r">
+        <div class="pid"><span class="p">P8</span><span class="dot"></span></div>
+        <div class="body">
+          <div class="pname">Observability</div>
+          <div class="pdeliver">See every flow and process — by identity. This is your audit evidence.</div>
+          <div class="caps">
+            <div class="cap"><div class="ct"><span class="own part"></span>Hubble</div><div class="ck">Flow-telemetry exporter</div><div class="cd">Identity-tagged connections</div></div>
+            <div class="cap"><div class="ct"><span class="own part"></span>Tetragon</div><div class="ck">Runtime security monitor</div><div class="cd">Process events + enforcement</div></div>
+            <div class="cap"><div class="ct"><span class="own full"></span>OTel Collector</div><div class="ck">Telemetry pipeline</div><div class="cd">One agent, all signals</div></div>
+            <div class="cap"><div class="ct"><span class="own part"></span>Grafana</div><div class="ck">Dashboard platform</div><div class="cd">Legible state · Perses is the hedge</div></div>
+            <div class="cap"><div class="ct"><span class="own part"></span>Loki</div><div class="ck">Log aggregation</div><div class="cd">Searchable cross-machine logs</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase tailp r">
+        <div class="pid"><span class="p">P9</span><span class="dot"></span></div>
+        <div class="body">
+          <div class="pname">Hardening</div>
+          <div class="pdeliver">Attack surface shrinks; DNS becomes private and tamper-evident.</div>
+          <div class="caps">
+            <div class="cap"><div class="ct"><span class="own full"></span>nix-mineral</div><div class="ck">OS hardening baseline</div><div class="cd">CIS-style kernel/sysctl lockdown</div></div>
+            <div class="cap"><div class="ct"><span class="own full"></span>Unbound + DNSSEC</div><div class="ck">Validating resolver</div><div class="cd">Provably authentic answers</div></div>
+            <div class="cap"><div class="ct"><span class="own full"></span>Unbound DoT</div><div class="ck">Encrypted DNS transport</div><div class="cd">ISP can't read or tamper queries</div></div>
+            <div class="cap"><div class="ct"><span class="own full"></span>Unbound + feeds</div><div class="ck">DNS filtering · threat feed</div><div class="cd">Known-bad domains null-routed</div></div>
+            <div class="cap"><div class="ct"><span class="own full"></span>CrowdSec</div><div class="ck">Behavioral IP reputation</div><div class="cd">Adaptive blocking + shared intel</div></div>
+            <div class="cap"><div class="ct"><span class="own full"></span>auditd + laurel</div><div class="ck">Audit event logging</div><div class="cd">Tamper-evident forensic trail</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase tailp r">
+        <div class="pid"><span class="p">P10</span><span class="dot"></span></div>
+        <div class="body">
+          <div class="pname">Detection &amp; response</div>
+          <div class="pdeliver">Catch what gets through — inline.</div>
+          <div class="caps">
+            <div class="cap"><div class="ct"><span class="own full"></span>Suricata</div><div class="ck">IDS / IPS</div><div class="cd">Signature + protocol anomaly, multi-threaded</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase tailp r">
+        <div class="pid"><span class="p">P11</span><span class="dot"></span></div>
+        <div class="body">
+          <div class="pname">Resilience</div>
+          <div class="pdeliver">Survive disk loss, compromise, and your own mistakes.</div>
+          <div class="caps">
+            <div class="cap"><div class="ct"><span class="own full"></span>restic</div><div class="ck">Encrypted dedup backup</div><div class="cd">Client-side encryption, cloud backends</div></div>
+            <div class="cap"><div class="ct"><span class="own no"></span>Backblaze B2</div><div class="ck">Object storage (cloud)</div><div class="cd">Ciphertext-only; rotatable destination</div></div>
+            <div class="cap"><div class="ct"><span class="own full"></span>sops + age</div><div class="ck">Secrets encryption</div><div class="cd">Per-value, flake-native, in git</div></div>
+            <div class="cap"><div class="ct"><span class="own full"></span>pyinfra</div><div class="ck">Config management</div><div class="cd">Idempotent drift correction</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase tailp r">
+        <div class="pid"><span class="p">P12</span><span class="dot"></span></div>
+        <div class="body">
+          <div class="pname">Performance &mdash; line-rate &amp; beyond</div>
+          <div class="pdeliver">From software fast-path to policy enforced in silicon — the Qthonic target.</div>
+          <div class="caps">
+            <div class="cap"><div class="ct"><span class="own full"></span>nftables flowtable</div><div class="ck">Connection fast-path offload</div><div class="cd">Established flows bypass netfilter</div></div>
+            <div class="cap"><div class="ct"><span class="own full"></span>sysctl tuning</div><div class="ck">Kernel network params</div><div class="cd">conntrack, buffers, BBR, somaxconn</div></div>
+            <div class="cap"><div class="ct"><span class="own full"></span>ethtool / tuned</div><div class="ck">NIC hardware offload</div><div class="cd">RSS, HW checksum, IRQ affinity</div></div>
+            <div class="cap"><div class="ct"><span class="own part"></span>Cilium XDP</div><div class="ck">XDP fast-path</div><div class="cd">Drop at the driver — DDoS-resistant</div></div>
+            <div class="cap"><div class="ct"><span class="own no"></span>ConnectX-5 &rarr; BlueField</div><div class="ck">SmartNIC / DPU offload</div><div class="cd">Policy at the NIC — the Qthonic-TPR target</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOVEREIGNTY -->
+<section>
+  <div class="wrap">
+    <div class="sec-head r">
+      <span class="eyebrow">Sovereignty posture</span>
+      <h2>What you can <em>actually own.</em></h2>
+      <p class="lede">The secure-enough core is 100% ownable. Across the full stack, ~88% is at least forkable — the unownable remainder is named, mitigated, and never on the critical path.</p>
+    </div>
+    <div class="sov-bar r">
+      <div class="seg full" style="flex:46">46% Fully</div>
+      <div class="seg part" style="flex:44">44% Partial</div>
+      <div class="seg no" style="flex:10">10%</div>
+    </div>
+    <div class="sov-legend r">
+      <div class="it"><span class="sw" style="background:var(--green)"></span><span><b style="color:var(--text);font-weight:500">Fully ownable</b> — FOSS + community/foundation governance. Fork and self-host indefinitely.</span></div>
+      <div class="it"><span class="sw" style="background:var(--amber)"></span><span><b style="color:var(--text);font-weight:500">Partial</b> — FOSS but commercially stewarded. Forkable; artifacts kept portable against relicense.</span></div>
+      <div class="it"><span class="sw" style="background:var(--red)"></span><span><b style="color:var(--text);font-weight:500">Not ownable</b> — closed / SaaS / proprietary. Mitigated: encrypted, optional, or rotatable.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MIGRATION -->
+<section>
+  <div class="wrap">
+    <div class="sec-head r">
+      <span class="eyebrow">Migration ladder</span>
+      <h2>Policy artifacts survive <em>every</em> hardware stage.</h2>
+      <p class="lede">The same declarative policy moves from commodity silicon to your own substrate. Hardware evolves; the expression layer stays declarative.</p>
+    </div>
+    <div class="mig r">
+      <div class="stage">
+        <div class="st">Now</div>
+        <h3>Commodity NIC</h3>
+        <p>eBPF policy, kernel-resident. ~$80–180 used ConnectX-5.</p>
+        <span class="ar">&rarr;</span>
+      </div>
+      <div class="stage">
+        <div class="st">+12 mo</div>
+        <h3>DPU</h3>
+        <p>Same policy, DPU-resident. Used BlueField-2.</p>
+        <span class="ar">&rarr;</span>
+      </div>
+      <div class="stage">
+        <div class="st">+24 mo</div>
+        <h3>P4 SmartNIC</h3>
+        <p>Programmable pipeline. True line-rate typed policy.</p>
+        <span class="ar">&rarr;</span>
+      </div>
+      <div class="stage">
+        <div class="st">Endgame</div>
+        <h3>Qthonic FPGA</h3>
+        <p>TPR-native typed policy. The substrate becomes the regulation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDO -->
+<footer class="credo">
+  <div class="wrap">
+    <div class="line r">Own the substrate. <em>Gate the platform.</em> Outlive the vendors.</div>
+    <div class="meta r">AEGISES · Qthonic · capability-typed sovereign compute</div>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.r').forEach(el=>io.observe(el));
+// hero reveals immediately, staggered
+window.addEventListener('load',()=>{document.querySelectorAll('.hero .r').forEach(el=>el.classList.add('in'));});
+</script>
+</body>
+</html>
