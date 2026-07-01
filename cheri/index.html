@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Use / Borrow / Build — CHERI Capability Decision Map</title>
+<style>
+  :root{
+    /* ground — datasheet-under-glass */
+    --ground:#0B0F14; --ground-2:#0F151C; --ground-3:#141C26; --ground-4:#18222E;
+    --ink:#E9EFF3; --ink-dim:#94A2AE; --ink-faint:#5D6C79; --rule:#1E2A36; --rule-2:#26343F;
+    /* otype-as-color: verdict semantics */
+    --use:#3EB9A6;        /* rent / enforce — live silicon */
+    --build:#E8A93C;      /* forged IP — meaning */
+    --borrow:#8E86E8;     /* read theorems — not owned */
+    --forced:#F2603F;     /* forced build / warning — sparing */
+    --tag:#39C2E8;        /* the tag bit / validity / the meaning beam */
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ground);color:var(--ink);font-family:var(--sans);
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(1200px 600px at 15% -5%, rgba(57,194,232,.06), transparent 60%),
+      radial-gradient(1000px 500px at 95% 8%, rgba(232,169,60,.05), transparent 55%);
+    overflow-x:hidden;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  .mono{font-family:var(--mono)}
+  .tnum{font-variant-numeric:tabular-nums}
+
+  /* ---- micro labels / eyebrows ---- */
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-faint)}
+  .rule{height:1px;background:var(--rule);border:0}
+
+  /* ================= HERO ================= */
+  header{padding:74px 0 40px;position:relative}
+  .kicker{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:30px}
+  .kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--tag);box-shadow:0 0 10px var(--tag)}
+  .kicker .sep{color:var(--rule-2)}
+  h1.thesis{
+    font-family:var(--mono);font-weight:600;letter-spacing:-.02em;line-height:1.02;
+    font-size:clamp(38px,7.2vw,86px);
+  }
+  h1.thesis .l2{color:var(--build)}
+  h1.thesis .l1{color:var(--use)}
+  .subline{margin-top:26px;max-width:720px;font-size:clamp(15px,1.7vw,18px);color:var(--ink-dim)}
+  .subline b{color:var(--ink);font-weight:600}
+  .metabar{margin-top:30px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .chip{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;padding:6px 11px;border-radius:2px;
+    border:1px solid var(--rule-2);color:var(--ink-dim);white-space:nowrap
+  }
+  .chip.hot{border-color:rgba(57,194,232,.4);color:var(--tag)}
+
+  /* ================= SIGNATURE: PRISM ================= */
+  .signature{padding:52px 0 60px}
+  .sig-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:8px}
+  .sig-head h2{font-family:var(--mono);font-weight:500;font-size:clamp(18px,2.4vw,26px);letter-spacing:-.01em}
+  .sig-head p{color:var(--ink-faint);font-size:13px;max-width:360px}
+  .prism-stage{
+    margin-top:26px;border:1px solid var(--rule);border-radius:6px;background:
+      linear-gradient(180deg,var(--ground-2),var(--ground));
+    padding:8px;position:relative;overflow:hidden
+  }
+  .prism-stage svg{display:block;width:100%;height:auto}
+  .beam{opacity:.9}
+  @media (prefers-reduced-motion:no-preference){
+    .beam-anim{animation:pulse 3.4s ease-in-out infinite}
+    .beam-anim.b2{animation-delay:.3s}.beam-anim.b3{animation-delay:.6s}.beam-anim.b4{animation-delay:.9s}
+    .beam-src{animation:flow 3s linear infinite}
+    @keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+    @keyframes flow{to{stroke-dashoffset:-40}}
+  }
+
+  /* ================= SECTION SCAFFOLD ================= */
+  section.band{padding:56px 0;border-top:1px solid var(--rule)}
+  .band-num{font-family:var(--mono);color:var(--ink-faint);font-size:12px;letter-spacing:.28em}
+  .band-title{font-family:var(--mono);font-weight:500;font-size:clamp(20px,2.8vw,30px);letter-spacing:-.01em;margin:10px 0 6px}
+  .band-lede{color:var(--ink-dim);max-width:760px;font-size:15px}
+  .band-lede b{color:var(--ink)}
+
+  /* ================= U/B/B BOARD ================= */
+  .board{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+  .col{border:1px solid var(--rule);border-radius:6px;background:var(--ground-2);overflow:hidden}
+  .col-head{padding:16px 18px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px}
+  .col-head .glyph{font-size:18px;line-height:1}
+  .col-head h3{font-family:var(--mono);font-size:15px;letter-spacing:.06em}
+  .col-head .tag-line{font-size:11.5px;color:var(--ink-faint);margin-top:2px}
+  .col.use .col-head{box-shadow:inset 3px 0 0 var(--use)}
+  .col.borrow .col-head{box-shadow:inset 3px 0 0 var(--borrow)}
+  .col.build .col-head{box-shadow:inset 3px 0 0 var(--build)}
+  .col.use h3{color:var(--use)} .col.borrow h3{color:var(--borrow)} .col.build h3{color:var(--build)}
+  .items{padding:8px}
+  .item{padding:11px 12px;border-radius:4px}
+  .item + .item{border-top:1px solid var(--rule)}
+  .item .nm{font-family:var(--mono);font-size:13.5px;color:var(--ink);display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+  .item .nm .cf{font-size:11px;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+  .item .wy{font-size:12.5px;color:var(--ink-dim);margin-top:3px}
+  .item:hover{background:var(--ground-3)}
+  .item.forced .nm{color:var(--forced)}
+  .item.forced::before{content:"⚡ FORCED";float:right;font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--forced);opacity:.9}
+  .item.thin .nm .badge{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--ink-faint);border:1px solid var(--rule-2);border-radius:2px;padding:1px 5px}
+
+  /* ================= VERTICAL STACK ================= */
+  .stack{margin-top:34px;display:flex;flex-direction:column;gap:0;position:relative}
+  .flowlabel{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--tag);text-align:center;padding:6px 0}
+  .layer{
+    border:1px solid var(--rule);background:var(--ground-2);border-radius:6px;padding:16px 18px;
+    display:grid;grid-template-columns:120px 1fr auto;gap:16px;align-items:center;position:relative
+  }
+  .layer + .layer{margin-top:10px}
+  .layer .role{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+  .layer .body h4{font-family:var(--mono);font-size:14.5px;color:var(--ink);letter-spacing:.01em}
+  .layer .body p{font-size:12.5px;color:var(--ink-dim);margin-top:3px}
+  .verdict-pill{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;padding:5px 10px;border-radius:2px;white-space:nowrap}
+  .verdict-pill.use{color:var(--use);border:1px solid rgba(62,185,166,.35);background:rgba(62,185,166,.07)}
+  .verdict-pill.build{color:var(--build);border:1px solid rgba(232,169,60,.35);background:rgba(232,169,60,.07)}
+  .layer.is-build{box-shadow:inset 3px 0 0 var(--build)}
+  .layer.is-use{box-shadow:inset 3px 0 0 var(--use)}
+  .down{color:var(--rule-2);text-align:center;font-size:14px;line-height:1;padding:4px 0}
+  .mono-note{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+
+  /* ================= FORCED BUILDS ================= */
+  .forced-band{border-top:1px solid var(--rule)}
+  .forced-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+  .forced-card{
+    border:1px solid rgba(242,96,63,.32);border-radius:6px;padding:22px;
+    background:linear-gradient(180deg,rgba(242,96,63,.06),transparent 70%),var(--ground-2)
+  }
+  .forced-card .tagn{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--forced)}
+  .forced-card h4{font-family:var(--mono);font-size:19px;margin:10px 0 8px;color:var(--ink)}
+  .forced-card p{font-size:13.5px;color:var(--ink-dim)}
+  .forced-card .why{margin-top:12px;font-size:12.5px;color:var(--ink-faint);border-top:1px solid var(--rule);padding-top:12px}
+
+  /* ================= PHASE SPLIT (rego vs cedar) ================= */
+  .phase{display:grid;grid-template-columns:1fr 44px 1fr;gap:0;margin-top:30px;align-items:stretch}
+  .phase-card{border:1px solid var(--rule);background:var(--ground-2);border-radius:6px;padding:20px}
+  .phase-card .ph-when{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--use)}
+  .phase-card h4{font-family:var(--mono);font-size:16px;margin:8px 0 6px}
+  .phase-card p{font-size:13px;color:var(--ink-dim)}
+  .phase-card .eng{margin-top:12px;font-family:var(--mono);font-size:11px;color:var(--use);border:1px solid rgba(62,185,166,.3);display:inline-block;padding:4px 9px;border-radius:2px}
+  .phase-mid{display:flex;align-items:center;justify-content:center;color:var(--ink-faint);font-family:var(--mono);font-size:11px}
+  .phase-note{margin-top:16px;text-align:center;font-family:var(--mono);font-size:12.5px;color:var(--build)}
+
+  /* ================= VERDICT GRID ================= */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+  .fbtn{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;padding:8px 14px;border-radius:3px;cursor:pointer;
+    background:transparent;border:1px solid var(--rule-2);color:var(--ink-dim);transition:.15s
+  }
+  .fbtn:hover{border-color:var(--ink-faint);color:var(--ink)}
+  .fbtn:focus-visible{outline:2px solid var(--tag);outline-offset:2px}
+  .fbtn[aria-pressed="true"]{background:var(--ground-3);color:var(--ink);border-color:var(--ink-faint)}
+  .fbtn[data-f="USE"][aria-pressed="true"]{color:var(--use);border-color:var(--use)}
+  .fbtn[data-f="BORROW"][aria-pressed="true"]{color:var(--borrow);border-color:var(--borrow)}
+  .fbtn[data-f="BUILD"][aria-pressed="true"]{color:var(--build);border-color:var(--build)}
+
+  .grid{margin-top:18px;border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+  .grow{
+    display:grid;grid-template-columns:1.5fr .8fr 1fr 2.4fr .9fr;gap:16px;padding:14px 18px;align-items:center;
+    border-bottom:1px solid var(--rule);transition:background .15s
+  }
+  .grow:last-child{border-bottom:0}
+  .grow.head{background:var(--ground-3);position:sticky;top:0;z-index:2}
+  .grow.head span{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+  .grow:not(.head):hover{background:var(--ground-2)}
+  .grow .c-nm{font-family:var(--mono);font-size:13.5px;color:var(--ink)}
+  .grow .c-vd{font-family:var(--mono);font-size:11px;letter-spacing:.1em;padding:4px 8px;border-radius:2px;justify-self:start;white-space:nowrap}
+  .vd-USE{color:var(--use);background:rgba(62,185,166,.09);border:1px solid rgba(62,185,166,.3)}
+  .vd-BORROW{color:var(--borrow);background:rgba(142,134,232,.09);border:1px solid rgba(142,134,232,.3)}
+  .vd-BUILD{color:var(--build);background:rgba(232,169,60,.09);border:1px solid rgba(232,169,60,.3)}
+  .grow .c-ly{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint)}
+  .grow .c-wy{font-size:12.5px;color:var(--ink-dim)}
+  .grow.forced .c-nm{color:var(--forced)}
+  .confbar{display:flex;align-items:center;gap:8px}
+  .confbar .track{flex:1;height:4px;background:var(--rule);border-radius:2px;overflow:hidden}
+  .confbar .fill{height:100%;width:0;border-radius:2px;transition:width 1s cubic-bezier(.2,.7,.2,1)}
+  .confbar .pct{font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);font-variant-numeric:tabular-nums;min-width:30px;text-align:right}
+  .fill.USE{background:var(--use)}.fill.BORROW{background:var(--borrow)}.fill.BUILD{background:var(--build)}
+  @media (prefers-reduced-motion:reduce){.confbar .fill{transition:none}}
+
+  /* ================= DESIGN NOTE ================= */
+  .guardian{border-top:1px solid var(--rule)}
+  .g-box{
+    margin-top:28px;border:1px solid var(--rule-2);border-left:3px solid var(--tag);border-radius:6px;
+    background:linear-gradient(120deg,rgba(57,194,232,.05),transparent 60%),var(--ground-2);padding:26px 28px
+  }
+  .g-box .g-tag{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--tag);display:flex;align-items:center;gap:8px}
+  .g-box p{margin-top:14px;font-size:15px;color:var(--ink-dim)}
+  .g-box p b{color:var(--ink)}
+  .g-box .verdict{margin-top:16px;font-family:var(--mono);font-size:14px;color:var(--ink);letter-spacing:.01em}
+  .g-box .verdict span{color:var(--use)} .g-box .verdict em{color:var(--build);font-style:normal}
+
+  /* ================= LATENT / TLDR ================= */
+  .foot-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:22px;margin-top:30px}
+  .latent h4,.tldr h4{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:14px}
+  .latent ul{list-style:none}
+  .latent li{position:relative;padding:11px 0 11px 24px;border-bottom:1px solid var(--rule);font-size:13.5px;color:var(--ink-dim)}
+  .latent li:last-child{border-bottom:0}
+  .latent li::before{content:"▸";position:absolute;left:2px;color:var(--tag)}
+  .latent li b{color:var(--ink)}
+  .tldr{border:1px solid var(--rule);border-radius:6px;background:var(--ground-2);padding:22px}
+  .tldr p{font-size:13.5px;color:var(--ink-dim)}
+  .tldr .u{color:var(--use);font-family:var(--mono)}
+  .tldr .b{color:var(--build);font-family:var(--mono)}
+  .tldr .r{color:var(--borrow);font-family:var(--mono)}
+  .tldr .f{color:var(--forced);font-family:var(--mono)}
+
+  footer{border-top:1px solid var(--rule);margin-top:48px;padding:26px 0 60px}
+  .provenance{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.03em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  /* ================= RESPONSIVE ================= */
+  @media(max-width:860px){
+    .board{grid-template-columns:1fr}
+    .forced-grid{grid-template-columns:1fr}
+    .phase{grid-template-columns:1fr}
+    .phase-mid{padding:8px 0}
+    .foot-grid{grid-template-columns:1fr}
+    .layer{grid-template-columns:1fr;gap:8px}
+    .layer .verdict-pill{justify-self:start}
+    .grow.head{display:none}
+    .grow{grid-template-columns:1fr;gap:8px;padding:16px 16px}
+    .grow .c-vd{justify-self:start}
+    .grow .c-nm::before{content:"COMPONENT · ";font-size:9px;letter-spacing:.12em;color:var(--ink-faint)}
+    .grow .c-ly::before{content:"LAYER · ";font-size:9px;letter-spacing:.12em;color:var(--ink-faint)}
+    .grow .c-wy::before{content:"WHY — ";font-size:9px;letter-spacing:.12em;color:var(--ink-faint)}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <header>
+    <div class="kicker mono">
+      <span class="dot"></span>
+      <span class="eyebrow" style="letter-spacing:.24em">Decision Map</span>
+      <span class="sep">/</span>
+      <span style="font-size:11px;color:var(--ink-dim);letter-spacing:.1em">CHERI · TYPED CAPABILITY GOVERNANCE</span>
+    </div>
+
+    <h1 class="thesis">
+      <span class="l1">Use what enforces.</span><br>
+      <span class="l2">Build what means.</span>
+    </h1>
+
+    <p class="subline">
+      The thesis is <b>substrate-is-regulation</b> — so the regulation is the <b>specification</b>.
+      The specification language and its compiler are what must be built; every substrate that can be coerced into obeying it should be rented, not rebuilt.
+      Enforcers are silicon, solved logic, or shipped engines. Rebuild one and you forfeit its proofs and its ecosystem for a quarter of re-derivation.
+      The moat is the semantic spine and the lowering — nothing beneath it.
+    </p>
+
+    <div class="metabar">
+      <span class="chip hot mono">◐ opinionated estimate</span>
+      <span class="chip mono">confidence ~85%</span>
+      <span class="chip mono">16 components triaged</span>
+      <span class="chip mono">2 builds forced by physics</span>
+    </div>
+  </header>
+
+  <!-- ============ SIGNATURE: PRISM ============ -->
+  <div class="signature">
+    <div class="sig-head">
+      <h2>One meaning → many enforcers</h2>
+      <p>The lowering compiler is the prism. It is the single build; every target it refracts onto is rented.</p>
+    </div>
+
+    <div class="prism-stage">
+      <svg viewBox="0 0 1100 380" role="img" aria-label="A prism diagram: the lowering compiler refracts one beam of meaning into four rented enforcers — XDP2, eBPF, CHERI otype, and Cedar.">
+        <defs>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3.2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <linearGradient id="srcbeam" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#39C2E8" stop-opacity="0"/>
+            <stop offset="1" stop-color="#39C2E8"/>
+          </linearGradient>
+          <linearGradient id="prismfill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#E8A93C" stop-opacity=".22"/>
+            <stop offset="1" stop-color="#E8A93C" stop-opacity=".05"/>
+          </linearGradient>
+        </defs>
+
+        <!-- SOURCE : the lowering compiler -->
+        <g font-family="ui-monospace,monospace">
+          <rect x="34" y="150" width="176" height="80" rx="5" fill="#141C26" stroke="#E8A93C" stroke-opacity=".5"/>
+          <text x="50" y="180" fill="#E8A93C" font-size="12" letter-spacing="1.5">BUILD</text>
+          <text x="50" y="200" fill="#E9EFF3" font-size="15">Unified IR</text>
+          <text x="50" y="218" fill="#94A2AE" font-size="11">the lowering compiler</text>
+        </g>
+
+        <!-- MEANING BEAM into prism -->
+        <line class="beam-src" x1="210" y1="190" x2="470" y2="190" stroke="url(#srcbeam)" stroke-width="3"
+              stroke-dasharray="6 6" filter="url(#glow)"/>
+        <text x="300" y="178" fill="#39C2E8" font-size="11" font-family="ui-monospace,monospace" letter-spacing="2">MEANING</text>
+
+        <!-- PRISM -->
+        <polygon points="470,120 470,260 560,190" fill="url(#prismfill)" stroke="#E8A93C" stroke-opacity=".7" stroke-width="1.5" filter="url(#glow)"/>
+        <text x="452" y="300" fill="#94A2AE" font-size="10" font-family="ui-monospace,monospace" letter-spacing="2">MLIR LOWERING</text>
+
+        <!-- REFRACTED BEAMS to 4 enforcers -->
+        <!-- targets at x=880 -->
+        <g stroke-width="2.5" filter="url(#glow)">
+          <line class="beam beam-anim b1" x1="558" y1="188" x2="864" y2="70"  stroke="#3EB9A6"/>
+          <line class="beam beam-anim b2" x1="559" y1="189" x2="864" y2="150" stroke="#3EB9A6"/>
+          <line class="beam beam-anim b3" x1="559" y1="191" x2="864" y2="230" stroke="#3EB9A6"/>
+          <line class="beam beam-anim b4" x1="558" y1="192" x2="864" y2="310" stroke="#3EB9A6"/>
+        </g>
+
+        <!-- enforcer chips (rented / USE) -->
+        <g font-family="ui-monospace,monospace">
+          <g>
+            <rect x="864" y="46" width="200" height="48" rx="4" fill="#0F151C" stroke="#3EB9A6" stroke-opacity=".45"/>
+            <text x="880" y="68" fill="#3EB9A6" font-size="9" letter-spacing="1.5">USE · DATAPATH</text>
+            <text x="880" y="84" fill="#E9EFF3" font-size="13">XDP2</text>
+          </g>
+          <g>
+            <rect x="864" y="126" width="200" height="48" rx="4" fill="#0F151C" stroke="#3EB9A6" stroke-opacity=".45"/>
+            <text x="880" y="148" fill="#3EB9A6" font-size="9" letter-spacing="1.5">USE · KERNEL</text>
+            <text x="880" y="164" fill="#E9EFF3" font-size="13">eBPF</text>
+          </g>
+          <g>
+            <rect x="864" y="206" width="200" height="48" rx="4" fill="#0F151C" stroke="#3EB9A6" stroke-opacity=".45"/>
+            <text x="880" y="228" fill="#3EB9A6" font-size="9" letter-spacing="1.5">USE · SILICON</text>
+            <text x="880" y="244" fill="#E9EFF3" font-size="13">CHERI · otype</text>
+          </g>
+          <g>
+            <rect x="864" y="286" width="200" height="48" rx="4" fill="#0F151C" stroke="#3EB9A6" stroke-opacity=".45"/>
+            <text x="880" y="308" fill="#3EB9A6" font-size="9" letter-spacing="1.5">USE · DECISION</text>
+            <text x="880" y="324" fill="#E9EFF3" font-size="13">Cedar</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ============ 01 · U/B/B BOARD ============ -->
+  <section class="band">
+    <div class="band-num">01 — THE TRIAGE</div>
+    <h2 class="band-title">Use · Borrow · Build</h2>
+    <p class="band-lede">The rule that decides every row: <b>use everything that enforces; build only what means.</b> Three categories, one boundary — is this component an enforcer that can be coerced, a theorem that can be read, or meaning that only the specification can encode?</p>
+
+    <div class="board">
+      <!-- USE -->
+      <div class="col use">
+        <div class="col-head">
+          <span class="glyph">🔩</span>
+          <div><h3>USE</h3><div class="tag-line">enforcement — rent, don't rebuild</div></div>
+        </div>
+        <div class="items">
+          <div class="item"><div class="nm">CHERI sealing / otype <span class="cf">95%</span></div><div class="wy">Silicon. A capability spine is inherited, not forged.</div></div>
+          <div class="item"><div class="nm">VeriCHERI monotonicity <span class="cf">90%</span></div><div class="wy">Tags clear, never set. A free proof the authority axis rests on.</div></div>
+          <div class="item"><div class="nm">Sail model + Verilator Ibex <span class="cf">90%</span></div><div class="wy">Maintained gold emulation model. Rebuilding is pointless.</div></div>
+          <div class="item"><div class="nm">MLIR infrastructure <span class="cf">90%</span></div><div class="wy">Build <em>in</em> it — dialects, passes — never it.</div></div>
+          <div class="item"><div class="nm">LLVM / CHERIoT toolchain <span class="cf">85%</span></div><div class="wy">Upstreaming as the CHERI microcontroller profile. Ride it.</div></div>
+          <div class="item"><div class="nm">Rego / OPA + cheriot-audit <span class="cf">85%</span></div><div class="wy">Ships; operates on the exact compartment report. Build-time barrier lives here.</div></div>
+          <div class="item"><div class="nm">Cedar engine <span class="cf">75%</span></div><div class="wy">Decidable runtime decision fragment. Rebuilding it = rebuilding OPA badly.</div></div>
+        </div>
+      </div>
+
+      <!-- BORROW -->
+      <div class="col borrow">
+        <div class="col-head">
+          <span class="glyph">📖</span>
+          <div><h3>BORROW</h3><div class="tag-line">theorems — read, don't adopt</div></div>
+        </div>
+        <div class="items">
+          <div class="item"><div class="nm">Cerise / Cerisier <span class="cf">70%</span></div><div class="wy">Steal the logical-relation shape — what an attachment guarantees. Mechanize only if a barrier demands a machine-checked proof.</div></div>
+          <div class="item"><div class="nm">TAL / StkTokens <span class="cf">70%</span></div><div class="wy">Conceptual parent of typed low-level code. Read for why otypes type authority, not data.</div></div>
+          <div class="item" style="opacity:.55"><div class="nm mono-note" style="color:var(--ink-faint)">⚠ fragile category</div><div class="wy" style="color:var(--ink-faint)">"Borrow" silently becomes a quarter of Coq without ruthlessness. Set a tripwire.</div></div>
+        </div>
+      </div>
+
+      <!-- BUILD -->
+      <div class="col build">
+        <div class="col-head">
+          <span class="glyph">🔨</span>
+          <div><h3>BUILD</h3><div class="tag-line">meaning — the irreducible IP</div></div>
+        </div>
+        <div class="items">
+          <div class="item forced"><div class="nm">Typed-attachment primitive <span class="cf">90%</span></div><div class="wy">The irreducible base. Its TTL has no enforcer anywhere → forced.</div></div>
+          <div class="item forced"><div class="nm">Temporal / revocation enforcer <span class="cf">85%</span></div><div class="wy">CHERI is timeless; policy engines evaluate a snapshot. Nobody carries force-time → forced.</div></div>
+          <div class="item forced"><div class="nm">Lowering compiler <span class="cf">90%</span></div><div class="wy">The thesis itself: one meaning → XDP2 · eBPF · CHERI · Cedar. No prior art → forced.</div></div>
+          <div class="item"><div class="nm">Unified attachment dialect <span class="cf">90%</span></div><div class="wy">The single source of meaning — the IR the compiler lowers from.</div></div>
+          <div class="item thin"><div class="nm">Cedar schema + interposition <span class="cf">80%</span> <span class="badge">THIN</span></div><div class="wy">Integration glue binding a general engine to the domain. Weeks, not quarters.</div></div>
+          <div class="item thin"><div class="nm">Append-only provenance <span class="cf">80%</span> <span class="badge">THIN</span></div><div class="wy">Linker gives section hashes free; build the ledger over them.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 · VERTICAL STACK ============ -->
+  <section class="band">
+    <div class="band-num">02 — THE VERTICAL</div>
+    <h2 class="band-title">Not three products. One column.</h2>
+    <p class="band-lede">Each layer proves a <b>different</b> claim; none substitutes for another. Meaning descends from the dialect and is enforced at every height below it — read top to bottom.</p>
+
+    <div class="stack">
+      <div class="flowlabel">▼ MEANING DESCENDS ▼</div>
+
+      <div class="layer is-build">
+        <div class="role">Semantics</div>
+        <div class="body"><h4>Cerise universal contracts</h4><p>Type what the attachment <em>means</em> and guarantees — borrowed as methodology.</p></div>
+        <div class="verdict-pill build">BORROW → BUILD</div>
+      </div>
+      <div class="down">│</div>
+
+      <div class="layer is-use">
+        <div class="role">Silicon</div>
+        <div class="body"><h4>Sealing · otype · VeriCHERI</h4><p>Enforce authority in hardware. Monotonic — authority only shrinks, tags clear and never set.</p></div>
+        <div class="verdict-pill use">USE</div>
+      </div>
+      <div class="down">│</div>
+
+      <div class="layer is-use">
+        <div class="role">Build-time</div>
+        <div class="body"><h4>Rego over the compartment graph</h4><p>Audit the static image before deployment. The information barrier is a graph theorem, proven here.</p></div>
+        <div class="verdict-pill use">USE</div>
+      </div>
+      <div class="down">│</div>
+
+      <div class="layer is-use">
+        <div class="role">Runtime</div>
+        <div class="body"><h4>Cedar decision at the tool call</h4><p>Decide per-call at the interposition point. Decidable, analyzable — but stateless of time.</p></div>
+        <div class="verdict-pill use">USE</div>
+      </div>
+      <div class="down">│</div>
+
+      <div class="layer is-build">
+        <div class="role">Provenance</div>
+        <div class="body"><h4>SBOM hashes seal the ledger</h4><p>Bind every section hash into an append-only record. Grounds the whole column in evidence.</p></div>
+        <div class="verdict-pill build">BUILD · thin</div>
+      </div>
+
+      <div class="flowlabel" style="color:var(--build)">the primitive threads all five heights</div>
+    </div>
+  </section>
+
+  <!-- ============ 03 · FORCED BUILDS ============ -->
+  <section class="band forced-band">
+    <div class="band-num" style="color:var(--forced)">03 — WHERE "USE" DOES NOT EXIST</div>
+    <h2 class="band-title">Two builds forced by physics</h2>
+    <p class="band-lede">Everywhere else, an enforcer can be rented. In exactly these two places the market and the physics leave a gap — there is <b>no</b> way to buy out.</p>
+
+    <div class="forced-grid">
+      <div class="forced-card">
+        <div class="tagn">⚡ FORCED BUILD · 01</div>
+        <h4>Effect-force-time / TTL</h4>
+        <p>Every enforcer in the stack is timeless or snapshot-stateless. CHERI carries no clock; Rego and Cedar evaluate a frozen instant. This is the one field the primitive carries that no substrate does.</p>
+        <div class="why">Same seam as the render-gap: meaning that no substrate natively represents. It must live in the build layer or it does not exist.</div>
+      </div>
+      <div class="forced-card">
+        <div class="tagn">⚡ FORCED BUILD · 02</div>
+        <h4>The lowering</h4>
+        <p>The compiler taking one annotated schema and emitting XDP2 <em>and</em> eBPF <em>and</em> CHERI otype-discipline <em>and</em> Cedar decisions is what makes "specification IS regulation" real.</p>
+        <div class="why">Definitionally un-rentable — it is the encoding of the primitive. This is the artifact, and the moat.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 · PHASE SPLIT ============ -->
+  <section class="band">
+    <div class="band-num">04 — THE FORK, RESOLVED</div>
+    <h2 class="band-title">Rego vs Cedar is not a fork — it's a division</h2>
+    <p class="band-lede">The tension resolves cleanly. Two engines, two <b>phases</b>. <b>Zero</b> policy engines are built; the lowering compiler emits <em>to</em> both.</p>
+
+    <div class="phase">
+      <div class="phase-card">
+        <div class="ph-when">◐ BUILD-TIME</div>
+        <h4>Rego over the compartment report</h4>
+        <p>Least-privilege audit over the static graph. The barrier is proven before anything ships — native, free, already built.</p>
+        <div class="eng mono">USE · cheriot-audit</div>
+      </div>
+      <div class="phase-mid mono">│ vs │</div>
+      <div class="phase-card">
+        <div class="ph-when">◐ RUNTIME</div>
+        <h4>Cedar at the tool call</h4>
+        <p>Per-call decision at interposition. Only the schema and the glue get built — the engine is rented.</p>
+        <div class="eng mono">USE engine · BUILD schema</div>
+      </div>
+    </div>
+    <div class="phase-note mono">Temporal logic lives in neither — Cedar's entity model can't hold TTL, so it's forbidden there and forced into the build layer.</div>
+  </section>
+
+  <!-- ============ 05 · VERDICT GRID ============ -->
+  <section class="band">
+    <div class="band-num">05 — THE LEDGER</div>
+    <h2 class="band-title">Full verdict grid</h2>
+    <p class="band-lede">Every component, its verdict, the layer it occupies, and the confidence behind the call. Filter to isolate a category.</p>
+
+    <div class="filters" role="group" aria-label="Filter verdicts">
+      <button class="fbtn" data-f="ALL" aria-pressed="true">ALL · 16</button>
+      <button class="fbtn" data-f="USE" aria-pressed="false">🔩 USE</button>
+      <button class="fbtn" data-f="BORROW" aria-pressed="false">📖 BORROW</button>
+      <button class="fbtn" data-f="BUILD" aria-pressed="false">🔨 BUILD</button>
+    </div>
+
+    <div class="grid" id="grid">
+      <div class="grow head">
+        <span>Component</span><span>Verdict</span><span>Layer</span><span>Why</span><span>Confidence</span>
+      </div>
+
+      <!-- USE -->
+      <div class="grow" data-v="USE"><div class="c-nm">CHERI sealing / otype</div><div class="c-vd vd-USE">USE</div><div class="c-ly">Silicon</div><div class="c-wy">A capability spine is inherited, not built.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="95"></div></div><span class="pct">95%</span></div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">VeriCHERI monotonicity</div><div class="c-vd vd-USE">USE</div><div class="c-ly">Silicon</div><div class="c-wy">Tags clear, never set. Free proof.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="90"></div></div><span class="pct">90%</span></div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">Sail model + Verilator Ibex</div><div class="c-vd vd-USE">USE</div><div class="c-ly">Emulation</div><div class="c-wy">Maintained gold model. Rebuilding pointless.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="90"></div></div><span class="pct">90%</span></div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">MLIR infrastructure</div><div class="c-vd vd-USE">USE</div><div class="c-ly">Compiler</div><div class="c-wy">Build in it — never it.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="90"></div></div><span class="pct">90%</span></div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">LLVM / CHERIoT toolchain</div><div class="c-vd vd-USE">USE</div><div class="c-ly">Compiler</div><div class="c-wy">Recommended CHERI MCU profile. Ride it.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="85"></div></div><span class="pct">85%</span></div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">Rego / OPA + cheriot-audit</div><div class="c-vd vd-USE">USE</div><div class="c-ly">Build-time</div><div class="c-wy">Native, ships, operates on the exact report.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="85"></div></div><span class="pct">85%</span></div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">Cedar engine</div><div class="c-vd vd-USE">USE</div><div class="c-ly">Runtime</div><div class="c-wy">Decidable decision fragment. Don't rebuild OPA.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="75"></div></div><span class="pct">75%</span></div></div>
+
+      <!-- BORROW -->
+      <div class="grow" data-v="BORROW"><div class="c-nm">Cerise / Cerisier</div><div class="c-vd vd-BORROW">BORROW</div><div class="c-ly">Semantics</div><div class="c-wy">Steal the logical-relation shape. Mechanize only on demand.</div><div class="confbar"><div class="track"><div class="fill BORROW" data-c="70"></div></div><span class="pct">70%</span></div></div>
+      <div class="grow" data-v="BORROW"><div class="c-nm">TAL / StkTokens</div><div class="c-vd vd-BORROW">BORROW</div><div class="c-ly">Theory</div><div class="c-wy">Conceptual parent. Read, don't port.</div><div class="confbar"><div class="track"><div class="fill BORROW" data-c="70"></div></div><span class="pct">70%</span></div></div>
+
+      <!-- BUILD -->
+      <div class="grow forced" data-v="BUILD"><div class="c-nm">Typed-attachment primitive</div><div class="c-vd vd-BUILD">BUILD</div><div class="c-ly">Core IP</div><div class="c-wy">Irreducible. TTL has no enforcer → forced.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="90"></div></div><span class="pct">90%</span></div></div>
+      <div class="grow forced" data-v="BUILD"><div class="c-nm">Temporal / revocation enforcer</div><div class="c-vd vd-BUILD">BUILD</div><div class="c-ly">Runtime</div><div class="c-wy">Nobody carries force-time → forced.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="85"></div></div><span class="pct">85%</span></div></div>
+      <div class="grow forced" data-v="BUILD"><div class="c-nm">Lowering compiler</div><div class="c-vd vd-BUILD">BUILD</div><div class="c-ly">Compiler</div><div class="c-wy">The thesis. One meaning → four targets. No prior art.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="90"></div></div><span class="pct">90%</span></div></div>
+      <div class="grow" data-v="BUILD"><div class="c-nm">Unified attachment dialect</div><div class="c-vd vd-BUILD">BUILD</div><div class="c-ly">Compiler</div><div class="c-wy">Single source of meaning — the IR the compiler lowers from.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="90"></div></div><span class="pct">90%</span></div></div>
+      <div class="grow" data-v="BUILD"><div class="c-nm">Cedar schema + interposition</div><div class="c-vd vd-BUILD">BUILD</div><div class="c-ly">Runtime · thin</div><div class="c-wy">Domain glue over a rented engine. Weeks.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="80"></div></div><span class="pct">80%</span></div></div>
+      <div class="grow" data-v="BUILD"><div class="c-nm">Append-only provenance</div><div class="c-vd vd-BUILD">BUILD</div><div class="c-ly">Provenance · thin</div><div class="c-wy">Ledger over free linker hashes.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="80"></div></div><span class="pct">80%</span></div></div>
+    </div>
+  </section>
+
+  <!-- ============ DESIGN NOTE ============ -->
+  <section class="band guardian">
+    <div class="band-num" style="color:var(--tag)">DESIGN NOTE</div>
+    <div class="g-box">
+      <div class="g-tag">⬡ THE TRAP OF THE CAPABLE SUBSTRATE ENGINEER</div>
+      <p>The pull is common among systems architects with the depth to build the substrate. The instinct — and identity — reaches for a bespoke capability engine, because the deep capability problem is the beautiful one and the moat <em>feels</em> like it lives in silicon. It does not.</p>
+      <p><b>The moat is the compiler and the primitive; the substrate is a commodity to be coerced.</b> Every hour on a bespoke capability engine or a hand-rolled policy DSL is an hour stolen from the lowering that <em>is</em> the thesis. The discipline is refusal: decline the substrate build precisely because it is the one build within reach.</p>
+      <div class="verdict">Build the <em>meaning</em>. Rent the <span>enforcement</span>. Ship the barrier.</div>
+    </div>
+  </section>
+
+  <!-- ============ LATENT + TLDR ============ -->
+  <section class="band">
+    <div class="band-num">LATENT NOTIONS · TLDR</div>
+    <div class="foot-grid">
+      <div class="latent">
+        <h4>Latent notions — questions · risks · edges</h4>
+        <ul>
+          <li><b>BORROW is the fragile category.</b> "Borrow Cerise's methodology" silently becomes a quarter of Iris/Coq. Tripwire: touch Coq only if a customer or regulator demands a machine-checked barrier proof.</li>
+          <li><b>otype width vs dialect type-count.</b> A rented enforcer imposes a hard ceiling on a built layer. Virtualization is a build that has not yet been scoped.</li>
+          <li><b>Cedar can't hold TTL.</b> If temporal logic must live in the build layer regardless, Cedar's marginal value over the native Rego path narrows. Re-weigh deliberately.</li>
+          <li><b>Forced-build sequencing.</b> The lowering and the temporal enforcer are coupled — force-time is a field the compiler must lower. Neither ships without a decision on the other.</li>
+        </ul>
+      </div>
+      <div class="tldr">
+        <h4>TLDR</h4>
+        <p>
+          <span class="u">USE</span> = enforcement — CHERI, VeriCHERI, Sail, LLVM, MLIR-infra, Rego, Cedar engine.<br><br>
+          <span class="r">BORROW</span> = theorems — Cerise, TAL. Reading, not adoption.<br><br>
+          <span class="b">BUILD</span> = meaning — the attachment primitive, temporal enforcer, unified dialect, the lowering, thin Cedar/provenance glue.<br><br>
+          <span class="f">FORCED</span> by physics: TTL/force-time and the lowering — nobody rents those. The temptation is to build the substrate; the discipline is to refuse it and build the compiler.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="provenance">
+      <span>DECISION MAP · CHERI TYPED CAPABILITY GOVERNANCE</span>
+      <span>OPINIONATED ESTIMATE · CONF ~85%</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // ---- verdict grid filter ----
+  (function(){
+    var grid = document.getElementById('grid');
+    var rows = Array.prototype.slice.call(grid.querySelectorAll('.grow:not(.head)'));
+    var btns = Array.prototype.slice.call(document.querySelectorAll('.fbtn'));
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var f = b.getAttribute('data-f');
+        btns.forEach(function(x){ x.setAttribute('aria-pressed', x===b ? 'true':'false'); });
+        rows.forEach(function(r){
+          r.style.display = (f==='ALL' || r.getAttribute('data-v')===f) ? '' : 'none';
+        });
+      });
+    });
+  })();
+
+  // ---- confidence bars: fill on scroll into view ----
+  (function(){
+    var fills = Array.prototype.slice.call(document.querySelectorAll('.confbar .fill'));
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ fills.forEach(function(f){ f.style.width = f.getAttribute('data-c')+'%'; }); return; }
+    if(!('IntersectionObserver' in window)){ fills.forEach(function(f){ f.style.width = f.getAttribute('data-c')+'%'; }); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.style.width = e.target.getAttribute('data-c')+'%'; io.unobserve(e.target); }
+      });
+    }, {threshold:.4});
+    fills.forEach(function(f){ io.observe(f); });
+  })();
+</script>
+</body>
+</html>
