@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CHERI Policy Management — An Opportunity Map for Ecosystem Unification</title>
+<title>A Public Policy Ontology for CHERI — From Users to Registers</title>
 <style>
   :root{
     /* ground — datasheet-under-glass */
@@ -240,17 +240,17 @@
       <span class="dot"></span>
       <span class="eyebrow" style="letter-spacing:.24em">Opportunity Map</span>
       <span class="sep">/</span>
-      <span style="font-size:11px;color:var(--ink-dim);letter-spacing:.1em">CHERI ECOSYSTEM · POLICY UNIFICATION</span>
+      <span style="font-size:11px;color:var(--ink-dim);letter-spacing:.1em">CHERI ECOSYSTEM · A PUBLIC POLICY ONTOLOGY</span>
     </div>
 
     <h1 class="thesis">
-      <span class="l1">CHERI already types authority.</span><br>
-      <span class="l2">The ecosystem doesn't yet type it once.</span>
+      <span class="l1">CHERI enforces policy at the metal — and across the stack.</span><br>
+      <span class="l2">One public ontology, from users to registers.</span>
     </h1>
 
     <p class="subline">
-      Sealing and <b>otype</b> give the CHERI substrate a shared vocabulary for authority. Above the substrate, four independent policy surfaces — <b>cheriot-audit</b>'s Rego over compartment graphs, <b>Cedar</b> at tool-call interposition, <b>XDP2</b> at the datapath, <b>eBPF</b> in the kernel — each retype the same authority in their own grammar.
-      The opportunity is a single intermediate representation whose lowering emits all four. Policy is written once and enforced at every height. The coordination point is at the compiler, not at any one enforcer.
+      CHERI is one of the few substrates whose policy story runs continuously from the user's request down to the register set. Sealing and <b>otype</b> put authority into hardware; above the substrate, four ecosystem enforcers already retype the same authority at every height — <b>cheriot-audit</b>'s Rego over compartment graphs, <b>Cedar</b> at tool-call interposition, <b>eBPF</b> in the kernel, <b>XDP2</b> at the datapath.
+      The opportunity is a <b>public policy ontology</b>: one shared language of authority whose lowering emits into all four enforcers, so a policy written for a user surface reaches the register that carries it — losslessly, and only once.
     </p>
 
     <div class="metabar">
@@ -264,8 +264,8 @@
   <!-- ============ SIGNATURE: PRISM ============ -->
   <div class="signature">
     <div class="sig-head">
-      <h2>One IR → the ecosystem's four enforcers</h2>
-      <p>The proposed artifact is a lowering compiler. One dialect of typed authority; four existing CHERI-ecosystem enforcement surfaces as its targets.</p>
+      <h2>One ontology → users, kernel, datapath, silicon</h2>
+      <p>The proposed artifact is a lowering compiler over a public policy ontology. One shared language of authority; the ecosystem's four existing enforcers as its targets.</p>
     </div>
 
     <div class="prism-stage">
@@ -565,7 +565,7 @@
 
   <footer>
     <div class="provenance">
-      <span>OPPORTUNITY MAP · CHERI POLICY UNIFICATION</span>
+      <span>OPPORTUNITY MAP · A PUBLIC POLICY ONTOLOGY FOR CHERI</span>
       <span>COMMUNITY PROPOSAL · CONF ~85%</span>
     </div>
   </footer>
