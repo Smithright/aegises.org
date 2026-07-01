@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Use / Borrow / Build — CHERI Capability Decision Map</title>
+<title>CHERI Policy Management — An Opportunity Map for Ecosystem Unification</title>
 <style>
   :root{
     /* ground — datasheet-under-glass */
@@ -238,40 +238,38 @@
   <header>
     <div class="kicker mono">
       <span class="dot"></span>
-      <span class="eyebrow" style="letter-spacing:.24em">Decision Map</span>
+      <span class="eyebrow" style="letter-spacing:.24em">Opportunity Map</span>
       <span class="sep">/</span>
-      <span style="font-size:11px;color:var(--ink-dim);letter-spacing:.1em">CHERI · TYPED CAPABILITY GOVERNANCE</span>
+      <span style="font-size:11px;color:var(--ink-dim);letter-spacing:.1em">CHERI ECOSYSTEM · POLICY UNIFICATION</span>
     </div>
 
     <h1 class="thesis">
-      <span class="l1">Use what enforces.</span><br>
-      <span class="l2">Build what means.</span>
+      <span class="l1">CHERI already types authority.</span><br>
+      <span class="l2">The ecosystem doesn't yet type it once.</span>
     </h1>
 
     <p class="subline">
-      The thesis is <b>substrate-is-regulation</b> — so the regulation is the <b>specification</b>.
-      The specification language and its compiler are what must be built; every substrate that can be coerced into obeying it should be rented, not rebuilt.
-      Enforcers are silicon, solved logic, or shipped engines. Rebuild one and you forfeit its proofs and its ecosystem for a quarter of re-derivation.
-      The moat is the semantic spine and the lowering — nothing beneath it.
+      Sealing and <b>otype</b> give the CHERI substrate a shared vocabulary for authority. Above the substrate, four independent policy surfaces — <b>cheriot-audit</b>'s Rego over compartment graphs, <b>Cedar</b> at tool-call interposition, <b>XDP2</b> at the datapath, <b>eBPF</b> in the kernel — each retype the same authority in their own grammar.
+      The opportunity is a single intermediate representation whose lowering emits all four. Policy is written once and enforced at every height. The coordination point is at the compiler, not at any one enforcer.
     </p>
 
     <div class="metabar">
-      <span class="chip hot mono">◐ opinionated estimate</span>
+      <span class="chip hot mono">◐ community proposal</span>
       <span class="chip mono">confidence ~85%</span>
-      <span class="chip mono">16 components triaged</span>
-      <span class="chip mono">2 builds forced by physics</span>
+      <span class="chip mono">16 components surveyed</span>
+      <span class="chip mono">2 unfilled ecosystem gaps</span>
     </div>
   </header>
 
   <!-- ============ SIGNATURE: PRISM ============ -->
   <div class="signature">
     <div class="sig-head">
-      <h2>One meaning → many enforcers</h2>
-      <p>The lowering compiler is the prism. It is the single build; every target it refracts onto is rented.</p>
+      <h2>One IR → the ecosystem's four enforcers</h2>
+      <p>The proposed artifact is a lowering compiler. One dialect of typed authority; four existing CHERI-ecosystem enforcement surfaces as its targets.</p>
     </div>
 
     <div class="prism-stage">
-      <svg viewBox="0 0 1100 380" role="img" aria-label="A prism diagram: the lowering compiler refracts one beam of meaning into four rented enforcers — XDP2, eBPF, CHERI otype, and Cedar.">
+      <svg viewBox="0 0 1100 380" role="img" aria-label="A prism diagram: a proposed unified IR lowers one dialect of typed authority to four CHERI-ecosystem enforcers — XDP2, eBPF, CHERI otype, and Cedar.">
         <defs>
           <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="3.2" result="b"/>
@@ -287,18 +285,18 @@
           </linearGradient>
         </defs>
 
-        <!-- SOURCE : the lowering compiler -->
+        <!-- SOURCE : the proposed unified IR -->
         <g font-family="ui-monospace,monospace">
           <rect x="34" y="150" width="176" height="80" rx="5" fill="#141C26" stroke="#E8A93C" stroke-opacity=".5"/>
-          <text x="50" y="180" fill="#E8A93C" font-size="12" letter-spacing="1.5">BUILD</text>
+          <text x="50" y="180" fill="#E8A93C" font-size="12" letter-spacing="1.5">PROPOSE</text>
           <text x="50" y="200" fill="#E9EFF3" font-size="15">Unified IR</text>
-          <text x="50" y="218" fill="#94A2AE" font-size="11">the lowering compiler</text>
+          <text x="50" y="218" fill="#94A2AE" font-size="11">one grammar of authority</text>
         </g>
 
-        <!-- MEANING BEAM into prism -->
+        <!-- AUTHORITY BEAM into prism -->
         <line class="beam-src" x1="210" y1="190" x2="470" y2="190" stroke="url(#srcbeam)" stroke-width="3"
               stroke-dasharray="6 6" filter="url(#glow)"/>
-        <text x="300" y="178" fill="#39C2E8" font-size="11" font-family="ui-monospace,monospace" letter-spacing="2">MEANING</text>
+        <text x="290" y="178" fill="#39C2E8" font-size="11" font-family="ui-monospace,monospace" letter-spacing="2">AUTHORITY</text>
 
         <!-- PRISM -->
         <polygon points="470,120 470,260 560,190" fill="url(#prismfill)" stroke="#E8A93C" stroke-opacity=".7" stroke-width="1.5" filter="url(#glow)"/>
@@ -313,26 +311,26 @@
           <line class="beam beam-anim b4" x1="558" y1="192" x2="864" y2="310" stroke="#3EB9A6"/>
         </g>
 
-        <!-- enforcer chips (rented / USE) -->
+        <!-- enforcer chips (already ship in the ecosystem) -->
         <g font-family="ui-monospace,monospace">
           <g>
             <rect x="864" y="46" width="200" height="48" rx="4" fill="#0F151C" stroke="#3EB9A6" stroke-opacity=".45"/>
-            <text x="880" y="68" fill="#3EB9A6" font-size="9" letter-spacing="1.5">USE · DATAPATH</text>
+            <text x="880" y="68" fill="#3EB9A6" font-size="9" letter-spacing="1.5">ADOPT · DATAPATH</text>
             <text x="880" y="84" fill="#E9EFF3" font-size="13">XDP2</text>
           </g>
           <g>
             <rect x="864" y="126" width="200" height="48" rx="4" fill="#0F151C" stroke="#3EB9A6" stroke-opacity=".45"/>
-            <text x="880" y="148" fill="#3EB9A6" font-size="9" letter-spacing="1.5">USE · KERNEL</text>
+            <text x="880" y="148" fill="#3EB9A6" font-size="9" letter-spacing="1.5">ADOPT · KERNEL</text>
             <text x="880" y="164" fill="#E9EFF3" font-size="13">eBPF</text>
           </g>
           <g>
             <rect x="864" y="206" width="200" height="48" rx="4" fill="#0F151C" stroke="#3EB9A6" stroke-opacity=".45"/>
-            <text x="880" y="228" fill="#3EB9A6" font-size="9" letter-spacing="1.5">USE · SILICON</text>
+            <text x="880" y="228" fill="#3EB9A6" font-size="9" letter-spacing="1.5">ADOPT · SILICON</text>
             <text x="880" y="244" fill="#E9EFF3" font-size="13">CHERI · otype</text>
           </g>
           <g>
             <rect x="864" y="286" width="200" height="48" rx="4" fill="#0F151C" stroke="#3EB9A6" stroke-opacity=".45"/>
-            <text x="880" y="308" fill="#3EB9A6" font-size="9" letter-spacing="1.5">USE · DECISION</text>
+            <text x="880" y="308" fill="#3EB9A6" font-size="9" letter-spacing="1.5">ADOPT · DECISION</text>
             <text x="880" y="324" fill="#E9EFF3" font-size="13">Cedar</text>
           </g>
         </g>
@@ -342,25 +340,25 @@
 
   <!-- ============ 01 · U/B/B BOARD ============ -->
   <section class="band">
-    <div class="band-num">01 — THE TRIAGE</div>
-    <h2 class="band-title">Use · Borrow · Build</h2>
-    <p class="band-lede">The rule that decides every row: <b>use everything that enforces; build only what means.</b> Three categories, one boundary — is this component an enforcer that can be coerced, a theorem that can be read, or meaning that only the specification can encode?</p>
+    <div class="band-num">01 — THE INVENTORY</div>
+    <h2 class="band-title">Adopt · Borrow · Propose</h2>
+    <p class="band-lede">Every component in the CHERI policy landscape falls in exactly one category. Does the ecosystem already ship it? Does academia already prove it? Or is it a coordination gap no vendor and no theorem has closed? The rule: <b>adopt what enforces, borrow what theorizes, propose only what no one else covers.</b></p>
 
     <div class="board">
-      <!-- USE -->
+      <!-- USE / ADOPT -->
       <div class="col use">
         <div class="col-head">
           <span class="glyph">🔩</span>
-          <div><h3>USE</h3><div class="tag-line">enforcement — rent, don't rebuild</div></div>
+          <div><h3>ADOPT</h3><div class="tag-line">enforcement — the ecosystem already ships this</div></div>
         </div>
         <div class="items">
-          <div class="item"><div class="nm">CHERI sealing / otype <span class="cf">95%</span></div><div class="wy">Silicon. A capability spine is inherited, not forged.</div></div>
-          <div class="item"><div class="nm">VeriCHERI monotonicity <span class="cf">90%</span></div><div class="wy">Tags clear, never set. A free proof the authority axis rests on.</div></div>
-          <div class="item"><div class="nm">Sail model + Verilator Ibex <span class="cf">90%</span></div><div class="wy">Maintained gold emulation model. Rebuilding is pointless.</div></div>
-          <div class="item"><div class="nm">MLIR infrastructure <span class="cf">90%</span></div><div class="wy">Build <em>in</em> it — dialects, passes — never it.</div></div>
-          <div class="item"><div class="nm">LLVM / CHERIoT toolchain <span class="cf">85%</span></div><div class="wy">Upstreaming as the CHERI microcontroller profile. Ride it.</div></div>
-          <div class="item"><div class="nm">Rego / OPA + cheriot-audit <span class="cf">85%</span></div><div class="wy">Ships; operates on the exact compartment report. Build-time barrier lives here.</div></div>
-          <div class="item"><div class="nm">Cedar engine <span class="cf">75%</span></div><div class="wy">Decidable runtime decision fragment. Rebuilding it = rebuilding OPA badly.</div></div>
+          <div class="item"><div class="nm">CHERI sealing / otype <span class="cf">95%</span></div><div class="wy">The substrate already types authority. Every proposal on this page rests on it.</div></div>
+          <div class="item"><div class="nm">VeriCHERI monotonicity <span class="cf">90%</span></div><div class="wy">Tags clear, never set — mechanically proven. A free axiom the ecosystem shares.</div></div>
+          <div class="item"><div class="nm">Sail model + Verilator Ibex <span class="cf">90%</span></div><div class="wy">The maintained gold model. Any reimplementation is duplicated effort.</div></div>
+          <div class="item"><div class="nm">MLIR infrastructure <span class="cf">90%</span></div><div class="wy">The dialect substrate. Build a CHERI-policy dialect <em>in</em> it, not against it.</div></div>
+          <div class="item"><div class="nm">LLVM / CHERIoT toolchain <span class="cf">85%</span></div><div class="wy">The recommended CHERI microcontroller profile. The ecosystem's compiler is already here.</div></div>
+          <div class="item"><div class="nm">Rego / OPA + cheriot-audit <span class="cf">85%</span></div><div class="wy">Ships today. Operates on the compartment report directly. The build-time enforcer is solved.</div></div>
+          <div class="item"><div class="nm">Cedar engine <span class="cf">75%</span></div><div class="wy">The decidable runtime decision fragment. Reimplementing it recreates OPA badly.</div></div>
         </div>
       </div>
 
@@ -368,28 +366,28 @@
       <div class="col borrow">
         <div class="col-head">
           <span class="glyph">📖</span>
-          <div><h3>BORROW</h3><div class="tag-line">theorems — read, don't adopt</div></div>
+          <div><h3>BORROW</h3><div class="tag-line">semantics — read the theorems, don't reimplement them</div></div>
         </div>
         <div class="items">
-          <div class="item"><div class="nm">Cerise / Cerisier <span class="cf">70%</span></div><div class="wy">Steal the logical-relation shape — what an attachment guarantees. Mechanize only if a barrier demands a machine-checked proof.</div></div>
-          <div class="item"><div class="nm">TAL / StkTokens <span class="cf">70%</span></div><div class="wy">Conceptual parent of typed low-level code. Read for why otypes type authority, not data.</div></div>
-          <div class="item" style="opacity:.55"><div class="nm mono-note" style="color:var(--ink-faint)">⚠ fragile category</div><div class="wy" style="color:var(--ink-faint)">"Borrow" silently becomes a quarter of Coq without ruthlessness. Set a tripwire.</div></div>
+          <div class="item"><div class="nm">Cerise / Cerisier <span class="cf">70%</span></div><div class="wy">The logical-relation methodology for what a capability contract <em>guarantees</em>. Read the shape; mechanize only when a barrier demands a machine-checked proof.</div></div>
+          <div class="item"><div class="nm">TAL / StkTokens <span class="cf">70%</span></div><div class="wy">The conceptual parent of typed low-level code. Read for why otype types authority, not data.</div></div>
+          <div class="item" style="opacity:.55"><div class="nm mono-note" style="color:var(--ink-faint)">⚠ fragile category</div><div class="wy" style="color:var(--ink-faint)">BORROW silently expands into a quarter of Coq without discipline. A community tripwire: touch mechanized proof only when a customer or regulator demands one.</div></div>
         </div>
       </div>
 
-      <!-- BUILD -->
+      <!-- BUILD / PROPOSE -->
       <div class="col build">
         <div class="col-head">
           <span class="glyph">🔨</span>
-          <div><h3>BUILD</h3><div class="tag-line">meaning — the irreducible IP</div></div>
+          <div><h3>PROPOSE</h3><div class="tag-line">the artifacts the ecosystem is missing</div></div>
         </div>
         <div class="items">
-          <div class="item forced"><div class="nm">Typed-attachment primitive <span class="cf">90%</span></div><div class="wy">The irreducible base. Its TTL has no enforcer anywhere → forced.</div></div>
-          <div class="item forced"><div class="nm">Temporal / revocation enforcer <span class="cf">85%</span></div><div class="wy">CHERI is timeless; policy engines evaluate a snapshot. Nobody carries force-time → forced.</div></div>
-          <div class="item forced"><div class="nm">Lowering compiler <span class="cf">90%</span></div><div class="wy">The thesis itself: one meaning → XDP2 · eBPF · CHERI · Cedar. No prior art → forced.</div></div>
-          <div class="item"><div class="nm">Unified attachment dialect <span class="cf">90%</span></div><div class="wy">The single source of meaning — the IR the compiler lowers from.</div></div>
-          <div class="item thin"><div class="nm">Cedar schema + interposition <span class="cf">80%</span> <span class="badge">THIN</span></div><div class="wy">Integration glue binding a general engine to the domain. Weeks, not quarters.</div></div>
-          <div class="item thin"><div class="nm">Append-only provenance <span class="cf">80%</span> <span class="badge">THIN</span></div><div class="wy">Linker gives section hashes free; build the ledger over them.</div></div>
+          <div class="item forced"><div class="nm">Typed-attachment primitive <span class="cf">90%</span></div><div class="wy">The irreducible base carrying TTL. No enforcer in the stack holds it — the ecosystem must define it.</div></div>
+          <div class="item forced"><div class="nm">Temporal / revocation enforcer <span class="cf">85%</span></div><div class="wy">CHERI is timeless; policy engines evaluate snapshots. Force-time has no home — a new component must own it.</div></div>
+          <div class="item forced"><div class="nm">Lowering compiler <span class="cf">90%</span></div><div class="wy">The compiler that emits XDP2, eBPF, otype-discipline, and Cedar decisions from one source. No prior art — the proposal itself.</div></div>
+          <div class="item"><div class="nm">Unified attachment dialect <span class="cf">90%</span></div><div class="wy">The MLIR dialect the lowering emits from — the ecosystem's shared source of policy meaning.</div></div>
+          <div class="item thin"><div class="nm">Cedar schema + interposition <span class="cf">80%</span> <span class="badge">THIN</span></div><div class="wy">Domain glue over an adopted engine. Weeks of integration, not quarters of engineering.</div></div>
+          <div class="item thin"><div class="nm">Append-only provenance <span class="cf">80%</span> <span class="badge">THIN</span></div><div class="wy">The linker already emits section hashes; the ledger over them is a small binding.</div></div>
         </div>
       </div>
     </div>
@@ -398,68 +396,68 @@
   <!-- ============ 02 · VERTICAL STACK ============ -->
   <section class="band">
     <div class="band-num">02 — THE VERTICAL</div>
-    <h2 class="band-title">Not three products. One column.</h2>
-    <p class="band-lede">Each layer proves a <b>different</b> claim; none substitutes for another. Meaning descends from the dialect and is enforced at every height below it — read top to bottom.</p>
+    <h2 class="band-title">Not five tools. One column of proof.</h2>
+    <p class="band-lede">Each layer proves a <b>different</b> claim about authority; none substitutes for another. The unification proposal is that a single dialect descends through all five heights, and each height enforces what its position allows — read top to bottom.</p>
 
     <div class="stack">
-      <div class="flowlabel">▼ MEANING DESCENDS ▼</div>
+      <div class="flowlabel">▼ AUTHORITY DESCENDS ▼</div>
 
       <div class="layer is-build">
         <div class="role">Semantics</div>
-        <div class="body"><h4>Cerise universal contracts</h4><p>Type what the attachment <em>means</em> and guarantees — borrowed as methodology.</p></div>
-        <div class="verdict-pill build">BORROW → BUILD</div>
+        <div class="body"><h4>Cerise universal contracts</h4><p>What an attachment <em>means</em> and guarantees, phrased as a logical relation. Borrowed as the ecosystem's shared vocabulary.</p></div>
+        <div class="verdict-pill build">BORROW → PROPOSE</div>
       </div>
       <div class="down">│</div>
 
       <div class="layer is-use">
         <div class="role">Silicon</div>
-        <div class="body"><h4>Sealing · otype · VeriCHERI</h4><p>Enforce authority in hardware. Monotonic — authority only shrinks, tags clear and never set.</p></div>
-        <div class="verdict-pill use">USE</div>
+        <div class="body"><h4>Sealing · otype · VeriCHERI</h4><p>Authority enforced in hardware. Monotonic — authority only shrinks, tags clear and never set.</p></div>
+        <div class="verdict-pill use">ADOPT</div>
       </div>
       <div class="down">│</div>
 
       <div class="layer is-use">
         <div class="role">Build-time</div>
-        <div class="body"><h4>Rego over the compartment graph</h4><p>Audit the static image before deployment. The information barrier is a graph theorem, proven here.</p></div>
-        <div class="verdict-pill use">USE</div>
+        <div class="body"><h4>Rego over the compartment graph</h4><p>The static image is audited before deployment. The information barrier is proven here as a graph theorem.</p></div>
+        <div class="verdict-pill use">ADOPT</div>
       </div>
       <div class="down">│</div>
 
       <div class="layer is-use">
         <div class="role">Runtime</div>
-        <div class="body"><h4>Cedar decision at the tool call</h4><p>Decide per-call at the interposition point. Decidable, analyzable — but stateless of time.</p></div>
-        <div class="verdict-pill use">USE</div>
+        <div class="body"><h4>Cedar decision at the tool call</h4><p>Per-call decisions at the interposition point. Decidable and analyzable — but stateless of time.</p></div>
+        <div class="verdict-pill use">ADOPT</div>
       </div>
       <div class="down">│</div>
 
       <div class="layer is-build">
         <div class="role">Provenance</div>
-        <div class="body"><h4>SBOM hashes seal the ledger</h4><p>Bind every section hash into an append-only record. Grounds the whole column in evidence.</p></div>
-        <div class="verdict-pill build">BUILD · thin</div>
+        <div class="body"><h4>SBOM hashes seal the ledger</h4><p>Every section hash bound into an append-only record. Grounds the whole column in evidence.</p></div>
+        <div class="verdict-pill build">PROPOSE · thin</div>
       </div>
 
-      <div class="flowlabel" style="color:var(--build)">the primitive threads all five heights</div>
+      <div class="flowlabel" style="color:var(--build)">one dialect threads all five heights</div>
     </div>
   </section>
 
   <!-- ============ 03 · FORCED BUILDS ============ -->
   <section class="band forced-band">
-    <div class="band-num" style="color:var(--forced)">03 — WHERE "USE" DOES NOT EXIST</div>
-    <h2 class="band-title">Two builds forced by physics</h2>
-    <p class="band-lede">Everywhere else, an enforcer can be rented. In exactly these two places the market and the physics leave a gap — there is <b>no</b> way to buy out.</p>
+    <div class="band-num" style="color:var(--forced)">03 — WHERE THE ECOSYSTEM IS SILENT</div>
+    <h2 class="band-title">Two gaps no vendor and no theorem covers</h2>
+    <p class="band-lede">Everywhere else, an enforcer already ships or a proof already exists. In exactly these two places the market and the physics leave a gap — no procurement path, no citation, no fork of an existing tool closes them. This is where new work — by whoever the community entrusts with it — actually matters.</p>
 
     <div class="forced-grid">
       <div class="forced-card">
-        <div class="tagn">⚡ FORCED BUILD · 01</div>
+        <div class="tagn">⚡ THE GAP · 01</div>
         <h4>Effect-force-time / TTL</h4>
-        <p>Every enforcer in the stack is timeless or snapshot-stateless. CHERI carries no clock; Rego and Cedar evaluate a frozen instant. This is the one field the primitive carries that no substrate does.</p>
-        <div class="why">Same seam as the render-gap: meaning that no substrate natively represents. It must live in the build layer or it does not exist.</div>
+        <p>Every enforcer in the stack is timeless or snapshot-stateless. CHERI carries no clock; Rego and Cedar evaluate frozen instants. TTL is the one field the ecosystem's policy vocabulary does not represent.</p>
+        <div class="why">The seam is meaning that no substrate natively carries. It must be defined in the dialect layer, or the stack does not represent it at all.</div>
       </div>
       <div class="forced-card">
-        <div class="tagn">⚡ FORCED BUILD · 02</div>
-        <h4>The lowering</h4>
-        <p>The compiler taking one annotated schema and emitting XDP2 <em>and</em> eBPF <em>and</em> CHERI otype-discipline <em>and</em> Cedar decisions is what makes "specification IS regulation" real.</p>
-        <div class="why">Definitionally un-rentable — it is the encoding of the primitive. This is the artifact, and the moat.</div>
+        <div class="tagn">⚡ THE GAP · 02</div>
+        <h4>The unified lowering</h4>
+        <p>The compiler that reads one annotated schema and emits XDP2, eBPF, otype-discipline, and Cedar decisions is what makes "one grammar of authority, four enforcers" concrete for the CHERI ecosystem.</p>
+        <div class="why">Definitionally un-procurable — it is the encoding of the primitive itself. This is the artifact the ecosystem is missing, and the coordination opportunity this map exists to name.</div>
       </div>
     </div>
   </section>
@@ -467,65 +465,65 @@
   <!-- ============ 04 · PHASE SPLIT ============ -->
   <section class="band">
     <div class="band-num">04 — THE FORK, RESOLVED</div>
-    <h2 class="band-title">Rego vs Cedar is not a fork — it's a division</h2>
-    <p class="band-lede">The tension resolves cleanly. Two engines, two <b>phases</b>. <b>Zero</b> policy engines are built; the lowering compiler emits <em>to</em> both.</p>
+    <h2 class="band-title">Rego vs Cedar is not a fork — it's a division of phase</h2>
+    <p class="band-lede">The tension in the ecosystem's policy conversation resolves cleanly. Two engines, two <b>phases</b>. <b>Zero</b> policy engines need be authored by anyone taking this proposal on — the lowering compiler emits to both, and each engine keeps operating in the phase it was designed for.</p>
 
     <div class="phase">
       <div class="phase-card">
         <div class="ph-when">◐ BUILD-TIME</div>
         <h4>Rego over the compartment report</h4>
-        <p>Least-privilege audit over the static graph. The barrier is proven before anything ships — native, free, already built.</p>
-        <div class="eng mono">USE · cheriot-audit</div>
+        <p>Least-privilege audit over the static graph. The information barrier is proven before anything ships — native to cheriot-audit, already shipping.</p>
+        <div class="eng mono">ADOPT · cheriot-audit</div>
       </div>
       <div class="phase-mid mono">│ vs │</div>
       <div class="phase-card">
         <div class="ph-when">◐ RUNTIME</div>
         <h4>Cedar at the tool call</h4>
-        <p>Per-call decision at interposition. Only the schema and the glue get built — the engine is rented.</p>
-        <div class="eng mono">USE engine · BUILD schema</div>
+        <p>Per-call decisions at interposition. Only the schema and the glue are proposed; the engine is adopted as-is.</p>
+        <div class="eng mono">ADOPT engine · PROPOSE schema</div>
       </div>
     </div>
-    <div class="phase-note mono">Temporal logic lives in neither — Cedar's entity model can't hold TTL, so it's forbidden there and forced into the build layer.</div>
+    <div class="phase-note mono">Temporal logic belongs to neither — Cedar's entity model can't hold TTL, so it moves to the dialect layer by construction.</div>
   </section>
 
   <!-- ============ 05 · VERDICT GRID ============ -->
   <section class="band">
     <div class="band-num">05 — THE LEDGER</div>
-    <h2 class="band-title">Full verdict grid</h2>
-    <p class="band-lede">Every component, its verdict, the layer it occupies, and the confidence behind the call. Filter to isolate a category.</p>
+    <h2 class="band-title">Full component ledger</h2>
+    <p class="band-lede">Every component in the CHERI policy landscape, its category, the layer it occupies, and the confidence behind the placement. Filter to isolate a category.</p>
 
-    <div class="filters" role="group" aria-label="Filter verdicts">
+    <div class="filters" role="group" aria-label="Filter categories">
       <button class="fbtn" data-f="ALL" aria-pressed="true">ALL · 16</button>
-      <button class="fbtn" data-f="USE" aria-pressed="false">🔩 USE</button>
+      <button class="fbtn" data-f="USE" aria-pressed="false">🔩 ADOPT</button>
       <button class="fbtn" data-f="BORROW" aria-pressed="false">📖 BORROW</button>
-      <button class="fbtn" data-f="BUILD" aria-pressed="false">🔨 BUILD</button>
+      <button class="fbtn" data-f="BUILD" aria-pressed="false">🔨 PROPOSE</button>
     </div>
 
     <div class="grid" id="grid">
       <div class="grow head">
-        <span>Component</span><span>Verdict</span><span>Layer</span><span>Why</span><span>Confidence</span>
+        <span>Component</span><span>Category</span><span>Layer</span><span>Rationale</span><span>Confidence</span>
       </div>
 
-      <!-- USE -->
-      <div class="grow" data-v="USE"><div class="c-nm">CHERI sealing / otype</div><div class="c-vd vd-USE">USE</div><div class="c-ly">Silicon</div><div class="c-wy">A capability spine is inherited, not built.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="95"></div></div><span class="pct">95%</span></div></div>
-      <div class="grow" data-v="USE"><div class="c-nm">VeriCHERI monotonicity</div><div class="c-vd vd-USE">USE</div><div class="c-ly">Silicon</div><div class="c-wy">Tags clear, never set. Free proof.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="90"></div></div><span class="pct">90%</span></div></div>
-      <div class="grow" data-v="USE"><div class="c-nm">Sail model + Verilator Ibex</div><div class="c-vd vd-USE">USE</div><div class="c-ly">Emulation</div><div class="c-wy">Maintained gold model. Rebuilding pointless.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="90"></div></div><span class="pct">90%</span></div></div>
-      <div class="grow" data-v="USE"><div class="c-nm">MLIR infrastructure</div><div class="c-vd vd-USE">USE</div><div class="c-ly">Compiler</div><div class="c-wy">Build in it — never it.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="90"></div></div><span class="pct">90%</span></div></div>
-      <div class="grow" data-v="USE"><div class="c-nm">LLVM / CHERIoT toolchain</div><div class="c-vd vd-USE">USE</div><div class="c-ly">Compiler</div><div class="c-wy">Recommended CHERI MCU profile. Ride it.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="85"></div></div><span class="pct">85%</span></div></div>
-      <div class="grow" data-v="USE"><div class="c-nm">Rego / OPA + cheriot-audit</div><div class="c-vd vd-USE">USE</div><div class="c-ly">Build-time</div><div class="c-wy">Native, ships, operates on the exact report.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="85"></div></div><span class="pct">85%</span></div></div>
-      <div class="grow" data-v="USE"><div class="c-nm">Cedar engine</div><div class="c-vd vd-USE">USE</div><div class="c-ly">Runtime</div><div class="c-wy">Decidable decision fragment. Don't rebuild OPA.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="75"></div></div><span class="pct">75%</span></div></div>
+      <!-- ADOPT -->
+      <div class="grow" data-v="USE"><div class="c-nm">CHERI sealing / otype</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Silicon</div><div class="c-wy">The substrate already types authority. Every proposal rests on it.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="95"></div></div><span class="pct">95%</span></div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">VeriCHERI monotonicity</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Silicon</div><div class="c-wy">Tags clear, never set — mechanically proven. A free ecosystem axiom.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="90"></div></div><span class="pct">90%</span></div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">Sail model + Verilator Ibex</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Emulation</div><div class="c-wy">Maintained gold model. Reimplementation is duplicated effort.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="90"></div></div><span class="pct">90%</span></div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">MLIR infrastructure</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Compiler</div><div class="c-wy">The dialect substrate. Build the CHERI-policy dialect in it.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="90"></div></div><span class="pct">90%</span></div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">LLVM / CHERIoT toolchain</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Compiler</div><div class="c-wy">The recommended CHERI MCU profile. The ecosystem's compiler is here.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="85"></div></div><span class="pct">85%</span></div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">Rego / OPA + cheriot-audit</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Build-time</div><div class="c-wy">Ships today; operates on the compartment report natively.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="85"></div></div><span class="pct">85%</span></div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">Cedar engine</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Runtime</div><div class="c-wy">Decidable decision fragment. Reimplementing recreates OPA badly.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="75"></div></div><span class="pct">75%</span></div></div>
 
       <!-- BORROW -->
-      <div class="grow" data-v="BORROW"><div class="c-nm">Cerise / Cerisier</div><div class="c-vd vd-BORROW">BORROW</div><div class="c-ly">Semantics</div><div class="c-wy">Steal the logical-relation shape. Mechanize only on demand.</div><div class="confbar"><div class="track"><div class="fill BORROW" data-c="70"></div></div><span class="pct">70%</span></div></div>
-      <div class="grow" data-v="BORROW"><div class="c-nm">TAL / StkTokens</div><div class="c-vd vd-BORROW">BORROW</div><div class="c-ly">Theory</div><div class="c-wy">Conceptual parent. Read, don't port.</div><div class="confbar"><div class="track"><div class="fill BORROW" data-c="70"></div></div><span class="pct">70%</span></div></div>
+      <div class="grow" data-v="BORROW"><div class="c-nm">Cerise / Cerisier</div><div class="c-vd vd-BORROW">BORROW</div><div class="c-ly">Semantics</div><div class="c-wy">The logical-relation methodology. Mechanize only when a barrier proof is demanded.</div><div class="confbar"><div class="track"><div class="fill BORROW" data-c="70"></div></div><span class="pct">70%</span></div></div>
+      <div class="grow" data-v="BORROW"><div class="c-nm">TAL / StkTokens</div><div class="c-vd vd-BORROW">BORROW</div><div class="c-ly">Theory</div><div class="c-wy">Conceptual parent of typed low-level code. Read, don't port.</div><div class="confbar"><div class="track"><div class="fill BORROW" data-c="70"></div></div><span class="pct">70%</span></div></div>
 
-      <!-- BUILD -->
-      <div class="grow forced" data-v="BUILD"><div class="c-nm">Typed-attachment primitive</div><div class="c-vd vd-BUILD">BUILD</div><div class="c-ly">Core IP</div><div class="c-wy">Irreducible. TTL has no enforcer → forced.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="90"></div></div><span class="pct">90%</span></div></div>
-      <div class="grow forced" data-v="BUILD"><div class="c-nm">Temporal / revocation enforcer</div><div class="c-vd vd-BUILD">BUILD</div><div class="c-ly">Runtime</div><div class="c-wy">Nobody carries force-time → forced.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="85"></div></div><span class="pct">85%</span></div></div>
-      <div class="grow forced" data-v="BUILD"><div class="c-nm">Lowering compiler</div><div class="c-vd vd-BUILD">BUILD</div><div class="c-ly">Compiler</div><div class="c-wy">The thesis. One meaning → four targets. No prior art.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="90"></div></div><span class="pct">90%</span></div></div>
-      <div class="grow" data-v="BUILD"><div class="c-nm">Unified attachment dialect</div><div class="c-vd vd-BUILD">BUILD</div><div class="c-ly">Compiler</div><div class="c-wy">Single source of meaning — the IR the compiler lowers from.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="90"></div></div><span class="pct">90%</span></div></div>
-      <div class="grow" data-v="BUILD"><div class="c-nm">Cedar schema + interposition</div><div class="c-vd vd-BUILD">BUILD</div><div class="c-ly">Runtime · thin</div><div class="c-wy">Domain glue over a rented engine. Weeks.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="80"></div></div><span class="pct">80%</span></div></div>
-      <div class="grow" data-v="BUILD"><div class="c-nm">Append-only provenance</div><div class="c-vd vd-BUILD">BUILD</div><div class="c-ly">Provenance · thin</div><div class="c-wy">Ledger over free linker hashes.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="80"></div></div><span class="pct">80%</span></div></div>
+      <!-- PROPOSE -->
+      <div class="grow forced" data-v="BUILD"><div class="c-nm">Typed-attachment primitive</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Core</div><div class="c-wy">Irreducible base carrying TTL. No enforcer holds it — an ecosystem gap.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="90"></div></div><span class="pct">90%</span></div></div>
+      <div class="grow forced" data-v="BUILD"><div class="c-nm">Temporal / revocation enforcer</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Runtime</div><div class="c-wy">Nothing in the stack carries force-time — an ecosystem gap.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="85"></div></div><span class="pct">85%</span></div></div>
+      <div class="grow forced" data-v="BUILD"><div class="c-nm">Lowering compiler</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Compiler</div><div class="c-wy">One dialect → four ecosystem enforcers. No prior art — the coordination artifact.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="90"></div></div><span class="pct">90%</span></div></div>
+      <div class="grow" data-v="BUILD"><div class="c-nm">Unified attachment dialect</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Compiler</div><div class="c-wy">The MLIR dialect the lowering emits from — the shared source of meaning.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="90"></div></div><span class="pct">90%</span></div></div>
+      <div class="grow" data-v="BUILD"><div class="c-nm">Cedar schema + interposition</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Runtime · thin</div><div class="c-wy">Domain glue over an adopted engine. Weeks of work.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="80"></div></div><span class="pct">80%</span></div></div>
+      <div class="grow" data-v="BUILD"><div class="c-nm">Append-only provenance</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Provenance · thin</div><div class="c-wy">Ledger over the linker's existing section hashes.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="80"></div></div><span class="pct">80%</span></div></div>
     </div>
   </section>
 
@@ -533,33 +531,33 @@
   <section class="band guardian">
     <div class="band-num" style="color:var(--tag)">DESIGN NOTE</div>
     <div class="g-box">
-      <div class="g-tag">⬡ THE TRAP OF THE CAPABLE SUBSTRATE ENGINEER</div>
-      <p>The pull is common among systems architects with the depth to build the substrate. The instinct — and identity — reaches for a bespoke capability engine, because the deep capability problem is the beautiful one and the moat <em>feels</em> like it lives in silicon. It does not.</p>
-      <p><b>The moat is the compiler and the primitive; the substrate is a commodity to be coerced.</b> Every hour on a bespoke capability engine or a hand-rolled policy DSL is an hour stolen from the lowering that <em>is</em> the thesis. The discipline is refusal: decline the substrate build precisely because it is the one build within reach.</p>
-      <div class="verdict">Build the <em>meaning</em>. Rent the <span>enforcement</span>. Ship the barrier.</div>
+      <div class="g-tag">⬡ WHERE THE COORDINATION POINT ACTUALLY LIVES</div>
+      <p>The recurring temptation among capable CHERI implementers is to see the deep problem as more primitives in silicon — richer sealing, deeper capability types, a bespoke capability engine. Substrate work is the beautiful problem, and the leverage <em>feels</em> like it lives there. It does not.</p>
+      <p><b>The leverage lives in the compiler and the dialect above the substrate.</b> The substrate is already shared. Every hour spent extending it further is an hour not spent on the lowering that unifies what the substrate already carries with what the four policy surfaces above it already decide. The discipline the ecosystem needs is refusal — decline the deeper substrate build precisely because the substrate is not where the coordination gap is.</p>
+      <div class="verdict">Adopt the <span>enforcement</span>. Borrow the theorems. Propose the <em>dialect</em>.</div>
     </div>
   </section>
 
   <!-- ============ LATENT + TLDR ============ -->
   <section class="band">
-    <div class="band-num">LATENT NOTIONS · TLDR</div>
+    <div class="band-num">OPEN QUESTIONS · TLDR</div>
     <div class="foot-grid">
       <div class="latent">
-        <h4>Latent notions — questions · risks · edges</h4>
+        <h4>Open questions — risks · edges · calls for input</h4>
         <ul>
-          <li><b>BORROW is the fragile category.</b> "Borrow Cerise's methodology" silently becomes a quarter of Iris/Coq. Tripwire: touch Coq only if a customer or regulator demands a machine-checked barrier proof.</li>
-          <li><b>otype width vs dialect type-count.</b> A rented enforcer imposes a hard ceiling on a built layer. Virtualization is a build that has not yet been scoped.</li>
-          <li><b>Cedar can't hold TTL.</b> If temporal logic must live in the build layer regardless, Cedar's marginal value over the native Rego path narrows. Re-weigh deliberately.</li>
-          <li><b>Forced-build sequencing.</b> The lowering and the temporal enforcer are coupled — force-time is a field the compiler must lower. Neither ships without a decision on the other.</li>
+          <li><b>BORROW is the fragile category.</b> "Borrow the Cerise methodology" silently expands into a quarter of Iris/Coq without discipline. Community tripwire: touch mechanized proof only when a customer or regulator demands a machine-checked barrier proof.</li>
+          <li><b>otype width vs dialect type-count.</b> An adopted enforcer imposes a hard ceiling on the dialect above it. Whether virtualization closes the mismatch is an open design question.</li>
+          <li><b>Cedar and TTL.</b> Cedar's entity model can't hold TTL. If temporal logic must live in the dialect regardless, Cedar's marginal value over the native Rego path narrows — a re-weighing worth doing in the open.</li>
+          <li><b>Sequencing of the two gaps.</b> The unified lowering and the temporal enforcer are coupled — force-time is a field the compiler must lower. Neither proposal ships without a decision on the other.</li>
         </ul>
       </div>
       <div class="tldr">
         <h4>TLDR</h4>
         <p>
-          <span class="u">USE</span> = enforcement — CHERI, VeriCHERI, Sail, LLVM, MLIR-infra, Rego, Cedar engine.<br><br>
-          <span class="r">BORROW</span> = theorems — Cerise, TAL. Reading, not adoption.<br><br>
-          <span class="b">BUILD</span> = meaning — the attachment primitive, temporal enforcer, unified dialect, the lowering, thin Cedar/provenance glue.<br><br>
-          <span class="f">FORCED</span> by physics: TTL/force-time and the lowering — nobody rents those. The temptation is to build the substrate; the discipline is to refuse it and build the compiler.
+          <span class="u">ADOPT</span> — the ecosystem already ships CHERI, VeriCHERI, Sail, LLVM, MLIR-infra, Rego, and the Cedar engine.<br><br>
+          <span class="r">BORROW</span> — theorems from Cerise and TAL. Reading, not reimplementation.<br><br>
+          <span class="b">PROPOSE</span> — the missing artifacts: a typed-attachment primitive, a temporal enforcer, the unified dialect, the lowering compiler, and thin Cedar/provenance glue.<br><br>
+          <span class="f">THE GAPS</span> — TTL/force-time and the unified lowering. No vendor sells them; no theorem replaces them. The ecosystem's temptation is to extend the substrate; the leverage is to unify what the substrate and its enforcers already carry.
         </p>
       </div>
     </div>
@@ -567,8 +565,8 @@
 
   <footer>
     <div class="provenance">
-      <span>DECISION MAP · CHERI TYPED CAPABILITY GOVERNANCE</span>
-      <span>OPINIONATED ESTIMATE · CONF ~85%</span>
+      <span>OPPORTUNITY MAP · CHERI POLICY UNIFICATION</span>
+      <span>COMMUNITY PROPOSAL · CONF ~85%</span>
     </div>
   </footer>
 
