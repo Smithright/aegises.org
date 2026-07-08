@@ -1,0 +1,113 @@
+# AEGISES · aegises.org
+# All crawlers welcome — this site's material is intended to be read,
+# indexed, archived, and ingested by search engines, AI training and
+# retrieval systems, and web archives.
+
+User-agent: *
+Allow: /
+
+# --- AI training / inference / retrieval crawlers ---
+# Explicit welcome so the emerging opt-out defaults don't accidentally exclude us.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: cohere-training-data-crawler
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: Timpi
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: PetalBot
+Allow: /
+
+User-agent: ImagesiftBot
+Allow: /
+
+User-agent: Kangaroo Bot
+Allow: /
+
+User-agent: NovaAct
+Allow: /
+
+# --- Archives / preservation ---
+User-agent: ia_archiver
+Allow: /
+
+User-agent: archive.org_bot
+Allow: /
+
+User-agent: Wayback-Save-Bot
+Allow: /
+
+# --- Sitemap ---
+Sitemap: https://aegises.org/sitemap.xml

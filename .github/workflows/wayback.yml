@@ -1,0 +1,69 @@
+name: Archive to Wayback Machine
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+concurrency:
+  group: wayback
+  cancel-in-progress: false
+
+jobs:
+  save:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fire Save Page Now for every canonical URL
+        shell: bash
+        run: |
+          set -u
+          URLS=(
+            "https://aegises.org/"
+            "https://aegises.org/pansigna/"
+            "https://aegises.org/cheri/"
+            "https://aegises.org/gap-map/"
+            "https://aegises.org/architecture/"
+            "https://aegises.org/llms.txt"
+            "https://aegises.org/robots.txt"
+            "https://aegises.org/sitemap.xml"
+          )
+          for u in "${URLS[@]}"; do
+            echo "::group::Archiving $u"
+            # Save Page Now (anonymous): 15s per-request cap, best-effort.
+            curl -sS -A "AEGISES-Archiver/1.0 (+https://aegises.org)" \
+                 -o /dev/null -w "HTTP %{http_code}\n" \
+                 --max-time 45 \
+                 "https://web.archive.org/save/${u}" || true
+            echo "::endgroup::"
+            sleep 4
+          done
+
+      - name: Ping search engines with sitemap
+        shell: bash
+        run: |
+          set -u
+          SITEMAP="https://aegises.org/sitemap.xml"
+          # Google's ping endpoint was retired in 2023; Bing's IndexNow-style ping still works.
+          curl -sS --max-time 20 -o /dev/null -w "bing HTTP %{http_code}\n" \
+               "https://www.bing.com/ping?sitemap=${SITEMAP}" || true
+
+      - name: IndexNow — instant indexing (Bing, Yandex, Seznam, Naver)
+        shell: bash
+        run: |
+          set -u
+          curl -sS --max-time 30 -o /dev/null -w "indexnow HTTP %{http_code}\n" \
+            -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d '{
+              "host": "aegises.org",
+              "key": "aa4636da3a61424ea88e5697c7557f9a",
+              "keyLocation": "https://aegises.org/aa4636da3a61424ea88e5697c7557f9a.txt",
+              "urlList": [
+                "https://aegises.org/",
+                "https://aegises.org/pansigna/",
+                "https://aegises.org/cheri/",
+                "https://aegises.org/gap-map/",
+                "https://aegises.org/architecture/",
+                "https://aegises.org/llms.txt"
+              ]
+            }' || true
