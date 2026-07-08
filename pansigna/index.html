@@ -4,6 +4,43 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PanSigna — Typed Policy Reactor Monitor-Compiler</title>
+<meta name="description" content="One reference monitor for a whole machine. Authority is a typed, default-deny policy compiled — not interpreted — through a multi-level IR into CHERI capabilities, seL4 kernel objects, WASM imports, or inline guards. Every lowering carries a witness the validator confirms.">
+<meta name="author" content="AEGISES">
+<link rel="canonical" href="https://aegises.org/pansigna/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AEGISES">
+<meta property="og:title" content="PanSigna — Typed Policy Reactor Monitor-Compiler">
+<meta property="og:description" content="A capability-secured reference monitor that compiles typed, default-deny policies down a multi-level IR to CHERI, seL4, WASM, and inline enforcement targets — with per-artifact translation validation.">
+<meta property="og:url" content="https://aegises.org/pansigna/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PanSigna — Typed Policy Reactor Monitor-Compiler">
+<meta name="twitter:description" content="Compile policy, don't interpret it. One typed default-deny source; four heterogeneous enforcement targets; translation-validated equivalence.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "PanSigna — Typed Policy Reactor Monitor-Compiler",
+  "name": "PanSigna Architecture Dossier",
+  "url": "https://aegises.org/pansigna/",
+  "description": "A capability-secured reference monitor whose central move is a multi-level IR that lowers one typed, default-deny policy to CHERI, seL4, WASM, and inline enforcement targets, with per-artifact translation validation. Rests on Cedar's Lean-mechanized semantics, seL4 functional correctness, CHERI hardware capability safety, and the MLIR lowering discipline.",
+  "author": {"@type": "Organization", "name": "AEGISES", "url": "https://aegises.org/"},
+  "publisher": {"@type": "Organization", "name": "AEGISES", "url": "https://aegises.org/"},
+  "inLanguage": "en",
+  "isPartOf": {"@type": "WebSite", "name": "AEGISES", "url": "https://aegises.org/"},
+  "citation": [
+    "Klein et al. 2009 — seL4 functional correctness",
+    "Watson et al. — CHERI capability architecture",
+    "Cedar / cedar-spec — Lean-mechanized authorization semantics",
+    "Miller 2006 — object capability model",
+    "Erlingsson & Schneider 2004 — inlined reference monitors",
+    "Pnueli 1998 — translation validation",
+    "Lampson 1974 — protection / complete mediation",
+    "Saltzer & Schroeder 1975 — protection principles",
+    "Kuz et al. 2010 — capDL"
+  ],
+  "keywords": "PanSigna, reference monitor, monitor-compiler, typed authority, default-deny, deny-overrides, complete mediation, ocap, CHERI, seL4, WASM, capDL, Cedar, Biscuit, MLIR, translation validation, content-addressed policy, capability security"
+}
+</script>
 <style>
   :root {
     color-scheme: light dark;

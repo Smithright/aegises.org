@@ -1,0 +1,32 @@
+# AEGISES
+
+> Autonomous Ethical Governance for Emergent Synthetic Intelligence Systems. A public research initiative exploring the substrate, governance, and ethical evolution of AI — with a focus on capability-secured, typed, default-deny architectures where policy is compiled to the metal rather than interpreted at each call.
+
+The core thesis across every page: **the substrate is the regulation.** Authority is a typed, default-deny specification that is compiled — once — into whatever primitive can enforce it fastest: a CHERI capability in silicon, an seL4 kernel object, a WASM import table, a residual inline guard. The moat is the semantic spine and the lowering; the substrate is a commodity to be coerced.
+
+## Pages
+
+- [AEGISES — Home](https://aegises.org/): Landing page. Mission, contact, and the AGI RFC roadmap.
+- [PanSigna — Typed Policy Reactor Monitor-Compiler](https://aegises.org/pansigna/): Architecture dossier for a capability-secured reference monitor whose central move is a multi-level IR that lowers one typed, default-deny policy to CHERI, seL4, WASM, and inline enforcement targets, with per-artifact translation validation.
+- [A Public Policy Ontology for CHERI — From Users to Registers](https://aegises.org/cheri/): Opportunity map for unifying policy management across the CHERI ecosystem. Adopt what enforces (CHERI otype, VeriCHERI, Sail, MLIR, Rego/cheriot-audit, Cedar), borrow the theorems (Cerise/Cerisier, TAL/StkTokens), propose the missing artifacts (typed-attachment primitive, temporal enforcer, unified attachment dialect, the lowering compiler).
+- [The Custom-Code Gap Map — CHERI-seL4-NixOS](https://aegises.org/gap-map/): Engineering dossier of eight seams no dependency fills on the path macOS → CHERI-Alliance QEMU → CHERI-seL4 + Ivan Velickovic's H-extension → CHERI-Microkit + libvmm → NixOS riscv64 → a window. Two greenfield gaps, two fork-merges, one delta-completion, three pattern-ports.
+- [Sovereign Compute Architecture](https://aegises.org/architecture/): A four-machine, capability-typed sovereign compute stack. NixOS + programmable NIC gateway, macOS lab, Apple Silicon inference, Hermes/Qthonic orchestration. Thirteen phases from substrate lockdown to SmartNIC/DPU line-rate.
+
+## Vocabulary
+
+- **Substrate-is-regulation**: policy expressed as a specification whose enforcement is a property of the medium, not a layer bolted on.
+- **Typed authority**: every subject and object is a typed thing; policy binds to types via a `governs` edge, inherited by every member down the `subTypeOf` DAG.
+- **Compile-don't-interpret**: a reference monitor is a compiler target; the decision is lowered ahead-of-time into a primitive the substrate enforces for free.
+- **Default-deny**: authority is a positive allow-policy; deny is the kernel-fixed floor; a broken policy fails closed.
+- **Complete mediation**: the store is reachable only through one door (`invoke`); a compile-time guard fails the build if any perimeter module reaches the core.
+- **Translation validation**: every lowering carries a witness the validator checks — `compiled enforcement ≡ source policy` per artifact.
+
+## Rests on
+
+seL4 (Klein '09) · CHERI/Morello · Cedar (Lean-mechanized authorizer) · MLIR discipline (Lattner) · Miller-style ocap · Biscuit v3.3 · content-addressing (Nix/Venti/git) · Cerise/Cerisier for capability contract semantics · cheriot-audit's Rego · Ivan Velickovic's H-extension branch of seL4.
+
+## Contact
+
+- Email: contact@aegises.org
+- Sitemap: https://aegises.org/sitemap.xml
+- Source: https://github.com/Smithright/aegises.org

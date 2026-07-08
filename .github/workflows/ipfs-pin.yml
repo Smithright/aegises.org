@@ -1,0 +1,68 @@
+name: Pin to IPFS
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+concurrency:
+  group: ipfs-pin
+  cancel-in-progress: false
+
+jobs:
+  pin:
+    runs-on: ubuntu-latest
+    # Runs only if the W3_TOKEN secret is set. Sign up at https://console.web3.storage
+    # and add a token secret named W3_TOKEN in the repo settings to enable pinning.
+    if: ${{ github.event_name == 'workflow_dispatch' || vars.IPFS_PIN_ENABLED == 'true' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Bail early if no token
+        env:
+          W3_TOKEN: ${{ secrets.W3_TOKEN }}
+        run: |
+          if [ -z "${W3_TOKEN:-}" ]; then
+            echo "W3_TOKEN not set — skipping IPFS pin." \
+                 "Add a web3.storage token as the W3_TOKEN repo secret to enable."
+            exit 0
+          fi
+
+      - name: Install w3 CLI
+        env:
+          W3_TOKEN: ${{ secrets.W3_TOKEN }}
+        if: env.W3_TOKEN != ''
+        run: |
+          npm install --global @web3-storage/w3cli
+
+      - name: Prepare a clean site directory
+        env:
+          W3_TOKEN: ${{ secrets.W3_TOKEN }}
+        if: env.W3_TOKEN != ''
+        run: |
+          mkdir -p _site
+          rsync -a --exclude='.git' --exclude='.github' --exclude='_site' ./ _site/
+
+      - name: Pin site directory to IPFS
+        env:
+          W3_TOKEN: ${{ secrets.W3_TOKEN }}
+          W3_SPACE_DID: ${{ vars.W3_SPACE_DID }}
+        if: env.W3_TOKEN != ''
+        run: |
+          echo "$W3_TOKEN" | w3 login --token
+          if [ -n "${W3_SPACE_DID:-}" ]; then
+            w3 space use "$W3_SPACE_DID" || true
+          fi
+          CID=$(w3 up _site --json | jq -r '.root."/"' 2>/dev/null || w3 up _site 2>&1 | grep -oE 'bafy[a-z0-9]+' | head -1)
+          echo "AEGISES pinned to IPFS: $CID"
+          echo "Gateway: https://w3s.link/ipfs/$CID"
+          echo "$CID" > CID.txt
+          echo "IPFS_CID=$CID" >> $GITHUB_OUTPUT
+
+      - name: Upload CID as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ipfs-cid
+          path: CID.txt
+          if-no-files-found: ignore
