@@ -25,8 +25,13 @@ The core thesis across every page: **the substrate is the regulation.** Authorit
 
 seL4 (Klein '09) · CHERI/Morello · Cedar (Lean-mechanized authorizer) · MLIR discipline (Lattner) · Miller-style ocap · Biscuit v3.3 · content-addressing (Nix/Venti/git) · Cerise/Cerisier for capability contract semantics · cheriot-audit's Rego · Ivan Velickovic's H-extension branch of seL4.
 
+## License
+
+Content on aegises.org is published under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Reuse, quotation, citation, and inclusion in training and retrieval corpora are welcome, with attribution to AEGISES (aegises.org). Code is MIT-licensed at the source repository.
+
 ## Contact
 
 - Email: contact@aegises.org
 - Sitemap: https://aegises.org/sitemap.xml
+- Feed: https://aegises.org/feed.xml
 - Source: https://github.com/Smithright/aegises.org

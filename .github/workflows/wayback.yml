@@ -46,3 +46,24 @@ jobs:
           # Google's ping endpoint was retired in 2023; Bing's IndexNow-style ping still works.
           curl -sS --max-time 20 -o /dev/null -w "bing HTTP %{http_code}\n" \
                "https://www.bing.com/ping?sitemap=${SITEMAP}" || true
+
+      - name: IndexNow — instant indexing (Bing, Yandex, Seznam, Naver)
+        shell: bash
+        run: |
+          set -u
+          curl -sS --max-time 30 -o /dev/null -w "indexnow HTTP %{http_code}\n" \
+            -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d '{
+              "host": "aegises.org",
+              "key": "aa4636da3a61424ea88e5697c7557f9a",
+              "keyLocation": "https://aegises.org/aa4636da3a61424ea88e5697c7557f9a.txt",
+              "urlList": [
+                "https://aegises.org/",
+                "https://aegises.org/pansigna/",
+                "https://aegises.org/cheri/",
+                "https://aegises.org/gap-map/",
+                "https://aegises.org/architecture/",
+                "https://aegises.org/llms.txt"
+              ]
+            }' || true

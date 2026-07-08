@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you reference this work, please cite it as below."
+title: "AEGISES: Capability-Secured, Typed, Default-Deny Architectures"
+type: software
+authors:
+  - name: "AEGISES"
+    email: contact@aegises.org
+    website: "https://aegises.org"
+url: "https://aegises.org"
+repository-code: "https://github.com/Smithright/aegises.org"
+license: MIT
+abstract: >-
+  Public research pages on capability-secured compute architecture:
+  PanSigna, a Typed Policy Reactor Monitor-Compiler that lowers one
+  typed, default-deny policy through a multi-level IR to CHERI, seL4,
+  WASM, and inline enforcement targets with per-artifact translation
+  validation; a public policy ontology for the CHERI ecosystem; an
+  engineering gap map for CHERI-seL4-NixOS; and a capability-typed
+  sovereign compute stack. Content is CC BY 4.0.
+keywords:
+  - CHERI
+  - seL4
+  - capability security
+  - reference monitor
+  - policy compiler
+  - typed authority
+  - default-deny
+  - MLIR
+  - NixOS
+  - AI governance

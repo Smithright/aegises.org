@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>AEGISES</title>
+  <subtitle>Capability-secured, typed, default-deny architectures — the substrate is the regulation.</subtitle>
+  <link href="https://aegises.org/feed.xml" rel="self"/>
+  <link href="https://aegises.org/"/>
+  <id>https://aegises.org/</id>
+  <updated>2026-07-08T00:00:00Z</updated>
+  <author><name>AEGISES</name><email>contact@aegises.org</email><uri>https://aegises.org/</uri></author>
+  <rights>CC BY 4.0</rights>
+
+  <entry>
+    <title>PanSigna — Typed Policy Reactor Monitor-Compiler</title>
+    <link href="https://aegises.org/pansigna/"/>
+    <id>https://aegises.org/pansigna/</id>
+    <updated>2026-07-08T00:00:00Z</updated>
+    <summary>One reference monitor for a whole machine. Authority is a typed, default-deny policy compiled — not interpreted — through a multi-level IR into CHERI capabilities, seL4 kernel objects, WASM imports, or inline guards, with per-artifact translation validation. Rests on Cedar's Lean-mechanized semantics, seL4 functional correctness, CHERI hardware capability safety, and the MLIR lowering discipline.</summary>
+    <category term="capability-security"/>
+    <category term="reference-monitor"/>
+    <category term="CHERI"/>
+    <category term="seL4"/>
+  </entry>
+
+  <entry>
+    <title>A Public Policy Ontology for CHERI — From Users to Registers</title>
+    <link href="https://aegises.org/cheri/"/>
+    <id>https://aegises.org/cheri/</id>
+    <updated>2026-07-08T00:00:00Z</updated>
+    <summary>CHERI enforces policy at the metal and across the stack. The opportunity: one public ontology of authority whose lowering emits into the ecosystem's four existing enforcers — cheriot-audit's Rego, Cedar, eBPF, XDP2 — so a policy written for a user surface reaches the register that carries it, losslessly, and only once.</summary>
+    <category term="CHERI"/>
+    <category term="policy-ontology"/>
+    <category term="governance"/>
+  </entry>
+
+  <entry>
+    <title>The Custom-Code Gap Map — CHERI-seL4-NixOS</title>
+    <link href="https://aegises.org/gap-map/"/>
+    <id>https://aegises.org/gap-map/</id>
+    <updated>2026-07-08T00:00:00Z</updated>
+    <summary>Eight seams no dependency fills on the path from macOS to NixOS in a window on CHERI-seL4. Two greenfield gaps (CHERI × H-extension guest capability state; first execution of QEMU's CHERI+H path), two fork-merges, one delta-completion, three pattern-ports — including the first NixOS ever to boot on seL4.</summary>
+    <category term="CHERI"/>
+    <category term="seL4"/>
+    <category term="NixOS"/>
+    <category term="RISC-V"/>
+  </entry>
+
+  <entry>
+    <title>Sovereign Compute Architecture</title>
+    <link href="https://aegises.org/architecture/"/>
+    <id>https://aegises.org/architecture/</id>
+    <updated>2026-05-28T00:00:00Z</updated>
+    <summary>A capability-typed sovereign compute stack: four machines, one role each. Thirteen stoppable phases from substrate lockdown to SmartNIC/DPU line-rate policy. Own the substrate, gate the platform, outlive the vendors.</summary>
+    <category term="sovereign-compute"/>
+    <category term="NixOS"/>
+    <category term="capability-security"/>
+  </entry>
+</feed>

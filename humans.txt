@@ -1,0 +1,17 @@
+/* TEAM */
+Organization: AEGISES
+Contact: contact@aegises.org
+Site: https://aegises.org
+
+/* SITE */
+Standards: HTML5, CSS3, JSON-LD, Atom, llms.txt
+Hosting: GitHub Pages
+Archive: Internet Archive (auto on every deploy), IPFS (web3.storage)
+License: content CC BY 4.0 · code MIT
+
+/* THANKS — the shoulders */
+seL4 (Klein et al.), CHERI/Morello (Watson et al.), Cedar & cedar-spec,
+MLIR (Lattner), Mark S. Miller, Erlingsson & Schneider, Pnueli,
+Lampson, Saltzer & Schroeder, capDL (Kuz et al.),
+Ivan Velickovic's seL4 H-extension work, the CHERI Alliance,
+the seL4 Foundation, the NixOS community.
