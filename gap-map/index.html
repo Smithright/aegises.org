@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Custom-Code Gap Map — CHERI-seL4-NixOS</title>
+<style>
+  :root {
+    --bg: #F4F6F8;
+    --panel: #FFFFFF;
+    --ink: #1C242E;
+    --muted: #5A6672;
+    --line: #D8DEE4;
+    --accent: #0E7A63;
+    --void-bg: rgba(28, 36, 46, 0.025);
+    --green: #BE4A2A;
+    --merge: #6656B4;
+    --delta: #A97A16;
+    --port: #3B74A8;
+    --display: "Avenir Next", "Avenir", "Helvetica Neue", "Segoe UI", sans-serif;
+    --body: "Charter", "Iowan Old Style", "Palatino", Georgia, serif;
+    --mono: "SF Mono", ui-monospace, "Menlo", "Cascadia Code", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131820;
+      --panel: #1A212B;
+      --ink: #E6EBF1;
+      --muted: #97A3B0;
+      --line: #2A3441;
+      --accent: #33C39A;
+      --void-bg: rgba(230, 235, 241, 0.03);
+      --green: #E37A55;
+      --merge: #A093E8;
+      --delta: #D8AC4A;
+      --port: #7FB0DC;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #131820;
+    --panel: #1A212B;
+    --ink: #E6EBF1;
+    --muted: #97A3B0;
+    --line: #2A3441;
+    --accent: #33C39A;
+    --void-bg: rgba(230, 235, 241, 0.03);
+    --green: #E37A55;
+    --merge: #A093E8;
+    --delta: #D8AC4A;
+    --port: #7FB0DC;
+  }
+  :root[data-theme="light"] {
+    --bg: #F4F6F8;
+    --panel: #FFFFFF;
+    --ink: #1C242E;
+    --muted: #5A6672;
+    --line: #D8DEE4;
+    --accent: #0E7A63;
+    --void-bg: rgba(28, 36, 46, 0.025);
+    --green: #BE4A2A;
+    --merge: #6656B4;
+    --delta: #A97A16;
+    --port: #3B74A8;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, .chip:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  header .eyebrow { color: var(--accent); }
+  h1 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(30px, 4.6vw, 44px);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    margin: 10px 0 14px;
+    text-wrap: balance;
+  }
+  .thesis {
+    max-width: 65ch;
+    font-size: 18.5px;
+    margin: 0 0 6px;
+  }
+  .thesis b { font-weight: 600; }
+  .pathline {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--muted);
+    margin: 14px 0 0;
+    line-height: 1.8;
+  }
+  .pathline .sep { color: var(--accent); padding: 0 2px; }
+
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 30px 0 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .stat { padding: 14px 28px 14px 0; margin-right: 28px; }
+  .stat .n {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 26px;
+    font-variant-numeric: tabular-nums;
+    display: block;
+    line-height: 1.15;
+  }
+  .stat .l {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  section { margin-top: 56px; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    margin: 0 0 6px;
+  }
+  .sectionnote { color: var(--muted); max-width: 65ch; margin: 0 0 22px; font-size: 15.5px; }
+
+  /* ---------- The wall ---------- */
+  .wallscroll { overflow-x: auto; padding-bottom: 6px; }
+  .wall { min-width: 720px; display: grid; grid-template-columns: 118px 1fr; row-gap: 7px; }
+  .course-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    align-self: center;
+    padding-right: 14px;
+    text-align: right;
+    line-height: 1.5;
+  }
+  .course { display: flex; gap: 7px; align-items: stretch; }
+  .brick {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 10px 14px;
+    flex: 1 1 0;
+    min-height: 58px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .brick .bname { font-family: var(--display); font-weight: 600; font-size: 14.5px; line-height: 1.25; }
+  .brick .bmeta {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+  .brick .bmeta .ok { color: var(--accent); }
+  .brick.wide { flex: 2.2 1 0; }
+  .brick.thin { min-height: 44px; }
+
+  .voidbrick {
+    border: 1.5px dashed;
+    border-radius: 3px;
+    background: var(--void-bg);
+    padding: 9px 13px;
+    flex: 1 1 0;
+    min-height: 58px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: inherit;
+  }
+  .voidbrick:hover { text-decoration: none; filter: brightness(1.04); }
+  .voidbrick .bname { font-family: var(--display); font-weight: 600; font-size: 13.5px; line-height: 1.25; }
+  .voidbrick .bmeta { font-family: var(--mono); font-size: 10.5px; margin-top: 3px; opacity: 0.85; }
+
+  .joint {
+    flex: 0 0 34px;
+    border-left: 1.5px dashed;
+    border-right: 1.5px dashed;
+    background: var(--void-bg);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  .joint:hover { text-decoration: none; filter: brightness(1.04); }
+
+  .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3px;
+  }
+  :root[data-theme="dark"] .num, .dk .num { color: #10151c; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .num { color: #10151c; } }
+
+  .c-green { border-color: var(--green); color: var(--green); }
+  .c-merge { border-color: var(--merge); color: var(--merge); }
+  .c-delta { border-color: var(--delta); color: var(--delta); }
+  .c-port  { border-color: var(--port);  color: var(--port);  }
+  .bg-green { background: var(--green); }
+  .bg-merge { background: var(--merge); }
+  .bg-delta { background: var(--delta); }
+  .bg-port  { background: var(--port);  }
+
+  .voidbrick .num, .joint .num { margin-bottom: 0; }
+  .voidbrick .head { display: flex; align-items: center; gap: 8px; }
+
+  .wallkey {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 14px;
+    line-height: 2;
+  }
+  .wallkey .swatch {
+    display: inline-block;
+    width: 9px; height: 9px;
+    border-radius: 2px;
+    margin: 0 5px 0 14px;
+    vertical-align: baseline;
+  }
+  .wallkey .solid {
+    display: inline-block; width: 12px; height: 9px;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 2px; margin-right: 5px; vertical-align: baseline;
+  }
+  .wallkey .dash {
+    display: inline-block; width: 12px; height: 9px;
+    border: 1.5px dashed var(--muted);
+    border-radius: 2px; margin: 0 5px 0 14px; vertical-align: baseline;
+  }
+
+  /* ---------- Legend / classes ---------- */
+  .classes { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 10px; }
+  .classcard {
+    border: 1px solid var(--line);
+    border-top: 3px solid;
+    border-radius: 3px;
+    background: var(--panel);
+    padding: 13px 15px;
+  }
+  .classcard h3 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0 0 4px;
+  }
+  .classcard p { margin: 0; font-size: 13.8px; color: var(--muted); line-height: 1.5; }
+  .buildorder {
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 2.1;
+  }
+  .buildorder b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- Dossier entries ---------- */
+  .gap {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    margin-top: 18px;
+    padding: 22px 26px 20px;
+    scroll-margin-top: 20px;
+  }
+  .gaphead { display: flex; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+  .gaphead .num { min-width: 24px; height: 24px; font-size: 12.5px; margin-top: 2px; }
+  .gaphead h3 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    margin: 0;
+    flex: 1 1 300px;
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .tag.plain { border-color: var(--line); color: var(--muted); }
+  .tag.mission { border-color: var(--green); color: var(--green); }
+
+  .why { margin: 14px 0 0; max-width: 68ch; font-size: 16.5px; }
+  .why b { font-weight: 600; }
+
+  .fields {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 8px 18px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-size: 14.5px;
+  }
+  .fields dt {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 3px;
+  }
+  .fields dd { margin: 0; }
+  .fields dd ul { margin: 0; padding-left: 18px; }
+  .fields dd li { margin: 2px 0; }
+  .fields code, .why code, .sectionnote code, .thesis code {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    background: var(--void-bg);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1px 5px;
+    white-space: nowrap;
+  }
+  .scope { font-family: var(--mono); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .scope .band { font-weight: 700; }
+  .risk { color: var(--muted); }
+
+  @media (max-width: 620px) {
+    .fields { grid-template-columns: 1fr; gap: 2px 0; }
+    .fields dt { padding-top: 10px; }
+    .gap { padding: 18px 16px 16px; }
+  }
+
+  /* ---------- Ledger ---------- */
+  .ledger {
+    margin-top: 56px;
+    border-top: 2px solid var(--accent);
+    padding-top: 16px;
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 72ch;
+  }
+  .ledger b { color: var(--ink); font-weight: 600; }
+  .ledger p { margin: 6px 0; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">CHERI-seL4-NixOS · Engineering dossier · 2026-07-08</div>
+    <h1>The Custom-Code Gap Map</h1>
+    <p class="thesis">Eight seams no dependency fills, on the path from this Mac to NixOS in a window on CHERI-seL4.
+    <b>Everything solid in the wall below is a live, dated dependency. Everything dashed is ours to write.</b></p>
+    <p class="pathline">macOS / M3&nbsp;Max <span class="sep">→</span> CHERI-Alliance QEMU <span class="sep">→</span> CHERI-seL4 + Ivan Velickovic's H-extension branch <span class="sep">→</span> CHERI-Microkit + libvmm <span class="sep">→</span> NixOS riscv64 <span class="sep">→</span> a window</p>
+
+    <div class="stats">
+      <div class="stat"><span class="n">8</span><span class="l">gaps, total</span></div>
+      <div class="stat"><span class="n">2</span><span class="l">greenfield — no code to copy</span></div>
+      <div class="stat"><span class="n">2</span><span class="l">mission-only (CHERI on)</span></div>
+      <div class="stat"><span class="n">≈2–4k</span><span class="l">authored LOC, order of magnitude</span></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>The wall</h2>
+    <p class="sectionnote">The stack as masonry, foundation at the bottom. Fork-merges are <em>vertical joints</em> — two bricks in the same course that must become one. Greenfield gaps are <em>missing bricks</em>. Every solid brick's liveness was source-verified on 2026-07-08.</p>
+
+    <div class="wallscroll">
+      <div class="wall">
+
+        <div class="course-label">Window</div>
+        <div class="course">
+          <div class="brick thin wide">
+            <span class="bname">QEMU cocoa window · virtio-gpu scanout</span>
+            <span class="bmeta">renders the guest's KMS output · <span class="ok">proven pattern (LionsOS “Kitty”, aarch64)</span></span>
+          </div>
+          <a class="voidbrick c-port" href="#gap-6">
+            <span class="head"><span class="num bg-port">6</span><span class="bname">GPU passthrough, re-plumbed for RISC-V</span></span>
+            <span class="bmeta">M4 · pattern-port</span>
+          </a>
+        </div>
+
+        <div class="course-label">Guest</div>
+        <div class="course">
+          <div class="brick wide">
+            <span class="bname">NixOS riscv64</span>
+            <span class="bmeta">nixpkgs (community) + cache.ztier.in · <span class="ok">boots on QEMU + real boards</span></span>
+          </div>
+          <a class="voidbrick c-port" href="#gap-7">
+            <span class="head"><span class="num bg-port">7</span><span class="bname">The seL4-guest profile</span></span>
+            <span class="bmeta">M3 · pattern-port · a first</span>
+          </a>
+        </div>
+
+        <div class="course-label">VMM<br>(userland)</div>
+        <div class="course">
+          <div class="brick">
+            <span class="bname">CHERI-Microkit</span>
+            <span class="bmeta">CHERI-Alliance @ cheri · <span class="ok">2026-05-21</span></span>
+          </div>
+          <a class="joint c-merge" href="#gap-4" aria-label="Gap 4: the Microkit fork-merge"><span class="num bg-merge">4</span></a>
+          <div class="brick">
+            <span class="bname">Ivan's Microkit-hyp</span>
+            <span class="bmeta">Ivan-Velickovic fork · pairs with №3</span>
+          </div>
+          <div class="brick">
+            <span class="bname">libvmm <em>riscv</em></span>
+            <span class="bmeta">au-ts @ riscv · 2026-04-22 · <span style="color:var(--delta)">WIP by its own commits</span></span>
+          </div>
+          <a class="voidbrick c-delta" href="#gap-5">
+            <span class="head"><span class="num bg-delta">5</span><span class="bname">Last mile + SBI</span></span>
+            <span class="bmeta">M1 · delta</span>
+          </a>
+        </div>
+
+        <div class="course-label">Kernel</div>
+        <div class="course">
+          <div class="brick">
+            <span class="bname">CHERI-seL4</span>
+            <span class="bmeta">CHERI-Alliance @ cheri-microkit · <span class="ok">2026-03-18</span> · hybrid, MCS</span>
+          </div>
+          <a class="joint c-merge" href="#gap-3" aria-label="Gap 3: the kernel fork-merge"><span class="num bg-merge">3</span></a>
+          <div class="brick">
+            <span class="bname">Ivan's H-extension</span>
+            <span class="bmeta">Ivan-Velickovic @ microkit_riscv_he · 2025-07-25 · H v1.0</span>
+          </div>
+          <a class="voidbrick c-green" href="#gap-1">
+            <span class="head"><span class="num bg-green">1</span><span class="bname">CHERI × H guest state</span></span>
+            <span class="bmeta">M2 · greenfield · mission-only</span>
+          </a>
+        </div>
+
+        <div class="course-label">Emulator</div>
+        <div class="course">
+          <div class="brick wide">
+            <span class="bname">CHERI-Alliance QEMU</span>
+            <span class="bmeta">@ main · <span class="ok">pushed 2026-07-07</span> · CHERI + H compiled together, capability VS-mode CSRs in-tree</span>
+          </div>
+          <a class="voidbrick c-green" href="#gap-2">
+            <span class="head"><span class="num bg-green">2</span><span class="bname">First light on CHERI+H</span></span>
+            <span class="bmeta">M2 · greenfield · mission-only</span>
+          </a>
+        </div>
+
+        <div class="course-label">Host</div>
+        <div class="course">
+          <div class="brick wide">
+            <span class="bname">macOS · Apple M3 Max · Nix</span>
+            <span class="bmeta">128 GiB RAM · 1.6 TiB free · <span class="ok">Nix installed</span> · linux-builder VM for guest closures</span>
+          </div>
+          <a class="voidbrick c-port" href="#gap-8">
+            <span class="head"><span class="num bg-port">8</span><span class="bname">The Nix spine</span></span>
+            <span class="bmeta">M0 · pattern-port</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+    <p class="wallkey">
+      <span class="solid"></span>live dependency
+      <span class="dash"></span>custom code
+      <span class="swatch bg-green"></span>greenfield
+      <span class="swatch bg-merge"></span>fork-merge
+      <span class="swatch bg-delta"></span>delta
+      <span class="swatch bg-port"></span>pattern-port
+    </p>
+  </section>
+
+  <section>
+    <h2>Four kinds of unfillable</h2>
+    <p class="sectionnote">“Can't be filled by a dependency” comes in grades. The heat of the color says how alone we are when writing it.</p>
+    <div class="classes">
+      <div class="classcard" style="border-top-color: var(--green)">
+        <h3>Greenfield</h3>
+        <p>No code to copy, anywhere. The draft spec is the only companion — every line is also a design decision.</p>
+      </div>
+      <div class="classcard" style="border-top-color: var(--merge)">
+        <h3>Fork-merge</h3>
+        <p>Both halves exist as forks of the same code, rewriting the same structures. No repo holds their union; git can't merge meaning.</p>
+      </div>
+      <div class="classcard" style="border-top-color: var(--delta)">
+        <h3>Delta-completion</h3>
+        <p>The dependency exists and is the right base — its own commit log says it isn't finished. We write the distance to “works.”</p>
+      </div>
+      <div class="classcard" style="border-top-color: var(--port)">
+        <h3>Pattern-port</h3>
+        <p>A proven template exists in another ISA or ecosystem. We trace, not invent — but the code is still ours.</p>
+      </div>
+    </div>
+    <p class="buildorder"><b>Build order:</b> M0 №8&ensp;→&ensp;M1 №3 №4 №5&ensp;→&ensp;M2 №1 №2&ensp;→&ensp;M3 №7&ensp;→&ensp;M4 №6.
+    Dossier order below is by unfillability, hottest first.</p>
+  </section>
+
+  <section>
+    <h2>The dossier</h2>
+
+    <article class="gap" id="gap-1">
+      <div class="gaphead">
+        <span class="num bg-green">1</span>
+        <h3>CHERI × H: the guest's capability state</h3>
+        <div class="tags"><span class="tag" style="border-color:var(--green);color:var(--green)">greenfield</span><span class="tag plain">kernel · M2</span><span class="tag mission">mission-only</span></div>
+      </div>
+      <p class="why">The ratification-track CHERI spec <b>excludes its hypervisor chapter from v1.0</b> — the semantics of capabilities crossing into a virtual machine are still a draft. No kernel on Earth has entered V-mode with capabilities live. There is nothing to copy; there is a chapter to interpret, and our interpretation becomes evidence the spec authors can cite.</p>
+      <dl class="fields">
+        <dt>Seam</dt><dd>CHERI-seL4's capability context ↔ the H-extension's guest world (V=1)</dd>
+        <dt>We write</dt><dd><ul>
+          <li>VCPU object carrying capability-width guest CSRs (<code>vstvecc</code>, <code>vsepcc</code>, <code>vsscratchc</code>, <code>vstidc</code>), saved/restored on every VM entry and exit</li>
+          <li><code>henvcfg.CRE</code> policy — whether and when the guest sees CHERI at all</li>
+          <li>Capability-fault forwarding from V-mode out to the VMM</li>
+        </ul></dd>
+        <dt>Nearest dep</dt><dd>Ivan's VCPU object stops at integer-width registers; CHERI-seL4's context switch stops at V=0. Each solves half; neither meets the other.</dd>
+        <dt>Scope</dt><dd class="scope"><span class="band">≈300–800 LOC</span> kernel C · plus design notes for the working group</dd>
+        <dt>Risk</dt><dd class="risk">The hard part is deciding, not typing — each choice is spec-input, and should be socialized with the WG before it lands.</dd>
+      </dl>
+    </article>
+
+    <article class="gap" id="gap-2">
+      <div class="gaphead">
+        <span class="num bg-green">2</span>
+        <h3>First light on QEMU's CHERI+H path</h3>
+        <div class="tags"><span class="tag" style="border-color:var(--green);color:var(--green)">greenfield</span><span class="tag plain">emulator · M2</span><span class="tag mission">mission-only</span></div>
+      </div>
+      <p class="why">The CHERI+H machinery is <b>in the tree but has never executed</b>: capability VS-mode CSRs, capability-aware hypervisor register swapping, capmode hypervisor loads/stores — compiled together, default-on, and publicly untested by any OS. One deferral is documented in-source: <code>riscv_cpu_mode_cre()</code> ignores <code>henvcfg.CRE</code> in V-mode (“For now, we do not support the hypervisor extension”). We will be the first execution this code ever gets; being first <em>is</em> the work.</p>
+      <dl class="fields">
+        <dt>Seam</dt><dd>CHERI-Alliance QEMU <code>main</code> ↔ reality. Also note: the <code>codasip-a730</code> CPU model every CHERI-seL4 doc uses has no H — we run <code>-cpu rv64</code>.</dd>
+        <dt>We write</dt><dd><ul>
+          <li>The <code>henvcfg.CRE</code> gate in V-mode, per the draft chapter</li>
+          <li>Fixes for whatever first execution shakes loose</li>
+        </ul></dd>
+        <dt>Nearest dep</dt><dd>The fork itself — it stops at “compiled, never run.”</dd>
+        <dt>Scope</dt><dd class="scope"><span class="band">≈100–300 LOC</span> known · plus unknown-unknowns, priced honestly as such</dd>
+        <dt>Risk</dt><dd class="risk">Every QEMU fix here is upstreamable to the Alliance fork — small patches, outsized goodwill.</dd>
+      </dl>
+    </article>
+
+    <article class="gap" id="gap-3">
+      <div class="gaphead">
+        <span class="num bg-merge">3</span>
+        <h3>One kernel from two forks</h3>
+        <div class="tags"><span class="tag" style="border-color:var(--merge);color:var(--merge)">fork-merge</span><span class="tag plain">kernel · M1</span></div>
+      </div>
+      <p class="why">Ivan's H-extension branch and Hesham's CHERI branch are both forks of seL4 that <b>rewrite the same trap path, the same context layout, the same object table</b>. No repository holds their union, and git can only merge text — the semantic union (a trap entry that saves capability context <em>and</em> detects V-mode) has to be authored.</p>
+      <dl class="fields">
+        <dt>Seam</dt><dd><code>Ivan-Velickovic/seL4 @ microkit_riscv_he</code> (2025-07-25) ↔ <code>CHERI-Alliance/CHERI-seL4 @ cheri-microkit</code> (2026-03-18)</dd>
+        <dt>We write</dt><dd><ul>
+          <li>The reconciled trap entry and unified TCB/VCPU context</li>
+          <li>The config product <code>KernelRiscvExtY</code> × <code>KernelRiscVHypervisorSupport</code>, actually building</li>
+        </ul></dd>
+        <dt>Nearest dep</dt><dd>Both halves — each stops exactly at the other's first line. A year of drift between their base revisions is part of the price.</dd>
+        <dt>Scope</dt><dd class="scope"><span class="band">≈300–800 LOC</span> authored · Ivan's ~2 kLOC patchset reviewed line-by-line</dd>
+        <dt>Risk</dt><dd class="risk">Merge conflicts are the visible part; semantic conflicts in the trap path are the real part. Ivan's branch being dormant since 2025-07 makes it a stable base, not a moving target.</dd>
+      </dl>
+    </article>
+
+    <article class="gap" id="gap-4">
+      <div class="gaphead">
+        <span class="num bg-merge">4</span>
+        <h3>The same merge, one floor up: Microkit</h3>
+        <div class="tags"><span class="tag" style="border-color:var(--merge);color:var(--merge)">fork-merge</span><span class="tag plain">userland SDK · M1</span></div>
+      </div>
+      <p class="why">The kernel merge repeats at the SDK layer. Ivan's Microkit fork knows how to build hypervisor-mode protection domains; CHERI-Microkit knows how to build CHERI ones (purecap libmicrokit, a Rust tool that nulls the DDC). <b>A virtual-machine PD on a CHERI kernel needs both forks' knowledge in one tool.</b></p>
+      <dl class="fields">
+        <dt>Seam</dt><dd>Ivan's Microkit-hyp fork ↔ <code>CHERI-Alliance/CHERI-Microkit @ cheri</code> (2026-05-21)</dd>
+        <dt>We write</dt><dd><ul>
+          <li>Hypervisor-mode PD support merged into CHERI-Microkit's <code>build_sdk.py</code>, tool, and monitor</li>
+          <li>A <code>qemu_virt_riscv64</code> board config with H on and CHERI available</li>
+        </ul></dd>
+        <dt>Nearest dep</dt><dd>Each fork, stopping at the other's feature.</dd>
+        <dt>Scope</dt><dd class="scope"><span class="band">≈200–500 LOC</span> Python / Rust / C across the SDK</dd>
+        <dt>Risk</dt><dd class="risk">Low-novelty, high-fiddliness. First candidate PR back to CHERI-Microkit — the WG named ports like this as wanted contributions.</dd>
+      </dl>
+    </article>
+
+    <article class="gap" id="gap-5">
+      <div class="gaphead">
+        <span class="num bg-delta">5</span>
+        <h3>libvmm's last mile — and the SBI dial-tone</h3>
+        <div class="tags"><span class="tag" style="border-color:var(--delta);color:var(--delta)">delta-completion</span><span class="tag plain">VMM · M1</span></div>
+      </div>
+      <p class="why">libvmm's <code>riscv</code> branch is the strongest possible base and <b>unfinished by its own account</b> — its newest board port says “not currently working” in the commit log, and the QEMU-virt board is publicly unproven. Separately: a RISC-V Linux guest's first act is to call its firmware (timer, IPI, console). Under the H-extension those calls trap to <em>us</em> — the VMM must answer with an SBI implementation, the dial-tone the guest expects before it says anything.</p>
+      <dl class="fields">
+        <dt>Seam</dt><dd><code>au-ts/libvmm @ riscv</code> (2026-04-22) ↔ a Linux guest that actually reaches userspace</dd>
+        <dt>We write</dt><dd><ul>
+          <li>Whatever the first boot reveals — the honest definition of a delta gap</li>
+          <li>The SBI answer set: TIME (against the kernel's virtual timers — Ivan's branch has <code>KernelRiscVNumVTimers</code>), IPI, RFENCE, early console</li>
+        </ul></dd>
+        <dt>Nearest dep</dt><dd>The branch itself, plus libvmm <code>main</code> (pushed 2026-07-08) for the device framework it will eventually rebase onto.</dd>
+        <dt>Scope</dt><dd class="scope"><span class="band">≈200–600 LOC</span> — unknowable until first boot; bounded by the branch's own churn</dd>
+        <dt>Risk</dt><dd class="risk">The size of this gap is the single biggest unknown in the plan. First boot attempt should happen early precisely to price it.</dd>
+      </dl>
+    </article>
+
+    <article class="gap" id="gap-6">
+      <div class="gaphead">
+        <span class="num bg-port">6</span>
+        <h3>The window seam: virtio-gpu passthrough, re-plumbed for RISC-V</h3>
+        <div class="tags"><span class="tag" style="border-color:var(--port);color:var(--port)">pattern-port</span><span class="tag plain">VMM / display · M4</span></div>
+      </div>
+      <p class="why">The window itself is dependency-covered: QEMU emulates <code>virtio-gpu</code>, renders the guest's screen in its own macOS window, and LionsOS's “Kitty” example proves the passthrough pattern in-tree — <b>on aarch64</b>. The existing code is arm-shaped: GIC interrupt injection, arm device trees. The pattern ports; the plumbing is ours.</p>
+      <dl class="fields">
+        <dt>Seam</dt><dd>The proven aarch64 pattern ↔ RISC-V's interrupt world (PLIC line → <code>hvip</code> VS-level injection) and guest device tree</dd>
+        <dt>We write</dt><dd><ul>
+          <li>Map QEMU's virtio-gpu MMIO window into guest physical space, 1:1 so device DMA just works</li>
+          <li>Route its interrupt into the guest as a VS-level external interrupt</li>
+          <li>Guest DTB nodes; same again for virtio-input, so the window can type back</li>
+        </ul></dd>
+        <dt>Nearest dep</dt><dd>LionsOS Kitty (the pattern) + guest kernel's <code>CONFIG_DRM_VIRTIO_GPU</code> (the driver). Both stop at the ISA boundary.</dd>
+        <dt>Scope</dt><dd class="scope"><span class="band">≈200–400 LOC</span> + device tree fragments</dd>
+        <dt>Risk</dt><dd class="risk">Low: output-only first, input second. The demo's money shot, deliberately scheduled last.</dd>
+      </dl>
+    </article>
+
+    <article class="gap" id="gap-7">
+      <div class="gaphead">
+        <span class="num bg-port">7</span>
+        <h3>NixOS, taught to boot as an seL4 guest</h3>
+        <div class="tags"><span class="tag" style="border-color:var(--port);color:var(--port)">pattern-port</span><span class="tag plain">guest · M3</span><span class="tag plain">a first</span></div>
+      </div>
+      <p class="why">NixOS on riscv64 is real; NixOS under a non-KVM microkernel VMM has <b>never happened</b>. The template is microvm.nix — NixOS taught to boot under five exotic VMMs — but it has no seL4 backend. What a libvmm guest is handed (a virtio-mmio world, an SBI console, a VMM-authored device tree) becomes a NixOS hardware profile.</p>
+      <dl class="fields">
+        <dt>Seam</dt><dd>nixpkgs riscv64 ↔ the world libvmm actually provides a guest</dd>
+        <dt>We write</dt><dd><ul>
+          <li>A NixOS module: kernel config (<code>virtio_mmio</code> in initrd, <code>DRM_VIRTIO_GPU</code>), SBI console, no-bootloader direct-kernel boot</li>
+          <li>Image packaging the VMM loads: kernel + initrd + rootfs closure</li>
+          <li>The aarch64-darwin build route (nix-darwin <code>linux-builder</code> — dependency-covered, config only)</li>
+        </ul></dd>
+        <dt>Nearest dep</dt><dd>microvm.nix, stopping one VMM short of ours.</dd>
+        <dt>Scope</dt><dd class="scope"><span class="band">≈150–300 lines</span> of Nix</dd>
+        <dt>Risk</dt><dd class="risk">Low — and it carries a title: the first NixOS ever to boot on seL4.</dd>
+      </dl>
+    </article>
+
+    <article class="gap" id="gap-8">
+      <div class="gaphead">
+        <span class="num bg-port">8</span>
+        <h3>The Nix spine</h3>
+        <div class="tags"><span class="tag" style="border-color:var(--port);color:var(--port)">pattern-port</span><span class="tag plain">build system · M0</span></div>
+      </div>
+      <p class="why">The CHERI world builds with cheribuild — Python, non-hermetic, living in <code>~/cheri</code>. Nothing packages the Alliance toolchain for Nix. The seL4 side already went there (official Microkit flake, Foundation CI inside <code>nix develop</code>), so <b>a reproducible spine reads as native to half our audience and novel to the other half</b> — the ideal shape for a first contribution.</p>
+      <dl class="fields">
+        <dt>Seam</dt><dd>cheribuild's world ↔ a flake the working group can run with one command</dd>
+        <dt>We write</dt><dd><ul>
+          <li>Derivations: CHERI-Alliance LLVM (<code>codasip-cheri-riscv</code>), QEMU <code>main</code> (<code>riscv64cheri</code> target), CHERI-Microkit SDK</li>
+          <li>Boot harness + devshell — the one command that reproduces the whole wall</li>
+        </ul></dd>
+        <dt>Nearest dep</dt><dd>lowrisc-nix proves the LLVM derivation shape, then stops before QEMU, the SDK, and the harness.</dd>
+        <dt>Scope</dt><dd class="scope"><span class="band">≈300–600 lines</span> of Nix</dd>
+        <dt>Risk</dt><dd class="risk">Mechanical, front-loaded, and the foundation every other gap builds on — which is why it is M0.</dd>
+      </dl>
+    </article>
+  </section>
+
+  <div class="ledger">
+    <p><b>Honest ledger.</b> Solid-brick dates and “stops short” claims were source-verified 2026-07-08 (8-agent recon: kernel trees cloned and grepped, QEMU target code read, commit logs fetched). LOC bands are order-of-magnitude estimates and stay estimates until built — №5 is the widest unknown and is scheduled early for exactly that reason. Not shown: glue that dependencies fully cover (linux-builder config, cheribuild invocations, guest closure cross-build).</p>
+    <p>Path scoped here: pure emulation on this Mac, Ivan's branch as the H-extension base. №1 and №2 are needed for the <em>mission</em> (CHERI on); the demo lights up without them.</p>
+  </div>
+</div>
+</body>
+</html>

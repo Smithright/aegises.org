@@ -160,7 +160,7 @@
 
   .grid{margin-top:18px;border:1px solid var(--rule);border-radius:6px;overflow:hidden}
   .grow{
-    display:grid;grid-template-columns:1.5fr .8fr 1fr 2.4fr .9fr;gap:16px;padding:14px 18px;align-items:center;
+    display:grid;grid-template-columns:1.6fr .8fr 1fr 2.6fr;gap:16px;padding:14px 18px;align-items:center;
     border-bottom:1px solid var(--rule);transition:background .15s
   }
   .grow:last-child{border-bottom:0}
@@ -255,7 +255,6 @@
 
     <div class="metabar">
       <span class="chip hot mono">◐ community proposal</span>
-      <span class="chip mono">confidence ~85%</span>
       <span class="chip mono">16 components surveyed</span>
       <span class="chip mono">2 unfilled ecosystem gaps</span>
     </div>
@@ -352,13 +351,13 @@
           <div><h3>ADOPT</h3><div class="tag-line">enforcement — the ecosystem already ships this</div></div>
         </div>
         <div class="items">
-          <div class="item"><div class="nm">CHERI sealing / otype <span class="cf">95%</span></div><div class="wy">The substrate already types authority. Every proposal on this page rests on it.</div></div>
-          <div class="item"><div class="nm">VeriCHERI monotonicity <span class="cf">90%</span></div><div class="wy">Tags clear, never set — mechanically proven. A free axiom the ecosystem shares.</div></div>
-          <div class="item"><div class="nm">Sail model + Verilator Ibex <span class="cf">90%</span></div><div class="wy">The maintained gold model. Any reimplementation is duplicated effort.</div></div>
-          <div class="item"><div class="nm">MLIR infrastructure <span class="cf">90%</span></div><div class="wy">The dialect substrate. Build a CHERI-policy dialect <em>in</em> it, not against it.</div></div>
-          <div class="item"><div class="nm">LLVM / CHERIoT toolchain <span class="cf">85%</span></div><div class="wy">The recommended CHERI microcontroller profile. The ecosystem's compiler is already here.</div></div>
-          <div class="item"><div class="nm">Rego / OPA + cheriot-audit <span class="cf">85%</span></div><div class="wy">Ships today. Operates on the compartment report directly. The build-time enforcer is solved.</div></div>
-          <div class="item"><div class="nm">Cedar engine <span class="cf">75%</span></div><div class="wy">The decidable runtime decision fragment. Reimplementing it recreates OPA badly.</div></div>
+          <div class="item"><div class="nm">CHERI sealing / otype</div><div class="wy">The substrate already types authority. Every proposal on this page rests on it.</div></div>
+          <div class="item"><div class="nm">VeriCHERI monotonicity</div><div class="wy">Tags clear, never set — mechanically proven. A free axiom the ecosystem shares.</div></div>
+          <div class="item"><div class="nm">Sail model + Verilator Ibex</div><div class="wy">The maintained gold model. Any reimplementation is duplicated effort.</div></div>
+          <div class="item"><div class="nm">MLIR infrastructure</div><div class="wy">The dialect substrate. Build a CHERI-policy dialect <em>in</em> it, not against it.</div></div>
+          <div class="item"><div class="nm">LLVM / CHERIoT toolchain</div><div class="wy">The recommended CHERI microcontroller profile. The ecosystem's compiler is already here.</div></div>
+          <div class="item"><div class="nm">Rego / OPA + cheriot-audit</div><div class="wy">Ships today. Operates on the compartment report directly. The build-time enforcer is solved.</div></div>
+          <div class="item"><div class="nm">Cedar engine</div><div class="wy">The decidable runtime decision fragment. Reimplementing it recreates OPA badly.</div></div>
         </div>
       </div>
 
@@ -369,8 +368,8 @@
           <div><h3>BORROW</h3><div class="tag-line">semantics — read the theorems, don't reimplement them</div></div>
         </div>
         <div class="items">
-          <div class="item"><div class="nm">Cerise / Cerisier <span class="cf">70%</span></div><div class="wy">The logical-relation methodology for what a capability contract <em>guarantees</em>. Read the shape; mechanize only when a barrier demands a machine-checked proof.</div></div>
-          <div class="item"><div class="nm">TAL / StkTokens <span class="cf">70%</span></div><div class="wy">The conceptual parent of typed low-level code. Read for why otype types authority, not data.</div></div>
+          <div class="item"><div class="nm">Cerise / Cerisier</div><div class="wy">The logical-relation methodology for what a capability contract <em>guarantees</em>. Read the shape; mechanize only when a barrier demands a machine-checked proof.</div></div>
+          <div class="item"><div class="nm">TAL / StkTokens</div><div class="wy">The conceptual parent of typed low-level code. Read for why otype types authority, not data.</div></div>
           <div class="item" style="opacity:.55"><div class="nm mono-note" style="color:var(--ink-faint)">⚠ fragile category</div><div class="wy" style="color:var(--ink-faint)">BORROW silently expands into a quarter of Coq without discipline. A community tripwire: touch mechanized proof only when a customer or regulator demands one.</div></div>
         </div>
       </div>
@@ -382,12 +381,12 @@
           <div><h3>PROPOSE</h3><div class="tag-line">the artifacts the ecosystem is missing</div></div>
         </div>
         <div class="items">
-          <div class="item forced"><div class="nm">Typed-attachment primitive <span class="cf">90%</span></div><div class="wy">The irreducible base carrying TTL. No enforcer in the stack holds it — the ecosystem must define it.</div></div>
-          <div class="item forced"><div class="nm">Temporal / revocation enforcer <span class="cf">85%</span></div><div class="wy">CHERI is timeless; policy engines evaluate snapshots. Force-time has no home — a new component must own it.</div></div>
-          <div class="item forced"><div class="nm">Lowering compiler <span class="cf">90%</span></div><div class="wy">The compiler that emits XDP2, eBPF, otype-discipline, and Cedar decisions from one source. No prior art — the proposal itself.</div></div>
-          <div class="item"><div class="nm">Unified attachment dialect <span class="cf">90%</span></div><div class="wy">The MLIR dialect the lowering emits from — the ecosystem's shared source of policy meaning.</div></div>
-          <div class="item thin"><div class="nm">Cedar schema + interposition <span class="cf">80%</span> <span class="badge">THIN</span></div><div class="wy">Domain glue over an adopted engine. Weeks of integration, not quarters of engineering.</div></div>
-          <div class="item thin"><div class="nm">Append-only provenance <span class="cf">80%</span> <span class="badge">THIN</span></div><div class="wy">The linker already emits section hashes; the ledger over them is a small binding.</div></div>
+          <div class="item forced"><div class="nm">Typed-attachment primitive</div><div class="wy">The irreducible base carrying TTL. No enforcer in the stack holds it — the ecosystem must define it.</div></div>
+          <div class="item forced"><div class="nm">Temporal / revocation enforcer</div><div class="wy">CHERI is timeless; policy engines evaluate snapshots. Force-time has no home — a new component must own it.</div></div>
+          <div class="item forced"><div class="nm">Lowering compiler</div><div class="wy">The compiler that emits XDP2, eBPF, otype-discipline, and Cedar decisions from one source. No prior art — the proposal itself.</div></div>
+          <div class="item"><div class="nm">Unified attachment dialect</div><div class="wy">The MLIR dialect the lowering emits from — the ecosystem's shared source of policy meaning.</div></div>
+          <div class="item thin"><div class="nm">Cedar schema + interposition <span class="badge">THIN</span></div><div class="wy">Domain glue over an adopted engine. Weeks of integration, not quarters of engineering.</div></div>
+          <div class="item thin"><div class="nm">Append-only provenance <span class="badge">THIN</span></div><div class="wy">The linker already emits section hashes; the ledger over them is a small binding.</div></div>
         </div>
       </div>
     </div>
@@ -501,29 +500,29 @@
 
     <div class="grid" id="grid">
       <div class="grow head">
-        <span>Component</span><span>Category</span><span>Layer</span><span>Rationale</span><span>Confidence</span>
+        <span>Component</span><span>Category</span><span>Layer</span><span>Rationale</span>
       </div>
 
       <!-- ADOPT -->
-      <div class="grow" data-v="USE"><div class="c-nm">CHERI sealing / otype</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Silicon</div><div class="c-wy">The substrate already types authority. Every proposal rests on it.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="95"></div></div><span class="pct">95%</span></div></div>
-      <div class="grow" data-v="USE"><div class="c-nm">VeriCHERI monotonicity</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Silicon</div><div class="c-wy">Tags clear, never set — mechanically proven. A free ecosystem axiom.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="90"></div></div><span class="pct">90%</span></div></div>
-      <div class="grow" data-v="USE"><div class="c-nm">Sail model + Verilator Ibex</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Emulation</div><div class="c-wy">Maintained gold model. Reimplementation is duplicated effort.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="90"></div></div><span class="pct">90%</span></div></div>
-      <div class="grow" data-v="USE"><div class="c-nm">MLIR infrastructure</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Compiler</div><div class="c-wy">The dialect substrate. Build the CHERI-policy dialect in it.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="90"></div></div><span class="pct">90%</span></div></div>
-      <div class="grow" data-v="USE"><div class="c-nm">LLVM / CHERIoT toolchain</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Compiler</div><div class="c-wy">The recommended CHERI MCU profile. The ecosystem's compiler is here.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="85"></div></div><span class="pct">85%</span></div></div>
-      <div class="grow" data-v="USE"><div class="c-nm">Rego / OPA + cheriot-audit</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Build-time</div><div class="c-wy">Ships today; operates on the compartment report natively.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="85"></div></div><span class="pct">85%</span></div></div>
-      <div class="grow" data-v="USE"><div class="c-nm">Cedar engine</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Runtime</div><div class="c-wy">Decidable decision fragment. Reimplementing recreates OPA badly.</div><div class="confbar"><div class="track"><div class="fill USE" data-c="75"></div></div><span class="pct">75%</span></div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">CHERI sealing / otype</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Silicon</div><div class="c-wy">The substrate already types authority. Every proposal rests on it.</div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">VeriCHERI monotonicity</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Silicon</div><div class="c-wy">Tags clear, never set — mechanically proven. A free ecosystem axiom.</div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">Sail model + Verilator Ibex</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Emulation</div><div class="c-wy">Maintained gold model. Reimplementation is duplicated effort.</div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">MLIR infrastructure</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Compiler</div><div class="c-wy">The dialect substrate. Build the CHERI-policy dialect in it.</div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">LLVM / CHERIoT toolchain</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Compiler</div><div class="c-wy">The recommended CHERI MCU profile. The ecosystem's compiler is here.</div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">Rego / OPA + cheriot-audit</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Build-time</div><div class="c-wy">Ships today; operates on the compartment report natively.</div></div>
+      <div class="grow" data-v="USE"><div class="c-nm">Cedar engine</div><div class="c-vd vd-USE">ADOPT</div><div class="c-ly">Runtime</div><div class="c-wy">Decidable decision fragment. Reimplementing recreates OPA badly.</div></div>
 
       <!-- BORROW -->
-      <div class="grow" data-v="BORROW"><div class="c-nm">Cerise / Cerisier</div><div class="c-vd vd-BORROW">BORROW</div><div class="c-ly">Semantics</div><div class="c-wy">The logical-relation methodology. Mechanize only when a barrier proof is demanded.</div><div class="confbar"><div class="track"><div class="fill BORROW" data-c="70"></div></div><span class="pct">70%</span></div></div>
-      <div class="grow" data-v="BORROW"><div class="c-nm">TAL / StkTokens</div><div class="c-vd vd-BORROW">BORROW</div><div class="c-ly">Theory</div><div class="c-wy">Conceptual parent of typed low-level code. Read, don't port.</div><div class="confbar"><div class="track"><div class="fill BORROW" data-c="70"></div></div><span class="pct">70%</span></div></div>
+      <div class="grow" data-v="BORROW"><div class="c-nm">Cerise / Cerisier</div><div class="c-vd vd-BORROW">BORROW</div><div class="c-ly">Semantics</div><div class="c-wy">The logical-relation methodology. Mechanize only when a barrier proof is demanded.</div></div>
+      <div class="grow" data-v="BORROW"><div class="c-nm">TAL / StkTokens</div><div class="c-vd vd-BORROW">BORROW</div><div class="c-ly">Theory</div><div class="c-wy">Conceptual parent of typed low-level code. Read, don't port.</div></div>
 
       <!-- PROPOSE -->
-      <div class="grow forced" data-v="BUILD"><div class="c-nm">Typed-attachment primitive</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Core</div><div class="c-wy">Irreducible base carrying TTL. No enforcer holds it — an ecosystem gap.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="90"></div></div><span class="pct">90%</span></div></div>
-      <div class="grow forced" data-v="BUILD"><div class="c-nm">Temporal / revocation enforcer</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Runtime</div><div class="c-wy">Nothing in the stack carries force-time — an ecosystem gap.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="85"></div></div><span class="pct">85%</span></div></div>
-      <div class="grow forced" data-v="BUILD"><div class="c-nm">Lowering compiler</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Compiler</div><div class="c-wy">One dialect → four ecosystem enforcers. No prior art — the coordination artifact.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="90"></div></div><span class="pct">90%</span></div></div>
-      <div class="grow" data-v="BUILD"><div class="c-nm">Unified attachment dialect</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Compiler</div><div class="c-wy">The MLIR dialect the lowering emits from — the shared source of meaning.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="90"></div></div><span class="pct">90%</span></div></div>
-      <div class="grow" data-v="BUILD"><div class="c-nm">Cedar schema + interposition</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Runtime · thin</div><div class="c-wy">Domain glue over an adopted engine. Weeks of work.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="80"></div></div><span class="pct">80%</span></div></div>
-      <div class="grow" data-v="BUILD"><div class="c-nm">Append-only provenance</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Provenance · thin</div><div class="c-wy">Ledger over the linker's existing section hashes.</div><div class="confbar"><div class="track"><div class="fill BUILD" data-c="80"></div></div><span class="pct">80%</span></div></div>
+      <div class="grow forced" data-v="BUILD"><div class="c-nm">Typed-attachment primitive</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Core</div><div class="c-wy">Irreducible base carrying TTL. No enforcer holds it — an ecosystem gap.</div></div>
+      <div class="grow forced" data-v="BUILD"><div class="c-nm">Temporal / revocation enforcer</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Runtime</div><div class="c-wy">Nothing in the stack carries force-time — an ecosystem gap.</div></div>
+      <div class="grow forced" data-v="BUILD"><div class="c-nm">Lowering compiler</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Compiler</div><div class="c-wy">One dialect → four ecosystem enforcers. No prior art — the coordination artifact.</div></div>
+      <div class="grow" data-v="BUILD"><div class="c-nm">Unified attachment dialect</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Compiler</div><div class="c-wy">The MLIR dialect the lowering emits from — the shared source of meaning.</div></div>
+      <div class="grow" data-v="BUILD"><div class="c-nm">Cedar schema + interposition</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Runtime · thin</div><div class="c-wy">Domain glue over an adopted engine. Weeks of work.</div></div>
+      <div class="grow" data-v="BUILD"><div class="c-nm">Append-only provenance</div><div class="c-vd vd-BUILD">PROPOSE</div><div class="c-ly">Provenance · thin</div><div class="c-wy">Ledger over the linker's existing section hashes.</div></div>
     </div>
   </section>
 
@@ -566,7 +565,7 @@
   <footer>
     <div class="provenance">
       <span>OPPORTUNITY MAP · A PUBLIC POLICY ONTOLOGY FOR CHERI</span>
-      <span>COMMUNITY PROPOSAL · CONF ~85%</span>
+      <span>COMMUNITY PROPOSAL</span>
     </div>
   </footer>
 
