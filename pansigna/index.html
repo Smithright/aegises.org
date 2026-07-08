@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PanSigna — Typed Policy Reactor Monitor-Compiler</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ECEFF2;
+    --paper: #FFFFFF;
+    --ink: #14181D;
+    --muted: #59636E;
+    --faint: #8A94A0;
+    --line: #D4DAE0;
+    --line-strong: #B9C2CB;
+    --seal: #9A6B16;        /* capability / grant / authority — the one bold hue */
+    --seal-soft: rgba(154, 107, 22, 0.10);
+    --proof: #0D6E60;       /* verified / allow — semantic, not accent */
+    --proof-soft: rgba(13, 110, 96, 0.10);
+    --deny: #A3372A;        /* default-deny floor — semantic */
+    --deny-soft: rgba(163, 55, 42, 0.09);
+    --code-bg: rgba(20, 24, 29, 0.045);
+
+    --sans: -apple-system, "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+    --serif: "Charter", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --mono: "SF Mono", "JetBrains Mono", ui-monospace, "Menlo", "Cascadia Code", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0E1216;
+      --paper: #161C22;
+      --ink: #E8EDF2;
+      --muted: #9AA5B1;
+      --faint: #6C7783;
+      --line: #262E37;
+      --line-strong: #333D48;
+      --seal: #D6A64A;
+      --seal-soft: rgba(214, 166, 74, 0.13);
+      --proof: #3CBEA8;
+      --proof-soft: rgba(60, 190, 168, 0.13);
+      --deny: #E58374;
+      --deny-soft: rgba(229, 131, 116, 0.12);
+      --code-bg: rgba(232, 237, 242, 0.05);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E1216; --paper: #161C22; --ink: #E8EDF2; --muted: #9AA5B1; --faint: #6C7783;
+    --line: #262E37; --line-strong: #333D48; --seal: #D6A64A; --seal-soft: rgba(214, 166, 74, 0.13);
+    --proof: #3CBEA8; --proof-soft: rgba(60, 190, 168, 0.13); --deny: #E58374; --deny-soft: rgba(229, 131, 116, 0.12);
+    --code-bg: rgba(232, 237, 242, 0.05);
+  }
+  :root[data-theme="light"] {
+    --bg: #ECEFF2; --paper: #FFFFFF; --ink: #14181D; --muted: #59636E; --faint: #8A94A0;
+    --line: #D4DAE0; --line-strong: #B9C2CB; --seal: #9A6B16; --seal-soft: rgba(154, 107, 22, 0.10);
+    --proof: #0D6E60; --proof-soft: rgba(13, 110, 96, 0.10); --deny: #A3372A; --deny-soft: rgba(163, 55, 42, 0.09);
+    --code-bg: rgba(20, 24, 29, 0.045);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *{ animation: none !important; transition: none !important; } }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--serif); font-size: 17px; line-height: 1.58;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 26px; }
+  a { color: var(--seal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--seal); outline-offset: 3px; border-radius: 2px; }
+  code, .mono { font-family: var(--mono); }
+  p code, li code, td code, .prose code {
+    font-size: 0.84em; background: var(--code-bg); border: 1px solid var(--line);
+    border-radius: 4px; padding: 1px 5px; white-space: nowrap;
+  }
+
+  /* eyebrows / section numbering — a spec IS a real structure */
+  .eyebrow {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  h1, h2, h3, .display { font-family: var(--sans); }
+
+  /* ---------------- Hero ---------------- */
+  header.hero {
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(1100px 380px at 80% -60%, var(--seal-soft), transparent 70%);
+  }
+  .hero-inner { padding: 74px 0 52px; }
+  .seal-row { display: flex; align-items: center; gap: 18px; margin-bottom: 30px; }
+  .sigil { flex: 0 0 auto; }
+  .kicker { font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--seal); }
+  .kicker .dim { color: var(--faint); }
+  h1 {
+    font-weight: 680; font-size: clamp(38px, 6.4vw, 76px); line-height: 0.98;
+    letter-spacing: -0.028em; margin: 0 0 8px; text-wrap: balance;
+  }
+  h1 .pan { color: var(--ink); }
+  h1 .sigwd { color: var(--seal); }
+  .subtitle {
+    font-family: var(--sans); font-weight: 500; font-size: clamp(17px, 2.1vw, 22px);
+    letter-spacing: -0.01em; color: var(--muted); margin: 0 0 26px;
+  }
+  .thesis { max-width: 68ch; font-size: 19px; margin: 0 0 8px; }
+  .thesis b { font-weight: 600; }
+  .thesis .seal-t { color: var(--seal); font-weight: 600; }
+
+  .door {
+    margin: 30px 0 6px; padding: 16px 20px; border: 1px solid var(--line);
+    border-left: 3px solid var(--seal); border-radius: 6px; background: var(--paper);
+    font-family: var(--mono); font-size: 13.5px; overflow-x: auto;
+  }
+  .door .lbl { color: var(--faint); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; display:block; margin-bottom: 8px; }
+  .door .sig { color: var(--ink); white-space: nowrap; }
+  .door .k { color: var(--seal); }
+  .door .arrow { color: var(--proof); }
+  .door .cmt { color: var(--faint); }
+
+  .pillars { display: flex; flex-wrap: wrap; gap: 0; margin-top: 34px; border-top: 1px solid var(--line); }
+  .pillar { padding: 16px 30px 16px 0; margin-right: 26px; }
+  .pillar .n { font-family: var(--sans); font-weight: 640; font-size: 15px; letter-spacing: -0.01em; display: block; }
+  .pillar .d { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+
+  /* ---------------- Sections ---------------- */
+  section { padding: 58px 0; border-bottom: 1px solid var(--line); }
+  .sechead { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; }
+  .secno { font-family: var(--mono); font-size: 13px; color: var(--seal); font-weight: 600; }
+  h2 { font-weight: 660; font-size: clamp(23px, 3.2vw, 30px); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+  .lede { max-width: 70ch; color: var(--muted); font-size: 17.5px; margin: 6px 0 30px; }
+  .lede b { color: var(--ink); font-weight: 600; }
+
+  /* name decode */
+  .decode { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .word { background: var(--paper); padding: 20px 20px 22px; }
+  .word .w { font-family: var(--sans); font-weight: 660; font-size: 19px; letter-spacing: -0.01em; }
+  .word .gloss { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--seal); margin: 4px 0 10px; }
+  .word p { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.5; }
+  .word p b { color: var(--ink); font-weight: 600; }
+
+  /* proof surface table */
+  .tablescroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 640px; }
+  thead th {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); text-align: left; font-weight: 500; padding: 0 16px 10px 0; border-bottom: 1px solid var(--line-strong);
+  }
+  tbody td { padding: 13px 16px 13px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  td .guar { font-family: var(--sans); font-weight: 600; font-size: 14.5px; }
+  td .mech { color: var(--muted); }
+  .badge { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; white-space: nowrap; border: 1px solid; display: inline-block; }
+  .b-proven { color: var(--proof); border-color: var(--proof); background: var(--proof-soft); }
+  .b-design { color: var(--seal); border-color: var(--seal); background: var(--seal-soft); }
+  .b-assume { color: var(--muted); border-color: var(--line-strong); }
+  .shoulder { font-family: var(--mono); font-size: 12px; color: var(--faint); white-space: nowrap; }
+
+  /* two-column concept */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .cols .prose { font-size: 16px; }
+  .cols .prose p { margin: 0 0 12px; }
+  .card { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 20px 22px; }
+  .card h3 { font-weight: 640; font-size: 16px; margin: 0 0 10px; letter-spacing: -0.01em; }
+  .contrast { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .contrast > div { padding: 16px 18px; }
+  .contrast .old { background: var(--deny-soft); border-right: 1px solid var(--line); }
+  .contrast .new { background: var(--proof-soft); }
+  .contrast .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 8px; }
+  .contrast .old .tag { color: var(--deny); }
+  .contrast .new .tag { color: var(--proof); }
+  .contrast p { margin: 0; font-size: 14.5px; line-height: 1.5; }
+  .contrast .big { font-family: var(--sans); font-weight: 640; font-size: 15.5px; color: var(--ink); display:block; margin-bottom: 4px; }
+
+  /* ---------------- The lowering pipeline (centerpiece) ---------------- */
+  .pipe { margin-top: 8px; }
+  .stage { display: flex; align-items: stretch; gap: 16px; }
+  .stage-rail { flex: 0 0 120px; text-align: right; padding-top: 16px; }
+  .stage-rail .lvl { font-family: var(--mono); font-weight: 600; font-size: 12px; color: var(--seal); }
+  .stage-rail .sub { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); margin-top: 2px; line-height: 1.4; }
+  .stage-body { flex: 1 1 auto; min-width: 0; }
+  .ir {
+    background: var(--paper); border: 1px solid var(--line-strong); border-radius: 8px;
+    padding: 15px 18px; margin-bottom: 0;
+  }
+  .ir .irname { font-family: var(--sans); font-weight: 640; font-size: 15.5px; letter-spacing: -0.01em; }
+  .ir .irdesc { font-size: 13.5px; color: var(--muted); margin-top: 3px; }
+  .ir .irsnip { font-family: var(--mono); font-size: 11.5px; color: var(--ink); background: var(--code-bg); border-radius: 5px; padding: 8px 10px; margin-top: 10px; white-space: pre; overflow-x: auto; line-height: 1.5; }
+  .ir .irsnip .k { color: var(--seal); }
+  .ir .irsnip .c { color: var(--faint); }
+  .ir .irsnip .p { color: var(--proof); }
+  .ir .irsnip .d { color: var(--deny); }
+
+  .pass { display: flex; align-items: center; gap: 10px; padding: 9px 0 9px 6px; }
+  .pass .glyph { color: var(--proof); font-family: var(--mono); font-size: 15px; flex: 0 0 auto; width: 16px; }
+  .pass .ptxt { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .pass .ptxt b { color: var(--ink); font-weight: 600; }
+
+  .targets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 4px; }
+  .tgt { border: 1px solid var(--line); border-top: 3px solid var(--seal); border-radius: 8px; background: var(--paper); padding: 15px 15px 16px; display: flex; flex-direction: column; }
+  .tgt .tname { font-family: var(--sans); font-weight: 660; font-size: 15px; letter-spacing: -0.01em; }
+  .tgt .tenf { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; margin: 4px 0 9px; }
+  .tgt.hw .tenf { color: var(--proof); } .tgt.hw { border-top-color: var(--proof); }
+  .tgt.krn .tenf { color: var(--proof); } .tgt.krn { border-top-color: var(--proof); }
+  .tgt.sbx .tenf { color: var(--seal); }
+  .tgt.inl .tenf { color: var(--muted); } .tgt.inl { border-top-color: var(--line-strong); }
+  .tgt p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.48; }
+  .tgt .prim { font-family: var(--mono); font-size: 11px; color: var(--ink); margin-top: auto; padding-top: 10px; }
+  .validation {
+    margin-top: 14px; border: 1px dashed var(--proof); border-radius: 8px; background: var(--proof-soft);
+    padding: 13px 18px; font-size: 14px;
+  }
+  .validation b { color: var(--proof); font-weight: 600; }
+  .validation .mono { font-size: 12.5px; color: var(--ink); }
+
+  /* ---------------- dependency choices ---------------- */
+  .deps { display: flex; flex-direction: column; gap: 12px; }
+  .depcat { border: 1px solid var(--line); border-radius: 8px; background: var(--paper); overflow: hidden; }
+  .depcat-h { display: flex; align-items: baseline; gap: 12px; padding: 13px 18px; background: var(--code-bg); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  .depcat-h .cat { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .depcat-h .layer { font-family: var(--sans); font-weight: 640; font-size: 15px; letter-spacing: -0.01em; }
+  .depcat-b { padding: 6px 18px 16px; }
+  .depitem { display: grid; grid-template-columns: 160px 1fr; gap: 4px 20px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .depitem:last-child { border-bottom: none; }
+  .depitem .pick { }
+  .depitem .pickname { font-family: var(--mono); font-weight: 600; font-size: 14px; color: var(--ink); }
+  .depitem .over { font-family: var(--mono); font-size: 11px; color: var(--faint); margin-top: 3px; }
+  .depitem .over s { color: var(--faint); }
+  .depitem .why { font-size: 14px; color: var(--muted); line-height: 1.5; }
+  .depitem .why b { color: var(--ink); font-weight: 600; }
+  .depitem .trade { font-size: 13px; color: var(--muted); margin-top: 5px; }
+  .depitem .trade .lab { color: var(--deny); font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .lane { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 6px; border-radius: 4px; border: 1px solid; white-space: nowrap; }
+  .lane.prod { color: var(--proof); border-color: var(--proof); }
+  .lane.research { color: var(--seal); border-color: var(--seal); }
+
+  /* ---------------- repo tree ---------------- */
+  .treewrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: 24px; align-items: start; }
+  .tree {
+    font-family: var(--mono); font-size: 12.5px; line-height: 1.85; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 8px; padding: 20px 22px; overflow-x: auto; white-space: pre;
+    color: var(--ink);
+  }
+  .tree .dir { color: var(--seal); font-weight: 600; }
+  .tree .cmt { color: var(--faint); }
+  .tree .core { color: var(--proof); }
+  .tree .peri { color: var(--muted); }
+  .tree .guard { color: var(--deny); font-weight: 600; }
+  .treekey { display: flex; flex-direction: column; gap: 14px; }
+  .treekey .krow { display: flex; gap: 12px; align-items: flex-start; }
+  .treekey .sw { flex: 0 0 auto; width: 12px; height: 12px; border-radius: 3px; margin-top: 4px; }
+  .treekey .kt { font-size: 14px; color: var(--muted); line-height: 1.45; }
+  .treekey .kt b { color: var(--ink); font-weight: 600; font-family: var(--sans); }
+
+  /* ledger */
+  .ledger { padding: 40px 0 66px; border-bottom: none; }
+  .ledger .lgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 8px 0 22px; }
+  .lcell { border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; background: var(--paper); }
+  .lcell .lstate { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 8px; }
+  .lcell.done .lstate { color: var(--proof); }
+  .lcell.design .lstate { color: var(--seal); }
+  .lcell.research .lstate { color: var(--muted); }
+  .lcell ul { margin: 0; padding-left: 17px; font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+  .lcell li { margin: 3px 0; }
+  .disclaim { font-size: 13.5px; color: var(--faint); max-width: 74ch; line-height: 1.6; }
+  .disclaim b { color: var(--muted); }
+
+  footer { padding: 26px 0 60px; }
+  .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: var(--mono); font-size: 11.5px; color: var(--faint); letter-spacing: 0.04em; }
+
+  @media (max-width: 820px) {
+    .cols, .treewrap { grid-template-columns: 1fr; }
+    .targets { grid-template-columns: 1fr 1fr; }
+    .contrast { grid-template-columns: 1fr; }
+    .contrast .old { border-right: none; border-bottom: 1px solid var(--line); }
+    .ledger .lgrid { grid-template-columns: 1fr; }
+    .stage-rail { flex-basis: 96px; }
+    .depitem { grid-template-columns: 1fr; gap: 6px; }
+  }
+  @media (max-width: 520px) {
+    .targets { grid-template-columns: 1fr; }
+    .stage { flex-direction: column; gap: 6px; }
+    .stage-rail { text-align: left; flex-basis: auto; padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+<h2 class="sr-only">PanSigna: the architecture of a Typed Policy Reactor Monitor-Compiler — a capability-secured reference monitor that compiles typed, default-deny policies down a multi-level IR to CHERI, seL4, WASM, and inline enforcement targets.</h2>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="seal-row">
+      <svg class="sigil" width="60" height="60" viewBox="0 0 60 60" role="img" aria-label="PanSigna sigil">
+        <circle cx="30" cy="30" r="28" fill="none" stroke="var(--seal)" stroke-width="1.4"/>
+        <circle cx="30" cy="30" r="22" fill="none" stroke="var(--seal)" stroke-width="0.8" opacity="0.5"/>
+        <path d="M30 8 L30 52 M8 30 L52 30 M14.5 14.5 L45.5 45.5 M45.5 14.5 L14.5 45.5" stroke="var(--seal)" stroke-width="0.7" opacity="0.4"/>
+        <polygon points="30,16 42,24 37,38 23,38 18,24" fill="none" stroke="var(--seal)" stroke-width="1.6" stroke-linejoin="round"/>
+        <circle cx="30" cy="29" r="3.4" fill="var(--seal)"/>
+      </svg>
+      <div>
+        <div class="kicker">Architecture dossier <span class="dim">· v0 · 2026-07-08</span></div>
+        <div class="kicker dim">for review by the CHERI Alliance &amp; seL4 Foundation</div>
+      </div>
+    </div>
+
+    <h1><span class="pan">Pan</span><span class="sigwd">Signa</span></h1>
+    <p class="subtitle">A Typed Policy Reactor Monitor-Compiler</p>
+
+    <p class="thesis">One reference monitor for a whole machine — where authority is a <span class="seal-t">typed, default-deny policy</span> that is not <em>interpreted</em> at each call but <b>compiled</b>, once, down a multi-level IR into whatever can enforce it fastest: a CHERI capability, an seL4 kernel object, a WASM import table, or a residual inline guard. <b>The decision is proved equal to the policy; the enforcement runs at the speed of the silicon.</b></p>
+
+    <div class="door">
+      <span class="lbl">The one door — complete mediation</span>
+      <span class="sig"><span class="k">invoke</span>(cap, method, path, body, grant) <span class="arrow">→</span> identity · <span class="d" style="color:var(--deny)">policy</span> · resolve · transport · audit <span class="cmt">// grant = None ⇒ deny</span></span>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar"><span class="n">Provably secure</span><span class="d">complete mediation · default-deny · ocap</span></div>
+      <div class="pillar"><span class="n">Performant</span><span class="d">compile, don't interpret</span></div>
+      <div class="pillar"><span class="n">Governable</span><span class="d">policy bound to types · inherited</span></div>
+      <div class="pillar"><span class="n">Interoperable</span><span class="d">one IR · four backends</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- §1 name decode -->
+  <section id="name">
+    <div class="sechead"><span class="secno">§1</span><h2>The name is the specification</h2></div>
+    <p class="lede">Five words, each a load-bearing claim. Read together they describe the whole machine: <b>typed</b> authority, expressed as <b>policy</b>, driven by a <b>reactor</b>, mediated by a <b>monitor</b>, delivered by a <b>compiler</b>.</p>
+    <div class="decode">
+      <div class="word">
+        <div class="w">Typed</div>
+        <div class="gloss">rides the type spine</div>
+        <p>Every subject and object is a <b>typed thing</b>. Policy binds to a <b>type</b>, not an instance, via a <code>governs</code> edge — authored once, inherited by every member down the <code>subTypeOf</code> DAG.</p>
+      </div>
+      <div class="word">
+        <div class="w">Policy</div>
+        <div class="gloss">author the allow, never the deny</div>
+        <p>Deny is the floor, not a rule you write. Authority is a <b>positive allow-policy</b> — a content-addressed blob of verifiable bytecode. Composition is kernel-fixed <b>deny-overrides</b>; a broken policy fails <b>closed</b>.</p>
+      </div>
+      <div class="word">
+        <div class="w">Reactor</div>
+        <div class="gloss">events are the source of truth</div>
+        <p>State is a durable append-only <b>log of posts</b> (CQRS). Reactions — themselves things — project the log into the typed store and recompile affected policy. Nothing mutates in place; everything is a reaction to an event.</p>
+      </div>
+      <div class="word">
+        <div class="w">Monitor</div>
+        <div class="gloss">one door, complete mediation</div>
+        <p>The store is reachable <b>only</b> through <code>invoke</code>. Every edge — API, VFS, bus, runner — is a pure client with zero direct authority. A compile-time guard <b>fails the build</b> if a perimeter module reaches the core.</p>
+      </div>
+      <div class="word">
+        <div class="w">Compiler</div>
+        <div class="gloss">lower policy to the metal</div>
+        <p>The novel core. A policy is <b>lowered</b> — like an SSA IR through a backend — from an abstract typed dialect to the strongest enforcement primitive each target offers, then <b>proved equivalent</b> to its source.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- §2 security proof surface -->
+  <section id="security">
+    <div class="sechead"><span class="secno">§2</span><h2>The proof surface</h2></div>
+    <p class="lede">Security is not a feeling; it is a set of named guarantees, each with a mechanism, a citation, and an <b>honest status</b> — what is machine-proved, what is designed-for, what is assumed of a dependency. Nothing here is claimed proved that isn't.</p>
+    <div class="tablescroll">
+      <table>
+        <thead><tr><th>Guarantee</th><th>Mechanism</th><th>Rests on</th><th style="padding-right:0">Status</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="guar">Complete mediation</span></td>
+            <td class="mech">Store reachable only via <code>invoke</code>; perimeter has no store/exec/bus handle; <code>build.rs</code> denies at compile time.</td>
+            <td class="shoulder">Lampson '74</td>
+            <td><span class="badge b-design">design-enforced</span></td>
+          </tr>
+          <tr>
+            <td><span class="guar">Fail-safe defaults</span></td>
+            <td class="mech">Base on permission: <code>default allow = false</code>. No allow matches ⇒ denied. No ambient authority — owner is a token, not a branch.</td>
+            <td class="shoulder">Saltzer &amp; Schroeder '75</td>
+            <td><span class="badge b-design">design-enforced</span></td>
+          </tr>
+          <tr>
+            <td><span class="guar">Attenuation is a ceiling</span></td>
+            <td class="mech">Grants are attenuable ocap tokens; a delegate can only narrow, never widen. Offline-verifiable (Ed25519 + caveats).</td>
+            <td class="shoulder">Miller '06 · Biscuit</td>
+            <td><span class="badge b-assume">dep-assured</span></td>
+          </tr>
+          <tr>
+            <td><span class="guar">Policy semantics are sound</span></td>
+            <td class="mech">Authorizer &amp; validator proved in Lean (default-deny, deny-overrides, order-independent) — of the <em>model</em>; the Rust engine is differential-tested against it. PanSigna mandates schema-validated policies so Cedar's skip-on-error can't drop a <code>forbid</code>.</td>
+            <td class="shoulder">Cedar / Lean (cedar-spec)</td>
+            <td><span class="badge b-proven">model-proved</span></td>
+          </tr>
+          <tr>
+            <td><span class="guar">Compiler preserves meaning</span></td>
+            <td class="mech">Each lowering emits a witness; a validator checks <em>compiled enforcement ≡ source policy</em> per artifact (translation validation), plus differential fuzzing.</td>
+            <td class="shoulder">Pnueli '98 · Alive2</td>
+            <td><span class="badge b-design">design-target</span></td>
+          </tr>
+          <tr>
+            <td><span class="guar">Spatial + referential safety</span></td>
+            <td class="mech">Capability bounds &amp; permissions enforced in hardware; unforgeable, monotonic, tagged.</td>
+            <td class="shoulder">CHERI · Morello</td>
+            <td><span class="badge b-proven">hw-enforced</span></td>
+          </tr>
+          <tr>
+            <td><span class="guar">Isolation of the TCB</span></td>
+            <td class="mech">Enforcement primitives distributed as kernel capabilities on a formally verified microkernel.</td>
+            <td class="shoulder">seL4 (Klein '09)</td>
+            <td><span class="badge b-proven">kernel-proved</span></td>
+          </tr>
+          <tr>
+            <td><span class="guar">Integrity of policy artifacts</span></td>
+            <td class="mech">Policies are sha256-addressed blobs; the hash is the integrity check. Compile-per-hash, cache is correctness-free.</td>
+            <td class="shoulder">Venti · Nix · git</td>
+            <td><span class="badge b-design">design-enforced</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- §3 performance thesis -->
+  <section id="performance">
+    <div class="sechead"><span class="secno">§3</span><h2>Compile, don't interpret</h2></div>
+    <p class="lede">Every policy engine in production pays a tax on the hot path: it <b>interprets</b> a rule set on each request. PanSigna's thesis is that a reference monitor is a <b>compiler target</b> — the policy is fixed long before the call, so the decision can be <b>lowered ahead of time</b> into a primitive the substrate enforces for free.</p>
+    <div class="contrast">
+      <div class="old">
+        <span class="tag">The interpreted monitor — everyone else</span>
+        <span class="big">Decision cost paid per call</span>
+        <p>Request arrives → marshal context → evaluate rule tree in a policy VM → return allow/deny. Predictable overhead on <em>every</em> access; the engine is on the critical path forever, and its correctness is re-litigated at runtime.</p>
+      </div>
+      <div class="new">
+        <span class="tag">The compiled monitor — PanSigna</span>
+        <span class="big">Decision cost paid once, at compile</span>
+        <p>Policy compiled per sha256 into a CHERI capability set / seL4 CNode / WASM import table. At call time the substrate <em>is</em> the check — a bounds test in silicon, a cap lookup in the kernel. Zero policy-VM on the hot path.</p>
+      </div>
+    </div>
+    <div class="cols" style="margin-top:22px">
+      <div class="card">
+        <h3>Where the performance lives</h3>
+        <div class="prose">
+          <p><b>Ahead-of-time lowering.</b> The residual — what genuinely can't be pushed into hardware or kernel — is the only thing evaluated at runtime, and it is emitted as a monomorphized guard, not a rule walk.</p>
+          <p><b>Content-addressed compilation.</b> Identical policy compiles once; the artifact caches by hash with no invalidation problem, because immutable blobs make caching correctness-free.</p>
+        </div>
+      </div>
+      <div class="card">
+        <h3>The MLIR discipline, everywhere</h3>
+        <div class="prose">
+          <p>Design lives in the IR, not the language. Concrete syntax — Rust, C, Nix — is <b>interface only</b>, chosen for pragmatism and <b>never at the cost of performance</b>: monomorphized generics over dynamic dispatch on hot paths, bulk operations over per-item allocation.</p>
+          <p>The compiler is structured as <b>progressive lowering through dialects</b> — Lattner's "one IR, many backends," applied to authority instead of arithmetic.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §4 the lowering pipeline — centerpiece -->
+  <section id="lowering">
+    <div class="sechead"><span class="secno">§4</span><h2>The lowering pipeline</h2></div>
+    <p class="lede">The heart of the machine, read top-to-bottom exactly as it compiles. A typed policy descends through three dialects and two passes, then <b>fans out</b> to the four enforcement targets — each receiving the strongest primitive it can offer — and every emission is checked against its source.</p>
+
+    <div class="pipe">
+
+      <div class="stage">
+        <div class="stage-rail"><div class="lvl">Dialect L2</div><div class="sub">Policy · high</div></div>
+        <div class="stage-body">
+          <div class="ir">
+            <div class="irname">Typed Policy Dialect</div>
+            <div class="irdesc">What a human authors and a proof tool reads: allow-rules over entity <em>types</em>, bound by <code>governs</code> edges, in a language with mechanized semantics.</div>
+            <div class="irsnip"><span class="c">// author the allow, by type — inherited by every instance</span>
+<span class="k">permit</span>(principal <span class="k">is</span> Agent, action == invoke, resource <span class="k">is</span> Content)
+  <span class="k">when</span> { resource.trust &gt;= principal.clearance <span class="k">&amp;&amp;</span> grant.scope.covers(resource) };</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-rail"></div>
+        <div class="stage-body"><div class="pass"><span class="glyph">↓</span><span class="ptxt"><b>pass — resolve &amp; inherit:</b> bind each rule to its type; expand down the <code>subTypeOf</code> DAG; normalize to canonical allow-set</span></div></div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-rail"><div class="lvl">Dialect L1</div><div class="sub">Authorization IR · mid</div></div>
+        <div class="stage-body">
+          <div class="ir">
+            <div class="irname">Authorization IR &nbsp;<span style="font-family:var(--mono);font-size:11px;color:var(--faint);font-weight:400">— SSA, deny-overrides</span></div>
+            <div class="irdesc">Target-independent, fully typed, single-assignment. Deny is explicit as the meet; the artifact is now a pure decision function ready to specialize.</div>
+            <div class="irsnip"><span class="c">%r0</span> = allow  guard=[trust≥clr, scope⊇res]   <span class="c">; from L2</span>
+<span class="c">%d</span>  = <span class="d">deny</span>   ⊤                            <span class="c">; the floor</span>
+<span class="c">%out</span>= meet(<span class="c">%d</span>, <span class="c">%r0</span>)                    <span class="c">; deny-overrides</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-rail"></div>
+        <div class="stage-body"><div class="pass"><span class="glyph">↓</span><span class="ptxt"><b>pass — partial-evaluate &amp; assign:</b> specialize against the thing-graph &amp; available substrate; route each residual to the strongest target that can hold it</span></div></div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-rail"><div class="lvl">Dialect L0</div><div class="sub">Target ISA · low</div></div>
+        <div class="stage-body">
+          <div class="targets">
+            <div class="tgt hw">
+              <div class="tname">CHERI</div>
+              <div class="tenf">hardware-enforced</div>
+              <p>Spatial rules become capability <b>bounds + permissions</b> — unforgeable, checked every access by the ISA.</p>
+              <div class="prim">→ sealed cap, perms mask</div>
+            </div>
+            <div class="tgt krn">
+              <div class="tname">seL4</div>
+              <div class="tenf">kernel-enforced</div>
+              <p>Structural authority becomes a <b>CNode / capDL</b> distribution — policy-as-kernel-objects, model-verified.</p>
+              <div class="prim">→ cap slots · capDL '10</div>
+            </div>
+            <div class="tgt sbx">
+              <div class="tname">WASM</div>
+              <div class="tenf">sandbox-enforced</div>
+              <p>Custom ops run in a sandbox; the compiled <b>import table</b> is the grant — absent import, absent authority.</p>
+              <div class="prim">→ component imports</div>
+            </div>
+            <div class="tgt inl">
+              <div class="tname">Inline</div>
+              <div class="tenf">software residual</div>
+              <p>Whatever can't be pushed lower: a <b>monomorphized guard</b> compiled into the invoke path. The honest fallback.</p>
+              <div class="prim">→ predicate · IRM '04</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-rail"></div>
+        <div class="stage-body">
+          <div class="validation">
+            <b>⊨ Translation validation.</b> <span class="mono">check( ⟦L0 emission⟧ ≡ ⟦L2 source⟧ )</span> per artifact — every lowering carries a witness the validator confirms, so a miscompiled policy is caught before it is ever installed. Backed by differential fuzzing across the four targets.
+          </div>
+          <div class="card" style="margin-top:16px;border-left:3px solid var(--seal)">
+            <h3>What is actually new here</h3>
+            <div class="prose" style="font-size:15px">
+              <p><b>Not "compiling policy."</b> Each level is proven prior art: inlined reference monitors (Erlingsson &amp; Schneider '04) for the residual, OPA's compile-to-WASM as industrial precedent, eBPF LSM/KRSI for kernel-compiled policy, seL4 <code>capDL</code> for policy-as-kernel-objects, and Micro-Policies/PUMP ('15) for hardware tag enforcement adjacent to CHERI.</p>
+              <p><b>The contribution</b> is preserving <em>one</em> typed, default-deny, deny-overrides semantics <em>across all four</em> heterogeneous targets at once — and proving each lowering equal to that single source. Standing on named shoulders; the new step is the join.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- §5 dependency choices -->
+  <section id="deps">
+    <div class="sechead"><span class="secno">§5</span><h2>Dependency choices</h2></div>
+    <p class="lede">Every load-bearing part is a deliberate pick over a named alternative, weighted for <b>provability first</b>, then performance, then ecosystem fit. Each carries its honest trade and a lane: <span class="lane prod">production</span> reality today, or <span class="lane research">research</span> we advance.</p>
+
+    <div class="deps">
+
+      <div class="depcat">
+        <div class="depcat-h"><span class="cat">Category</span><span class="layer">Policy front-end &amp; semantics</span></div>
+        <div class="depcat-b">
+          <div class="depitem">
+            <div class="pick"><div class="pickname">Cedar</div><div class="over">over <s>OPA/Rego</s></div></div>
+            <div class="why"><b>The only widely-used policy language with a mechanized (Lean) semantics</b> and a verification-guided Rust implementation — decisive for a provability-first monitor. Typed schemas and entity types map directly onto the type spine. <span class="lane prod">production</span>
+              <div class="trade"><span class="lab">Trade</span> Cedar's model is authorization, not arbitrary Datalog — we adopt its discipline and lose Rego's anything-goes flexibility, which for a monitor is a feature.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="depcat">
+        <div class="depcat-h"><span class="cat">Category</span><span class="layer">Compiler core &amp; IR</span></div>
+        <div class="depcat-b">
+          <div class="depitem">
+            <div class="pick"><div class="pickname">Rust-native SSA IR</div><div class="over">MLIR <em>discipline</em>, not <s>melior</s></div></div>
+            <div class="why">Progressive lowering through dialects is the proven shape for "one source, many backends" — but PanSigna's value <em>is</em> custom dialects with verified rewrites, exactly what <code>melior</code> can't express (new dialects still need C++ TableGen behind an alpha C API). So we take MLIR's <b>method</b> and build the IR in Rust (<code>pliron</code>-class base), keeping MLIR-compatible textual syntax. <span class="lane research">research</span>
+              <div class="trade"><span class="lab">Trade</span> we forfeit MLIR's mature pass manager and upstream lowerings, and take on a pre-1.0 IR core to own — bought back as a cargo-only build (clean flake, plausibly self-hostable on CHERI-seL4) and a Lean semantics that binds to the SSA calculus, not a C++ artifact. Precedent: NVIDIA's cuda-oxide (2026), lean-mlir.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="depcat">
+        <div class="depcat-h"><span class="cat">Category</span><span class="layer">Grants &amp; capability tokens</span></div>
+        <div class="depcat-b">
+          <div class="depitem">
+            <div class="pick"><div class="pickname">Biscuit</div><div class="over">Eclipse · v3.3 · over <s>macaroons</s></div></div>
+            <div class="why"><b>Attenuation as a first-class ceiling</b> (appended blocks only add checks), offline Ed25519 chain verification, and Datalog caveats that express as policy — a near-exact fit for Miller-style ocap grants. Macaroons lack offline public-key verification; zcap-ld has no Rust. <span class="lane prod">production</span>
+              <div class="trade"><span class="lab">Trade</span> Biscuit's Datalog is a <em>second</em> policy language: the monitor must maintain a verified compilation from the typed IR into token checks or granted authority drifts — and verifying tokens pulls a Datalog evaluator into the TCB. UCAN 1.0 kept on watch as a convergence target.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="depcat">
+        <div class="depcat-h"><span class="cat">Category</span><span class="layer">Enforcement substrates</span></div>
+        <div class="depcat-b">
+          <div class="depitem">
+            <div class="pick"><div class="pickname">CHERI · seL4</div><div class="over">the two proved floors</div></div>
+            <div class="why">Hardware referential safety and a formally verified kernel are the <b>two strongest enforcement primitives in existence</b> — and the reason this project belongs to this audience. Policy lowers <em>into</em> them. <span class="lane prod">production</span>
+              <div class="trade"><span class="lab">Trade</span> CHERI×hypervisor semantics are still draft (v1.0 excludes the hyp chapter) — an area PanSigna's substrate work feeds back into the spec.</div>
+            </div>
+          </div>
+          <div class="depitem">
+            <div class="pick"><div class="pickname">Wasmtime</div><div class="over">for custom ops</div></div>
+            <div class="why">The default runner for agent-authored code: content-addressed, portable, sandboxed. Solid on aarch64-darwin and riscv64-linux today. <span class="lane prod">production</span> off-CHERI · <span class="lane research">research</span> on purecap
+              <div class="trade"><span class="lab">Trade</span> a WASM runtime <em>on</em> CHERI-purecap is research-grade, not production — presented honestly as a forward lane, not a shipped claim.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="depcat">
+        <div class="depcat-h"><span class="cat">Category</span><span class="layer">Event log &amp; substrate</span></div>
+        <div class="depcat-b">
+          <div class="depitem">
+            <div class="pick"><div class="pickname">NATS JetStream</div><div class="over">CNCF · <code>async-nats</code></div></div>
+            <div class="why">The durable, replayable post log that is the CQRS source of truth; the reactor projects it into the typed store. We cite the Dec&nbsp;2025 Jepsen 2.12.1 analysis openly and pin its lessons: <code>sync_interval:&nbsp;always</code> on the source-of-truth stream, R=3, server&nbsp;≥2.14.x. <span class="lane prod">production</span>
+              <div class="trade"><span class="lab">Trade</span> durability-always costs write latency and a running broker is infrastructure — bought back as an auditable, rebuildable store that is a pure projection of an append-only log. With this audience, citing the adversarial result and engineering around it beats omitting it.</div>
+            </div>
+          </div>
+          <div class="depitem">
+            <div class="pick"><div class="pickname">Nix</div><div class="over">the reproducibility spine</div></div>
+            <div class="why">Every artifact — toolchain, policy blob, substrate image — is content-addressed and reproducible. The build graph <em>is</em> the supply-chain proof the Alliance already values. <span class="lane prod">production</span>
+              <div class="trade"><span class="lab">Trade</span> a learning curve for contributors, repaid in bit-for-bit reproducibility and a hermetic CI story.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- §6 repo structure -->
+  <section id="repo">
+    <div class="sechead"><span class="secno">§6</span><h2>The repository, as governed structure</h2></div>
+    <p class="lede">The layout <b>enacts the reference monitor</b>: a small trusted <span style="color:var(--proof);font-weight:600">core</span> that alone touches authority, a ring of <span style="color:var(--muted);font-weight:600">perimeter</span> edges that are pure <code>invoke</code> clients, and a <span style="color:var(--deny);font-weight:600">compile-time guard</span> that fails the build if the ring ever reaches past it. You can read the security property off the directory tree.</p>
+    <div class="treewrap">
+      <div class="tree"><span class="dir">pansigna/</span>
+├─ <span class="dir">flake.nix</span>                 <span class="cmt"># the reproducibility spine — one command</span>
+├─ <span class="guard">build.rs</span>                  <span class="cmt"># DEFAULT-DENY GUARD · perimeter→core = build fail</span>
+│
+├─ <span class="dir">core/</span>                     <span class="core"># ── the TCB · only code with authority ──</span>
+│  ├─ <span class="core">invoke.rs</span>              <span class="cmt"># THE ONE DOOR: id·policy·resolve·transport·audit</span>
+│  ├─ <span class="core">monitor.rs</span>             <span class="cmt"># reference monitor · complete mediation</span>
+│  ├─ <span class="dir">store/</span>                 <span class="cmt"># things · edges · content(sha256) · posts</span>
+│  └─ <span class="dir">grant/</span>                 <span class="cmt"># mint · verify (Biscuit) · attenuate=ceiling</span>
+│
+├─ <span class="dir">compiler/</span>                 <span class="core"># ── the Monitor-Compiler ──</span>
+│  ├─ <span class="dir">dialect/</span>
+│  │  ├─ <span class="core">policy_l2.rs</span>        <span class="cmt"># typed policy dialect (Cedar-grounded)</span>
+│  │  ├─ <span class="core">authz_l1.rs</span>         <span class="cmt"># SSA authorization IR · deny-overrides</span>
+│  │  └─ <span class="core">target_l0.rs</span>        <span class="cmt"># per-substrate primitives</span>
+│  ├─ <span class="dir">passes/</span>               <span class="cmt"># resolve·inherit · partial-eval · assign</span>
+│  ├─ <span class="dir">lower/</span>                <span class="cmt"># cheri · sel4 · wasm · inline backends</span>
+│  └─ <span class="dir">verify/</span>               <span class="cmt"># translation validation · differential fuzz</span>
+│
+├─ <span class="dir">reactor/</span>                  <span class="cmt"># reactions · projector(posts→things) · recompile</span>
+│
+├─ <span class="peri">perimeter/</span>                <span class="peri"># ── edges · pure invoke clients · NO authority ──</span>
+│  ├─ <span class="peri">api/</span>   <span class="peri">vfs/</span>   <span class="peri">mcp/</span>   <span class="peri">run/</span>   <span class="cmt"># each a thin shim over the door</span>
+│
+├─ <span class="dir">proofs/</span>                   <span class="cmt"># Lean semantics · IR↔policy equivalence lemmas</span>
+└─ <span class="dir">policies/</span>                 <span class="cmt"># content-addressed allow-policy blobs, by type</span></div>
+      <div class="treekey">
+        <div class="krow"><span class="sw" style="background:var(--proof)"></span><div class="kt"><b>Core — the TCB.</b> The only modules that hold a store, exec, or bus handle. Kept small on purpose: the smaller the trusted base, the smaller the surface to prove.</div></div>
+        <div class="krow"><span class="sw" style="background:var(--seal)"></span><div class="kt"><b>Compiler &amp; spine.</b> The lowering pipeline, the reactor, the Nix flake — the machinery that turns typed policy into enforced authority, reproducibly.</div></div>
+        <div class="krow"><span class="sw" style="background:var(--muted)"></span><div class="kt"><b>Perimeter — the edges.</b> API, filesystem projection, MCP, op-runners. Every one is a client of <code>invoke</code> and nothing more; they can request authority, never hold it.</div></div>
+        <div class="krow"><span class="sw" style="background:var(--deny)"></span><div class="kt"><b>The guard.</b> <code>build.rs</code> statically forbids any perimeter module from importing core authority. Violating the reference-monitor property is a <em>compile error</em>, not a code-review note.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §7 ledger -->
+  <section id="ledger" class="ledger">
+    <div class="sechead"><span class="secno">§7</span><h2>Honest ledger</h2></div>
+    <p class="lede">What is real, what is designed, what is research — stated plainly, because this audience can tell the difference and respects the distinction.</p>
+    <div class="lgrid">
+      <div class="lcell done">
+        <div class="lstate">◉ Rests on proved ground</div>
+        <ul>
+          <li>seL4 functional correctness (Klein et&nbsp;al.)</li>
+          <li>CHERI hardware capability safety</li>
+          <li>Cedar's Lean-mechanized authorizer</li>
+          <li>Content-addressing integrity (Nix/git)</li>
+        </ul>
+      </div>
+      <div class="lcell design">
+        <div class="lstate">◒ Designed, to be built &amp; shown</div>
+        <ul>
+          <li>The L2→L1→L0 lowering pipeline</li>
+          <li>Translation validation per artifact</li>
+          <li>The <code>build.rs</code> default-deny guard</li>
+          <li>Reactor projection + recompile loop</li>
+        </ul>
+      </div>
+      <div class="lcell research">
+        <div class="lstate">○ Research lane, named as such</div>
+        <ul>
+          <li>WASM runtime on CHERI-purecap</li>
+          <li>CHERI×hypervisor policy semantics</li>
+          <li>Real-MLIR vs native-IR decision</li>
+          <li>End-to-end proof chain composition</li>
+        </ul>
+      </div>
+    </div>
+    <p class="disclaim"><b>Provenance.</b> Every dependency claim here was source-verified against upstream repositories and papers on 2026-07-08 (Cedar's Lean theorems in <code>cedar-spec</code>; Biscuit v3.3 / Eclipse; wasmtime riscv64 Tier 3 &amp; the absent purecap path; NATS 2.14.x + the Dec 2025 Jepsen analysis; the six prior-art shoulders). Where a claim softened — Cedar's proofs cover the model not the crate; melior can't hold custom dialects; WASM-on-CHERI is research-only — it is marked here, not dropped. This is an architecture proposal for discussion: its purpose is to be <em>refuted or ratified</em> by the people who built the ground it stands on.</p>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <span>PanSigna · Typed Policy Reactor Monitor-Compiler</span>
+      <span>everything a typed thing · through one door · default-deny</span>
+    </div>
+  </footer>
+</main>
+
+<script>
+  // Theme toggle parity: honor a stamped data-theme over the media query.
+  // (No-op unless a host stamps :root[data-theme]; media query is the default.)
+</script>
+</body>
+</html>
