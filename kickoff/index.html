@@ -459,6 +459,9 @@ body.help #help{display:grid}
 
 @media print{#drawer{display:none!important}}
 
+/* a wash-on-wash chip disappears — lift it to white on tinted cards */
+.card.sig .chip.sig,.op.lead .chip.sig,.mc.now .chip.sig,[style*="var(--sig-wash)"] .chip.sig{background:#fff}
+
 .bx.dim,.rl.dim{opacity:.26;transition:opacity .2s}
 .bx,.rl,.oc,.mh{transition:opacity .2s,border-color .12s,box-shadow .12s,transform .12s}
 .oc.dim,.mh.dim{opacity:.3}
@@ -468,7 +471,7 @@ body.help #help{display:grid}
 <div id="stage"><div id="slides">
 <!-- 01 COVER -->
 <section class="slide dk" data-sec="Open">
-  <template class="nt"><p><b>Tone is the whole game in the first ninety seconds.</b> This room should feel like the start of something, not the start of a risk review.</p><p><b>Open:</b> "Most of you have sat through an AI kickoff before. This one is different in one specific way — by day 30 you will have working agents shipping real work inside your own estate, and every person in this room will know exactly which part is theirs."</p><p>Timebox out loud: 90 minutes. One canvas, one offer, one plan, five decisions.</p></template>
+  <template class="nt"><p><b>Tone is decided in the first ninety seconds.</b> This room should feel like the start of something, not the start of a risk review.</p><p><b>Open:</b> "Most of you have sat through an AI kickoff before. This one differs in one specific way — by day 30 you will have agents doing real work inside your own estate, and every person here will know exactly which part is theirs."</p><p>Say the shape out loud: 90 minutes. One answer, one canvas, one plan, five decisions.</p></template>
   <div class="pad" style="justify-content:center;position:relative">
     <div class="deco" style="position:absolute;right:-160px;top:-40px;width:560px;height:560px;border-radius:50%;border:1px solid rgba(255,255,255,.09);box-shadow:0 0 0 70px rgba(255,255,255,.022),0 0 0 140px rgba(255,255,255,.014)"></div>
     <div class="deco" style="position:absolute;right:96px;top:210px;width:150px;height:150px;border-radius:50%;border:1px solid rgba(95,216,230,.34)"></div>
@@ -476,7 +479,7 @@ body.help #help{display:grid}
       <div class="eyebrow">Enterprise AI Operating Model · Proof of concept kickoff</div>
       <h1 style="margin:20px 0 0;font-size:72px">Standing up your<br>agent fabric</h1>
       <div style="width:72px;height:3px;background:var(--sig-br);margin:26px 0 22px"></div>
-      <p class="lead" style="font-size:20px;max-width:700px">One operating model. Six planes you mostly already own. Twelve weeks to a paved road that <span class="ph">[CLIENT]</span>'s teams run themselves — starting with agents that build and review your own software.</p>
+      <p class="lead" style="font-size:20px;max-width:700px">Build the substrate once. Prove it on your own software delivery. Then every capability after it gets faster, cheaper and safer to ship — measurably, from week three.</p>
     </div>
   </div>
   <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span>
@@ -484,66 +487,128 @@ body.help #help{display:grid}
     <span>·</span><span>Ref · <span class="ph">[ENGAGEMENT ID]</span></span></div>
 </section>
 
-<!-- 02 WHAT YOU LEAVE WITH -->
-<section class="slide" data-sec="Open">
-  <template class="nt"><p><b>Set expectations as gifts, not obligations.</b> Every line on the left is something they receive; the right-hand column is the small set of things we need back.</p><p><b>Say:</b> "Ninety minutes. You will see one picture of the whole operating model, what we deliver, what it costs, what it returns, and exactly where your team sits in it. We need five decisions before you leave — none of them are hard, and all of them are yours."</p><p>Point at the reading guide: "Everything technical that isn't essential today is in the appendix. Ask for it and we'll go there."</p></template>
+<!-- 02 EXECUTIVE SUMMARY -->
+<section class="slide dense" data-sec="The answer">
+  <template class="nt"><p><b>If the CEO leaves after five minutes, this is the slide they saw. Treat it as the whole deck.</b></p><p><b>Read it as three sentences, then stop:</b> "Models are no longer the constraint. What stops the second and tenth agent is that nothing is shared between them. So we build the shared part once — and we prove it on your own software delivery, because that is internal, reversible and measurable inside three weeks."</p><p><b>Then point at the four ratios.</b> "Those are the only four numbers this programme moves. Everything on the next twenty slides serves one of them. If a slide cannot be traced to one, tell me and I will cut it."</p><p><b>The ask is deliberately small.</b> One squad, twelve weeks, four days a week of your people, no licences. Say that out loud — the size of the ask is itself an argument.</p><p><b>Do not read the situation/complication boxes aloud.</b> They are there so the sponsor can reconstruct the logic later without you.</p></template>
   <div class="pad">
-    <div class="shead"><div class="snum">00</div><div>
-      <div class="eyebrow">How this session works</div>
-      <h2>Ninety minutes. One canvas, one offer, one plan.</h2>
-      <p class="lead">You will not need to take notes. Everything here is in the leave-behind, and the deep technical material sits in the appendix — say the word and we will go there.</p></div></div>
+    <div class="shead tight-head"><div class="snum">00</div><div>
+      <div class="eyebrow">Executive summary · the answer</div>
+      <h2 style="font-size:29px">Build the fabric once, prove it on your own software delivery, and every capability after it gets faster, cheaper and safer.</h2></div></div>
+    <div class="body" style="gap:0">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1.08fr;gap:14px;flex:1.05;min-height:0">
+        <div class="card col" style="padding:16px 18px;justify-content:center"><p class="mi" style="margin-bottom:6px">SITUATION</p>
+          <p class="sm">Models are good enough. <span class="ph">[CLIENT]</span>'s teams can each build an agent, and several already have.</p></div>
+        <div class="card col" style="padding:16px 18px;justify-content:center"><p class="mi" style="margin-bottom:6px">COMPLICATION</p>
+          <p class="sm">Nothing is shared between them. Every agent re-solves identity, policy, telemetry and release — so cost per capability never falls and nothing reaches production.</p></div>
+        <div class="card sig col" style="padding:16px 18px;justify-content:center"><p class="mi" style="margin-bottom:6px">RESOLUTION</p>
+          <p class="sm"><b>Build the shared substrate once</b> — registry, authority, one event spine, a paved road — and prove it on agentic software delivery, which is internal, reversible and measurable in three weeks.</p></div>
+      </div>
+      <p class="mi" style="margin:16px 0 8px;flex:none">THE FABRIC MOVES FOUR RATIOS — AND ONLY THESE FOUR</p>
+      <div class="g4" style="gap:12px;flex:1.15;min-height:0">
+        <div class="card col" style="padding:14px 16px;justify-content:center"><div style="display:flex;align-items:baseline;gap:7px">
+          <span style="font-size:26px;font-weight:800;letter-spacing:-.03em;color:var(--sig)">↓</span>
+          <h4>Time-to-capability</h4></div>
+          <p class="sm mt6">Days from "we want this" to it running in production, governed.</p></div>
+        <div class="card col" style="padding:14px 16px;justify-content:center"><div style="display:flex;align-items:baseline;gap:7px">
+          <span style="font-size:26px;font-weight:800;letter-spacing:-.03em;color:var(--sig)">↓</span>
+          <h4>Cost-per-capability</h4></div>
+          <p class="sm mt6">Fully loaded cost of capability <i>n</i>. The compounding term.</p></div>
+        <div class="card col" style="padding:14px 16px;justify-content:center"><div style="display:flex;align-items:baseline;gap:7px">
+          <span style="font-size:26px;font-weight:800;letter-spacing:-.03em;color:var(--sig)">↓</span>
+          <h4>Risk-per-capability</h4></div>
+          <p class="sm mt6">Blast radius × exposure, evidenced rather than asserted.</p></div>
+        <div class="card col" style="padding:14px 16px;justify-content:center"><div style="display:flex;align-items:baseline;gap:7px">
+          <span style="font-size:26px;font-weight:800;letter-spacing:-.03em;color:var(--sig)">↑</span>
+          <h4>Reuse rate</h4></div>
+          <p class="sm mt6">Share of a new capability composed from ones that already exist.</p></div>
+      </div>
+      <div class="card" style="margin-top:16px;padding:0;display:grid;grid-template-columns:repeat(5,1fr);overflow:hidden;flex:.7;min-height:0">
+        <div style="padding:14px 16px;border-right:1px solid var(--rule);display:flex;flex-direction:column;justify-content:center"><p class="mi">THE ASK</p><p class="sm mt6"><b>One squad, twelve weeks</b></p></div>
+        <div style="padding:14px 16px;border-right:1px solid var(--rule);display:flex;flex-direction:column;justify-content:center"><p class="mi">FROM YOU</p><p class="sm mt6"><b>~4 days/week</b> across seven named people</p></div>
+        <div style="padding:14px 16px;border-right:1px solid var(--rule);display:flex;flex-direction:column;justify-content:center"><p class="mi">NEW SPEND</p><p class="sm mt6"><b>No licences.</b> Runs on what you already operate</p></div>
+        <div style="padding:14px 16px;border-right:1px solid var(--rule);display:flex;flex-direction:column;justify-content:center"><p class="mi">FIRST PROOF</p><p class="sm mt6"><b>Week 3</b> — agents reviewing real pull requests</p></div>
+        <div style="padding:14px 16px;background:var(--sig-wash);display:flex;flex-direction:column;justify-content:center"><p class="mi">DECISION TODAY</p><p class="sm mt6"><b>Five</b>, all listed on slide 24</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Everything that follows serves one of the four ratios</span></div>
+</section>
+
+<!-- 03 WHY THE FABRIC IS THE CONSTRAINT -->
+<section class="slide dk" data-sec="The answer">
+  <template class="nt"><p><b>This is the complication, argued properly. Three minutes.</b></p><p><b>The line that does the work:</b> "Every team here can build one agent. None of them can build the hundredth — because the hundredth needs a fabric, and building a fabric is nobody's job description."</p><p><b>Then the economics, slowly:</b> "Look at the two curves. Without shared substrate the cost of capability ten is the same as capability one, so the portfolio never compounds and every business case is evaluated as if it were the first. That is why forty pilots produce zero production systems — not because the pilots failed, but because the arithmetic never improved."</p><p><b>If the room has pilots in flight, name them.</b> "You are not behind. You are at exactly the point where the next decision determines whether the curve bends."</p></template>
+  <div class="pad">
+    <div class="shead tight-head"><div class="snum">01</div><div>
+      <div class="eyebrow">The answer · the constraint</div>
+      <h2 style="color:#fff">The constraint is no longer model capability — it is that nothing is shared between one agent and the next.</h2></div></div>
     <div class="body">
-      <div style="display:grid;grid-template-columns:1.3fr .7fr;gap:26px;flex:1;min-height:0">
-        <div class="col gap10">
-          <table><thead><tr><th style="width:56px">Time</th><th>What we cover</th><th style="width:200px">Who this is for</th></tr></thead><tbody>
-            <tr><td class="tnum">0:00</td><td><b>The operating model on one canvas</b> — and how it unpacks</td><td class="sm">Everyone</td></tr>
-            <tr><td class="tnum">0:18</td><td><b>What we deliver, what it costs, what it returns</b></td><td class="sm">Executives · sponsors</td></tr>
-            <tr><td class="tnum">0:34</td><td><b>How the fabric works</b> — event plane, safe autonomy, knowledge, agentic delivery</td><td class="sm">Architecture · platform · AI practice</td></tr>
-            <tr><td class="tnum">0:56</td><td><b>Where each role works</b> — and a day in the life afterwards</td><td class="sm">All disciplines</td></tr>
-            <tr><td class="tnum">1:12</td><td><b>Maturity path and improvement roadmap</b></td><td class="sm">Everyone</td></tr>
-            <tr><td class="tnum">1:26</td><td><b>Plan, dependencies, decisions</b></td><td class="sm">Sponsor</td></tr>
-          </tbody></table>
-          <div class="card mt6" style="padding:13px 18px"><p class="sm"><b>One ask on interruptions:</b> if we describe your environment wrongly, stop us immediately. We would rather be corrected in minute twelve than build on it for a month.</p></div>
-        </div>
-        <div class="card sig col"><div class="eyebrow">We need from you</div>
-          <h3 class="mt6" style="margin-bottom:12px">Five decisions</h3>
-          <div class="col" style="gap:11px">
-            <div style="display:flex;gap:10px"><span class="num sig">1</span><p class="sm">Confirm the <b>first squad</b> and its product owner</p></div>
-            <div style="display:flex;gap:10px"><span class="num sig">2</span><p class="sm">Confirm <b>agentic delivery</b> as the first workload</p></div>
-            <div style="display:flex;gap:10px"><span class="num sig">3</span><p class="sm">Confirm the <b>incumbent platforms</b> we build on</p></div>
-            <div style="display:flex;gap:10px"><span class="num sig">4</span><p class="sm">Name the <b>seven roles</b> and the weekly rhythm</p></div>
-            <div style="display:flex;gap:10px"><span class="num sig">5</span><p class="sm">Agree the <b>value measures</b> we will report against</p></div>
+      <div style="display:grid;grid-template-columns:1.08fr .92fr;gap:24px;flex:1;min-height:0">
+        <div class="col">
+          <p class="lead" style="font-size:16px">Every team can build one agent. None can build the hundredth — because the hundredth needs a fabric, and building a fabric is nobody's job description. So each capability re-solves identity, policy, telemetry, release and evidence from scratch.</p>
+          <div class="rulehair mt14"></div>
+          <p class="mi" style="margin-bottom:10px">COST PER CAPABILITY — THE TWO TRAJECTORIES</p>
+          <div class="card" style="background:rgba(255,255,255,.05);border-color:var(--wrule);padding:16px 18px">
+            <div style="display:flex;align-items:flex-end;gap:8px;height:118px">
+              <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:4px">
+                <div style="height:98px;background:#7E8C9B;border-radius:4px 4px 0 0"></div></div>
+              <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:4px">
+                <div style="height:96px;background:#7E8C9B;border-radius:4px 4px 0 0"></div></div>
+              <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:4px">
+                <div style="height:99px;background:#7E8C9B;border-radius:4px 4px 0 0"></div></div>
+              <div style="width:18px"></div>
+              <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:4px">
+                <div style="height:112px;background:var(--sig-br);border-radius:4px 4px 0 0"></div></div>
+              <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:4px">
+                <div style="height:54px;background:var(--sig-br);border-radius:4px 4px 0 0"></div></div>
+              <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:4px">
+                <div style="height:26px;background:var(--sig-br);border-radius:4px 4px 0 0"></div></div>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <div style="flex:3;text-align:center"><p class="mi" style="color:#8AA3B8">WITHOUT A FABRIC · #1 · #5 · #10</p></div>
+              <div style="width:18px"></div>
+              <div style="flex:3;text-align:center"><p class="mi" style="color:var(--sig-br)">WITH A FABRIC · #1 · #5 · #10</p></div>
+            </div>
+            <div class="rulehair" style="background:var(--wrule)"></div>
+            <p class="sm">Illustrative shape. Capability #1 <em>pays for the fabric</em>; #10 carries only itself. Any business case that prices agent number one as a product decision will always say no — and will always be wrong.</p>
           </div>
-          <div class="rulehair"></div>
-          <p class="sm">None of these require a business case. They require a room, which you already have.</p></div>
+        </div>
+        <div class="col gap10">
+          <p class="mi">WHAT THAT ARITHMETIC PRODUCES</p>
+          <div class="card" style="background:rgba(255,255,255,.05);border-color:var(--wrule);padding:14px 17px">
+            <h4 style="color:#fff">Pilots that cannot graduate</h4>
+            <p class="sm mt6">Every promotion triggers a bespoke security, platform and data review, because there is no shared posture to inherit.</p></div>
+          <div class="card" style="background:rgba(255,255,255,.05);border-color:var(--wrule);padding:14px 17px">
+            <h4 style="color:#fff">A parallel estate, quietly</h4>
+            <p class="sm mt6">The AI team stands up its own identity, secrets and logging — because waiting for the platform team was slower.</p></div>
+          <div class="card" style="background:rgba(255,255,255,.05);border-color:var(--wrule);padding:14px 17px">
+            <h4 style="color:#fff">Answers nobody can evidence</h4>
+            <p class="sm mt6">"The model decided" offered to Risk, which no dashboard repairs after the fact.</p></div>
+          <div class="card" style="background:rgba(95,216,230,.09);border-color:rgba(95,216,230,.3);padding:14px 17px">
+            <p class="sm"><b style="color:#fff">None of these are model problems.</b> All three are the same missing substrate, showing up in three different committees.</p></div>
+        </div>
       </div>
     </div>
   </div>
   <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
 </section>
 
-<!-- 03 THE OPPORTUNITY -->
-<section class="slide dk" data-sec="The opportunity">
-  <template class="nt"><p><b>This is the "why now", and it is an opportunity slide, not a fear slide.</b> The gap is not capability — models are good enough. The gap is the fabric that lets an enterprise run them by the hundred.</p><p><b>The line that lands:</b> "Every one of your teams can build one agent. None of them can build the hundredth — because the hundredth needs a fabric, and nobody's job is to build a fabric."</p><p><b>Then the compounding point, which is the real argument:</b> the first capability is expensive because it drags the platform behind it. The tenth is cheap. Organisations that build the fabric early get a widening advantage that has nothing to do with model quality.</p></template>
-  <div class="pad" style="justify-content:center">
-    <div style="max-width:1060px">
-      <div class="eyebrow">01 / The opportunity</div>
-      <h1 style="font-size:56px;margin:22px 0 0;max-width:1020px">Any team can build one agent.<br>Nobody can build the hundredth<br>without a fabric.</h1>
-      <div style="width:72px;height:3px;background:var(--sig-br);margin:28px 0 22px"></div>
-      <p class="lead" style="max-width:900px;font-size:18px">The models are ready. What is missing is the shared substrate that makes the second, tenth and hundredth agent cheap, observable and safe to run — a registry, a way to grant authority, one event spine, a knowledge layer and a paved road to production. Built once, used by everyone.</p>
-      <div class="g3 mt18" style="gap:16px;margin-top:30px">
-        <div class="card" style="background:rgba(255,255,255,.05);border-color:var(--wrule)">
-          <p class="mi" style="color:var(--sig-br)">TODAY</p>
-          <h3 class="mt6">Every agent is a project</h3>
-          <p class="sm mt6">Bespoke integration, bespoke review, bespoke ops. Cost per capability stays flat, so the portfolio never compounds.</p></div>
-        <div class="card" style="background:rgba(255,255,255,.05);border-color:var(--wrule)">
-          <p class="mi" style="color:var(--sig-br)">WITH A FABRIC</p>
-          <h3 class="mt6">Every agent is a deployment</h3>
-          <p class="sm mt6">Register a capability, inherit identity, policy, telemetry and a release path. Cost per capability falls with every one you add.</p></div>
-        <div class="card" style="background:rgba(95,216,230,.09);border-color:rgba(95,216,230,.3)">
-          <p class="mi" style="color:var(--sig-br)">THE COMPOUNDING</p>
-          <h3 class="mt6">Capability #10 costs a fraction of #1</h3>
-          <p class="sm mt6">Because #1 paid for the fabric. This is the entire economic argument for doing platform work before portfolio work.</p></div>
+<!-- 04 OPTIONS CONSIDERED -->
+<section class="slide dense" data-sec="The answer">
+  <template class="nt"><p><b>The slide that separates a recommendation from a pitch.</b> Nobody trusts an option that was never compared.</p><p><b>Say:</b> "There are four credible ways to respond to that constraint. We are recommending the fourth, and I want to show you why the other three lose — including the one that costs nothing."</p><p><b>Be genuinely fair to option 2.</b> Federated DIY is what most organisations are doing by default and it is not stupid — it is fast at capability one. It loses at capability five, and the loss is invisible until then. That honesty is what makes option 4 credible.</p><p><b>On option 3, be careful.</b> If the client already bought a platform, the answer is not "you were wrong" — it is "then you already own part of row 4; we build the control and event layers around it." Never make a sunk cost into an argument.</p><p><b>The closing question:</b> "Is there a fifth option we should have considered?" Ask it and mean it.</p></template>
+  <div class="pad">
+    <div class="shead tight-head"><div class="snum">01</div><div>
+      <div class="eyebrow">The answer · options considered</div>
+      <h2>Four credible responses. Only one bends the cost curve without creating a second estate.</h2></div></div>
+    <div class="body">
+      <table><thead><tr><th style="width:158px">Option</th><th style="width:186px">What it is</th><th style="width:130px">Time to first value</th><th style="width:150px">Cost of capability #10</th><th style="width:150px">Control posture</th><th>Why it wins or loses</th></tr></thead><tbody>
+        <tr><td><b>1 · Wait</b><br><span class="sm">Let the market mature</span></td><td class="sm">Keep pilots in sandboxes; revisit in a year.</td><td class="sm">None</td><td class="sm">Unchanged — no learning curve started</td><td class="sm">Unchanged; shadow usage continues regardless</td><td class="sm"><b>Loses.</b> The fabric is where the learning compounds, and none of it is model-dependent. Waiting defers the learning, not the risk.</td></tr>
+        <tr><td><b>2 · Federated DIY</b><br><span class="sm">Every squad builds its own</span></td><td class="sm">Teams ship agents independently with whatever they can reach.</td><td class="sm"><span class="chip ok">Fastest</span> weeks</td><td class="sm">≈ same as #1 — nothing is shared</td><td class="sm">Divergent; ambient credentials by default</td><td class="sm"><b>Loses at capability five.</b> Genuinely the fastest to capability one — which is why most organisations are already here without deciding to be.</td></tr>
+        <tr><td><b>3 · Buy a platform</b><br><span class="sm">Single vendor suite</span></td><td class="sm">Adopt one vendor's agent platform end to end.</td><td class="sm">Months — procurement first</td><td class="sm">Low, inside the suite</td><td class="sm">Strong but vendor-shaped</td><td class="sm"><b>Loses on fit and exit.</b> Assumes one vendor spans identity, data, platform and control. If a suite is already owned, we build around it rather than replace it.</td></tr>
+        <tr style="background:var(--sig-wash)"><td><b>4 · Platform-first, thin</b><br><span class="sm"><b style="color:var(--sig)">Recommended</b></span></td><td class="sm">Build only the shared contract — registry, authority, event spine, paved road — on incumbents.</td><td class="sm"><span class="chip sig">Week 3</span> first proof</td><td class="sm">Materially lower — the fabric is already paid for</td><td class="sm">Uniform, evidenced, and yours</td><td class="sm"><b>Wins.</b> Twelve of fourteen components are reused. Two are new. Nothing is replaced, and every product underneath stays swappable.</td></tr>
+      </tbody></table>
+      <div class="g2 mt14" style="gap:16px">
+        <div class="card sig" style="padding:13px 17px"><p class="sm"><b>What makes option 4 cheap is what makes it credible:</b> it does not ask you to replace a single incumbent. Identity, CI/CD, observability, gateway, event bus and catalog all stay. We add a registry and a way to grant authority — and hand both over as your code.</p></div>
+        <div class="card" style="padding:13px 17px"><p class="sm"><b>The question we would like from this room:</b> is there a fifth option we should have considered? If your organisation has a constraint that rules option 4 out, we would rather hear it in minute fifteen than discover it in week six.</p></div>
       </div>
     </div>
   </div>
@@ -556,15 +621,15 @@ body.help #help{display:grid}
     <div class="shead tight-head" style="grid-template-columns:60px 1fr">
       <div class="snum">01</div>
       <div><div class="eyebrow">The operating model · one canvas</div>
-        <h2 style="font-size:31px">The whole model on one page — click any block to unpack it.</h2></div></div>
+        <h2 style="font-size:29px">Every block on this canvas earns its place by moving one of the four ratios.</h2></div></div>
     <div class="body" style="padding-bottom:10px">
       <div class="bp">
         <div class="bp-outcomes">
-          <div class="bp-railcap">Outcomes<br>we serve</div>
-          <div class="oc" data-unpack="o-velocity"><b>Delivery velocity</b><small>Ship software and capabilities faster, with agents doing the repetitive work</small></div>
-          <div class="oc" data-unpack="o-compliance"><b>Agile compliance</b><small>Evidence produced as a by-product, not assembled before an audit</small></div>
-          <div class="oc" data-unpack="o-integration"><b>Cross-functional integration</b><small>Shared meaning, so teams and systems compose instead of collide</small></div>
-          <div class="oc" data-unpack="o-cost"><b>Cost to serve</b><small>Each new capability cheaper than the last, because the fabric already exists</small></div>
+          <div class="bp-railcap">Ratios<br>we move</div>
+          <div class="oc" data-unpack="o-time"><b>↓ Time-to-capability</b><small>Days from "we want this" to running in production, governed</small></div>
+          <div class="oc" data-unpack="o-cost"><b>↓ Cost-per-capability</b><small>Fully loaded cost of capability n — the compounding term</small></div>
+          <div class="oc" data-unpack="o-risk"><b>↓ Risk-per-capability</b><small>Blast radius × exposure, evidenced rather than asserted</small></div>
+          <div class="oc" data-unpack="o-reuse"><b>↑ Reuse rate</b><small>Share of a new capability composed from ones that already exist</small></div>
         </div>
 
         <div class="bp-main">
@@ -652,154 +717,174 @@ body.help #help{display:grid}
   </div>
   <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Click any block to unpack · <b style="color:var(--sig)">U</b> = POC scope only</span></div>
 </section>
-<!-- 05 WHAT WE DELIVER -->
+<!-- 06 WHAT WE DELIVER -->
 <section class="slide" data-sec="The offer">
-  <template class="nt"><p><b>The offer slide. Every item is a noun the client can point at, open or run.</b> No workstreams, no enablement, no alignment.</p><p><b>Say:</b> "Four things leave our hands and stay in yours: a working fabric, agents already doing real work, the road your teams build on, and the operating rhythm that keeps it moving. That is the whole deliverable."</p><p><b>The line that reassures the sceptics:</b> "Notice the second column. By day 30 you have agents reviewing your own pull requests. Not a demo — production-adjacent work on your real repositories."</p><p>If someone asks about business capabilities: "Path two. We do delivery first because it's internal, reversible and measurable in three weeks — and because it proves the fabric by running on it."</p></template>
+  <template class="nt"><p><b>The offer slide. Every item is a noun the client can point at, open or run.</b> No workstreams, no enablement, no alignment.</p><p><b>Say:</b> "Four things leave our hands and stay in yours: a working fabric, agents already doing real work, the road your teams build on, and the operating rhythm that keeps it moving."</p><p><b>The line that reassures the sceptics:</b> "Notice the second column. By day 30 you have agents reviewing your own pull requests. Not a demo environment — your repositories."</p><p>Each deliverable names the ratio it moves. If someone asks why a deliverable exists, the answer is on the card.</p></template>
   <div class="pad">
     <div class="shead"><div class="snum">02</div><div>
       <div class="eyebrow">The offer</div>
-      <h2>Four things leave our hands and stay in yours.</h2>
+      <h2>Four things leave our hands and stay in yours — each moving a named ratio.</h2>
       <p class="lead">Twelve weeks, one squad, working software. Everything below is either running in your estate or checked into your repositories when we finish.</p></div></div>
     <div class="body">
       <div class="g4" style="flex:1;min-height:0;gap:13px">
-        <div class="card col"><span class="chip sig">Deliverable 01</span>
+        <div class="card col" style="background:var(--sig-wash);border-color:var(--sig-line)"><span class="chip sig">Moves cost-per-capability</span>
           <h3 class="mt10">A working agent fabric</h3>
           <p class="sm mt6">Capability registry, orchestration, delegation, identity and policy — deployed in your environment, on your platform.</p>
           <div class="rulehair"></div>
-          <p class="sm"><b>You can:</b> register a new agent capability and see it appear with an owner, a tier, health and an off switch.</p></div>
-        <div class="card col"><span class="chip sig">Deliverable 02</span>
+          <p class="sm"><b>You can:</b> register a new capability and see it appear with an owner, a tier, health and an off switch.</p></div>
+        <div class="card col" style="background:var(--sig-wash);border-color:var(--sig-line)"><span class="chip sig">Moves time-to-capability</span>
           <h3 class="mt10">Agents doing real work</h3>
           <p class="sm mt6">Agentic CI/CD: code review, test generation, dependency upgrades, release notes and deploy gating — on your repositories.</p>
           <div class="rulehair"></div>
           <p class="sm"><b>You can:</b> open a pull request and get a substantive agent review before a human reads it.</p></div>
-        <div class="card col"><span class="chip sig">Deliverable 03</span>
+        <div class="card col"><span class="chip">Moves reuse rate</span>
           <h3 class="mt10">The paved road</h3>
           <p class="sm mt6">Templates, registration, policy inheritance, test harness, dashboards and runbooks — so the next squad does not need us.</p>
           <div class="rulehair"></div>
-          <p class="sm"><b>You can:</b> stand up a new agent capability in about a day, from documentation alone.</p></div>
-        <div class="card col"><span class="chip sig">Deliverable 04</span>
+          <p class="sm"><b>You can:</b> stand up a new capability in about a day, from documentation alone.</p></div>
+        <div class="card col"><span class="chip">Moves risk-per-capability</span>
           <h3 class="mt10">The operating rhythm</h3>
           <p class="sm mt6">Capability intake, tiering, release and evidence review — with the forums, owners and measures defined and running.</p>
           <div class="rulehair"></div>
           <p class="sm"><b>You can:</b> answer "what are our agents doing, and is it working?" from one place, monthly.</p></div>
       </div>
       <div class="card mt14" style="padding:13px 18px;border-left:3px solid var(--sig)">
-        <p class="sm"><b>Why delivery agents first?</b> Internal, reversible, no customer exposure, and measurable inside three weeks — while proving every plane of the fabric under real load. Business capabilities are path two, designed in week ten with everything we learned.</p></div>
+        <p class="sm"><b>Why delivery agents first?</b> Internal, reversible, no customer exposure, and measurable inside three weeks — while exercising every plane of the fabric under real load. Business capabilities are path two, designed in week ten with everything we learned.</p></div>
     </div>
   </div>
   <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
 </section>
 
-<!-- 06 INVESTMENT AND RETURN -->
+<!-- 07 THE VALUE TREE -->
 <section class="slide dense" data-sec="The offer">
-  <template class="nt"><p><b>The executive slide. Be completely straight about the numbers being placeholders.</b></p><p><b>Say:</b> "Every figure in brackets is modelled with your data in week one. I am not going to put invented numbers on a slide and ask you to believe them. What I will show you is the <i>shape</i> of the case, and the shape is what matters."</p><p><b>The chart is the argument.</b> "Capability one carries the whole fabric. By capability ten you are paying for the capability alone. Any business case that prices agent number one as if it were a product decision will always say no — and will always be wrong."</p><p><b>On the four value drivers:</b> pick the one their CFO cares about and go deep on that one only. Usually it is engineering throughput, because it is measurable in weeks rather than quarters.</p><p>If challenged on the run cost: "The fabric runs on infrastructure you already pay for. The incremental run cost is inference and a small control footprint — both metered, both visible from day one on the event plane."</p></template>
+  <template class="nt"><p><b>The slide a CFO will actually interrogate. Do not rush it, and do not defend the numbers.</b></p><p><b>Open with the honesty move, because it buys everything after it:</b> "The right-hand column is illustrative. Not a forecast, not a benchmark, and definitely not a promise — it exists so you can argue with the <i>assumptions</i> rather than with a conclusion. Every one of those inputs gets replaced with your measured data by week five."</p><p><b>Then invite the attack:</b> "Which input do you think is most wrong?" Whatever they say, agree it is uncertain and show the sensitivity strip. A value case you can attack is a value case that survives.</p><p><b>The structural point that matters more than the arithmetic:</b> "Notice driver two. It is the only one that grows with every capability you add — the other three are one-time step changes. After about two quarters, driver two dominates everything else on this page. That is why this is a platform decision, not a project decision."</p><p><b>If they push for a hard ROI number today:</b> "I can give you one in week five, measured. I can give you one today, invented. You should want the first."</p></template>
   <div class="pad">
-    <div class="shead"><div class="snum">02</div><div>
-      <div class="eyebrow">The offer · investment and return</div>
-      <h2>What it costs, and the shape of what it returns.</h2>
-      <p class="lead">Bracketed figures are modelled with your data in week one. We will not put invented numbers in front of you — but the shape of the case does not depend on the numbers, and the shape is the argument.</p></div></div>
+    <div class="shead tight-head"><div class="snum">02</div><div>
+      <div class="eyebrow">The offer · the value case</div>
+      <h2>Four value drivers, one arithmetic each — so you can argue with the assumptions, not the conclusion.</h2></div></div>
     <div class="body">
-      <div class="vcol" style="flex:1;min-height:0">
+      <div style="display:grid;grid-template-columns:1.22fr .78fr;gap:20px;flex:1;min-height:0">
         <div class="col">
-          <p class="mi" style="margin-bottom:9px">THE INVESTMENT · TWELVE WEEKS</p>
-          <div class="card col" style="padding:16px 18px">
+          <p class="mi" style="margin-bottom:8px">THE VALUE TREE · EVERY TERM MEASURABLE FROM SYSTEMS YOU ALREADY RUN</p>
+          <div class="col" style="gap:9px">
+            <div class="card" style="padding:12px 16px;border-left:3px solid var(--sig)">
+              <div style="display:flex;justify-content:space-between;align-items:baseline">
+                <h4>① Throughput released</h4><span class="chip sig">Measurable wk 5</span></div>
+              <p class="mi mt6" style="color:var(--ink2)">engineers in scope × share of time on assistable work × improvement rate</p>
+              <p class="sm mt6">Assistable work is review, test authoring, dependency and migration toil, and release mechanics. Baseline comes from your own SCM and CI data — not a survey.</p></div>
+            <div class="card" style="padding:12px 16px;border-left:3px solid var(--sig);background:var(--sig-wash);border-color:var(--sig-line)">
+              <div style="display:flex;justify-content:space-between;align-items:baseline">
+                <h4>② Capability cost avoided <span style="font-weight:500;color:var(--sig)">— the compounding term</span></h4><span class="chip sig">Grows</span></div>
+              <p class="mi mt6" style="color:var(--ink2)">capabilities per year × (cost of capability #1 − cost of capability #n)</p>
+              <p class="sm mt6"><b>The only driver that grows with every capability you add.</b> The other three are one-time step changes. After roughly two quarters this term dominates the page — which is the whole reason this is a platform decision.</p></div>
+            <div class="card" style="padding:12px 16px;border-left:3px solid var(--ink3)">
+              <div style="display:flex;justify-content:space-between;align-items:baseline">
+                <h4>③ Assurance effort released</h4><span class="chip">Measurable wk 9</span></div>
+              <p class="mi mt6" style="color:var(--ink2)">control cycles per year × analyst-days per cycle × reduction rate</p>
+              <p class="sm mt6">Evidence emitted continuously rather than assembled per review. The saving is analyst days, not software licences.</p></div>
+            <div class="card" style="padding:12px 16px;border-left:3px solid var(--ink3)">
+              <div style="display:flex;justify-content:space-between;align-items:baseline">
+                <h4>④ Integration avoided</h4><span class="chip">Measurable Q2</span></div>
+              <p class="mi mt6" style="color:var(--ink2)">integrations per year × average build cost × avoidance rate</p>
+              <p class="sm mt6">Shared capability contracts replace point-to-point work between teams and systems.</p></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="padding:0;overflow:hidden;flex:1;display:flex;flex-direction:column">
+            <div style="background:var(--goldWash,#FDF3DA);padding:9px 16px;border-bottom:1px solid #E8D5A8">
+              <p class="mi" style="color:var(--gold-t)">ILLUSTRATIVE ONLY — DRIVER ① WORKED THROUGH</p></div>
+            <div style="padding:14px 16px;flex:1;display:flex;flex-direction:column">
+              <p class="sm">Numbers below are <b>placeholders chosen to show the arithmetic</b>, not a forecast and not a benchmark. Every input is replaced with your measured data at gate 2.</p>
+              <div class="rulehair"></div>
+              <div class="ledger" style="font-size:11px">
+                <div><span>Engineers in scope</span><b><span class="ph">200</span></b></div>
+                <div><span>Share of time on assistable work</span><b><span class="ph">30%</span></b></div>
+                <div><span>Improvement on that share</span><b><span class="ph">15%</span></b></div>
+              </div>
+              <div style="background:var(--sig-wash);border:1px solid var(--sig-line);border-radius:10px;padding:12px 14px;margin-top:12px;text-align:center">
+                <p class="mi" style="color:var(--sig)">200 × 30% × 15% =</p>
+                <p style="font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--ink);line-height:1.1;margin-top:2px">9.0</p>
+                <p class="sm" style="margin-top:0">FTE-equivalent released per year</p></div>
+              <div class="rulehair"></div>
+              <p class="mi" style="margin-bottom:7px">SENSITIVITY ON THE UNCERTAIN INPUT</p>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+                <div style="text-align:center"><p class="sm" style="color:var(--ink3)">10%</p><p style="font-size:17px;font-weight:750;color:var(--ink2)">6.0</p></div>
+                <div style="text-align:center;background:var(--sig-wash);border-radius:8px;padding:2px"><p class="sm" style="color:var(--sig)"><b>15%</b></p><p style="font-size:17px;font-weight:800;color:var(--ink)">9.0</p></div>
+                <div style="text-align:center"><p class="sm" style="color:var(--ink3)">20%</p><p style="font-size:17px;font-weight:750;color:var(--ink2)">12.0</p></div>
+              </div>
+              <div class="rulehair"></div>
+              <p class="sm" style="margin-top:auto"><b>The POC's commercial job</b> is to replace those three placeholders with measured values — and to tell you if the honest answer is lower than you hoped.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Inputs measured at gate 1 · frozen at gate 2 · reported monthly from the event plane</span></div>
+</section>
+
+<!-- 08 COST AND WHAT YOU ALREADY OWN -->
+<section class="slide dense" data-sec="The offer">
+  <template class="nt"><p><b>Two arguments on one page: what it costs, and why that cost is small.</b></p><p><b>Say the count out loud:</b> "Fourteen components. On our read you already own ten, two need a convention added, and two are genuinely new. We are adding a thin layer, not an estate."</p><p><b>Then fill the middle column live with the room.</b> Nothing builds joint ownership faster than watching their own tool names appear inside your architecture. If they correct a posture, change it on the spot.</p><p><b>Watch for the relief.</b> This is usually where the platform lead's shoulders drop — they came in expecting to be told to run something new.</p><p><b>On the cost table, the line that matters is the last one:</b> no licence commitment is required to start. That removes procurement from the critical path, which is often the single biggest schedule risk in an enterprise.</p></template>
+  <div class="pad">
+    <div class="shead tight-head"><div class="snum">02</div><div>
+      <div class="eyebrow">The offer · investment and reuse</div>
+      <h2>Ten of fourteen components already exist in your estate — which is why twelve weeks is credible.</h2></div></div>
+    <div class="body">
+      <div style="display:grid;grid-template-columns:.72fr 1.28fr;gap:20px;flex:1;min-height:0">
+        <div class="col">
+          <p class="mi" style="margin-bottom:8px">THE INVESTMENT · TWELVE WEEKS</p>
+          <div class="card col" style="padding:15px 17px">
             <div class="ledger">
               <div><span>Our delivery squad — 5 forward-deployed engineers</span><b>12 wks</b></div>
               <div><span>Your team — seven named roles, part time</span><b>~4 d/wk</b></div>
               <div><span>Infrastructure — your existing platform</span><b>no new spend</b></div>
-              <div><span>Incremental run cost — inference and control footprint</span><b><span class="ph">[$X]</span>/mo</b></div>
+              <div><span>Incremental run cost — inference and control</span><b><span class="ph">[$X]</span>/mo</b></div>
               <div><span>Licence commitments required to start</span><b>none</b></div>
             </div>
             <div class="rulehair"></div>
-            <p class="sm"><b>Nothing here is a platform purchase.</b> The fabric is built from what you already run, plus components we hand over as your code.</p>
-          </div>
-          <p class="mi" style="margin:16px 0 9px">COST PER CAPABILITY — WHY THE FIRST ONE LOOKS EXPENSIVE</p>
-          <div class="card" style="padding:14px 18px 12px">
-            <div class="vbar">
-              <div class="vb e"><b><span class="ph">[N]</span></b><div class="fillbar" style="height:112px"></div><span>#1</span></div>
-              <div class="vb d"><div class="fillbar" style="height:62px"></div><span>#2</span></div>
-              <div class="vb c"><div class="fillbar" style="height:42px"></div><span>#3</span></div>
-              <div class="vb b"><div class="fillbar" style="height:30px"></div><span>#5</span></div>
-              <div class="vb a"><div class="fillbar" style="height:22px"></div><span>#10</span></div>
-            </div>
-            <div class="rulehair" style="margin:10px 0 8px"></div>
-            <p class="sm">Illustrative shape, not a forecast. Capability #1 carries the fabric; #10 carries only itself. <b>Pricing agent number one as a product decision will always say no.</b></p>
+            <p class="sm"><b>No procurement on the critical path.</b> That single line removes what is usually the largest schedule risk in an enterprise programme.</p>
+            <div class="rulehair"></div>
+            <p class="sm"><b>Nothing here is a platform purchase.</b> The fabric is built from what you already run, plus two components handed over as your code.</p>
           </div>
         </div>
         <div class="col">
-          <p class="mi" style="margin-bottom:9px">THE RETURN · FOUR DRIVERS, MEASURED FROM THE EVENT PLANE</p>
-          <div class="col" style="gap:11px">
-            <div class="card" style="padding:14px 17px"><div style="display:flex;justify-content:space-between;align-items:baseline">
-              <h4>Engineering throughput</h4><span class="chip sig">Visible wk 3</span></div>
-              <p class="sm mt6">Review latency, rework rate and change lead time on the squads running agentic CI/CD, against their own pre-POC baseline.</p>
-              <p class="mi mt6">DRIVER · <span class="ph">[X]</span>% cycle-time reduction × <span class="ph">[N]</span> engineers</p></div>
-            <div class="card" style="padding:14px 17px"><div style="display:flex;justify-content:space-between;align-items:baseline">
-              <h4>Compliance effort</h4><span class="chip">Visible wk 9</span></div>
-              <p class="sm mt6">Evidence is emitted continuously rather than assembled per audit. The saving is analyst days per control cycle, not software licences.</p>
-              <p class="mi mt6">DRIVER · <span class="ph">[N]</span> analyst-days × <span class="ph">[N]</span> cycles/yr</p></div>
-            <div class="card" style="padding:14px 17px"><div style="display:flex;justify-content:space-between;align-items:baseline">
-              <h4>Integration cost avoided</h4><span class="chip">Visible Q2</span></div>
-              <p class="sm mt6">Shared capability contracts and vocabulary replace point-to-point work between teams and systems.</p>
-              <p class="mi mt6">DRIVER · <span class="ph">[N]</span> integrations × <span class="ph">[$X]</span> avg build</p></div>
-            <div class="card sig" style="padding:14px 17px"><div style="display:flex;justify-content:space-between;align-items:baseline">
-              <h4>Portfolio compounding</h4><span class="chip sig">Compounds</span></div>
-              <p class="sm mt6">The dominant term after the first two quarters, and the reason this is a platform decision rather than a project decision.</p>
-              <p class="mi mt6">DRIVER · marginal cost of capability n → <span class="ph">[X]</span>% of capability #1</p></div>
+          <p class="mi" style="margin-bottom:8px">WHAT THE FABRIC NEEDS — AND WHO ALREADY HAS IT</p>
+          <div class="g2" style="gap:16px;flex:1;min-height:0">
+            <table><thead><tr><th>Component</th><th style="width:104px"><span class="ph">[CLIENT]</span></th><th style="width:88px">Effort</th></tr></thead><tbody>
+              <tr><td><b>Compute &amp; orchestration</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+              <tr><td><b>Identity provider</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+              <tr><td><b>CI/CD pipelines</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+              <tr><td><b>Observability backend</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+              <tr><td><b>API gateway / mesh</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+              <tr><td><b>Service catalog</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+              <tr><td><b>Secrets management</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+            </tbody></table>
+            <table><thead><tr><th>Component</th><th style="width:104px"><span class="ph">[CLIENT]</span></th><th style="width:88px">Effort</th></tr></thead><tbody>
+              <tr><td><b>Messaging / event bus</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+              <tr><td><b>Data platform &amp; catalog</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+              <tr><td><b>Approval tooling</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+              <tr><td><b>Telemetry conventions</b></td><td class="mi">—</td><td><span class="chip warn"><span class="dot warn"></span>Extend</span></td></tr>
+              <tr><td><b>Policy &amp; risk tiers</b></td><td class="mi">—</td><td><span class="chip warn"><span class="dot warn"></span>Extend</span></td></tr>
+              <tr><td><b>Capability registry</b></td><td class="mi">—</td><td><span class="chip sig">New</span></td></tr>
+              <tr><td><b>Capability grants</b></td><td class="mi">—</td><td><span class="chip sig">New</span></td></tr>
+            </tbody></table>
           </div>
+          <div class="card sig mt10" style="padding:12px 17px">
+            <p class="sm"><b>Ten reuse, two extend, two new.</b> If that ratio is wrong for <span class="ph">[CLIENT]</span>, the twelve-week plan changes — and we would rather find out in the next five minutes than in week six.</p></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Value model built with your baselines in week 1 · reported monthly from the event plane</span></div>
-</section>
-
-<!-- 07 EASY TO STAND UP -->
-<section class="slide" data-sec="The offer">
-  <template class="nt"><p><b>The "this is easy" slide, and it does more work than any other for the platform audience.</b></p><p><b>Say the count out loud:</b> "Twelve responsibilities. On our read you already own eight of them, two need a small extension, and two are genuinely new. We are adding a thin layer, not an estate."</p><p><b>Then fill in the middle column live with the room.</b> Nothing builds joint ownership faster than watching their own tool names land inside your architecture. If they correct a posture, change it on the spot.</p><p><b>Watch for the relief.</b> This is usually where the platform lead's shoulders drop — they came in expecting to be told to run something new.</p></template>
-  <div class="pad">
-    <div class="shead"><div class="snum">02</div><div>
-      <div class="eyebrow">The offer · why this is quick to stand up</div>
-      <h2>You already own two-thirds of the fabric. We are adding a thin layer.</h2>
-      <p class="lead">Our starting read, to be corrected by you in the next five minutes. The middle column is blank on purpose — we fill it together, live.</p></div></div>
-    <div class="body">
-      <div class="g2" style="gap:20px;flex:1;min-height:0">
-        <table><thead><tr><th>What the fabric needs</th><th style="width:142px"><span class="ph">[CLIENT]</span> already has</th><th style="width:98px">Effort</th></tr></thead><tbody>
-          <tr><td><b>Compute &amp; orchestration</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
-          <tr><td><b>Identity provider</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
-          <tr><td><b>CI/CD pipelines</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
-          <tr><td><b>Observability backend</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
-          <tr><td><b>API gateway / mesh</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
-          <tr><td><b>Service catalog</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
-        </tbody></table>
-        <div class="col">
-          <table><thead><tr><th>What the fabric needs</th><th style="width:142px"><span class="ph">[CLIENT]</span> already has</th><th style="width:98px">Effort</th></tr></thead><tbody>
-            <tr><td><b>Messaging / event bus</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
-            <tr><td><b>Data platform &amp; catalog</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
-            <tr><td><b>Telemetry conventions</b></td><td class="mi">—</td><td><span class="chip warn"><span class="dot warn"></span>Extend</span></td></tr>
-            <tr><td><b>Policy &amp; risk tiers</b></td><td class="mi">—</td><td><span class="chip warn"><span class="dot warn"></span>Extend</span></td></tr>
-            <tr><td><b>Capability registry</b></td><td class="mi">—</td><td><span class="chip sig">New · we build</span></td></tr>
-            <tr><td><b>Capability grants</b></td><td class="mi">—</td><td><span class="chip sig">New · we build</span></td></tr>
-          </tbody></table>
-          <div class="card sig mt14" style="padding:14px 18px">
-            <p class="sm"><b>Eight reuse, two extend, two new.</b> The two new components are the ones we build and hand over as your code. If that ratio is wrong for <span class="ph">[CLIENT]</span>, we would rather find out in the next five minutes than in week six.</p></div>
-        </div>
-      </div>
-      <div class="card mt14" style="padding:11px 18px;display:flex;gap:26px;align-items:center">
-        <span class="sm"><span class="dot ok"></span> <b>Reuse</b> — we integrate with what you run today</span>
-        <span class="sm"><span class="dot warn"></span> <b>Extend</b> — a convention or contract added to something existing</span>
-        <span class="sm"><b style="color:var(--sig)">New</b> — built by us in the twelve weeks, owned by you after</span>
-      </div>
-    </div>
-  </div>
-  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Middle column filled live · corrections welcome and expected</span></div>
 </section>
 <!-- 08 EVENT PLANE -->
 <section class="slide" data-sec="The fabric">
   <template class="nt"><p><b>This is the clearest example of the compounding argument, so use it to teach the pattern.</b></p><p><b>Say:</b> "You are probably already being asked to fund an observability upgrade. Fund it once, as an event plane, and you get three things instead of one — and the second and third are what make agents possible at all."</p><p><b>The insight to land:</b> "An agent that can only be called is a tool. An agent that can be <i>triggered</i> is a colleague. Same spine, and most enterprises build it twice because observability and eventing sit in different budgets."</p><p><b>Be honest about the trade-off</b> — it is on the slide for a reason. One spine means one thing to get right, and back-pressure discipline matters. Say it before an SRE says it for you.</p></template>
   <div class="pad">
     <div class="shead"><div class="snum">03</div><div>
-      <div class="eyebrow">The fabric · the pattern to notice</div>
-      <h2>One event spine. Three payoffs from a single investment.</h2>
+      <div class="eyebrow">The fabric · moves risk-per-capability and time-to-capability</div>
+      <h2>One event spine returns three payoffs from a single investment — which is why it is funded once, not three times.</h2>
       <p class="lead">Most enterprises fund observability and eventing separately, out of different budgets, and build the same spine twice. Unify it once and agents become possible almost as a side effect.</p></div></div>
     <div class="body">
       <div style="display:grid;grid-template-columns:270px 1fr;gap:22px;flex:1;min-height:0">
@@ -840,10 +925,10 @@ body.help #help{display:grid}
 
 <!-- 09 SAFE AUTONOMY -->
 <section class="slide" data-sec="The fabric">
-  <template class="nt"><p><b>Frame this as the permission slip, never as a control.</b> The point is not that agents are dangerous — it is that sandboxing is what lets you say yes to things you would otherwise refuse.</p><p><b>Say:</b> "The reason most enterprises keep agents read-only is that the only way to let an agent act is to hand it a credential — and once handed over, nobody can bound what it does with it. Capability sandboxing removes that trade. The agent gets exactly the doors it declared, and nothing else exists for it."</p><p><b>The comparison table is the whole slide.</b> Walk the left column, then the right, then stop.</p><p>Anyone wanting the mechanism gets appendix A3. Do not go there unprompted — if the room wanted runtime isolation detail they would have asked for a different meeting.</p></template>
+  <template class="nt"><p><b>Frame this as the permission slip, never as a control.</b> The point is not that agents are dangerous — it is that sandboxing is what lets you say yes to things you would otherwise refuse.</p><p><b>Say:</b> "The reason most enterprises keep agents read-only is that the only way to let an agent act is to hand it a credential — and once handed over, nobody can bound what it does with it. Capability sandboxing removes that trade. The agent gets exactly the doors it declared, and nothing else exists for it."</p><p><b>The comparison table is the whole slide.</b> Walk the left column, then the right, then stop.</p><p>Anyone wanting the mechanism gets appendix A5. Do not go there unprompted — if the room wanted runtime isolation detail they would have asked for a different meeting.</p></template>
   <div class="pad">
     <div class="shead"><div class="snum">03</div><div>
-      <div class="eyebrow">The fabric · what makes yes possible</div>
+      <div class="eyebrow">The fabric · moves risk-per-capability</div>
       <h2>Capability sandboxing is why you can let agents act, not just read.</h2>
       <p class="lead">Most enterprises keep agents read-only because the only way to let one act has been to hand it a credential — and a handed-over credential cannot be bounded afterwards. This removes that trade.</p></div></div>
     <div class="body">
@@ -877,7 +962,7 @@ body.help #help{display:grid}
       </div>
     </div>
   </div>
-  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Mechanism and risk tiers in appendix A3 · ask and we will go there</span></div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Mechanism and risk tiers in appendix A5 · ask and we will go there</span></div>
 </section>
 
 <!-- 10 KNOWLEDGE & ONTOLOGY -->
@@ -885,7 +970,7 @@ body.help #help{display:grid}
   <template class="nt"><p><b>The slide for the data and governance audience — and the one that most often converts a sceptic into a sponsor.</b></p><p><b>Say:</b> "Shared meaning sounds like an abstraction until you notice that two of your most expensive recurring costs are both caused by the lack of it: assembling compliance evidence, and integrating teams that describe the same customer four different ways."</p><p><b>Be very clear on sequencing</b> — this is where these programmes die: "We are not starting an ontology programme. In the twelve weeks we do provenance and grounded retrieval only. The vocabulary grows where it earns its keep, one domain at a time, and every capability we register contributes to it for free."</p><p>If they already have an ontology or data-mesh programme: <b>ally, immediately.</b> "Everything the fabric emits — capability semantics, provenance, ownership — is a structured input that programme can consume. We feed it; we do not compete with it."</p></template>
   <div class="pad">
     <div class="shead"><div class="snum">03</div><div>
-      <div class="eyebrow">The fabric · shared meaning</div>
+      <div class="eyebrow">The fabric · moves reuse rate</div>
       <h2>Shared vocabulary is what turns compliance and integration from projects into properties.</h2>
       <p class="lead">Two of the most expensive recurring costs in a large enterprise have the same root cause: nothing agrees on what things are called. The operating model fixes that incrementally, as a by-product of registering capabilities.</p></div></div>
     <div class="body">
@@ -925,7 +1010,7 @@ body.help #help{display:grid}
   <template class="nt"><p><b>The proposal that makes this POC different from every other one they have been offered.</b></p><p><b>Say:</b> "Our default first workload is your own software delivery. Agents that review pull requests, generate tests, upgrade dependencies, write release notes and gate deploys — running on the fabric, on your repositories, from week three."</p><p><b>The four reasons are the argument. Say all four:</b> internal so no customer exposure; reversible because git is reversible; measurable in three weeks against a baseline you already have; and it exercises every plane of the fabric under genuine load — identity, policy, grants, triggers, evidence, sandboxing — because software delivery touches all of them.</p><p><b>The self-referential point is the one people remember:</b> "The fabric gets built using the fabric. If it is awkward to work with, we are the first to feel it — and we will feel it in week four, not after handover."</p><p><b>If someone pushes for a customer-facing capability first:</b> "That is path two, designed in week ten with everything we learned. Doing it first means learning the fabric and the business domain simultaneously, which is how twelve weeks becomes twenty."</p></template>
   <div class="pad">
     <div class="shead"><div class="snum">03</div><div>
-      <div class="eyebrow">The fabric · the default first workload</div>
+      <div class="eyebrow">The fabric · moves time-to-capability</div>
       <h2>The first agents build your software. That is deliberate.</h2>
       <p class="lead">Agentic CI/CD and agentic code review are the POC default — internal, reversible, measurable in three weeks, and they exercise every plane of the fabric under genuine load.</p></div></div>
     <div class="body">
@@ -947,14 +1032,14 @@ body.help #help{display:grid}
   </div>
   <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Business capabilities are path two · designed week 10 with what we learned</span></div>
 </section>
-<!-- 12 A DAY IN THE LIFE -->
+<!-- 13 A DAY IN THE LIFE -->
 <section class="slide" data-sec="Your part">
-  <template class="nt"><p><b>The delight slide. Slow right down and tell it as a story about one person.</b> Abstractions do not make people want something; a Tuesday does.</p><p><b>Say:</b> "This is Priya, a senior engineer on the payments squad, on an ordinary Tuesday in month four. Nothing here is speculative — every one of these is a capability the fabric supports on day 90."</p><p>Walk the five moments. Pause on the 09:40 one — <b>"she disagrees with the agent and says so, and that disagreement is the training signal."</b> That single detail does more to defuse fear than any governance slide, because it makes clear humans stay in charge.</p><p><b>Then the turn, and this is the important part:</b> "Now notice what the platform lead, the risk analyst and the product owner each got out of that same Tuesday — without attending a single meeting about AI." That is the operating model working.</p></template>
+  <template class="nt"><p><b>The delight slide. Slow right down and tell it as a story about one person.</b> Abstractions do not make people want something; a Tuesday does.</p><p><b>Say:</b> "This is Priya, a senior engineer on the payments squad, on an ordinary Tuesday in month four. Nothing here is speculative — every moment is a capability the fabric supports on day 90."</p><p>Pause on 09:40 — <b>"she disagrees with the agent and says so, and that disagreement is the training signal."</b> That single detail defuses more fear than any governance slide, because it makes clear humans stay in charge.</p><p><b>Then the turn, which is the real payload:</b> "Now notice what the platform lead, the risk analyst and the product owner each got out of that same Tuesday — without attending a single meeting about AI."</p></template>
   <div class="pad">
     <div class="shead"><div class="snum">04</div><div>
-      <div class="eyebrow">Your part · what this actually feels like</div>
-      <h2>An ordinary Tuesday, four months from now.</h2>
-      <p class="lead">Priya is a senior engineer on the payments squad. Nothing below is speculative — each moment is a capability the fabric supports at day 90.</p></div></div>
+      <div class="eyebrow">Your part · what this feels like</div>
+      <h2>The fabric is working when nobody notices it — it just shows up as an ordinary Tuesday.</h2>
+      <p class="lead">Priya is a senior engineer on the payments squad, four months in. Nothing below is speculative — each moment is a capability the fabric supports at day 90.</p></div></div>
     <div class="body">
       <div class="dil" style="flex:1;min-height:0">
         <div class="hour agent"><div class="t">08:55</div><h4>She opens a pull request</h4><p>Within ninety seconds an agent has reviewed it — correctness, missing test cases, a deprecated internal API she did not know about — with reasoning attached to each line.</p><div class="who">Trigger · agentic review</div></div>
@@ -970,45 +1055,16 @@ body.help #help{display:grid}
   <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
 </section>
 
-<!-- 13 HOW A REQUEST FLOWS -->
-<section class="slide dense" data-sec="Your part">
-  <template class="nt"><p><b>Three minutes, plain language, no jargon.</b> This is the "how does it actually work" answer for people who will never read an architecture document.</p><p><b>Say:</b> "Six steps. Every agent action, every time, whether it was triggered by an event or asked for by a person. The point is not the steps — it is that there is only one path, so there is only one thing to understand, one place to look when something goes wrong, and one record afterwards."</p><p><b>The bottom row is what each audience gets.</b> Point at the one that matches whoever asked.</p><p>Full technical sequence, the evidence record and the enforcement mechanics are appendix A4. Offer it; do not go there unless asked.</p></template>
-  <div class="pad">
-    <div class="shead"><div class="snum">04</div><div>
-      <div class="eyebrow">Your part · how it works, in plain terms</div>
-      <h2>One path. Every agent action, every time.</h2>
-      <p class="lead">The value is not the six steps — it is that there is only one route, so there is one thing to learn, one place to look when something is wrong, and one record afterwards.</p></div></div>
-    <div class="body">
-      <div class="path" style="grid-template-columns:repeat(6,1fr)">
-        <div class="step"><div class="n">1</div><b>Something starts it</b><p>A person asks, a workflow reaches a step, or an event fires on the spine.</p></div>
-        <div class="step"><div class="n">2</div><b>We know who</b><p>The person, the agent and who it is acting for — resolved from your existing identity provider.</p></div>
-        <div class="step"><div class="n">3</div><b>We find the capability</b><p>The registry answers what can do this, who owns it, and whether it is healthy.</p></div>
-        <div class="step crux"><div class="n">4</div><b>We check it is allowed</b><p>Risk tier, purpose and data class — expressed in business words, not policy syntax.</p></div>
-        <div class="step crux"><div class="n">5</div><b>It runs, bounded</b><p>Inside a sandbox holding only the doors it declared, with authority that expires.</p></div>
-        <div class="step"><div class="n">6</div><b>It leaves a record</b><p>What happened, who asked, what changed and whether it can be undone.</p></div>
-      </div>
-      <div class="g4 mt18" style="gap:12px">
-        <div class="card"><p class="mi">FOR THE BUSINESS</p><p class="sm mt6">You ask for an <b>outcome</b>, not a system. Ownership can change underneath without breaking you.</p></div>
-        <div class="card"><p class="mi">FOR ENGINEERING</p><p class="sm mt6">You inherit identity, policy and telemetry from the template. <b>You do not write any of step 2, 4 or 6.</b></p></div>
-        <div class="card"><p class="mi">FOR OPERATIONS</p><p class="sm mt6">One dashboard, one trace, one off switch — per capability, trippable without a deploy.</p></div>
-        <div class="card"><p class="mi">FOR GOVERNANCE</p><p class="sm mt6">Step 6 is the audit answer, produced by the system rather than narrated by a person.</p></div>
-      </div>
-    </div>
-  </div>
-  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Full technical sequence and evidence record in appendix A4</span></div>
-</section>
-
 <!-- 14 WHERE EACH ROLE WORKS -->
 <section class="slide dense" data-sec="Your part">
-  <template class="nt"><p><b>Everyone in the room finds themselves on this slide. Do not summarise it — work it.</b></p><p><b>Say:</b> "Seven roles, and I want each of you to check that the middle column is right. If the thing you care most about is missing, that is a gap in our understanding and I want it now."</p><p><b>Then read the right-hand column out loud, slowly.</b> That is the commitment — small, specific, and nowhere near a full-time job for anyone except the two we are asking for a day a week from.</p><p><b>The reassurance to say explicitly:</b> "Nobody on this list is being asked to become an AI specialist. You are being asked to keep doing your job, on a slightly better substrate, one day a week."</p></template>
+  <template class="nt"><p><b>Everyone in the room finds themselves on this slide. Do not summarise it — work it.</b></p><p><b>Say:</b> "Seven roles, and I want each of you to check that the middle column is right. If the thing you care most about is missing, that is a gap in our understanding and I want it now."</p><p><b>Then read the right-hand column slowly.</b> That is the commitment — small, specific, and nowhere near a full-time job for anyone.</p><p><b>The reassurance to say explicitly:</b> "Nobody on this list is being asked to become an AI specialist. You are being asked to keep doing your job, on a slightly better substrate, one day a week."</p></template>
   <div class="pad">
-    <div class="shead"><div class="snum">04</div><div>
+    <div class="shead tight-head"><div class="snum">04</div><div>
       <div class="eyebrow">Your part · the map</div>
-      <h2>Seven roles. Everyone has a lane, nobody needs to become an AI specialist.</h2>
-      <p class="lead">Check the middle column. If what you care most about is missing, that is a gap in our understanding and we want it now rather than in week six.</p></div></div>
+      <h2>Seven roles and four days a week between them — and nobody has to become an AI specialist.</h2></div></div>
     <div class="body">
-      <table><thead><tr><th style="width:190px">Role</th><th style="width:230px">Where you work on the canvas</th><th>What you own</th><th style="width:230px">What we need from you</th><th style="width:88px">Time</th></tr></thead><tbody>
-        <tr><td><b>Product &amp; business owner</b></td><td class="sm">Experience · Outcomes</td><td class="sm">Naming the capability and the outcome it serves; accepting or rejecting what ships</td><td class="sm">One named person who can say yes without convening others</td><td class="sm">2 h/wk</td></tr>
+      <table><thead><tr><th style="width:190px">Role</th><th style="width:196px">Where you work on the canvas</th><th>What you own</th><th style="width:238px">What we need from you</th><th style="width:82px">Time</th></tr></thead><tbody>
+        <tr><td><b>Product &amp; business owner</b></td><td class="sm">Experience · the four ratios</td><td class="sm">Naming the capability and the outcome it serves; accepting or rejecting what ships</td><td class="sm">One named person who can say yes without convening others</td><td class="sm">2 h/wk</td></tr>
         <tr><td><b>AI practice lead</b></td><td class="sm">Agent Fabric</td><td class="sm">Agent design, the capability backlog, and how quality is evaluated</td><td class="sm">The capability inventory, and your evaluation approach today</td><td class="sm">1 d/wk</td></tr>
         <tr><td><b>Architecture</b></td><td class="sm">All planes — the coherence owner</td><td class="sm">That the planes stay separable and the contracts hold as things are added</td><td class="sm">Current-state view and any standing architectural decisions we must respect</td><td class="sm">0.5 d/wk</td></tr>
         <tr><td><b>Platform &amp; DevOps</b></td><td class="sm">Platform · Event Plane</td><td class="sm">The paved road, the event spine, and running all of it after week 12</td><td class="sm">A non-prod namespace in week 1, and authority over the deployment template</td><td class="sm">1 d/wk</td></tr>
@@ -1017,28 +1073,27 @@ body.help #help{display:grid}
         <tr><td><b>Our FDE team</b></td><td class="sm">Across every plane, then out</td><td class="sm">Building it, proving it, documenting it and handing it over</td><td class="sm">Honest correction when we get your environment wrong</td><td class="sm">5 people</td></tr>
       </tbody></table>
       <div class="card mt14 sig" style="padding:13px 18px">
-        <p class="sm"><b>Total client commitment: roughly four days a week across seven people.</b> That is the whole ask. If a role cannot be named today, we need a date — unnamed roles are the single most reliable predictor of a slipped milestone, ahead of any technical risk.</p></div>
+        <p class="sm"><b>If a role cannot be named today, we need a date.</b> Unnamed roles are the single most reliable predictor of a slipped milestone — ahead of any technical risk on the register.</p></div>
     </div>
   </div>
   <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
 </section>
 
-<!-- 15 RESPONSIBILITIES -->
+<!-- 15 RESPONSIBILITY SPLIT -->
 <section class="slide dense" data-sec="Your part">
-  <template class="nt"><p><b>The clarity slide. Read the key first, then let people scan.</b></p><p><b>Say:</b> "Blue is us. Gold is you. Purple is genuinely joint — and there are only five of those, because 'joint' usually means nobody. Where you see gold, that is a decision or an access that only your organisation can make."</p><p><b>The line that matters:</b> "Notice the last two rows. Running it and owning it are gold. From day one, everything we build is being built for the moment we leave."</p><p>If the sponsor worries about dependency: point at row 12 — the unassisted-adoption exercise in week 11 is where a second squad onboards using documentation alone, with us out of the room.</p></template>
+  <template class="nt"><p><b>The clarity slide. Read the key first, then let people scan.</b></p><p><b>Say:</b> "Blue is us. Gold is you. Purple is genuinely joint — and there are only five, because 'joint' usually means nobody. Where you see gold, that is a decision or an access only your organisation can provide."</p><p><b>The line that matters:</b> "Notice the last two rows. Running it and owning it are gold. From day one, everything we build is built for the moment we leave."</p><p>If the sponsor worries about dependency, point at the last row — the week-11 exercise where a second squad onboards from documentation alone, with us out of the room.</p></template>
   <div class="pad">
-    <div class="shead"><div class="snum">04</div><div>
+    <div class="shead tight-head"><div class="snum">04</div><div>
       <div class="eyebrow">Your part · who does what</div>
-      <h2>Clear lines. Only five things are genuinely joint.</h2>
-      <p class="lead">"Joint" usually means nobody, so we have kept it to the five places where it is genuinely true.</p></div></div>
+      <h2>Only five activities are genuinely joint — everything else has a single, named owner.</h2></div></div>
     <div class="body">
-      <div class="keyrow" style="margin-bottom:12px">
+      <div class="keyrow" style="margin-bottom:10px">
         <span><i class="we">■</i> <b>We lead</b> — our team drives, you review</span>
         <span><i class="you">■</i> <b>You lead</b> — only your organisation can do this</span>
         <span><i class="jt">■</i> <b>Genuinely joint</b> — neither of us can do it alone</span>
       </div>
       <div class="table-wrap raci">
-        <table><thead><tr><th style="width:290px">Activity</th><th style="width:78px">We lead</th><th style="width:78px">You lead</th><th style="width:78px">Joint</th><th>Note</th></tr></thead><tbody>
+        <table><thead><tr><th style="width:290px">Activity</th><th style="width:74px">We lead</th><th style="width:74px">You lead</th><th style="width:74px">Joint</th><th>Note</th></tr></thead><tbody>
           <tr><td><b>Choosing the first squad and repositories</b></td><td class="o"></td><td class="o you">■</td><td class="o"></td><td class="sm">You know which team wants this most. That matters more than which codebase is tidiest.</td></tr>
           <tr><td><b>Defining risk tiers and who assigns them</b></td><td class="o"></td><td class="o"></td><td class="o jt">■</td><td class="sm">We bring the shape; only you can set the thresholds.</td></tr>
           <tr><td><b>Environment, identity and repository access</b></td><td class="o"></td><td class="o you">■</td><td class="o"></td><td class="sm">The most common cause of slipped milestones. Week 1.</td></tr>
@@ -1057,169 +1112,136 @@ body.help #help{display:grid}
   </div>
   <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Everything we build is built for the moment we leave</span></div>
 </section>
-<!-- 16 ENGINEERING LANES -->
+
+<!-- 16 DECISION RIGHTS -->
 <section class="slide dense" data-sec="Your part">
-  <template class="nt"><p><b>Address the platform lead and the AI practice lead by name.</b> These two have veto power they will never announce — platform can quietly refuse to run it, AI practice can quietly route around it.</p><p><b>For platform, the fear is not security — it is being handed something to operate at 3am that they did not design.</b> Answer it directly: "You own this after week twelve, so you get a vote on every decision starting Monday."</p><p><b>For AI practice, the fear is being slowed down.</b> Answer it directly: "Every constraint here exists so you can say yes more often. Today every capability triggers a bespoke review; afterwards tier 1 and 2 ship on the road and only tier 3 needs a conversation."</p></template>
+  <template class="nt"><p><b>The slide that stops this becoming a committee.</b> Most AI governance failures are not bad decisions — they are decisions with no named owner, escalated by default.</p><p><b>Say:</b> "Seven recurring decisions. Each has exactly one decider, one forum and one cadence. If a decision is not on this list, it does not need a meeting."</p><p><b>The row to point at is the breaker.</b> "Notice row five. Tripping a circuit breaker has no forum and no consultation — the on-call engineer acts first and explains afterwards. If stopping something requires a meeting, you do not have an off switch, you have a suggestion."</p><p><b>The row that usually gets debated is tier assignment.</b> Let them debate it; that is exactly the conversation week 1 exists for. Note the outcome and move on.</p><p><b>Ask directly before leaving the slide:</b> "Does any of these belong to a forum you already have?" Reusing an existing forum is always better than creating one — say so.</p></template>
   <div class="pad">
-    <div class="shead"><div class="snum">04</div><div>
-      <div class="eyebrow">Lane · platform, DevOps and AI practice</div>
-      <h2>Two teams hold the veto. Here is what each one gets.</h2>
-      <p class="lead">Platform can quietly refuse to run it. AI practice can quietly route around it. Both concerns are legitimate and both are answered below.</p></div></div>
+    <div class="shead tight-head"><div class="snum">04</div><div>
+      <div class="eyebrow">Your part · decision rights</div>
+      <h2>Seven recurring decisions, each with one decider, one forum and one cadence.</h2></div></div>
     <div class="body">
-      <div class="g2" style="gap:20px;flex:1;min-height:0">
-        <div class="card col"><span class="chip sig">Platform &amp; DevOps</span>
-          <h3 class="mt10">You inherit a paved road, not a science project</h3>
-          <div class="g2 mt10" style="gap:14px;flex:1;min-height:0">
-            <div class="col" style="gap:8px">
-              <p class="mi">YOUR WIN</p>
-              <p class="sm">Every agent lands on <b>your</b> platform, in <b>your</b> pipelines, on <b>your</b> dashboards — instead of a shadow stack appearing in a different budget line.</p>
-              <p class="sm">One off switch per capability, trippable by an on-call human without a deploy.</p>
-              <p class="sm">The event plane is a platform asset you would have wanted anyway.</p>
-            </div>
-            <div class="col" style="gap:8px">
-              <p class="mi">YOUR PART</p>
-              <p class="sm">A non-prod namespace and deploy path — <b>week 1</b>.</p>
-              <p class="sm">One engineer at 1 day/week with real authority over the deployment template.</p>
-              <p class="sm">Your current golden-path definition, however informal, so we extend rather than compete.</p>
-              <p class="sm">An honest p99 latency budget — it shapes the design, and we would rather have it early.</p>
-            </div>
-          </div>
-          <div class="rulehair"></div>
-          <p class="sm"><b>You own the road after week twelve.</b> Which is exactly why you get a vote on every decision starting Monday.</p></div>
-        <div class="card col"><span class="chip sig">AI practice</span>
-          <h3 class="mt10">This exists so you can say yes more often</h3>
-          <div class="g2 mt10" style="gap:14px;flex:1;min-height:0">
-            <div class="col" style="gap:8px">
-              <p class="mi">YOUR WIN</p>
-              <p class="sm">A capability that fits an approved tier <b>inherits its policy</b> instead of negotiating one.</p>
-              <p class="sm">Promotion from pilot to production becomes a checklist, not a committee.</p>
-              <p class="sm">Agent-to-agent delegation becomes expressible — which is what makes multi-agent designs practical rather than theoretical.</p>
-              <p class="sm">Nothing constrains your models, prompts, frameworks or evaluation stack.</p>
-            </div>
-            <div class="col" style="gap:8px">
-              <p class="mi">YOUR PART</p>
-              <p class="sm">The capability inventory for the first workload.</p>
-              <p class="sm">One practitioner at 1 day/week.</p>
-              <p class="sm">Declaring a capability's scope before first use — about a day of work, once, per capability.</p>
-              <p class="sm">Letting go of the long-lived credential that "just makes the demo work". That pattern closes deliberately.</p>
-            </div>
-          </div>
-          <div class="rulehair"></div>
-          <p class="sm"><b>The commercial argument in one line:</b> tier 1 and tier 2 ship on the road; only tier 3 needs a conversation.</p></div>
+      <table><thead><tr><th style="width:260px">Decision</th><th style="width:200px">Decided by</th><th style="width:198px">Consulted</th><th style="width:186px">Forum</th><th style="width:130px">Cadence</th><th>Escalates to</th></tr></thead><tbody>
+        <tr><td><b>Which capability is built next</b></td><td class="sm">Product &amp; business owner</td><td class="sm">AI practice · architecture</td><td class="sm">Capability intake</td><td class="sm">Weekly</td><td class="sm">Sponsor</td></tr>
+        <tr><td><b>Risk tier assigned to a capability</b></td><td class="sm">Governance lead</td><td class="sm">Capability owner · security</td><td class="sm">Intake (T1/T2) · risk forum (T3)</td><td class="sm">Weekly / on demand</td><td class="sm">CISO delegate</td></tr>
+        <tr><td><b>Whether a capability may go live</b></td><td class="sm">Capability owner (T1/T2)<br>Named approver (T3)</td><td class="sm">Platform · security</td><td class="sm">Release gate — automated checks</td><td class="sm">Continuous</td><td class="sm">Governance lead</td></tr>
+        <tr><td><b>Whether the manifest change is acceptable</b></td><td class="sm">Reviewing engineer</td><td class="sm">Security, if the tier changes</td><td class="sm">The pull request itself</td><td class="sm">Per change</td><td class="sm">Governance lead</td></tr>
+        <tr style="background:var(--sig-wash)"><td><b>Whether to trip a circuit breaker</b></td><td class="sm"><b>The on-call engineer</b></td><td class="sm"><b>Nobody — act first</b></td><td class="sm"><b>None. There is no forum.</b></td><td class="sm">Immediate</td><td class="sm">Explain afterwards</td></tr>
+        <tr><td><b>Whether a policy or tier definition changes</b></td><td class="sm">Governance lead</td><td class="sm">Architecture · AI practice · platform</td><td class="sm">Policy review</td><td class="sm">Monthly</td><td class="sm">Sponsor</td></tr>
+        <tr><td><b>Whether the next roadmap move happens</b></td><td class="sm">Executive sponsor</td><td class="sm">All seven roles</td><td class="sm">Quarterly review</td><td class="sm">Quarterly</td><td class="sm">—</td></tr>
+      </tbody></table>
+      <div class="g2 mt14" style="gap:16px">
+        <div class="card sig" style="padding:13px 17px"><p class="sm"><b>The breaker row is the one to notice.</b> No forum, no consultation, act first. If stopping something requires a meeting, you do not have an off switch — you have a suggestion.</p></div>
+        <div class="card" style="padding:13px 17px"><p class="sm"><b>Reuse a forum wherever one exists.</b> If <span class="ph">[CLIENT]</span> already has an architecture council, a change board or a risk forum that fits a row, we use it. Creating governance is a last resort, not a deliverable.</p></div>
       </div>
     </div>
   </div>
-  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>If a decision is not on this list, it does not need a meeting</span></div>
 </section>
-
-<!-- 17 DATA & GOVERNANCE LANES -->
-<section class="slide" data-sec="Your part">
-  <template class="nt"><p><b>Two audiences, two different anxieties.</b></p><p><b>Data governance fears a shadow data programme</b> that makes classification meaningless. Tell them the opposite: this is the first place a classification becomes enforceable at the moment of access rather than asserted in a catalog.</p><p><b>Data engineering fears being handed a retrieval platform to run.</b> Tell them: no new pipelines in the twelve weeks. Curated existing sources only.</p><p><b>Answer the memory question before it is asked</b> — narrow, task-bound, disposable, deletable. Memory is a governed service, never an automatic transcript dump. That question always comes, and answering it unprompted reads as competence.</p></template>
+<!-- 17 WHAT EACH FUNCTION GETS -->
+<section class="slide dense" data-sec="Your part">
+  <template class="nt"><p><b>Four functions, four different anxieties. Address each by name — and lead with what they gain, never with what they must do.</b></p><ul><li><b>Platform</b> fears being handed something to operate at 3am that they did not design. Answer: "You own it after week twelve, so you get a vote starting Monday."</li><li><b>AI practice</b> fears being slowed down. Answer: "Every constraint here exists so you can say yes more often."</li><li><b>Data engineering</b> fears being handed a retrieval platform to run. Answer: "No new pipelines. Curated existing sources only."</li><li><b>Governance</b> fears a shadow data programme. Answer: "This is the first place a classification becomes enforceable at access time rather than asserted in a catalog."</li></ul><p><b>The middle row is the honest one.</b> Read it out. Every function gives up something small and specific — naming it is what makes the gains believable.</p></template>
   <div class="pad">
-    <div class="shead"><div class="snum">04</div><div>
-      <div class="eyebrow">Lane · data engineering, governance and risk</div>
-      <h2>A classification you cannot enforce at access time is a label, not a control.</h2>
-      <p class="lead">This is the first place in the estate where the label becomes enforceable — and the last place anyone should start a shadow data programme.</p></div></div>
+    <div class="shead tight-head"><div class="snum">04</div><div>
+      <div class="eyebrow">Your part · by function</div>
+      <h2>Every function gains something specific — and gives up something small enough to name.</h2></div></div>
     <div class="body">
-      <div class="g2" style="gap:20px;flex:1;min-height:0">
-        <div class="card col"><span class="chip sig">Governance &amp; risk</span>
-          <div class="g2 mt10" style="gap:14px;flex:1;min-height:0">
-            <div class="col" style="gap:8px">
-              <p class="mi">YOUR WIN</p>
-              <p class="sm"><b>Classification becomes an input to the decision</b> — evaluated at the moment of access, not asserted in a catalog and hoped for.</p>
-              <p class="sm"><b>Purpose becomes expressible.</b> Authority is issued for a stated purpose; using it for another is refused, and the refusal is itself evidence.</p>
-              <p class="sm"><b>Evidence is continuous.</b> You stop assembling it before reviews and start querying it.</p>
-              <p class="sm"><b>Memory is a governed service</b> — narrow, task-bound, disposable, with retention and deletion semantics you define. Never a transcript dump.</p>
-            </div>
-            <div class="col" style="gap:8px">
-              <p class="mi">YOUR PART</p>
-              <p class="sm">Three risk tiers, roughly defined — <b>week 1</b>. We will sharpen them with you.</p>
-              <p class="sm">Who has authority to assign a capability to a tier.</p>
-              <p class="sm">The one data class that is categorically out of bounds for this POC.</p>
-              <p class="sm">Which assessment frameworks bind you, so the week-9 crosswalk targets the right ones.</p>
-              <p class="sm">0.5 day/week.</p>
-            </div>
-          </div></div>
-        <div class="card col"><span class="chip sig">Data engineering</span>
-          <div class="g2 mt10" style="gap:14px;flex:1;min-height:0">
-            <div class="col" style="gap:8px">
-              <p class="mi">YOUR WIN</p>
-              <p class="sm"><b>No new pipelines in the twelve weeks.</b> Curated existing sources only. If it needs an ingestion project, it is out of scope by definition.</p>
-              <p class="sm"><b>Retrieval is never asked to be a security boundary.</b> Access filtering happens in the control plane, so your layer stays a data layer.</p>
-              <p class="sm"><b>Data products gain a capability contract</b> — what it answers, freshness, owner, classification — reusing your catalog rather than replacing it.</p>
-              <p class="sm"><b>Consumers become visible.</b> You finally get to see who actually uses which product, and for what.</p>
-            </div>
-            <div class="col" style="gap:8px">
-              <p class="mi">YOUR PART</p>
-              <p class="sm">Read access to the catalog — <b>week 1</b>.</p>
-              <p class="sm">The freshness SLA of the sources the first workload grounds on.</p>
-              <p class="sm">One engineer at 0.5 day/week.</p>
-              <p class="sm">An honest answer on which sources are trustworthy enough to ground on today, and which are not.</p>
-            </div>
-          </div></div>
+      <div class="g4" style="gap:12px;flex:1;min-height:0">
+        <div class="card col" style="background:var(--sig-wash);border-color:var(--sig-line)"><span class="chip sig">Platform &amp; DevOps</span>
+          <p class="mi mt10">YOU GAIN</p>
+          <p class="sm mt6">Every agent lands on <b>your</b> platform, in <b>your</b> pipelines, on <b>your</b> dashboards — instead of a shadow stack in a different budget line. One off switch per capability. An event spine you would have wanted anyway.</p>
+          <div class="rulehair"></div><p class="mi">YOU GIVE UP</p>
+          <p class="sm mt6">A registration step enters the service lifecycle. Deployment templates gain a sidecar and a telemetry contract by default.</p>
+          <div class="rulehair"></div><p class="mi">WE NEED</p>
+          <p class="sm mt6">Non-prod namespace, week 1. One engineer at 1 d/wk with real authority over the template. An honest p99 latency budget.</p></div>
+        <div class="card col" style="background:var(--sig-wash);border-color:var(--sig-line)"><span class="chip sig">AI practice</span>
+          <p class="mi mt10">YOU GAIN</p>
+          <p class="sm mt6">A capability that fits an approved tier <b>inherits its policy</b> instead of negotiating one. Promotion becomes a checklist, not a committee. Delegation becomes expressible. Models, prompts, frameworks and eval stack stay entirely yours.</p>
+          <div class="rulehair"></div><p class="mi">YOU GIVE UP</p>
+          <p class="sm mt6">The long-lived credential that "just makes the demo work". Capabilities need a declared scope before first use — about a day, once, each.</p>
+          <div class="rulehair"></div><p class="mi">WE NEED</p>
+          <p class="sm mt6">The capability inventory for the first workload. One practitioner at 1 d/wk.</p></div>
+        <div class="card col"><span class="chip">Data engineering</span>
+          <p class="mi mt10">YOU GAIN</p>
+          <p class="sm mt6"><b>No new pipelines in twelve weeks</b> — curated existing sources only. Retrieval is never asked to be a security boundary. Data products gain a capability contract, reusing your catalog. Consumers finally become visible.</p>
+          <div class="rulehair"></div><p class="mi">YOU GIVE UP</p>
+          <p class="sm mt6">Sources used for grounding must carry provenance — source, timestamp, owner. That is a standard, not a project.</p>
+          <div class="rulehair"></div><p class="mi">WE NEED</p>
+          <p class="sm mt6">Catalog read access, week 1. Freshness SLAs for the sources we ground on. 0.5 d/wk.</p></div>
+        <div class="card col"><span class="chip">Governance &amp; risk</span>
+          <p class="mi mt10">YOU GAIN</p>
+          <p class="sm mt6"><b>Classification becomes enforceable at access time</b>, not asserted in a catalog. Purpose becomes expressible and checkable. Evidence is continuous — you stop assembling it and start querying it.</p>
+          <div class="rulehair"></div><p class="mi">YOU GIVE UP</p>
+          <p class="sm mt6">Tiers must be defined and owned rather than decided case by case. That is the trade that makes self-service possible.</p>
+          <div class="rulehair"></div><p class="mi">WE NEED</p>
+          <p class="sm mt6">Three tiers roughly defined, week 1. Who assigns them. The one out-of-bounds data class. 0.5 d/wk.</p></div>
       </div>
       <div class="card mt14 ns" style="padding:12px 18px">
-        <p class="sm"><b>If <span class="ph">[CLIENT]</span> has an ontology, data-mesh or catalog programme in flight:</b> we feed it rather than compete with it. Everything the fabric emits — capability semantics, provenance, ownership, purpose — is structured input that programme can consume. We are not waiting for it and we are not duplicating it.</p></div>
+        <p class="sm"><b>If <span class="ph">[CLIENT]</span> has an ontology, data-mesh or catalog programme in flight:</b> we feed it rather than compete with it. Everything the fabric emits — capability semantics, provenance, ownership, purpose — is structured input that programme can consume. We are neither waiting for it nor duplicating it.</p></div>
     </div>
   </div>
   <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
 </section>
 
-<!-- 18 MATURITY BY SEGMENT -->
-<section class="slide" data-sec="The path">
-  <template class="nt"><p><b>The slide that makes this feel gradual rather than a leap.</b> Nobody has to be at level three, and nothing here requires a transformation programme.</p><p><b>Say:</b> "Five segments, three levels each. The blue column is what the twelve weeks delivers — that is genuinely all of it. Everything to the right is a choice you make later, with better information than you have today."</p><p><b>Then do this, and it is the most valuable ninety seconds on the slide:</b> "Which of these five matters most to you? Because that is the one we push hardest on, and I would rather know now."</p><p>Different stakeholders will pick different segments — governance picks knowledge, platform picks the event plane, AI practice picks agentic delivery. That disagreement is useful and worth surfacing rather than smoothing over.</p></template>
+<!-- 18 MATURITY -->
+<section class="slide dense" data-sec="The path">
+  <template class="nt"><p><b>The slide that makes this feel gradual rather than a leap.</b> Nobody has to be at level three, and nothing here requires a transformation programme.</p><p><b>Say:</b> "Five segments, three levels. The blue column is what the twelve weeks delivers — genuinely all of it. Everything to the right is a choice you make later, with better information than you have today."</p><p><b>Then run the live exercise, and this is the most valuable ninety seconds on the slide:</b> "Mark where you are today in the left-hand column, and tell me which segment matters most. Because that is the one we push hardest on."</p><p>Different stakeholders will pick different segments — governance picks knowledge, platform picks the event plane, AI practice picks agentic delivery. Surface that disagreement rather than smoothing it; it is a real prioritisation conversation and it is cheaper to have now.</p></template>
   <div class="pad">
-    <div class="shead"><div class="snum">05</div><div>
+    <div class="shead tight-head"><div class="snum">05</div><div>
       <div class="eyebrow">The path · maturity by segment</div>
-      <h2>Five segments, three levels. The twelve weeks delivers level one across all five.</h2>
-      <p class="lead">Nobody needs to be at level three. Everything to the right of the blue column is a choice made later, with better information than anyone in this room has today.</p></div></div>
+      <h2>The twelve weeks delivers level one across all five segments — everything right of that is a later choice.</h2></div></div>
     <div class="body">
-      <div class="mat" style="flex:1;min-height:0">
+      <div class="mat" style="flex:1;min-height:0;grid-template-columns:150px 74px repeat(3,1fr)">
         <div></div>
+        <div class="mat-h" style="text-align:center">You are<br>here</div>
         <div class="mat-h">Level 1 · Foundation — weeks 1–12</div>
         <div class="mat-h">Level 2 · Scale — quarters 2–3</div>
         <div class="mat-h">Level 3 · Compounding — quarter 4+</div>
 
         <div class="mat-seg"><b>Agent fabric</b><small>Registry, orchestration, delegation</small></div>
+        <div class="mc" style="display:grid;place-items:center"><span class="mi">mark →</span></div>
         <div class="mc now"><span class="badge">POC</span><p>Capabilities registered with owner, tier and health. One squad building on templates.</p></div>
-        <div class="mc"><p>Self-service onboarding across squads. Delegation between agents. A capability backlog owned by the business.</p></div>
+        <div class="mc"><p>Self-service onboarding across squads. Delegation between agents. A backlog owned by the business.</p></div>
         <div class="mc tgt"><span class="badge">Target</span><p>Portfolio management — capabilities retired, versioned and reused as deliberately as microservices.</p></div>
 
         <div class="mat-seg"><b>Event plane</b><small>Observability and triggers</small></div>
+        <div class="mc" style="display:grid;place-items:center"><span class="mi">mark →</span></div>
         <div class="mc now"><span class="badge">POC</span><p>One correlated context across agents and services. Events trigger the delivery agents.</p></div>
         <div class="mc"><p>Business events trigger business capabilities. Evidence stream feeds risk reporting directly.</p></div>
-        <div class="mc tgt"><span class="badge">Target</span><p>Governed autonomous operations — the system reacts within policy, and humans supervise by exception.</p></div>
+        <div class="mc tgt"><span class="badge">Target</span><p>Governed autonomous operations — the system reacts within policy, humans supervise by exception.</p></div>
 
         <div class="mat-seg"><b>Knowledge</b><small>Meaning, grounding, memory</small></div>
+        <div class="mc" style="display:grid;place-items:center"><span class="mi">mark →</span></div>
         <div class="mc now"><span class="badge">POC</span><p>Provenance and grounded retrieval. Every answer carries source, timestamp and owner.</p></div>
-        <div class="mc"><p>Shared vocabulary for one or two domains. Entity resolution where it pays. Reusable knowledge products.</p></div>
+        <div class="mc"><p>Shared vocabulary for one or two domains. Entity resolution where it pays.</p></div>
         <div class="mc tgt"><span class="badge">Target</span><p>Federated ontology across domains — compliance and integration become properties, not projects.</p></div>
 
         <div class="mat-seg"><b>Safe execution</b><small>Tiers, sandboxing, authority</small></div>
+        <div class="mc" style="display:grid;place-items:center"><span class="mi">mark →</span></div>
         <div class="mc now"><span class="badge">POC</span><p>Three risk tiers. Capability manifests reviewed as code. Sandboxed writes on tier 1 and 2.</p></div>
         <div class="mc"><p>Tier assignment self-served against clear criteria. Security review becomes exception handling.</p></div>
         <div class="mc tgt"><span class="badge">Target</span><p>Policy as code at scale — new regulation lands as a policy change, not a programme.</p></div>
 
         <div class="mat-seg"><b>Agentic delivery</b><small>How software gets built</small></div>
+        <div class="mc" style="display:grid;place-items:center"><span class="mi">mark →</span></div>
         <div class="mc now"><span class="badge">POC</span><p>Review, test generation and deploy gating on one squad's repositories.</p></div>
-        <div class="mc"><p>All squads. Cross-repository maintenance — dependency, CVE and migration work handled by fan-out.</p></div>
+        <div class="mc"><p>All squads. Cross-repository maintenance — dependency, CVE and migration work by fan-out.</p></div>
         <div class="mc tgt"><span class="badge">Target</span><p>Agents hold routine maintenance entirely; engineers spend their time on design and judgement.</p></div>
       </div>
       <div class="card mt14 sig" style="padding:12px 18px">
-        <p class="sm"><b>The question we would like answered today:</b> which of these five matters most to <span class="ph">[CLIENT]</span>? That is the one we push hardest on inside the twelve weeks — and different people in this room will pick differently, which is worth surfacing now rather than in month three.</p></div>
+        <p class="sm"><b>Two things we would like from this room before we move on:</b> mark where you are today in column one, and tell us which of the five matters most to <span class="ph">[CLIENT]</span>. Expect disagreement — governance, platform and AI practice will each pick a different segment, and that prioritisation conversation is far cheaper to have now than in month three.</p></div>
     </div>
   </div>
-  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Blue is what the twelve weeks delivers · gold is where it goes</span></div>
 </section>
 
 <!-- 19 IMPROVEMENT ROADMAP -->
 <section class="slide dense" data-sec="The path">
-  <template class="nt"><p><b>The most sophisticated slide in the deck, and the one that most distinguishes us from a vendor pitch.</b> Every card states what you get <i>and</i> what it costs you. A roadmap without trade-offs is a wish list.</p><p><b>Say:</b> "Six moves. Each one has a reason, two or three payoffs, and an honest cost. The first two are inside the twelve weeks. The rest are choices — and I want to be clear that some of them may be wrong for you."</p><p><b>Teach the pattern rather than the six items:</b> "Notice that every good move here has more than one payoff. That is the test we apply — if an investment only pays off once, it is a feature, not a platform move."</p><p><b>Do not sell the level-three items.</b> Say plainly: "Autonomous operations is on this page because it is where this goes, not because I think you should do it next year. It needs evidence maturity you will not have for a while."</p><p>That restraint is what makes the first two credible.</p></template>
+  <template class="nt"><p><b>The slide that most distinguishes us from a vendor pitch.</b> Every card states what you get <i>and</i> what it costs you. A roadmap without trade-offs is a wish list.</p><p><b>Say:</b> "Six moves. Each has a reason, two or three payoffs, and an honest cost. The first two are inside the twelve weeks. The rest are choices — and some may be wrong for you."</p><p><b>Teach the pattern rather than the six items:</b> "Every good move here has more than one payoff. That is the test — if an investment only pays off once, it is a feature, not a platform move."</p><p><b>Do not sell the level-three item.</b> Say plainly: "Autonomous operations is on this page because it is where this goes, not because I think you should do it next year." That restraint is what makes the first two credible.</p></template>
   <div class="pad">
-    <div class="shead"><div class="snum">05</div><div>
+    <div class="shead tight-head"><div class="snum">05</div><div>
       <div class="eyebrow">The path · improvement roadmap</div>
-      <h2>Six moves. Each with a reason, its payoffs, and an honest cost.</h2>
-      <p class="lead">A roadmap without trade-offs is a wish list. The test we apply: <em>if an investment only pays off once, it is a feature — not a platform move.</em></p></div></div>
+      <h2>Six moves, each with a reason, its payoffs and an honest cost — because a roadmap without trade-offs is a wish list.</h2></div></div>
     <div class="body">
       <div class="rmap" style="flex:1;min-height:0">
         <div class="op lead"><div class="when">Now · in the 12 weeks</div>
@@ -1286,54 +1308,93 @@ body.help #help{display:grid}
   </div>
   <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Reviewed quarterly · each move chosen against its trade-off, never a default</span></div>
 </section>
-<!-- 20 TWELVE WEEKS -->
+<!-- 20 SEQUENCING -->
 <section class="slide dense" data-sec="The path">
-  <template class="nt"><p><b>Walk the gates, not the phases.</b> Phases are activity; gates are decisions, and the sponsor only cares about decisions.</p><p><b>The number to emphasise is week 3.</b> "Three weeks from Monday you have agents reviewing pull requests on a real repository. Not a demo environment — your repository. Everything after that is widening and hardening."</p><p><b>Ask the calendar question before you finish:</b> "What falls inside this window on your side — change freezes, quarter close, audits, holidays?" Freezes have derailed more of these than any technical risk.</p><p>Each gate is one page, circulated 24 hours ahead so nobody reads it for the first time in the room.</p></template>
+  <template class="nt"><p><b>The architect's slide, and the one that proves the plan is designed rather than assembled.</b></p><p><b>Say:</b> "The order is not a preference. Each step removes the constraint on the next one, and the bottom row shows what actually breaks if you reorder."</p><p><b>The clearest example to talk through is step four.</b> "Templates can only encode conventions that already exist. Build the paved road first and you template guesses — then every squad inherits your guesses, and unpicking that costs more than the road saved."</p><p><b>If a client wants the paved road earlier</b> — and platform leads often do, because it is the visible deliverable — this slide is the answer. It is not a refusal, it is an explanation of what they would be buying.</p><p><b>Useful challenge to invite:</b> "Is there a constraint in your environment that forces a different order?" A regulated client with a long IdP change window sometimes genuinely needs step one split.</p></template>
   <div class="pad">
-    <div class="shead"><div class="snum">05</div><div>
+    <div class="shead tight-head"><div class="snum">05</div><div>
+      <div class="eyebrow">The path · sequencing logic</div>
+      <h2>The order is not a preference — each step removes the constraint on the next.</h2></div></div>
+    <div class="body">
+      <div class="g4" style="gap:12px">
+        <div class="card col"><div style="display:flex;gap:10px;align-items:center"><span class="num">1</span><h4>Name things</h4></div>
+          <p class="sm mt10">Identity and the capability registry. Every capability gets an owner, a tier, a schema and a version.</p>
+          <div class="rulehair"></div>
+          <p class="sm"><b>Removes the constraint:</b> you cannot grant authority to something you cannot name, and you cannot measure a portfolio you cannot list.</p></div>
+        <div class="card col"><div style="display:flex;gap:10px;align-items:center"><span class="num">2</span><h4>Make it visible</h4></div>
+          <p class="sm mt10">The event plane. One correlated context across agents and services, carrying both telemetry and triggers.</p>
+          <div class="rulehair"></div>
+          <p class="sm"><b>Removes the constraint:</b> improvement cannot be claimed without a baseline carrier, and triggers cannot exist without the spine.</p></div>
+        <div class="card col" style="background:var(--sig-wash);border-color:var(--sig-line)"><div style="display:flex;gap:10px;align-items:center"><span class="num sig">3</span><h4>Make writes safe</h4></div>
+          <p class="sm mt10">Capability grants and sandboxed execution. Authority that expires, inside a boundary that is declared.</p>
+          <div class="rulehair"></div>
+          <p class="sm"><b>Removes the constraint:</b> writes need both an expiring authority <i>and</i> a bounded runtime — and both need step one to know who is asking.</p></div>
+        <div class="card col"><div style="display:flex;gap:10px;align-items:center"><span class="num">4</span><h4>Pave the road</h4></div>
+          <p class="sm mt10">Templates, policy inheritance, tests, dashboards and documentation, encoding what steps one to three proved.</p>
+          <div class="rulehair"></div>
+          <p class="sm"><b>Removes the constraint:</b> the next squad no longer needs us — which is the only definition of success that survives our departure.</p></div>
+      </div>
+      <p class="mi" style="margin:16px 0 8px">WHAT BREAKS IF YOU REORDER — THE REASON THIS IS NOT NEGOTIABLE ON PREFERENCE ALONE</p>
+      <table><thead><tr><th style="width:250px">Tempting reorder</th><th style="width:200px">Why it is tempting</th><th>What actually happens</th></tr></thead><tbody>
+        <tr><td><b>Paved road first</b></td><td class="sm">It is the visible deliverable, and platform teams ask for it.</td><td class="sm">Templates can only encode conventions that already exist. Build the road first and you template guesses — then every squad inherits those guesses, and unpicking them costs more than the road saved.</td></tr>
+        <tr><td><b>Sandboxing first</b></td><td class="sm">It looks like the safety-critical piece, so it feels responsible.</td><td class="sm">A sandbox with nothing to grant to is a container with extra steps. Isolation without an authority model bounds the runtime but not the permission — which is the part that actually goes wrong.</td></tr>
+        <tr><td><b>Event plane last</b></td><td class="sm">It reads as observability, which sounds like a phase-two concern.</td><td class="sm">You lose the baseline. Improvement claimed without a pre-measured baseline is unfalsifiable, and gate 2 becomes a matter of opinion rather than evidence.</td></tr>
+        <tr><td><b>Business capability first</b></td><td class="sm">It is the one the board asked about.</td><td class="sm">You learn the fabric and an unfamiliar business domain simultaneously, with customer exposure. That is how twelve weeks becomes twenty — and the failure gets attributed to the architecture rather than the sequencing.</td></tr>
+      </tbody></table>
+      <div class="card mt14" style="padding:12px 18px;border-left:3px solid var(--sig)">
+        <p class="sm"><b>The question worth asking us:</b> is there a constraint in <span class="ph">[CLIENT]</span>'s environment that forces a different order? A long identity-provider change window, for example, sometimes genuinely requires splitting step one. We would rather redesign the sequence in week zero than discover the constraint in week four.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 21 TWELVE WEEKS -->
+<section class="slide dense" data-sec="The path">
+  <template class="nt"><p><b>Walk the gates, not the phases.</b> Phases are activity; gates are decisions, and the sponsor only cares about decisions.</p><p><b>The number to emphasise is week three.</b> "Three weeks from Monday you have agents reviewing pull requests on a real repository. Everything after that is widening and hardening."</p><p><b>Ask the calendar question before you finish:</b> "What falls inside this window on your side — change freezes, quarter close, audits, holidays?" Freezes have derailed more of these than any technical risk.</p></template>
+  <div class="pad">
+    <div class="shead tight-head"><div class="snum">05</div><div>
       <div class="eyebrow">The path · the plan</div>
-      <h2>Agents reviewing real pull requests in week three.</h2>
-      <p class="lead">Four phases, four one-page gates, circulated 24 hours ahead. Starting <span class="ph">[START DATE]</span>.</p></div></div>
+      <h2>Agents review real pull requests in week three; everything after that is widening and hardening.</h2></div></div>
     <div class="body">
       <div class="tl">
         <div class="tl-axis"><span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span><span>W7</span><span>W8</span><span>W9</span><span>W10</span><span>W11</span><span>W12</span></div>
-        <div class="tl-row"><div class="bar" style="grid-column:1/3;background:var(--p1)"><b>Phase 1 · Frame</b><small>Squad, tiers, baselines, access</small></div></div>
-        <div class="tl-row"><div class="bar" style="grid-column:3/6;background:var(--sig)"><b>Phase 2 · First agents live</b><small>Agentic review on a real repo · event plane · registry</small></div></div>
-        <div class="tl-row"><div class="bar" style="grid-column:6/10;background:var(--p2)"><b>Phase 3 · Build the paved road</b><small>Templates, grants, sandboxing, more capabilities, dashboards</small></div></div>
-        <div class="tl-row"><div class="bar" style="grid-column:10/13;background:var(--p3)"><b>Phase 4 · Hand over</b><small>Second squad onboards unassisted · crosswalk · roadmap</small></div></div>
+        <div class="tl-row"><div class="bar" style="grid-column:1/3;background:var(--p1)"><b>Phase 1 · Name things</b><small>Squad, tiers, registry, baselines, access</small></div></div>
+        <div class="tl-row"><div class="bar" style="grid-column:3/6;background:var(--sig)"><b>Phase 2 · Make it visible, then safe</b><small>Event plane · first agents live on a real repo · grants</small></div></div>
+        <div class="tl-row"><div class="bar" style="grid-column:6/10;background:var(--p2)"><b>Phase 3 · Widen and harden</b><small>Sandboxed writes, more capabilities, dashboards, invariant tests</small></div></div>
+        <div class="tl-row"><div class="bar" style="grid-column:10/13;background:var(--p3)"><b>Phase 4 · Pave the road, hand over</b><small>Templates · second squad onboards unassisted · crosswalk</small></div></div>
         <div class="tl-row" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--rule)">
-          <div class="gate" style="grid-column:2/4"><i></i><span>GATE 1<br>Baselines<br>fixed</span></div>
+          <div class="gate" style="grid-column:2/4"><i></i><span>GATE 1<br>Baselines<br>frozen</span></div>
           <div class="gate" style="grid-column:5/7"><i></i><span>GATE 2<br>Agents<br>delivering</span></div>
-          <div class="gate" style="grid-column:9/11"><i></i><span>GATE 3<br>Road<br>proven</span></div>
+          <div class="gate" style="grid-column:9/11"><i></i><span>GATE 3<br>Invariants<br>tested</span></div>
           <div class="gate" style="grid-column:12/13;justify-self:end"><i></i><span>GATE 4<br>Handover<br>accepted</span></div>
         </div>
       </div>
       <div class="g4 mt14">
-        <div class="card" style="padding:13px 16px"><p class="mi">GATE 1 · WEEK 2</p><p class="sm mt6">Squad named, tiers agreed, value baselines measured and frozen, environments live.</p></div>
+        <div class="card" style="padding:13px 16px"><p class="mi">GATE 1 · WEEK 2</p><p class="sm mt6">Squad named, tiers agreed, value-tree inputs measured and frozen, environments live.</p></div>
         <div class="card sig" style="padding:13px 16px"><p class="mi">GATE 2 · WEEK 5</p><p class="sm mt6"><b>The one that matters.</b> Agents reviewing real pull requests, first throughput numbers against baseline, event plane carrying evidence.</p></div>
-        <div class="card" style="padding:13px 16px"><p class="mi">GATE 3 · WEEK 9</p><p class="sm mt6">Templates and grants proven on a second capability. Crosswalk drafted with your assessors' frameworks.</p></div>
+        <div class="card" style="padding:13px 16px"><p class="mi">GATE 3 · WEEK 9</p><p class="sm mt6">Five invariants tested with your adversarial cases. Crosswalk drafted against your assessors' frameworks.</p></div>
         <div class="card" style="padding:13px 16px"><p class="mi">GATE 4 · WEEK 12</p><p class="sm mt6">A second squad onboarded with us out of the room. Ownership transferred, roadmap agreed.</p></div>
       </div>
     </div>
   </div>
-  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Risks, dependencies and stop conditions in appendix A6</span></div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Risks, dependencies and stop conditions in appendix A7</span></div>
 </section>
 
-<!-- 21 DAY 1 / 30 / 90 -->
+<!-- 22 DAY 1 / 30 / 90 -->
 <section class="slide" data-sec="The path">
-  <template class="nt"><p><b>The executive's favourite slide, because it answers the only question they hold: what will exist that does not exist now?</b></p><p>Every item is a noun. If it cannot be opened, run or read, it is not on this slide.</p><p><b>The line to land at the end:</b> "Everything in the third column is yours whether or not you continue with us. That is deliberate — a capability you cannot operate without its authors is not a capability."</p></template>
+  <template class="nt"><p><b>The executive's favourite slide, because it answers the only question they hold: what will exist that does not exist now?</b></p><p>Every item is a noun. If it cannot be opened, run or read, it is not on this slide.</p><p><b>The line to land at the end:</b> "Everything in the third column is yours whether or not you continue with us. A capability you cannot operate without its authors is not a capability."</p></template>
   <div class="pad">
     <div class="shead"><div class="snum">05</div><div>
       <div class="eyebrow">The path · what exists when</div>
-      <h2>Every item is a noun you can point at.</h2>
-      <p class="lead">No workstreams, no enablement, no alignment. If it cannot be opened, run or read, it is not on this slide.</p></div></div>
+      <h2>Every item below is a noun you can open, run or read.</h2>
+      <p class="lead">No workstreams, no enablement, no alignment. If it cannot be pointed at, it is not on this slide.</p></div></div>
     <div class="body">
       <div class="g3" style="gap:16px;flex:1;min-height:0">
         <div class="card col"><span class="chip">Day 1 · end of week 1</span>
           <div class="col mt10" style="gap:8px">
             <p class="sm">The <b>first squad</b> named, with a product owner</p>
             <p class="sm">Three <b>risk tiers</b> defined, with an assignment owner</p>
-            <p class="sm">Value <b>baselines measured</b> — review latency, rework, lead time</p>
+            <p class="sm">Value-tree inputs <b>measured</b> — review latency, rework, lead time</p>
             <p class="sm">Seven <b>named people</b> and a fixed weekly slot</p>
             <p class="sm">A <b>decision log</b> with entries in it</p>
             <p class="sm">Environment and repository access <b>requested, with dates</b></p>
@@ -1354,7 +1415,7 @@ body.help #help{display:grid}
             <p class="sm">A <b>capability portal</b> showing what exists, who owns it and whether it is healthy</p>
             <p class="sm">A <b>control crosswalk</b> with sample evidence, reviewed by your assessors</p>
             <p class="sm">A <b>second squad</b> that onboarded from documentation alone</p>
-            <p class="sm">A <b>measured value report</b> and an agreed next-quarter roadmap</p>
+            <p class="sm">A <b>measured value report</b> against the value tree, and a next-quarter roadmap</p>
           </div>
           <div class="rulehair"></div>
           <p class="sm"><b>All of it yours whether or not you continue with us.</b></p></div>
@@ -1364,14 +1425,13 @@ body.help #help{display:grid}
   <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>A capability you cannot operate without its authors is not a capability</span></div>
 </section>
 
-<!-- 22 WHAT WE NEED -->
-<section class="slide" data-sec="The path">
-  <template class="nt"><p><b>Access is where twelve-week engagements quietly become sixteen-week engagements.</b></p><p><b>Say the arithmetic plainly:</b> "If repository and environment access lands in week three instead of week one, gate 2 moves to week seven and everything shifts. I am not being dramatic — that is just the arithmetic."</p><p><b>Ask the question people underestimate:</b> "How long does a namespace, an IdP tenant and repository access genuinely take here — not the SLA, the reality?" The honest answer is often weeks, which means it starts before the contract is signed.</p><p><b>The best possible outcome of this slide</b> is someone saying "I can get you that on Thursday" — write their name next to it, out loud.</p></template>
+<!-- 23 WHAT WE NEED -->
+<section class="slide dense" data-sec="The path">
+  <template class="nt"><p><b>Access is where twelve-week engagements quietly become sixteen-week engagements.</b></p><p><b>Say the arithmetic plainly:</b> "If repository and environment access lands in week three instead of week one, gate 2 moves to week seven and everything shifts. I am not being dramatic — that is the arithmetic."</p><p><b>Ask the question people underestimate:</b> "How long does a namespace, an IdP tenant and repository access genuinely take here — not the SLA, the reality?" The honest answer is often weeks, which means it starts before the contract is signed.</p><p><b>Best possible outcome:</b> someone says "I can get you that on Thursday" — write their name next to it, out loud.</p></template>
   <div class="pad">
-    <div class="shead"><div class="snum">05</div><div>
-      <div class="eyebrow">The path · what we need</div>
-      <h2>Three things, and the dates that matter.</h2>
-      <p class="lead">If access lands in week three instead of week one, gate 2 moves to week seven. That is not a complaint — it is arithmetic, and it is the most common way this plan slips.</p></div></div>
+    <div class="shead tight-head"><div class="snum">05</div><div>
+      <div class="eyebrow">The path · dependencies</div>
+      <h2>Three dependencies, and the dates that decide whether gate 2 holds.</h2></div></div>
     <div class="body">
       <div class="g3" style="gap:16px;flex:1;min-height:0">
         <div class="card sig col"><span class="chip sig">Access</span>
@@ -1392,7 +1452,7 @@ body.help #help{display:grid}
             <tr><td class="sm">Three risk tiers, and who assigns them</td><td class="mi">W1</td></tr>
             <tr><td class="sm">Incumbent platforms confirmed</td><td class="mi">W1</td></tr>
             <tr><td class="sm">Data class that is out of bounds</td><td class="mi">W1</td></tr>
-            <tr><td class="sm">Value baselines measured and frozen</td><td class="mi">W2</td></tr>
+            <tr><td class="sm">Value-tree inputs measured and frozen</td><td class="mi">W2</td></tr>
             <tr><td class="sm">What "good enough to merge" means here</td><td class="mi">W2</td></tr>
           </tbody></table></div>
         <div class="card col"><span class="chip">People &amp; rhythm</span>
@@ -1411,9 +1471,9 @@ body.help #help{display:grid}
   <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
 </section>
 
-<!-- 23 DECISIONS -->
+<!-- 24 DECISIONS -->
 <section class="slide" data-sec="Close">
-  <template class="nt"><p><b>Ten minutes. Work the room decision by decision — do not present this.</b></p><p><b>Say:</b> "I am going to ask for each of these individually. Where we cannot decide today, I want a name and a date rather than a maybe."</p><p>A "we'll come back to it" with no owner is a no, and it will surface as a slipped gate in week three. Write the answers on the slide, in front of them.</p><p><b>Then read back what was agreed, out loud, before anyone leaves the room</b> — and send it in writing inside 24 hours. Nothing agreed here survives on memory alone.</p></template>
+  <template class="nt"><p><b>Ten minutes. Work the room decision by decision — do not present this.</b></p><p><b>Say:</b> "I am going to ask for each of these individually. Where we cannot decide today, I want a name and a date rather than a maybe."</p><p>A "we'll come back to it" with no owner is a no, and it will surface as a slipped gate in week three. Write the answers on the slide, in front of them.</p><p><b>Then read back what was agreed, out loud, before anyone leaves</b> — and send it in writing inside 24 hours.</p></template>
   <div class="pad">
     <div class="shead"><div class="snum">06</div><div>
       <div class="eyebrow">Close</div>
@@ -1425,22 +1485,22 @@ body.help #help{display:grid}
         <tr><td><span class="num sig">2</span></td><td><b>Agentic delivery as the first workload</b></td><td class="sm">Confirmation that we start with code review, test generation and deploy gating — and that business capabilities are path two, designed in week ten.</td><td class="mi">—</td><td><span class="chip gold">Open</span></td></tr>
         <tr><td><span class="num sig">3</span></td><td><b>The incumbent platforms</b></td><td class="sm">Which identity provider, observability backend, gateway and event bus we build on rather than replace.</td><td class="mi">—</td><td><span class="chip gold">Open</span></td></tr>
         <tr><td><span class="num sig">4</span></td><td><b>The seven roles and the rhythm</b></td><td class="sm">Names against slide 14 — or a date by which we will have them — and a fixed weekly slot starting this week.</td><td class="mi">—</td><td><span class="chip gold">Open</span></td></tr>
-        <tr><td><span class="num sig">5</span></td><td><b>The value measures</b></td><td class="sm">Which of the four drivers we report against, and who owns the baseline. We measure what you will actually be asked about.</td><td class="mi">—</td><td><span class="chip gold">Open</span></td></tr>
+        <tr><td><span class="num sig">5</span></td><td><b>The value-tree inputs</b></td><td class="sm">Which of the four drivers we report against, and who owns measuring the baseline. We measure what you will actually be asked about.</td><td class="mi">—</td><td><span class="chip gold">Open</span></td></tr>
       </tbody></table>
       <div class="g2 mt18" style="gap:16px">
         <div class="card sig" style="padding:14px 18px"><div class="eyebrow">Within 24 hours</div>
           <p class="sm mt6">Written confirmation of every decision above, access requests raised with dates, and the first weekly session in calendars. Nothing agreed in this room survives on memory alone.</p></div>
         <div class="card" style="padding:14px 18px"><div class="eyebrow">Within 5 working days</div>
-          <p class="sm mt6">The week-1 working session — half a day, the seven named people, baselines measured, and the estate map on slide 7 completed properly rather than live-edited.</p></div>
+          <p class="sm mt6">The week-1 working session — half a day, the seven named people, value-tree inputs measured, and the component map on slide 8 completed properly rather than live-edited.</p></div>
       </div>
     </div>
   </div>
   <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
 </section>
 
-<!-- 24 CLOSE -->
+<!-- 25 CLOSE -->
 <section class="slide dk" data-sec="Close">
-  <template class="nt"><p><b>The last thing you say. Fifteen seconds, then stop talking.</b></p><p>Do not offer to take more questions from the front of the room — take them individually while people pack up. That is where the real ones surface anyway.</p><p><b>If you want one line beyond the slide:</b> "Three weeks from Monday, an agent reviews a pull request on your codebase. Everything else on the canvas follows from getting that one thing right."</p></template>
+  <template class="nt"><p><b>The last thing you say. Fifteen seconds, then stop talking.</b></p><p>Do not offer to take more questions from the front of the room — take them individually while people pack up. That is where the real ones surface.</p><p><b>If you want one line beyond the slide:</b> "Three weeks from Monday, an agent reviews a pull request on your codebase. Everything else follows from getting that one thing right."</p></template>
   <div class="pad" style="justify-content:center">
     <div style="max-width:1030px">
       <div style="width:5px;height:170px;background:var(--sig-br);position:absolute;left:72px;top:258px"></div>
@@ -1450,7 +1510,7 @@ body.help #help{display:grid}
     </div>
   </div>
   <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span>
-    <span>One canvas</span><span>·</span><span>Twelve weeks</span><span>·</span>
+    <span>One canvas</span><span>·</span><span>Four ratios</span><span>·</span>
     <span>Agents reviewing real code in week three</span><span>·</span><span>Yours to run at week twelve</span></div>
 </section>
 <!-- A1 REFERENCE ARCHITECTURE -->
@@ -1850,10 +1910,10 @@ body.help #help{display:grid}
    m maturity [L1,L2,L3] · lv level the POC reaches (1-3) · s scope label */
 window.UNPACK = {
 /* ---- outcomes ---- */
-"o-velocity":{k:"Outcome",t:"Delivery velocity",w:"Software and capabilities ship faster because agents absorb the repetitive, well-specified work — review, tests, upgrades, release mechanics.",o:"Engineering leadership, with the AI practice",u:"Engineer time returned to design and judgement; shorter change lead time; less context-switching onto toil.",m:["One squad on agentic delivery, measured against its own baseline","All squads; cross-repository maintenance by fan-out","Routine maintenance held entirely by agents"],lv:1,s:"Measured from week 3"},
-"o-compliance":{k:"Outcome",t:"Agile compliance",w:"Evidence is emitted by the running system rather than assembled by analysts before a review. A control question becomes a query.",o:"Governance and risk, reading from the event plane",u:"Analyst days returned per control cycle; faster answers to novel regulatory questions; audit findings caught continuously rather than annually.",m:["Correlated evidence for every agent action","Evidence stream feeds risk reporting directly","New regulation lands as a policy change, not a programme"],lv:1,s:"Crosswalk delivered week 9"},
-"o-integration":{k:"Outcome",t:"Cross-functional integration",w:"Capabilities described in business terms rather than endpoints, so teams and systems compose without meeting first.",o:"Architecture, with data engineering",u:"Point-to-point integrations avoided; capability reuse instead of silo rebuild; ownership can change underneath a consumer without breaking it.",m:["Capability contracts with owners and schemas","Shared vocabulary across one or two domains","Federated ontology; integration becomes a property"],lv:1,s:"Contracts in POC; vocabulary later"},
-"o-cost":{k:"Outcome",t:"Cost to serve",w:"Each new capability is cheaper than the last because the fabric already exists. This is the compounding term and it dominates after two quarters.",o:"The executive sponsor",u:"Marginal cost of capability n falls toward the capability alone; platform spend decoupled from portfolio growth.",m:["Fabric built; capability #1 carries it","Marginal cost visibly falling across squads","Portfolio managed like microservices — reused, versioned, retired"],lv:1,s:"Modelled week 1, reported monthly"},
+"o-time":{k:"Ratio",t:"Time-to-capability",w:"Elapsed days from a business owner naming an outcome to a governed capability running in production — not to a demo, and not to a pilot.",o:"Product owner, with the AI practice",u:"The business stops treating agent capability as a quarterly programme and starts treating it as a request.",m:["First capability on templates; baseline measured","Squads self-serve; days rather than months","New capability is a same-week decision"],lv:1,s:"Baselined week 1, measured from week 5"},
+"o-cost":{k:"Ratio",t:"Cost-per-capability",w:"Fully loaded engineering cost of capability n. Capability #1 carries the whole fabric; capability #10 carries only itself.",o:"The executive sponsor",u:"The compounding term — the only driver that grows with every capability added, and the reason this is a platform decision rather than a project decision.",m:["Fabric built; #1 pays for it","Marginal cost visibly falling across squads","Portfolio managed like a microservice estate"],lv:1,s:"Modelled week 1, reported monthly"},
+"o-risk":{k:"Ratio",t:"Risk-per-capability",w:"Blast radius multiplied by exposure — and evidenced by the running system rather than asserted in a review. A capability manifest makes blast radius a diff rather than a discussion.",o:"Governance and risk",u:"Write actions become approvable at tier 1 and 2; the bespoke security queue becomes exception handling.",m:["Three tiers, manifests reviewed as code","Tier assignment self-served against criteria","Policy as code; regulation lands as a change"],lv:1,s:"Crosswalk delivered week 9"},
+"o-reuse":{k:"Ratio",t:"Reuse rate",w:"The share of a new capability composed from capabilities that already exist, rather than rebuilt. The direct measure of whether the fabric is working.",o:"Architecture, with the AI practice",u:"Integration cost avoided, and coherence that survives teams reorganising underneath it.",m:["Capability contracts with owners and schemas","Shared vocabulary across one or two domains","Composition is the default; rebuild is the exception"],lv:1,s:"Contracts in POC; measured from Q2"},
 
 /* ---- roles ---- */
 "r-product":{k:"Role",t:"Product & business owner",w:"Names the capability and the outcome it serves; accepts or rejects what ships. The person who can say yes without convening four others.",o:"—",u:"Capabilities that trace to an outcome rather than to a technology enthusiasm.",m:["Owns the first workload","Owns a capability backlog","Owns a capability portfolio"],lv:1,s:"About 2 hours a week"},
