@@ -1,0 +1,1537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="AEGISES Enterprise AI Operating Model — forward-deployed engineering proof-of-concept kickoff. Reference architecture, control contract, 12-week plan, success and kill criteria.">
+<meta name="robots" content="noindex">
+<title>AEGISES · Enterprise AI Operating Model — POC Kickoff</title>
+<style>
+/* ============================================================
+   AEGISES POC KICKOFF — design system
+   Palette validated with dataviz/scripts/validate_palette.js
+     depth ramp (ordinal, 4 steps) ...... ALL CHECKS PASS
+     white-on-fill ...................... 5.39 / 8.10 / 11.95 / 16.02
+     signal on light .................... 5.66   signal-br on dark .... 10.68
+   One ordinal hue for depth. One reserved accent for the control
+   contract. Knowledge plane is ghosted because it is out of POC scope.
+   ============================================================ */
+:root{
+  --paper:#FBFBFA; --card:#FFFFFF; --deep:#08172A; --deep2:#0C2740; --deep3:#123553;
+  --ink:#0B1622; --ink2:#46586B; --ink3:#7E8C9B; --rule:#E2E7EC; --rule2:#EFF2F5;
+  --w:#FFFFFF; --w2:#C7D6E2; --w3:#8AA3B8; --wrule:rgba(255,255,255,.16);
+  /* depth ramp — one hue, monotone lightness */
+  --p1:#256abf; --p2:#184f95; --p3:#0d366b; --p4:#08223f;
+  /* reserved accent: the control contract */
+  --sig:#0b6f7d; --sig-br:#5FD8E6; --sig-wash:#E6F4F6; --sig-line:#9CCED6;
+  /* north star (out of POC scope) */
+  --ns:#4a3aa7; --ns-wash:#F3F1FB; --ns-line:#C9C1EA;
+  /* status — fixed, always icon + label, never colour alone */
+  --ok:#0ca30c; --ok-t:#006300; --warn:#fab219; --warn-t:#7a5510;
+  --crit:#d03b3b; --crit-t:#b32d2d; --gold:#F5C451; --gold-t:#8a6210;
+  --sans:"Inter var",Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:#05101d;font-family:var(--sans);color:var(--ink);overflow:hidden;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+/* ---------- stage & scaling: fixed 1280x720 design space ---------- */
+#stage{position:fixed;inset:0;display:grid;place-items:center}
+#slides{width:1280px;height:720px;position:relative;transform-origin:center center;
+  box-shadow:0 40px 120px rgba(0,0,0,.55)}
+.slot{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none}
+.slot.on{opacity:1;visibility:visible;pointer-events:auto}
+.slide{width:1280px;height:720px;position:relative;overflow:hidden;background:var(--paper);
+  display:flex;flex-direction:column;font-size:16px;line-height:1.5}
+
+/* ---------- type scale ---------- */
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:600;color:var(--sig)}
+.dk .eyebrow{color:var(--sig-br)}
+h1{font-size:78px;line-height:.96;letter-spacing:-.038em;font-weight:800}
+h2{font-size:42px;line-height:1.1;letter-spacing:-.028em;font-weight:750}
+h3{font-size:20px;line-height:1.25;letter-spacing:-.012em;font-weight:750}
+h4{font-size:15px;line-height:1.3;letter-spacing:-.005em;font-weight:750}
+.lead{font-size:18px;line-height:1.5;color:var(--ink2);max-width:96ch}
+.dk .lead{color:var(--w2)}
+p,li{font-size:15.5px;line-height:1.52;color:var(--ink2)}
+.dk p,.dk li{color:var(--w2)}
+.sm{font-size:13.5px;line-height:1.45}
+.mi{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink3)}
+.dk .mi{color:var(--w3)}
+strong,b{font-weight:750;color:var(--ink)}
+.dk strong,.dk b{color:var(--w)}
+em{font-style:normal;color:var(--sig);font-weight:650}
+.dk em{color:var(--sig-br)}
+
+/* ---------- slide chrome ---------- */
+.pad{padding:52px 72px 0;flex:1;display:flex;flex-direction:column;min-height:0}
+.dk{background:var(--deep);color:var(--w)}
+.dk h1,.dk h2,.dk h3,.dk h4{color:var(--w)}
+.shead{display:grid;grid-template-columns:72px 1fr;gap:22px;margin-bottom:26px;flex:none}
+.snum{font-family:var(--mono);font-size:11px;letter-spacing:.16em;font-weight:600;color:var(--sig);
+  padding-top:6px;border-top:2px solid var(--sig)}
+.dk .snum{color:var(--sig-br);border-top-color:var(--sig-br)}
+.shead h2{margin-bottom:8px}
+.foot{flex:none;height:44px;display:flex;align-items:center;gap:14px;padding:0 72px;
+  border-top:1px solid var(--rule);font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink3)}
+.dk .foot{border-top-color:var(--wrule);color:var(--w3)}
+.foot .sp{flex:1}
+.foot .mark{font-weight:700;color:var(--ink2);letter-spacing:.2em}
+.dk .foot .mark{color:var(--w2)}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;padding-bottom:18px}
+
+/* ---------- primitives ---------- */
+.card{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:18px 20px}
+.dk .card{background:rgba(255,255,255,.045);border-color:var(--wrule)}
+.card.sig{border-color:var(--sig-line);background:var(--sig-wash)}
+.card.ns{border:1px dashed var(--ns-line);background:var(--ns-wash)}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.gap8{gap:8px}.gap10{gap:10px}
+.col{display:flex;flex-direction:column}
+.grow{flex:1;min-height:0}
+.mt6{margin-top:6px}.mt10{margin-top:10px}.mt14{margin-top:14px}.mt18{margin-top:18px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:3px 8px;border-radius:999px;
+  background:#EDF1F5;color:#4A5A6B}
+.dk .chip{background:rgba(255,255,255,.1);color:var(--w2)}
+.chip.sig{background:var(--sig-wash);color:var(--sig)}
+.chip.ns{background:var(--ns-wash);color:var(--ns)}
+.chip.ok{background:#E6F4E6;color:var(--ok-t)}
+.chip.warn{background:#FEF3DC;color:var(--warn-t)}
+.chip.crit{background:#FAE6E6;color:var(--crit-t)}
+.chip.gold{background:#FDF3DA;color:var(--gold-t)}
+.dot{width:8px;height:8px;border-radius:50%;flex:none;display:inline-block}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.crit{background:var(--crit)}
+.kbd{font-family:var(--mono);font-size:10px;padding:2px 6px;border-radius:5px;border:1px solid var(--rule);
+  background:#F4F6F8;color:var(--ink2)}
+.dk .kbd{background:rgba(255,255,255,.08);border-color:var(--wrule);color:var(--w2)}
+.ph{font-family:var(--mono);font-size:.88em;font-weight:700;color:var(--gold-t);
+  background:#FDF3DA;border-bottom:1.5px dashed #D9AE55;padding:0 3px;border-radius:3px}
+.dk .ph{color:var(--gold);background:rgba(245,196,81,.14);border-bottom-color:rgba(245,196,81,.6)}
+body.ph-hi .ph{outline:2px solid var(--gold);outline-offset:1px}
+.rulehair{height:1px;background:var(--rule);margin:14px 0}
+.dk .rulehair{background:var(--wrule)}
+.num{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex:none;
+  font-family:var(--mono);font-size:11px;font-weight:700;background:var(--deep);color:var(--w)}
+.dk .num{background:var(--sig-br);color:var(--deep)}
+.num.sig{background:var(--sig);color:var(--w)}
+
+/* ---------- tables ---------- */
+table{border-collapse:collapse;width:100%}
+th{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink3);font-weight:700;text-align:left;padding:0 12px 8px;border-bottom:1.5px solid var(--rule)}
+td{font-size:13.5px;line-height:1.42;color:var(--ink2);padding:10px 12px;
+  border-bottom:1px solid var(--rule2);vertical-align:top}
+td b{color:var(--ink);font-weight:700}
+tr:last-child td{border-bottom:0}
+.dk th{color:var(--w3);border-bottom-color:var(--wrule)}
+.dk td{color:var(--w2);border-bottom-color:rgba(255,255,255,.07)}
+.tnum{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:12.5px;color:var(--ink)}
+
+/* ---------- architecture diagram ---------- */
+.arch{display:flex;flex-direction:column;gap:6px}
+.lane{display:grid;grid-template-columns:196px 1fr;gap:8px;align-items:stretch}
+.lane-l{border-radius:11px;padding:11px 13px;color:var(--w);display:flex;flex-direction:column;
+  justify-content:center;position:relative}
+.lane-l b,.fabric b,.bar b{color:inherit}
+.lane-l b{font-size:14.5px;line-height:1.15;letter-spacing:-.01em;display:block}
+.lane-l small{font-size:10.5px;line-height:1.3;color:rgba(255,255,255,.82);display:block;margin-top:3px}
+.l1 .lane-l{background:var(--p1)} .l2 .lane-l{background:var(--sig);box-shadow:0 0 0 2px var(--sig-line)}
+.l3 .lane-l{background:var(--ns-wash);border:1px dashed var(--ns-line);color:var(--ns)}
+.l3 .lane-l small{color:#6B5FB5}
+.l4 .lane-l{background:var(--p2)} .l5 .lane-l{background:var(--p3)} .l6 .lane-l{background:var(--p4)}
+.nodes{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.node{border:1px solid var(--rule);border-radius:10px;background:var(--card);padding:9px 10px;
+  display:flex;flex-direction:column;justify-content:flex-start}
+.node b{font-size:12px;line-height:1.2;letter-spacing:-.005em;color:var(--ink);display:block}
+.node small{font-size:10px;line-height:1.28;color:var(--ink3);display:block;margin-top:3px}
+.l2 .node{border-color:var(--sig-line);background:var(--sig-wash)}
+.l3 .node{border:1px dashed var(--ns-line);background:var(--ns-wash)}
+.l3 .node b{color:var(--ns)}
+.fabric{margin-top:6px;border-radius:11px;padding:11px 16px;color:var(--w);
+  background:linear-gradient(90deg,var(--p4),var(--p3) 45%,var(--sig));
+  display:grid;grid-template-columns:196px 1fr;gap:8px;align-items:center}
+.fabric b{font-size:13.5px}
+.fabric small{font-size:10.5px;color:rgba(255,255,255,.85);display:block}
+.fabric .fx{font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;color:rgba(255,255,255,.95)}
+
+/* ---------- runtime path ---------- */
+.path{display:grid;grid-template-columns:repeat(8,1fr);gap:7px;position:relative}
+.step{border:1px solid var(--rule);border-radius:11px;background:var(--card);padding:12px 11px;
+  display:flex;flex-direction:column}
+.step .n{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--ink);
+  color:var(--w);font-family:var(--mono);font-size:10px;font-weight:700;margin-bottom:9px}
+.step b{font-size:12.5px;line-height:1.2;color:var(--ink);display:block}
+.step p{font-size:10.5px;line-height:1.33;margin-top:5px;color:var(--ink3)}
+.step.crux{background:var(--sig-wash);border-color:var(--sig-line)}
+.step.crux .n{background:var(--sig)}
+.evi{margin-top:14px;border:1px solid var(--rule);border-left:3px solid var(--sig);border-radius:10px;
+  background:#F6F8FA;padding:13px 16px;font-family:var(--mono);font-size:11px;line-height:1.75;color:var(--ink2)}
+.evi .k{color:var(--sig);font-weight:700}
+.evi .v{color:var(--ink)}
+
+/* ---------- timeline ---------- */
+.tl{position:relative;border:1px solid var(--rule);border-radius:14px;background:var(--card);padding:18px 20px 14px}
+.tl-axis{display:grid;grid-template-columns:repeat(12,1fr);gap:0;margin-bottom:12px}
+.tl-axis span{font-family:var(--mono);font-size:9.5px;color:var(--ink3);text-align:center;
+  border-left:1px solid var(--rule2);padding-bottom:4px}
+.tl-row{display:grid;grid-template-columns:repeat(12,1fr);gap:0;margin-bottom:7px;position:relative}
+.bar{grid-row:1;min-height:50px;border-radius:8px;padding:8px 12px;color:var(--w);display:flex;
+  flex-direction:column;justify-content:center;margin-right:3px}
+.bar b{font-size:11.5px;line-height:1.18}
+.bar small{font-size:9.5px;line-height:1.25;color:rgba(255,255,255,.82);margin-top:2px}
+.gate{display:flex;flex-direction:column;align-items:center;gap:5px}
+.gate i{width:11px;height:11px;background:var(--gold);transform:rotate(45deg);display:block;
+  border:1.5px solid #B98C22}
+.gate span{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--gold-t);text-align:center;line-height:1.25}
+
+/* ---------- density modifiers (applied where measurement showed overflow) ---------- */
+.slide.dense .pad{padding-top:40px}
+.slide.dense .shead{margin-bottom:16px}
+.slide.dense h2{font-size:33px;line-height:1.12}
+.slide.dense .lead{font-size:15px;line-height:1.42}
+.slide.dense th{padding:0 10px 6px}
+.slide.dense td{padding:6px 10px;font-size:12.5px;line-height:1.34}
+.slide.dense .sm{font-size:12.5px;line-height:1.36}
+.slide.dense p,.slide.dense li{font-size:13.5px;line-height:1.4}
+.slide.dense .body{padding-bottom:12px}
+.slide.dense .num{width:22px;height:22px;font-size:10px}
+.slide.dense .mt14{margin-top:10px}
+.slide.dense .mt18{margin-top:12px}
+.slide.dense .card{padding:14px 16px}
+.slide.dense h3{font-size:18px}
+.slide.dense h4{font-size:14px}
+.slide.dense .col.gap8,.slide.dense .col[style*="gap:9px"],.slide.dense .col[style*="gap:8px"]{gap:6px!important}
+/* architecture slide runs six lanes plus the fabric — trim the node box, not the type hierarchy */
+.slide.archs .arch{gap:5px}
+.slide.archs .lane-l{padding:9px 12px}
+.slide.archs .lane-l b{font-size:13.5px}
+.slide.archs .lane-l small{font-size:10px}
+.slide.archs .node{padding:7px 9px}
+.slide.archs .node b{font-size:11.5px}
+.slide.archs .node small{font-size:9.5px;margin-top:2px}
+.slide.archs .fabric{padding:9px 14px;margin-top:5px}
+.slide.archs .shead{margin-bottom:18px}
+.slide.archs .pad{padding-top:44px}
+
+/* ---------- overview & presenter ---------- */
+body.ov #slides{width:auto;height:auto;transform:none!important;box-shadow:none;display:grid;
+  grid-template-columns:repeat(5,224px);gap:16px;padding:26px;overflow:auto;max-height:100vh}
+body.ov #stage{place-items:start center;overflow:auto}
+body.ov .slot{position:relative;inset:auto;opacity:1;visibility:visible;pointer-events:auto;
+  width:224px;height:126px;overflow:hidden;border-radius:7px;cursor:pointer;
+  outline:1px solid rgba(255,255,255,.14);transition:outline-color .12s}
+body.ov .slot:hover{outline:2px solid var(--sig-br)}
+body.ov .slot.on{outline:2px solid var(--gold)}
+body.ov .slot .slide{transform:scale(.175);transform-origin:top left}
+body.ov .slot::after{content:attr(data-n);position:absolute;right:5px;bottom:4px;font-family:var(--mono);
+  font-size:9px;color:#fff;background:rgba(0,0,0,.6);padding:1px 5px;border-radius:4px}
+#pres{position:fixed;right:0;top:0;bottom:0;width:380px;background:#07131f;color:var(--w2);
+  border-left:1px solid rgba(255,255,255,.12);padding:22px 24px;overflow:auto;transform:translateX(100%);
+  transition:transform .18s ease;z-index:60;font-size:13.5px;line-height:1.55}
+body.pres #pres{transform:none}
+body.pres #stage{padding-right:380px}
+#pres h5{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sig-br);margin-bottom:10px;font-weight:700}
+#pres .nt p{color:var(--w2);font-size:13.5px;margin-bottom:9px}
+#pres .nt li{color:var(--w2);font-size:13px;margin:0 0 5px 16px}
+#pres .nt b{color:var(--w)}
+#pres .clock{font-family:var(--mono);font-size:28px;color:var(--w);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+#pres .nxt{margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12);
+  font-size:12.5px;color:var(--w3)}
+#bar{position:fixed;left:0;bottom:0;height:3px;background:var(--sig-br);z-index:70;transition:width .18s}
+#hud{position:fixed;right:14px;bottom:12px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  color:rgba(255,255,255,.72);background:rgba(4,12,22,.72);padding:4px 9px;border-radius:6px;
+  z-index:70;text-transform:uppercase;opacity:0;transition:opacity .3s;pointer-events:none}
+#hud.show,body.pres #hud,body.ov #hud{opacity:1}
+#help{position:fixed;inset:0;background:rgba(4,12,22,.93);z-index:80;display:none;place-items:center;
+  color:var(--w2);font-size:14px}
+body.help #help{display:grid}
+#help div{max-width:520px}
+#help table{width:100%}#help td{color:var(--w2);border-bottom-color:rgba(255,255,255,.08);padding:7px 10px}
+.frag{opacity:.16;transition:opacity .22s}
+.frag.vis{opacity:1}
+
+/* ---------- print: one 16:9 page per slide ---------- */
+@page{size:1280px 720px;margin:0}
+@media print{
+  body{overflow:visible;background:#fff}
+  #stage{position:static;display:block;padding:0!important}
+  #slides{width:1280px;height:auto;transform:none!important;box-shadow:none;display:block}
+  .slot{position:relative!important;inset:auto!important;opacity:1!important;visibility:visible!important;
+    width:1280px;height:720px;overflow:hidden;break-after:page;page-break-after:always}
+  .slot .slide{transform:none!important}
+  .frag{opacity:1!important}
+  #pres,#bar,#hud,#help{display:none!important}
+  .slide{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media (max-width:700px){#hud{display:none}}
+</style>
+</head>
+<body>
+<div id="stage"><div id="slides">
+<!-- 01 COVER -->
+<section class="slide dk" data-sec="Open">
+  <template class="nt"><p><b>Before you speak.</b> Do not start on this slide. Let it sit for fifteen seconds while the room settles.</p><p><b>Open with the room, not the deck:</b> "There are six disciplines in this room and every one of you has been in a meeting like this before. Most of them didn't ship. I want to tell you in the first ten minutes exactly what would make this one different — and exactly what would make us stop."</p><p><b>Say the timebox out loud:</b> 90 minutes. 35 on architecture, 25 on your estate, 20 on the plan, 10 on decisions.</p></template>
+  <div class="pad" style="justify-content:center;position:relative">
+    <div class="deco" style="position:absolute;right:-160px;top:-40px;width:560px;height:560px;border-radius:50%;border:1px solid rgba(255,255,255,.09);box-shadow:0 0 0 70px rgba(255,255,255,.022),0 0 0 140px rgba(255,255,255,.014)"></div>
+    <div class="deco" style="position:absolute;right:96px;top:210px;width:150px;height:150px;border-radius:50%;border:1px solid rgba(95,216,230,.34)"></div>
+    <div style="max-width:820px;position:relative">
+      <div class="eyebrow">Forward-deployed engagement · Proof of concept kickoff</div>
+      <h1 style="margin:20px 0 0">Enterprise AI<br>Operating Model</h1>
+      <div style="width:72px;height:3px;background:var(--sig-br);margin:26px 0 22px"></div>
+      <p class="lead" style="font-size:20px;max-width:660px">Giving enterprise agents useful freedom without granting ambient authority — and the twelve-week plan to prove it on one real path in <span class="ph">[CLIENT]</span>'s estate.</p>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span>
+    <span>Client · <span class="ph">[CLIENT]</span></span><span>·</span><span>Kickoff · <span class="ph">[DATE]</span></span>
+    <span>·</span><span>Ref · <span class="ph">[ENGAGEMENT ID]</span></span><span>·</span><span>Confidential</span></div>
+</section>
+
+<!-- 02 AGENDA -->
+<section class="slide" data-sec="Open">
+  <template class="nt"><p><b>The one job framing is the whole point of this slide.</b> Kickoffs fail when they end in "great, send us the deck." This one ends in five named decisions.</p><p>Point at the right-hand column and say: <b>"If we get to minute 90 and these five are still open, this session failed — and I'd rather find that out today than in week six."</b></p><p>Invite interruption explicitly: "Architecture questions land in section 2. Anything about your estate, hold for section 3 — but if I say something that is factually wrong about your environment, stop me immediately. I would rather be corrected in minute 12 than build on it for a month."</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">00</div><div>
+      <div class="eyebrow">How this session works</div>
+      <h2>This session has one job: leave the room with five decisions made.</h2>
+      <p class="lead">Everything else is context for those five. If we run out of time, we cut architecture depth — not the decisions.</p></div></div>
+    <div class="body">
+      <div style="display:grid;grid-template-columns:1.35fr 1fr;gap:26px;flex:1;min-height:0">
+        <div class="col gap10">
+          <table><thead><tr><th style="width:58px">Time</th><th>Section</th><th style="width:210px">Primarily for</th></tr></thead><tbody>
+            <tr><td class="tnum">0:00</td><td><b>The case</b> — why the control problem is already live</td><td class="sm">Executives · AI practice</td></tr>
+            <tr><td class="tnum">0:12</td><td><b>Reference architecture</b> — six planes, one crossing fabric</td><td class="sm">Architects · Platform</td></tr>
+            <tr><td class="tnum">0:47</td><td><b>Your estate</b> — reuse, extend, gap by discipline</td><td class="sm">All lanes</td></tr>
+            <tr><td class="tnum">1:12</td><td><b>The proof of concept</b> — scope, success, kill criteria, plan</td><td class="sm">Everyone</td></tr>
+            <tr><td class="tnum">1:32</td><td><b>Decisions</b></td><td class="sm">Executive sponsor</td></tr>
+          </tbody></table>
+          <div class="card mt6" style="padding:14px 18px"><p class="sm"><b>Interrupt on facts, hold on opinions.</b> If we state something about your environment that is wrong, correct us immediately — we would rather be wrong in minute 12 than build on it for a month.</p></div>
+        </div>
+        <div class="card sig col"><div class="eyebrow">Leaving with</div>
+          <h3 class="mt6" style="margin-bottom:12px">Five decisions</h3>
+          <div class="col gap8" style="gap:11px">
+            <div style="display:flex;gap:10px"><span class="num sig">1</span><p class="sm">The <b>first path</b> and its accountable owner</p></div>
+            <div style="display:flex;gap:10px"><span class="num sig">2</span><p class="sm">The <b>risk tiers</b> and who assigns them</p></div>
+            <div style="display:flex;gap:10px"><span class="num sig">3</span><p class="sm">Reuse-first <b>incumbents</b> for identity, telemetry, gateway</p></div>
+            <div style="display:flex;gap:10px"><span class="num sig">4</span><p class="sm">The <b>joint team</b> and weekly gate cadence</p></div>
+            <div style="display:flex;gap:10px"><span class="num sig">5</span><p class="sm">The <b>kill criteria</b> — approved as written, or amended today</p></div>
+          </div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 03 READING GUIDE -->
+<section class="slide" data-sec="Open">
+  <template class="nt"><p><b>This slide buys you credibility with a mixed room.</b> Six disciplines are sitting here and five of them are worried they are about to sit through someone else's meeting.</p><p>Say: "Everyone gets sections 1 and 4. Section 2 is for the architects. Section 3 has a page addressed to each of you by name. Nobody is decoration in this room."</p><p>If the CIO has to leave early, tell them now which four slides matter: <b>4, 8, 25, 32.</b></p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">00</div><div>
+      <div class="eyebrow">Navigation</div>
+      <h2>Six disciplines are in this room. None of them is an audience.</h2>
+      <p class="lead">Each lane has a page written specifically for it. If you only have ten minutes, read slides 4, 8, 25 and 32 — that is the whole argument and the whole commitment.</p></div></div>
+    <div class="body">
+      <div class="g3" style="flex:1;min-height:0">
+        <div class="card col"><span class="chip">Depth 1 · 10 min</span><h3 class="mt10">Executive</h3>
+          <p class="sm mt6">What is being claimed, what it costs, what would make us stop, and what you are deciding today.</p>
+          <div class="rulehair"></div><p class="mi">Slides 04 · 08 · 25 · 26 · 32</p></div>
+        <div class="card col"><span class="chip sig">Depth 2 · 35 min</span><h3 class="mt10">Architecture &amp; platform</h3>
+          <p class="sm mt6">The six planes, the runtime path every consequential call follows, the five invariants and how each one is tested.</p>
+          <div class="rulehair"></div><p class="mi">Slides 09 – 15 · 17</p></div>
+        <div class="card col"><span class="chip">Depth 3 · 25 min</span><h3 class="mt10">Discipline lanes</h3>
+          <p class="sm mt6">One page each for platform &amp; DevOps, data governance, data engineering, AI practice, and security &amp; audit — what changes, and what does not.</p>
+          <div class="rulehair"></div><p class="mi">Slides 18 – 21</p></div>
+      </div>
+      <div class="card mt14" style="padding:13px 18px;display:flex;align-items:center;gap:18px">
+        <span class="chip gold">Template</span>
+        <p class="sm" style="flex:1">Fields in <span class="ph">[BRACKETS]</span> are discovery inputs, not claims — they are filled from the week-0 intake sheet in the appendix. Press <span class="kbd">E</span> to highlight every one of them on any slide.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 04 THE PREMISE (dark statement) -->
+<section class="slide dk" data-sec="The case">
+  <template class="nt"><p><b>This is the slide the whole engagement rests on. Slow down.</b></p><p>The move: do not argue that agents are dangerous. Argue that <b>the authority already exists</b> and is simply unattributed. That reframes the conversation from "should we allow this" — which invites a political fight — to "can we see what we already allowed," which nobody can argue against.</p><p><b>The question to ask the room, then wait:</b> "If an agent took a consequential action in your estate last Tuesday, how long would it take to tell me which human that authority traces back to?" Let the silence do the work. Do not rescue them.</p><p>If someone says "we don't have agents in production yet" — that's the best possible answer. Say: "Then you get to build the boundary before the estate exists. That is the cheapest this will ever be."</p></template>
+  <div class="pad" style="justify-content:center">
+    <div style="max-width:1000px">
+      <div class="eyebrow">01 / The case</div>
+      <h1 style="font-size:62px;margin:22px 0 0;max-width:1020px">Your agents already have authority.<br>Today it is ambient, unattributable,<br>and effectively un-revocable.</h1>
+      <div style="width:72px;height:3px;background:var(--sig-br);margin:30px 0 24px"></div>
+      <p class="lead" style="max-width:880px;font-size:19px">Every service account, long-lived key and shared secret an agent can reach is a standing grant that no one issued, no one reviews, and no one can withdraw inside a day. The hard part was never making agents call tools. It is making every consequential action <em>discoverable, authorizable, constrainable, interruptible, observable and explainable</em>.</p>
+      <div class="g4 mt18" style="max-width:1000px;margin-top:34px">
+        <div><p class="mi" style="letter-spacing:.14em">DISCOVER</p><p class="sm" style="margin-top:5px">Find capability, owner, health, version</p></div>
+        <div><p class="mi" style="letter-spacing:.14em">GOVERN</p><p class="sm" style="margin-top:5px">Decide who may perform which action</p></div>
+        <div><p class="mi" style="letter-spacing:.14em">EXECUTE</p><p class="sm" style="margin-top:5px">Run inside a bounded, observable path</p></div>
+        <div><p class="mi" style="letter-spacing:.14em">REACT</p><p class="sm" style="margin-top:5px">Turn evidence into governed automation</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 05 FOUR STALL PATTERNS -->
+<section class="slide" data-sec="The case">
+  <template class="nt"><p><b>Do not present this. Diagnose with it.</b> Read the four tells aloud and ask the room which one they recognise. Someone always laughs at one of them — that is the one they have.</p><p>Each pattern's root cause maps to a specific plane of the architecture, which is how you earn the transition into section 2. Say the mapping out loud.</p><p><b>Watch for:</b> the exec picking pattern 1 while the platform lead picks pattern 2. That disagreement is diagnostic gold — it means the AI team and the platform team have not spoken. Note it and raise it in the working-model slide.</p><p>Timing: 4 minutes. Do not let this become a war-story session.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">01</div><div>
+      <div class="eyebrow">The case</div>
+      <h2>Enterprise agent programs stall in four recognisable ways.</h2>
+      <p class="lead">Not one of these is a model problem. Each is an operating-model problem wearing a model problem's clothes. Which of these four sounds most like <span class="ph">[CLIENT]</span> today?</p></div></div>
+    <div class="body">
+      <div class="g4" style="flex:1;min-height:0">
+        <div class="card col"><span class="chip crit"><span class="dot crit"></span>Pattern 01</span>
+          <h3 class="mt10">The pilot that cannot graduate</h3>
+          <p class="sm mt6"><b>Tell:</b> "We have forty pilots and nothing in production."</p>
+          <div class="rulehair"></div>
+          <p class="sm"><b>Root cause:</b> no control contract, so every promotion triggers a bespoke security review that never finishes.</p>
+          <p class="mi" style="margin-top:auto;padding-top:10px">→ Control plane</p></div>
+        <div class="card col"><span class="chip crit"><span class="dot crit"></span>Pattern 02</span>
+          <h3 class="mt10">The parallel estate</h3>
+          <p class="sm mt6"><b>Tell:</b> the AI team has stood up its own identity, secrets and logging.</p>
+          <div class="rulehair"></div>
+          <p class="sm"><b>Root cause:</b> agents treated as a new platform rather than a new class of actor inside the platform you already run.</p>
+          <p class="mi" style="margin-top:auto;padding-top:10px">→ Platform plane</p></div>
+        <div class="card col"><span class="chip warn"><span class="dot warn"></span>Pattern 03</span>
+          <h3 class="mt10">The ontology cathedral</h3>
+          <p class="sm mt6"><b>Tell:</b> "We are fourteen months into the enterprise data model."</p>
+          <div class="rulehair"></div>
+          <p class="sm"><b>Root cause:</b> shared semantics made a prerequisite instead of a destination, so nothing consequential ever ships.</p>
+          <p class="mi" style="margin-top:auto;padding-top:10px">→ Knowledge plane</p></div>
+        <div class="card col"><span class="chip crit"><span class="dot crit"></span>Pattern 04</span>
+          <h3 class="mt10">The unauditable win</h3>
+          <p class="sm mt6"><b>Tell:</b> "It works, but Risk will not sign it off."</p>
+          <div class="rulehair"></div>
+          <p class="sm"><b>Root cause:</b> "the model decided" was offered as an audit explanation, and no dashboard can repair that after the fact.</p>
+          <p class="mi" style="margin-top:auto;padding-top:10px">→ Telemetry fabric</p></div>
+      </div>
+      <div class="card mt14" style="padding:13px 18px;border-left:3px solid var(--sig)">
+        <p class="sm"><b>The common root:</b> all four begin by choosing products, then discover the responsibilities afterwards. This architecture inverts that order — and that inversion is the entire proposition.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 06 QUOTE -->
+<section class="slide dk" data-sec="The case">
+  <template class="nt"><p><b>Twenty seconds. Do not elaborate.</b> The temptation is to explain it — don't. It is the sentence people will repeat in the meeting after this one, and explanation dilutes it.</p><p>If you say anything, say only: "Notice what that sentence does not say. It does not say 'safe'. It says <b>governed with confidence</b> — and confidence is a measurable property, which is what makes the next eighty minutes possible."</p></template>
+  <div class="pad" style="justify-content:center">
+    <div style="max-width:1010px">
+      <div style="width:5px;height:190px;background:var(--sig-br);position:absolute;left:72px;top:238px"></div>
+      <div style="padding-left:34px">
+        <h1 style="font-size:56px;line-height:1.14;letter-spacing:-.03em;font-weight:700">The goal is not maximum autonomy.<br>It is the maximum useful autonomy<br>an organization can govern<br>with confidence.</h1>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 07 THE POSITION -->
+<section class="slide" data-sec="The case">
+  <template class="nt"><p><b>This is the commercial and architectural position simultaneously.</b> "Standardize the contract, keep the products replaceable" is what makes this survivable for a CIO who has three cloud vendors and a five-year Okta contract.</p><p><b>Say the loss-aversion line explicitly:</b> "Nothing on this slide asks you to rip anything out. If your incumbent satisfies the responsibility, it stays. We are adding a contract, not an estate." Watch shoulders drop.</p><p>The right-hand list is the acceptance criteria for the architecture as a whole — every one of them reappears as a testable invariant on slide 14.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">01</div><div>
+      <div class="eyebrow">The case</div>
+      <h2>Standardize the control contract. Keep every product replaceable.</h2>
+      <p class="lead">We treat this as an operating-model problem before it becomes a product-selection problem. The enterprise needs stable responsibilities and contracts; the technologies underneath them should stay swappable.</p></div></div>
+    <div class="body">
+      <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:26px;flex:1;min-height:0">
+        <div class="col">
+          <p style="font-size:19px;line-height:1.5;color:var(--ink2)">Five responsibilities make up the contract: <b>identity, policy, capability, observability and evidence.</b> Fix those, and organizations remain free to choose the products that implement each one — cloud by cloud, region by region, decade by decade.</p>
+          <div class="rulehair mt14"></div>
+          <div class="g2 gap10">
+            <div><p class="mi">FIXED FOR TEN YEARS</p><p class="sm mt6">Responsibilities · interfaces · evidence schema · the runtime path</p></div>
+            <div><p class="mi">CHOSEN PER CONTEXT</p><p class="sm mt6">Policy engine · gateway · runtime · mesh · store · model</p></div>
+          </div>
+          <div class="card sig mt14" style="padding:14px 18px">
+            <p class="sm"><b>What this buys the CIO:</b> the ability to change any single product in the stack without renegotiating the security posture of everything above it.</p></div>
+        </div>
+        <div class="card col"><div class="eyebrow">What the architecture optimizes for</div>
+          <div class="col mt10" style="gap:11px">
+            <p class="sm">Every action crosses an <b>explicit control boundary</b>.</p><div class="rulehair" style="margin:0"></div>
+            <p class="sm">Permissions can narrow through delegation but <b>never silently widen</b>.</p><div class="rulehair" style="margin:0"></div>
+            <p class="sm">Services are discovered <b>by capability and policy context</b> — not hard-coded endpoints alone.</p><div class="rulehair" style="margin:0"></div>
+            <p class="sm">Operations hold health, version, ownership, evidence <b>and an off switch</b> in one place.</p><div class="rulehair" style="margin:0"></div>
+            <p class="sm">Existing enterprise investments are <b>reused wherever they satisfy the responsibility</b>.</p>
+          </div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 08 THE FALSIFIABLE CLAIM -->
+<section class="slide dk" data-sec="The case">
+  <template class="nt"><p><b>The most important slide for the executive sponsor.</b> This is where a kickoff stops being a point of view and becomes a contract.</p><p><b>Land the last sentence hard and then stop talking:</b> "If any one of the six fails to hold, the architecture is wrong and you should not scale it. We will tell you that ourselves, in week ten, in writing."</p><p>Consultancies do not usually pre-commit to the conditions of their own failure. That is precisely why it works. Expect the sponsor to look up from their phone here.</p><p><b>Likely challenge:</b> "Six properties in twelve weeks is ambitious." Correct answer: "Six properties on <b>one path</b> is modest. Six properties across your estate would be fantasy. The scope discipline is the reason it is achievable."</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">01</div><div>
+      <div class="eyebrow">The case · the commitment</div>
+      <h2>What we are asking you to believe for twelve weeks.</h2>
+      <p class="lead">Stated so that it can fail. Every one of these six is instrumented, and the instrumentation is yours to keep whatever the outcome.</p></div></div>
+    <div class="body">
+      <p style="font-size:20px;line-height:1.5;color:var(--w);max-width:1080px;font-weight:550">In twelve weeks we will place <em>one consequential action</em> behind an explicit control boundary and demonstrate six properties on it.</p>
+      <div class="g3 mt18" style="gap:12px">
+        <div class="card"><p class="mi" style="color:var(--sig-br)">PROPERTY 01</p><h3 class="mt6">Attribution</h3><p class="sm mt6">Every action traces to a human, a workload and a decision.</p></div>
+        <div class="card"><p class="mi" style="color:var(--sig-br)">PROPERTY 02</p><h3 class="mt6">Attenuation</h3><p class="sm mt6">Delegated authority narrows; it never widens.</p></div>
+        <div class="card"><p class="mi" style="color:var(--sig-br)">PROPERTY 03</p><h3 class="mt6">Revocation</h3><p class="sm mt6">Authority can be withdrawn inside a bounded, measured window.</p></div>
+        <div class="card"><p class="mi" style="color:var(--sig-br)">PROPERTY 04</p><h3 class="mt6">Containment</h3><p class="sm mt6">The blast radius of a wrong action is bounded by construction.</p></div>
+        <div class="card"><p class="mi" style="color:var(--sig-br)">PROPERTY 05</p><h3 class="mt6">Evidence</h3><p class="sm mt6">One correlated record answers an auditor without a human narrator.</p></div>
+        <div class="card"><p class="mi" style="color:var(--sig-br)">PROPERTY 06</p><h3 class="mt6">Bypass-resistance</h3><p class="sm mt6">The registered path cannot be routed around at the resource.</p></div>
+      </div>
+      <div class="card mt18" style="border-left:3px solid var(--gold);background:rgba(245,196,81,.09);border-color:rgba(245,196,81,.28)">
+        <p style="font-size:16px;color:var(--w)"><b>And the counter-commitment:</b> if any one of the six fails to hold, the architecture is wrong for <span class="ph">[CLIENT]</span> and you should not scale it. We will say so ourselves, in week ten, in writing.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+<!-- 09 THE ARCHITECTURE -->
+<section class="slide archs" data-sec="Architecture">
+  <template class="nt"><p><b>The money slide. Budget six minutes and use the build.</b> Press <span class="kbd">→</span> to reveal one plane at a time — do not show the whole stack at once, it reads as noise and the room stops listening.</p><p><b>Reveal order and the line for each:</b></p><ul><li><b>Experience</b> — "where intent is expressed. You already have all five of these."</li><li><b>Control</b> — "this is the only genuinely new thing on the page. It is coloured differently because it is the argument."</li><li><b>Knowledge</b> — "drawn as a dashed outline on purpose. It is the destination, not a prerequisite, and it is explicitly <b>out of POC scope</b>."</li><li><b>Execution / Platform / Resource</b> — "these are yours. We are not touching them."</li><li><b>Fabric</b> — "and every one of those crossings emits evidence."</li></ul><p><b>The sentence that makes the slide land:</b> "Count the boxes you already own. Twenty-five of the thirty. We are adding one row and a contract."</p><p><b>Likely challenge — "isn't the control plane a bottleneck?"</b> Answer now, don't defer: "Only if you make every request synchronous through one service. We don't — slide 15 lists that as an explicit non-goal, and slide 11 shows the local-verification path."</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">02</div><div>
+      <div class="eyebrow">Reference architecture · executive view</div>
+      <h2>Six responsibility planes, one crossing fabric.</h2>
+      <p class="lead">Responsibilities are fixed. Product selections are contextual. The control plane is the only genuinely new layer — the knowledge plane is the destination, and is deliberately out of scope for this proof of concept.</p></div></div>
+    <div class="body">
+      <div class="arch">
+        <div class="lane l1 frag"><div class="lane-l"><div><b>Experience &amp; Business</b><small>How people and agents express intent</small></div></div>
+          <div class="nodes">
+            <div class="node"><b>Human interfaces</b><small>Portals, copilots, chat, approvals</small></div>
+            <div class="node"><b>Agent orchestrators</b><small>Planning, delegation, coordination</small></div>
+            <div class="node"><b>Business workflows</b><small>Durable, deterministic process</small></div>
+            <div class="node"><b>Scheduling</b><small>Time, recurrence, delayed action</small></div>
+            <div class="node"><b>Service catalog</b><small>Capability, owner, health, version</small></div></div></div>
+        <div class="lane l2 frag"><div class="lane-l"><div><b>Control Plane</b><small>How authority is expressed and decided</small></div></div>
+          <div class="nodes">
+            <div class="node"><b>Identity</b><small>Human, workload and agent identity</small></div>
+            <div class="node"><b>Policy decision</b><small>Actor × action × resource × context</small></div>
+            <div class="node"><b>Capability grants</b><small>Short-lived, scoped authority</small></div>
+            <div class="node"><b>Governance</b><small>Risk tiers, approvals, exceptions</small></div>
+            <div class="node"><b>Lifecycle controls</b><small>Version, rollout, circuit breaker</small></div></div></div>
+        <div class="lane l3 frag"><div class="lane-l"><div><b>Knowledge &amp; Ontology</b><small>Out of POC scope · north star</small></div></div>
+          <div class="nodes">
+            <div class="node"><b>Enterprise ontology</b><small>Shared concepts and constraints</small></div>
+            <div class="node"><b>Knowledge services</b><small>Search, retrieval, graphs</small></div>
+            <div class="node"><b>Memory &amp; state</b><small>Session, task, durable memory</small></div>
+            <div class="node"><b>Provenance &amp; lineage</b><small>Source, freshness, ownership</small></div>
+            <div class="node"><b>Semantic metadata</b><small>Capabilities, schemas, policies</small></div></div></div>
+        <div class="lane l4 frag"><div class="lane-l"><div><b>Execution Plane</b><small>How authorized work is carried out</small></div></div>
+          <div class="nodes">
+            <div class="node"><b>Software calls</b><small>Deterministic request / response</small></div>
+            <div class="node"><b>Agent calls</b><small>Longer-running delegated work</small></div>
+            <div class="node"><b>Mediation boundary</b><small>Portable capability enforcement</small></div>
+            <div class="node"><b>Workflow runtime</b><small>Durability, retries, compensation</small></div>
+            <div class="node"><b>Event processing</b><small>Streaming, subscriptions, reactions</small></div></div></div>
+        <div class="lane l5 frag"><div class="lane-l"><div><b>Platform Plane</b><small>How workloads scale and connect</small></div></div>
+          <div class="nodes">
+            <div class="node"><b>Compute platform</b><small>Kubernetes, OpenShift, edge, cloud</small></div>
+            <div class="node"><b>Messaging fabric</b><small>Kafka, NATS, queues, event mesh</small></div>
+            <div class="node"><b>API management</b><small>Ingress, quotas, contracts, routing</small></div>
+            <div class="node"><b>Network controls</b><small>Service identity, egress, segmentation</small></div>
+            <div class="node"><b>Runtime isolation</b><small>Containers, sandboxes, microVMs</small></div></div></div>
+        <div class="lane l6 frag"><div class="lane-l"><div><b>Resource Plane</b><small>Where enterprise value and risk reside</small></div></div>
+          <div class="nodes">
+            <div class="node"><b>AI &amp; inference</b><small>Local models, managed models, GPUs</small></div>
+            <div class="node"><b>Enterprise SaaS</b><small>CRM, ERP, ITSM, collaboration</small></div>
+            <div class="node"><b>Data platforms</b><small>Databases, lakes, warehouses</small></div>
+            <div class="node"><b>Cloud resources</b><small>Infrastructure and managed services</small></div>
+            <div class="node"><b>Custom &amp; legacy</b><small>Internal systems and OT</small></div></div></div>
+        <div class="fabric frag"><div><b>Event &amp; Telemetry Fabric</b><small>Cross-cutting evidence and governed reaction</small></div>
+          <div class="fx">OpenTelemetry context → traces · metrics · logs · decision evidence → event bus → alerts · remediation · approvals · scaling</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Responsibilities are fixed · product selections are contextual</span></div>
+</section>
+
+<!-- 10 CONTROL PLANE ZOOM -->
+<section class="slide" data-sec="Architecture">
+  <template class="nt"><p><b>Five minutes. This is where architects decide whether you are serious.</b></p><p>Lead with the disarming line: <b>"Four of these five you already have. We are not asking you to buy an identity provider."</b> Then spend your time on capability grants — the one row that is genuinely unfamiliar in most enterprises.</p><p><b>The analogy that works:</b> "A role says what you <i>are</i>. A grant says what you may do, to what, for how long, on whose behalf. Roles are the wrong shape for an actor that exists for ninety seconds."</p><p><b>Expect pushback from IAM:</b> "This is just OAuth scopes." Fair — and the honest answer is: "Partly. The delta is attenuation and audience binding. A scope cannot narrow itself when it is handed to a sub-agent. That is the property we are testing in week five."</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">02</div><div>
+      <div class="eyebrow">Reference architecture · the crux</div>
+      <h2>The control plane is the only genuinely new layer.</h2>
+      <p class="lead">Four of its five responsibilities already exist in your estate under different names. The one that usually does not is <em>capability grants</em> — and that is where most of the engineering effort in this proof of concept goes.</p></div></div>
+    <div class="body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;flex:1;min-height:0">
+        <table><thead><tr><th>Responsibility</th><th>Answers</th><th style="width:96px">In estate?</th></tr></thead><tbody>
+          <tr><td><b>Identity</b><br><span class="sm">Human, workload and agent</span></td><td class="sm">Who or what is acting, and on whose behalf?</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+          <tr><td><b>Policy decision</b><br><span class="sm">Actor × action × resource × context</span></td><td class="sm">May this actor perform this action, right now?</td><td><span class="chip warn"><span class="dot warn"></span>Extend</span></td></tr>
+          <tr><td><b>Capability grants</b><br><span class="sm">Short-lived, scoped, attenuable</span></td><td class="sm">How is that decision <b>carried</b> to the thing enforcing it?</td><td><span class="chip crit"><span class="dot crit"></span>Gap</span></td></tr>
+          <tr><td><b>Governance</b><br><span class="sm">Risk tiers, approvals, exceptions</span></td><td class="sm">Who decided this action class was acceptable, and when?</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+          <tr><td><b>Lifecycle controls</b><br><span class="sm">Version, rollout, circuit breaker</span></td><td class="sm">How do we stop it — in seconds, without a deploy?</td><td><span class="chip warn"><span class="dot warn"></span>Extend</span></td></tr>
+        </tbody></table>
+        <div class="col gap10">
+          <div class="card sig col"><div class="eyebrow">The unfamiliar one</div>
+            <h3 class="mt6">A grant is not a role</h3>
+            <p class="sm mt6">A role describes what an actor <b>is</b>, and persists. A grant describes what an actor <b>may do</b> — bound to an audience, an action, a scope and an expiry — and is designed to die.</p>
+            <div class="rulehair"></div>
+            <p class="sm"><b>Four properties we require of every grant:</b></p>
+            <div class="col mt6" style="gap:7px">
+              <p class="sm">→ <b>Audience-bound</b> — usable only at the intended resource</p>
+              <p class="sm">→ <b>Attenuable</b> — a holder can narrow it, never widen it</p>
+              <p class="sm">→ <b>Short-lived</b> — expiry is the default revocation mechanism</p>
+              <p class="sm">→ <b>Verifiable offline</b> — routine work does not need a round trip</p>
+            </div></div>
+          <div class="card" style="padding:13px 16px;border-left:3px solid var(--ink3)">
+            <p class="sm"><b>Design tension we will resolve in week 4, together:</b> offline verification gives you latency; online decisions give you instant revocation. High-risk actions get the round trip. Routine actions get local verification with a short TTL. Where <span class="ph">[CLIENT]</span> draws that line is a governance decision, not an engineering one.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 11 RUNTIME PATH -->
+<section class="slide" data-sec="Architecture">
+  <template class="nt"><p><b>Four minutes. Walk the eight steps with your finger, then stop on the evidence record.</b></p><p>The evidence block at the bottom is the slide's real payload. Say: <b>"That record is the deliverable. Not the demo — the record. If an auditor can read that without a human translating it, the architecture works."</b></p><p>Steps 4 and 5 are tinted because they are the crux — the decision and the conveyance of that decision. Everything before is discovery; everything after is consequence.</p><p><b>For the DevOps lane specifically:</b> point at step 8 and say "this is emitted by the boundary, not by the service. Your teams do not write this instrumentation."</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">02</div><div>
+      <div class="eyebrow">Reference architecture · runtime model</div>
+      <h2>Every consequential call follows one explainable path.</h2>
+      <p class="lead">Implementation varies by risk tier. The logical sequence does not — it stays legible to engineers, operators, security and auditors alike.</p></div></div>
+    <div class="body">
+      <div class="path">
+        <div class="step"><div class="n">1</div><b>Express intent</b><p>A human, workflow or agent requests a <i>capability</i> — not an endpoint.</p></div>
+        <div class="step"><div class="n">2</div><b>Establish identity</b><p>Resolve human, workload, agent type and delegated authority.</p></div>
+        <div class="step"><div class="n">3</div><b>Discover</b><p>Find eligible services by capability, locality, health, cost, version.</p></div>
+        <div class="step crux"><div class="n">4</div><b>Decide policy</b><p>Actor, action, resource, context, risk, breaker state, delegation limits.</p></div>
+        <div class="step crux"><div class="n">5</div><b>Convey authority</b><p>Issue a short-lived grant bound to audience, action, scope and expiry.</p></div>
+        <div class="step"><div class="n">6</div><b>Enforce</b><p>The mediation boundary verifies the grant and exposes only approved interfaces.</p></div>
+        <div class="step"><div class="n">7</div><b>Execute</b><p>Run locally, at the edge or in cluster with the required isolation and limits.</p></div>
+        <div class="step"><div class="n">8</div><b>Produce evidence</b><p>Correlate decision, grant, version, runtime, output, side effects, outcome.</p></div>
+      </div>
+      <div class="evi">
+        <span class="k">trace_id</span> <span class="v">4f2a…c81b</span> &nbsp; <span class="k">on_behalf_of</span> <span class="v">user:<span class="ph">[EMPLOYEE]</span></span> &nbsp; <span class="k">actor</span> <span class="v">agent:claims-triage/v3.1</span> &nbsp; <span class="k">workload</span> <span class="v">spiffe://…/triage</span><br>
+        <span class="k">capability</span> <span class="v"><span class="ph">[ACTION]</span></span> &nbsp; <span class="k">decision</span> <span class="v">permit</span> &nbsp; <span class="k">policy</span> <span class="v">tier2-writeback@v11</span> &nbsp; <span class="k">grant</span> <span class="v">aud=claims-api scope=case:write ttl=90s</span><br>
+        <span class="k">enforced_at</span> <span class="v">mediation-boundary/v2.4</span> &nbsp; <span class="k">isolation</span> <span class="v">sandboxed</span> &nbsp; <span class="k">side_effects</span> <span class="v">1 write · reversible</span> &nbsp; <span class="k">outcome</span> <span class="v">ok · 214ms</span>
+      </div>
+      <div class="card mt14" style="padding:12px 18px;border-left:3px solid var(--sig)">
+        <p class="sm"><b>This record — not the demonstration — is the deliverable.</b> If an auditor can read it without a human narrating what the agent "was trying to do," the architecture is doing its job.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 12 KNOWLEDGE PLANE -->
+<section class="slide" data-sec="Architecture">
+  <template class="nt"><p><b>This slide exists to protect the engagement from the ontology cathedral</b> — pattern 03 on slide 5. If <span class="ph">[CLIENT]</span> has an ontology programme in flight, this is the slide where its owner decides whether you are an ally or a threat. Be an ally, explicitly.</p><p><b>Say:</b> "We are not competing with the ontology programme and we are not waiting for it. The POC uses catalog metadata and curated sources. Everything we emit — capability semantics, provenance, ownership — is an input the ontology programme can consume later."</p><p><b>The critical separation box is the line to land:</b> ontology describes meaning, policy determines authority, retrieval supplies evidence, models choose actions. Collapse those four into one "AI layer" and you have created an assurance problem no dashboard repairs.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">02</div><div>
+      <div class="eyebrow">Reference architecture · north star</div>
+      <h2>Shared semantics are the destination, never the prerequisite.</h2>
+      <p class="lead">The control plane answers <em>"may this actor perform this action?"</em> The knowledge plane answers <em>"what does this request mean, what should the actor know, and which evidence supports the result?"</em> Keeping them distinct is what stops a vector store from quietly becoming an authorization layer.</p></div></div>
+    <div class="body">
+      <div class="g2" style="gap:18px">
+        <div class="card"><span class="chip">In POC scope</span><h3 class="mt10">Minimum viable implementation</h3>
+          <p class="sm mt6">Catalog metadata, schemas, curated retrieval sources and explicit provenance. Memory stays narrow, task-bound and disposable. Enough to prove governed invocation without making an ontology programme a dependency.</p></div>
+        <div class="card ns"><span class="chip ns">Beyond POC</span><h3 class="mt10" style="color:var(--ns)">North-star implementation</h3>
+          <p class="sm mt6">A federated enterprise ontology connecting business concepts, service capabilities, policies, data products, owners and evidence. Agents request meaning and capability rather than vendor endpoints, and receive context appropriate to identity, task and risk tier.</p></div>
+      </div>
+      <div class="g3 mt14">
+        <div class="card" style="padding:14px 16px"><p class="mi">STAGE 1</p><h4 class="mt6">Cataloged</h4><p class="sm mt6">Named services, schemas, owners, classifications and approved sources.</p></div>
+        <div class="card" style="padding:14px 16px"><p class="mi">STAGE 2</p><h4 class="mt6">Semantically connected</h4><p class="sm mt6">Shared vocabulary, entity resolution, provenance and relationship-aware retrieval.</p></div>
+        <div class="card" style="padding:14px 16px"><p class="mi">STAGE 3</p><h4 class="mt6">Governed organizational memory</h4><p class="sm mt6">Policy-aware context, reusable knowledge products, feedback loops, measured grounding quality.</p></div>
+      </div>
+      <div class="card mt14" style="border-left:3px solid var(--warn);background:#FFFBF2;border-color:#F2E3C4">
+        <p class="sm"><b>The critical separation.</b> Ontology describes meaning. Policy determines authority. Retrieval supplies evidence. Models generate or choose actions. Combine these into one opaque "AI layer" and you create an assurance problem that no dashboard can repair afterwards.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 13 TELEMETRY FABRIC -->
+<section class="slide" data-sec="Architecture">
+  <template class="nt"><p><b>Three minutes. This is the slide for the SRE and the observability owner.</b></p><p>Lead with reuse: "We are not building an observability estate. We are adding semantic conventions to the one you already run." Name their tool out loud if you know it.</p><p><b>The distinction that matters:</b> telemetry is what you collect; <b>evidence</b> is telemetry that has been correlated well enough to answer a question under adversarial scrutiny. Most enterprises have the first and not the second.</p><p><b>The governed-reaction point is where security leans in:</b> telemetry may <i>trigger</i> automation, but the reaction is itself a policy-bound action that crosses the same boundary. An auto-remediation with ambient authority is just a faster incident.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">02</div><div>
+      <div class="eyebrow">Reference architecture · cross-cutting</div>
+      <h2>Telemetry is what you collect. Evidence is what survives an auditor.</h2>
+      <p class="lead">One invocation context is carried through policy, routing, runtime and backend. That single correlation is the difference between a dashboard and a defensible answer.</p></div></div>
+    <div class="body">
+      <div style="display:grid;grid-template-columns:1.05fr .95fr;gap:22px;flex:1;min-height:0">
+        <div class="col gap10">
+          <div class="card col"><div class="eyebrow">The contract</div>
+            <p class="sm mt10">A single <b>OpenTelemetry</b> context propagates from intent through decision, grant, enforcement, execution and outcome. Vendor-neutral by design, so the backend stays replaceable.</p>
+            <div class="rulehair"></div>
+            <p class="sm"><b>Emitted by the boundary — not by your service teams.</b> Adopting the golden path means inheriting the instrumentation, not writing it.</p></div>
+          <div class="card sig col"><div class="eyebrow">Governed reaction</div>
+            <p class="sm mt10">Telemetry may <b>trigger</b> automation — scaling, remediation, approvals, breaker trips. But the reaction is itself an action, and crosses the same control boundary as any other.</p>
+            <div class="rulehair"></div>
+            <p class="sm"><b>An auto-remediation with ambient authority is just a faster incident.</b></p></div>
+        </div>
+        <div class="card col"><div class="eyebrow">Questions this makes answerable</div>
+          <div class="col mt10" style="gap:0">
+            <p class="sm" style="padding:9px 0;border-bottom:1px solid var(--rule2)">Which human does this action ultimately trace back to?</p>
+            <p class="sm" style="padding:9px 0;border-bottom:1px solid var(--rule2)">Which policy version permitted it, and who approved that version?</p>
+            <p class="sm" style="padding:9px 0;border-bottom:1px solid var(--rule2)">What was the grant's scope and expiry at the moment of use?</p>
+            <p class="sm" style="padding:9px 0;border-bottom:1px solid var(--rule2)">Which service version and runtime actually executed it?</p>
+            <p class="sm" style="padding:9px 0;border-bottom:1px solid var(--rule2)">What side effects occurred, and are they reversible?</p>
+            <p class="sm" style="padding:9px 0;border-bottom:1px solid var(--rule2)">Were there attempts on this path that were <b>denied</b> — and why?</p>
+            <p class="sm" style="padding:9px 0">If we revoke now, how long until the last valid grant expires?</p>
+          </div>
+          <div class="rulehair"></div>
+          <p class="mi">Each maps to a control on slide 21</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 14 INVARIANTS + TESTS -->
+<section class="slide" data-sec="Architecture">
+  <template class="nt"><p><b>If you present one slide well, make it this one.</b> Principles are cheap; principles with a stated test are an engineering commitment.</p><p><b>Framing:</b> "Every architecture deck has principles. Ours have tests, and we will run all five in front of your team in week ten. You are welcome to design the adversarial cases yourselves — in fact, we would prefer it."</p><p><b>Invite the security lead in by name here.</b> Ask them directly: "Would you add a sixth?" If they propose one, write it down on the spot and put it in the week-1 note. That single act converts the most likely blocker into a co-author.</p><p>Test 3 is the one that most often fails in real estates. Flag it: "If your backend can be called directly and cannot be closed without a rewrite, we need to know that in week two, not week ten."</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">02</div><div>
+      <div class="eyebrow">Reference architecture · invariants</div>
+      <h2>Five invariants outlive every product. Each one has a test.</h2>
+      <p class="lead">These are the rules we would use to evaluate any implementation — regardless of cloud, platform, policy engine or runtime. We run all five in front of your team in week ten.</p></div></div>
+    <div class="body">
+      <table><thead><tr><th style="width:34px"></th><th style="width:200px">Invariant</th><th style="width:320px">What it means</th><th>How you test it — and what a pass looks like</th></tr></thead><tbody>
+        <tr><td><span class="num">1</span></td><td><b>Authority is explicit</b></td><td class="sm">No ambient access. Every action attributable to an identity and a decision.</td><td class="sm">Pick any action from the last 24 hours at random. Produce actor, human principal, decision, grant and expiry <b>in under 60 seconds</b>, without asking an engineer.</td></tr>
+        <tr><td><span class="num">2</span></td><td><b>Delegation only narrows</b></td><td class="sm">Sub-agents and workflows receive subsets of authority — never amplification.</td><td class="sm">Have a sub-agent attempt an action its parent could not perform. It must <b>fail closed</b>, and the denial must appear in evidence with the attenuation reason.</td></tr>
+        <tr><td><span class="num">3</span></td><td><b>Execution is bounded</b></td><td class="sm">Risk determines the enforcement and isolation boundary.</td><td class="sm">Call the backend directly, bypassing the mediation path. It must be refused <b>at the resource</b> — not merely at the gateway. Gateway-only enforcement is a fail.</td></tr>
+        <tr><td><span class="num">4</span></td><td><b>Everything is observable</b></td><td class="sm">Policy, routing, runtime and business outcome share one correlated context.</td><td class="sm">One trace identifier joins intent → decision → grant → runtime → backend call → business outcome across <b>at least three systems</b>, with no manual stitching.</td></tr>
+        <tr><td><span class="num">5</span></td><td><b>Technology is replaceable</b></td><td class="sm">Interfaces and responsibilities standardized; products chosen by context.</td><td class="sm">Swap the policy engine — or the gateway — behind the same contract. <b>Zero service code changes</b>, and evidence continuity is preserved across the swap.</td></tr>
+      </tbody></table>
+      <div class="card mt14 sig" style="padding:13px 18px">
+        <p class="sm"><b>Open invitation:</b> your security and SRE teams design the adversarial cases for tests 2, 3 and 5. We would rather be broken by you in week ten than by an incident in month nine. If this room wants a sixth invariant, we will add it today.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 15 NON-GOALS -->
+<section class="slide dk" data-sec="Architecture">
+  <template class="nt"><p><b>This slide buys more trust than any other in section 2.</b> Naming what you will <i>not</i> do — and naming it before anyone has to ask — reads as confidence rather than defensiveness.</p><p>Deliver it briskly, one line each, no elaboration. The rhythm is the point.</p><p><b>Then the pivot line into section 3:</b> "Which raises the obvious question — if we are not building any of that, what are we actually touching in your estate? That is the next twenty-five minutes."</p><p><b>If someone says "but our CISO will want a single choke point":</b> the answer is item 3. One synchronous policy service in every request path is an availability incident waiting for a Tuesday. Risk tiering gives them the choke point where it matters and local verification everywhere else.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">02</div><div>
+      <div class="eyebrow">Reference architecture · non-goals</div>
+      <h2>What we are deliberately not doing.</h2>
+      <p class="lead">Stated up front, so nobody has to discover it in week seven. Each of these is a way this class of programme reliably fails.</p></div></div>
+    <div class="body">
+      <div class="g2" style="gap:14px;flex:1;min-height:0">
+        <div class="card col"><span class="chip">Not doing 01</span><h3 class="mt10">A universal ontology as a prerequisite</h3><p class="sm mt6">Shared semantics grow where they materially improve discovery, policy, interoperability or assurance — bounded domain first, never enterprise-first.</p></div>
+        <div class="card col"><span class="chip">Not doing 02</span><h3 class="mt10">Rewriting services in WebAssembly</h3><p class="sm mt6">Portable mediation is a useful boundary pattern where the host interface matters. It is not dogma, and it is not a migration programme.</p></div>
+        <div class="card col"><span class="chip">Not doing 03</span><h3 class="mt10">One synchronous policy service in every request path</h3><p class="sm mt6">That is an availability incident waiting for a Tuesday. Risk tiering plus local verification with short TTLs keeps the hot path fast.</p></div>
+        <div class="card col"><span class="chip">Not doing 04</span><h3 class="mt10">A parallel identity, secrets or logging estate for agents</h3><p class="sm mt6">Agents are a new class of actor inside the platform you already operate — not a new platform beside it.</p></div>
+        <div class="card col"><span class="chip">Not doing 05</span><h3 class="mt10">A model-autonomy showcase</h3><p class="sm mt6">The demonstration is the control path and the evidence record. Impressive agent behaviour is not the deliverable and will not be scored.</p></div>
+        <div class="card col"><span class="chip">Not doing 06</span><h3 class="mt10">Replacing your gateway, SIEM or identity provider</h3><p class="sm mt6">If an incumbent satisfies the responsibility, it stays. We are adding a contract, not an estate.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+<!-- 16 REUSE / EXTEND / GAP -->
+<section class="slide" data-sec="Your estate">
+  <template class="nt"><p><b>This is a working slide, not a presentation slide.</b> The incumbent column is deliberately empty. Fill it live, on screen, with the room. Nothing builds joint ownership faster than watching their own tool names appear in your architecture.</p><p><b>Open with the count:</b> "Eleven responsibilities. On our read, seven are reuse-first, two are extensions of something you already run, and two are genuine gaps. Let us find out how wrong that is."</p><p><b>If the room disagrees with a status — change it on the spot</b> and note it. A contested status is a week-1 discovery item, not an argument to win here.</p><p>Timing: 6 minutes. This will want to run to fifteen. Cap it and push the remainder into the week-1 estate workshop.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">03</div><div>
+      <div class="eyebrow">Your estate</div>
+      <h2>You already own most of this. We are adding a contract, not an estate.</h2>
+      <p class="lead">Our starting hypothesis, to be corrected by you in the next six minutes. The incumbent column is blank on purpose — we fill it together, live.</p></div></div>
+    <div class="body">
+      <div class="g2" style="gap:20px;flex:1;min-height:0">
+        <table><thead><tr><th>Responsibility</th><th style="width:150px"><span class="ph">[CLIENT]</span> incumbent</th><th style="width:92px">Posture</th></tr></thead><tbody>
+          <tr><td><b>Enterprise identity</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+          <tr><td><b>Workload identity</b></td><td class="mi">—</td><td><span class="chip warn"><span class="dot warn"></span>Extend</span></td></tr>
+          <tr><td><b>Policy decision</b></td><td class="mi">—</td><td><span class="chip warn"><span class="dot warn"></span>Extend</span></td></tr>
+          <tr><td><b>Authority conveyance</b></td><td class="mi">—</td><td><span class="chip crit"><span class="dot crit"></span>Gap</span></td></tr>
+          <tr><td><b>Mediation boundary</b></td><td class="mi">—</td><td><span class="chip crit"><span class="dot crit"></span>Gap</span></td></tr>
+          <tr><td><b>Service catalog</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+        </tbody></table>
+        <div class="col">
+          <table><thead><tr><th>Responsibility</th><th style="width:150px"><span class="ph">[CLIENT]</span> incumbent</th><th style="width:92px">Posture</th></tr></thead><tbody>
+            <tr><td><b>Durable workflow</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+            <tr><td><b>API management</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+            <tr><td><b>Messaging fabric</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+            <tr><td><b>Observability backend</b></td><td class="mi">—</td><td><span class="chip ok"><span class="dot ok"></span>Reuse</span></td></tr>
+            <tr><td><b>Telemetry contract</b></td><td class="mi">—</td><td><span class="chip warn"><span class="dot warn"></span>Extend</span></td></tr>
+          </tbody></table>
+          <div class="card sig mt14" style="padding:14px 18px">
+            <p class="sm"><b>Read the colours honestly.</b> Seven reuse-first, three extensions, two genuine gaps. If that ratio is wrong for <span class="ph">[CLIENT]</span>, the scope on slide 24 changes — and we would rather change it now than in week six.</p></div>
+        </div>
+      </div>
+      <div class="card mt14" style="padding:11px 18px;display:flex;gap:26px;align-items:center">
+        <span class="sm"><span class="dot ok"></span> <b>Reuse first</b> — incumbent satisfies the responsibility; we integrate</span>
+        <span class="sm"><span class="dot warn"></span> <b>Extend</b> — incumbent is close; we add a contract or a convention</span>
+        <span class="sm"><span class="dot crit"></span> <b>Gap</b> — no incumbent; this is where engineering effort goes</span>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 17 DECISION FRAMEWORK -->
+<section class="slide dense" data-sec="Your estate">
+  <template class="nt"><p><b>Reference slide — do not read it out.</b> Say: "This is the selection framework we will use in weeks two and three. It is in the leave-behind. I want to draw your attention to one column."</p><p><b>Then point only at the working-posture column.</b> That column is the opinion; the options column is deliberately neutral. Naming products you do not sell is what makes the neutrality credible.</p><p><b>The line that matters:</b> "We have no commercial relationship with anything named on this page. If your incumbent is not listed, that is a gap in our knowledge, not a judgement about your choice."</p><p>Timing: 3 minutes maximum. Architects will read it later; do not compete with their reading.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">03</div><div>
+      <div class="eyebrow">Your estate · decision framework</div>
+      <h2>Choose technology by responsibility, not by category.</h2>
+      <p class="lead">The architecture is composable by design. Retain any layer that already satisfies its contract; replace only the gaps. We hold no commercial relationship with anything named here.</p></div></div>
+    <div class="body">
+      <div class="g2" style="gap:20px;flex:1;min-height:0">
+        <div class="col">
+          <p class="mi" style="margin-bottom:8px">CONTROL &amp; IDENTITY</p>
+          <table><thead><tr><th style="width:118px">Responsibility</th><th>Representative options</th><th style="width:150px">Working posture</th></tr></thead><tbody>
+            <tr><td><b>Enterprise identity</b></td><td class="sm">Entra, Okta, Keycloak, cloud IAM, workforce federation</td><td class="sm"><span class="chip ok">Reuse first</span><br>No parallel identity estate for agents.</td></tr>
+            <tr><td><b>Workload identity</b></td><td class="sm">SPIFFE/SPIRE, mesh identity, cloud workload identity</td><td class="sm"><span class="chip warn">Add where needed</span><br>Where service accounts are too blunt.</td></tr>
+            <tr><td><b>Policy decision</b></td><td class="sm">OPA/Rego, Cedar, OpenFGA, IAM-native ABAC</td><td class="sm"><span class="chip sig">Small vocabulary</span><br>Expose business concepts, not engine syntax.</td></tr>
+            <tr><td><b>Authority conveyance</b></td><td class="sm">Signed tokens, caveated credentials, mTLS-bound grants</td><td class="sm"><span class="chip sig">Hybrid</span><br>Local for routine; online for high risk.</td></tr>
+          </tbody></table>
+        </div>
+        <div class="col">
+          <p class="mi" style="margin-bottom:8px">EXECUTION, PLATFORM &amp; EVIDENCE</p>
+          <table><thead><tr><th style="width:118px">Responsibility</th><th>Representative options</th><th style="width:150px">Working posture</th></tr></thead><tbody>
+            <tr><td><b>Workload isolation</b></td><td class="sm">Containers, sandboxed containers, microVMs, confidential VMs</td><td class="sm"><span class="chip sig">Risk tiered</span><br>Match isolation cost to consequence.</td></tr>
+            <tr><td><b>Durable workflow</b></td><td class="sm">Temporal, Argo, Camunda, cloud workflow, existing BPM</td><td class="sm"><span class="chip sig">Determinism first</span><br>Process guarantees outside model improvisation.</td></tr>
+            <tr><td><b>Telemetry contract</b></td><td class="sm">OpenTelemetry APIs, SDKs, collectors, semantic conventions</td><td class="sm"><span class="chip sig">Standardize</span><br>One invocation context, end to end.</td></tr>
+            <tr><td><b>Observability backend</b></td><td class="sm">Grafana, Datadog, Splunk, Elastic, cloud APM, existing SIEM</td><td class="sm"><span class="chip ok">Reuse first</span><br>No separate estate solely for agents.</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+      <div class="card mt14" style="padding:12px 18px;border-left:3px solid var(--sig)">
+        <p class="sm"><b>Selection criteria we apply throughout:</b> explainability of decisions · deterministic evaluation · attenuation and audience binding · offline verifiability · blast-radius containment · operational maturity in <i>your</i> hands, not ours.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Full framework including knowledge-plane options in the leave-behind</span></div>
+</section>
+
+<!-- 18 LANE: PLATFORM & DEVOPS -->
+<section class="slide" data-sec="Your estate">
+  <template class="nt"><p><b>Address the platform lead by name.</b> This lane decides whether the golden path gets adopted or quietly routed around, and they have veto power they will never announce.</p><p><b>Their real fear is not security — it is being handed something they have to operate at 3am that they did not design.</b> Answer that directly: "You own the golden path after week twelve. Which means you get a vote on every one of these rows starting Monday."</p><p><b>The strongest line on the slide:</b> "If adoption requires us in the room, the product is wrong — and that is a kill criterion, not an excuse."</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">03</div><div>
+      <div class="eyebrow">Lane · platform engineering &amp; DevOps</div>
+      <h2>You inherit a paved road, not a science project.</h2>
+      <p class="lead">If adoption of the golden path requires us in the room, the product is wrong. That is a kill criterion on slide 26, not a caveat.</p></div></div>
+    <div class="body">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;flex:1;min-height:0">
+        <div class="card col"><span class="chip">What changes</span>
+          <div class="col mt10" style="gap:9px">
+            <p class="sm">A <b>registration step</b> enters the service lifecycle: capability, owner, risk tier, schema, policy inheritance.</p>
+            <p class="sm">Deployment templates carry the <b>mediation sidecar or gateway plugin</b> and the telemetry contract by default.</p>
+            <p class="sm">A <b>circuit breaker</b> per capability — trippable without a deploy, by an on-call human.</p>
+            <p class="sm">Service pages show capability, owner, health, version, effective policy and the off switch <b>in one place</b>.</p>
+          </div></div>
+        <div class="card col"><span class="chip ok">What does not change</span>
+          <div class="col mt10" style="gap:9px">
+            <p class="sm">Your <b>cluster, mesh, gateway and CI/CD</b>. We meet the platform you can operate reliably.</p>
+            <p class="sm">Your <b>on-call rotation and runbooks</b> — extended, not replaced.</p>
+            <p class="sm">Your <b>observability backend</b>. We add semantic conventions to what you already run.</p>
+            <p class="sm">Your <b>release cadence</b>. Nothing here requires a platform freeze.</p>
+          </div></div>
+        <div class="card sig col"><span class="chip sig">What we need from you</span>
+          <div class="col mt10" style="gap:9px">
+            <p class="sm">One <b>non-production namespace</b> and a deploy path we can iterate in — week 1.</p>
+            <p class="sm">A named <b>platform engineer at 1 day/week</b> who has authority over the deployment template.</p>
+            <p class="sm">Your <b>current golden-path definition</b>, however informal, so we extend rather than compete.</p>
+            <p class="sm">An honest answer on <b>p99 latency budget</b> for the first path. This constrains the enforcement design.</p>
+          </div>
+          <div class="rulehair"></div>
+          <p class="sm"><b>You own the golden path after week twelve.</b> Which means you get a vote on every row here starting Monday.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 19 LANE: DATA GOVERNANCE & DATA ENGINEERING -->
+<section class="slide" data-sec="Your estate">
+  <template class="nt"><p><b>Two audiences on one page, and they need different reassurances.</b></p><p><b>Data governance</b> is worried this is a shadow data programme that will make classification meaningless. Tell them the opposite is true: the boundary is where classification finally becomes <i>enforceable at the moment of access</i> rather than asserted in a catalog.</p><p><b>Data engineering</b> is worried about being handed a retrieval layer to run. Tell them: no new pipelines in the POC. Curated sources only, provenance required, nothing new to operate.</p><p><b>The strongest line for governance:</b> "A classification that cannot be enforced at the moment of access is a label, not a control. This is the first architecture in your estate where the label becomes a control."</p><p><b>Expect the memory question.</b> Answer it before it is asked — narrow, task-bound, disposable, deletable on request. Memory is a governed service, never an automatic transcript dump.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">03</div><div>
+      <div class="eyebrow">Lane · data governance &amp; data engineering</div>
+      <h2>A classification you cannot enforce at access time is a label, not a control.</h2>
+      <p class="lead">This is the first place in the estate where the label becomes enforceable — and the last place anyone should build a shadow data programme.</p></div></div>
+    <div class="body">
+      <div class="g2" style="gap:18px;flex:1;min-height:0">
+        <div class="card col"><span class="chip">Data governance &amp; risk</span>
+          <div class="col mt10" style="gap:9px">
+            <p class="sm"><b>Classification becomes an input to the policy decision</b> — actor, action, resource <i>and data class</i>, evaluated at the moment of access rather than asserted in a catalog.</p>
+            <p class="sm"><b>Purpose limitation becomes expressible.</b> A grant carries the purpose it was issued for; using it for another purpose is a denial, and the denial is evidence.</p>
+            <p class="sm"><b>Memory is a governed service, not a transcript dump.</b> Narrow by default, task-bound, disposable, with retention and deletion semantics you define.</p>
+            <p class="sm"><b>Provenance is mandatory, not optional.</b> Source identity, timestamp and ownership travel with every retrieved fact.</p>
+          </div>
+          <div class="rulehair"></div>
+          <p class="sm"><b>We need from you:</b> the data classes in scope for the first path, their owners, and the one class that is categorically <b>out</b> of bounds — by week 1.</p></div>
+        <div class="card col"><span class="chip">Data engineering</span>
+          <div class="col mt10" style="gap:9px">
+            <p class="sm"><b>No new pipelines in this proof of concept.</b> Curated existing sources only. If it needs an ingestion project, it is out of scope by definition.</p>
+            <p class="sm"><b>Retrieval is evidence, never authorization.</b> Access filtering happens in the control plane; the retrieval layer is never asked to be a security boundary.</p>
+            <p class="sm"><b>Data products gain a capability contract</b> — what it answers, freshness, owner, classification, policy context — reusing your catalog, not replacing it.</p>
+            <p class="sm"><b>Grounding quality is measured, not asserted.</b> Citation coverage and source freshness are instrumented from week 6.</p>
+          </div>
+          <div class="rulehair"></div>
+          <p class="sm"><b>We need from you:</b> read access to the catalog, one named data engineer at <b>0.5 day/week</b>, and the freshness SLA of the sources the first path depends on.</p></div>
+      </div>
+      <div class="card mt14 ns" style="padding:12px 18px">
+        <p class="sm"><b>On the ontology programme:</b> if <span class="ph">[CLIENT]</span> has one in flight, we are neither competing with it nor waiting for it. Everything this POC emits — capability semantics, provenance, ownership, policy context — is a structured input that programme can consume later. Slide 12 is where that boundary is drawn.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 20 LANE: AI PRACTICE -->
+<section class="slide" data-sec="Your estate">
+  <template class="nt"><p><b>The AI practice lead may hear this section as a constraint on their roadmap. Get ahead of that in the first sentence.</b></p><p>Say: "Everything here exists so that you can say yes more often. Today every consequential agent capability triggers a bespoke review. After this, tier-1 and tier-2 actions ship on a paved road and only tier-3 needs a conversation."</p><p><b>The reframe:</b> governance is not the brake — it is the thing that makes the accelerator connected to anything. Practices without a control contract cap out at pilots.</p><p><b>Be direct about the model-agnostic point.</b> Nothing in this architecture constrains which models they use, where they run, or how they are prompted. The boundary sits between the model's <i>output</i> and the world's <i>state</i>.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">03</div><div>
+      <div class="eyebrow">Lane · AI practice</div>
+      <h2>This exists so you can say yes more often.</h2>
+      <p class="lead">Today every consequential capability triggers a bespoke review. Afterwards, tier 1 and tier 2 ship on a paved road and only tier 3 needs a conversation. That is the whole commercial argument for the control plane.</p></div></div>
+    <div class="body">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;flex:1;min-height:0">
+        <div class="card col"><span class="chip sig">The unlock</span>
+          <div class="col mt10" style="gap:9px">
+            <p class="sm">A capability that fits an approved risk tier <b>inherits its policy</b> rather than negotiating one.</p>
+            <p class="sm">Promotion from pilot to production becomes a <b>checklist</b>, not a committee.</p>
+            <p class="sm">Agent-to-agent delegation becomes <b>expressible and safe</b> — the attenuation property is what makes multi-agent designs governable at all.</p>
+            <p class="sm">Failed and denied actions become <b>training signal</b>, because denials are evidence rather than silent errors.</p>
+          </div></div>
+        <div class="card col"><span class="chip ok">Not constrained</span>
+          <div class="col mt10" style="gap:9px">
+            <p class="sm"><b>Which models you use</b>, hosted or managed, and where inference runs.</p>
+            <p class="sm"><b>How agents are prompted, planned or orchestrated.</b> The boundary sits between the model's output and the world's state — not inside the model.</p>
+            <p class="sm"><b>Your evaluation stack</b> and experimentation cadence.</p>
+            <p class="sm"><b>Framework choice.</b> The contract is at the invocation boundary, so frameworks stay replaceable too.</p>
+          </div></div>
+        <div class="card col"><span class="chip warn">What genuinely gets harder</span>
+          <div class="col mt10" style="gap:9px">
+            <p class="sm">An agent can no longer hold a <b>long-lived credential</b> "just to make the demo work." That pattern is closed deliberately.</p>
+            <p class="sm">Capabilities need a <b>declared scope</b> before first use. Roughly a day of work per capability, once.</p>
+            <p class="sm">"The model decided" stops being an <b>acceptable explanation</b> for a consequential action.</p>
+          </div>
+          <div class="rulehair"></div>
+          <p class="sm"><b>We need from you:</b> the capability inventory for the first path, and one named practitioner at <b>1 day/week</b>.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 21 CONTROL CROSSWALK -->
+<section class="slide dense" data-sec="Your estate">
+  <template class="nt"><p><b>The slide that converts the security and audit lane from blocker to sponsor.</b></p><p>Framing: "We are not proposing a new control framework. We are proposing that the architecture emit evidence in a shape your existing frameworks already accept."</p><p><b>The crosswalk is the deliverable, not the architecture.</b> Say it plainly: "In week nine you get a mapping document with sample evidence against each of these. Your audit team reviews it before the readout, not after."</p><p><b>Adjust the framework column to their reality.</b> If they are FS, add SR 11-7 and DORA. If health, HIPAA. If EU exposure, the AI Act rows matter most. Ask which frameworks bind them and mark the ones that do.</p><p><b>Honest caveat to state aloud:</b> a POC produces evidence <i>samples</i>, not a certified control. Do not let anyone leave thinking this is an audit pass.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">03</div><div>
+      <div class="eyebrow">Lane · security, risk &amp; audit</div>
+      <h2>We do not propose a new control framework. We emit evidence the old ones accept.</h2>
+      <p class="lead">Architecture evidence is translated into the frameworks <span class="ph">[CLIENT]</span> is already assessed against. Which of these bind you? Mark them now and we will scope the week-9 crosswalk accordingly.</p></div></div>
+    <div class="body">
+      <table><thead><tr><th style="width:190px">Architecture evidence</th><th style="width:150px">NIST AI RMF</th><th style="width:150px">Zero Trust · SP 800-207</th><th style="width:150px">ISO/IEC 42001</th><th>SOC 2 · EU AI Act</th></tr></thead><tbody>
+        <tr><td><b>Attribution record</b><br><span class="sm">Actor, human principal, decision</span></td><td class="sm">MAP · MANAGE</td><td class="sm">Policy decision point logging</td><td class="sm">Operational planning &amp; control</td><td class="sm">CC6 logical access · Art. 12 record-keeping</td></tr>
+        <tr><td><b>Grant scope &amp; expiry</b><br><span class="sm">Audience, action, TTL, attenuation</span></td><td class="sm">GOVERN · MANAGE</td><td class="sm">Per-session least privilege</td><td class="sm">Resource &amp; access control</td><td class="sm">CC6 logical access</td></tr>
+        <tr><td><b>Denial evidence</b><br><span class="sm">Refused attempts and reasons</span></td><td class="sm">MEASURE</td><td class="sm">Continuous verification</td><td class="sm">Performance evaluation</td><td class="sm">CC7 system operations</td></tr>
+        <tr><td><b>Correlated invocation trace</b><br><span class="sm">Intent → outcome, ≥3 systems</span></td><td class="sm">MEASURE · MANAGE</td><td class="sm">Monitoring &amp; diagnostics</td><td class="sm">Monitoring, measurement, analysis</td><td class="sm">CC7 · Art. 12 logging</td></tr>
+        <tr><td><b>Circuit breaker &amp; revocation</b><br><span class="sm">Time-to-stop, measured</span></td><td class="sm">MANAGE</td><td class="sm">Dynamic policy enforcement</td><td class="sm">Incident &amp; nonconformity</td><td class="sm">CC7 · Art. 14 human oversight</td></tr>
+        <tr><td><b>Risk tier assignment</b><br><span class="sm">Who decided, when, on what basis</span></td><td class="sm">GOVERN · MAP</td><td class="sm">Asset &amp; resource classification</td><td class="sm">AI risk &amp; impact assessment</td><td class="sm">Art. 9 risk management</td></tr>
+      </tbody></table>
+      <div class="card" style="margin-top:8px;padding:10px 18px;border-left:3px solid var(--warn);background:#FFFBF2;border-color:#F2E3C4">
+        <p class="sm"><b>Stated plainly, so nobody leaves with the wrong impression:</b> a twelve-week proof of concept produces <i>evidence samples</i> mapped to these controls. It does not produce a certified control, an audit pass, or a compliance assertion. What it produces is a defensible case that the evidence a full implementation would generate is the evidence your assessors need.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Crosswalk document delivered week 9 · reviewed with audit before readout</span></div>
+</section>
+<!-- 22 POC THESIS -->
+<section class="slide dk" data-sec="The POC">
+  <template class="nt"><p><b>Transition line into the last section:</b> "That was the architecture. Here is what we are actually going to do about it in the next twelve weeks, and what it would take for us to tell you to stop."</p><p><b>The three numbers are the whole scope discipline.</b> One path. Six properties. Twelve weeks. Say them as three separate sentences with a beat between each.</p><p>If the sponsor tries to widen scope here — "could we also do procurement?" — the answer is: "Yes, in phase two. Widening now is how the six properties become zero properties. The scope discipline is the reason twelve weeks is credible."</p></template>
+  <div class="pad" style="justify-content:center">
+    <div style="max-width:1020px">
+      <div class="eyebrow">04 / The proof of concept</div>
+      <h1 style="font-size:58px;margin:22px 0 0">One path, end to end,<br>with the evidence to prove it —<br>and the criteria to stop it.</h1>
+      <div style="width:72px;height:3px;background:var(--sig-br);margin:30px 0 28px"></div>
+      <div class="g3" style="max-width:1000px;gap:18px">
+        <div><p style="font-size:52px;font-weight:800;letter-spacing:-.04em;color:var(--w);line-height:1">01</p>
+          <p class="sm mt6"><b>path</b> — one consequential action, taken end to end through the control boundary</p></div>
+        <div><p style="font-size:52px;font-weight:800;letter-spacing:-.04em;color:var(--w);line-height:1">06</p>
+          <p class="sm mt6"><b>properties</b> — attribution, attenuation, revocation, containment, evidence, bypass-resistance</p></div>
+        <div><p style="font-size:52px;font-weight:800;letter-spacing:-.04em;color:var(--w);line-height:1">12</p>
+          <p class="sm mt6"><b>weeks</b> — four phases, four gates, a written go / no-go at each one</p></div>
+      </div>
+      <p class="lead mt18" style="max-width:900px;margin-top:30px">Scope discipline is not modesty. It is the only reason a twelve-week commitment is credible at all.</p>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 23 CHOOSING THE FIRST PATH -->
+<section class="slide dense" data-sec="The POC">
+  <template class="nt"><p><b>This slide is a live exercise. Do not present it — run it.</b> Put three candidate paths on the board and score them with the room. Fifteen minutes if you have them; eight if you do not.</p><p><b>The criterion nobody expects is the last one: boring.</b> Say it out loud and let people laugh. "If a path is politically contested, we will spend twelve weeks in a negotiation instead of an engagement. Give us something nobody is defending."</p><p><b>The most common failure mode</b> is a sponsor picking their most strategically important workflow. Push back gently: "That is the second path. Its owner will thank you for not being the one we learn on."</p><p>Whatever is chosen here becomes <span class="ph">[FIRST PATH]</span> throughout the rest of the deck. Write it down and repeat it back before moving on.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">04</div><div>
+      <div class="eyebrow">The POC · scope</div>
+      <h2>The right first path is consequential, reversible, owned, instrumented — and boring.</h2>
+      <p class="lead">Five criteria. We will score candidates against them live, right now, and whatever wins becomes <span class="ph">[FIRST PATH]</span> for the remaining eleven slides.</p></div></div>
+    <div class="body">
+      <div class="g5" style="gap:11px">
+        <div class="card col"><span class="num">1</span><h4 class="mt10">Consequential</h4><p class="sm mt6">It writes, moves money, changes state or touches a customer. If nothing can go wrong, governing it proves nothing.</p></div>
+        <div class="card col"><span class="num">2</span><h4 class="mt10">Reversible</h4><p class="sm mt6">A wrong action can be undone inside a working day, by a documented procedure that already exists.</p></div>
+        <div class="card col"><span class="num">3</span><h4 class="mt10">Singly owned</h4><p class="sm mt6">One team can say yes without convening four others. Multi-owner paths are phase-two work.</p></div>
+        <div class="card col"><span class="num">4</span><h4 class="mt10">Instrumented</h4><p class="sm mt6">It already emits enough telemetry that we can measure a before and an after, rather than inventing a baseline.</p></div>
+        <div class="card sig col"><span class="num sig">5</span><h4 class="mt10">Boring</h4><p class="sm mt6">Nobody is politically defending it. Contested paths turn a twelve-week engagement into a twelve-week negotiation.</p></div>
+      </div>
+      <div class="mt18">
+        <p class="mi" style="margin-bottom:8px">LIVE SCORING — 0 (POOR) TO 3 (STRONG)</p>
+        <table><thead><tr><th>Candidate path</th><th style="width:80px">Owner</th><th style="width:104px">Consequential</th><th style="width:88px">Reversible</th><th style="width:80px">Owned</th><th style="width:96px">Instrumented</th><th style="width:70px">Boring</th><th style="width:64px">Total</th></tr></thead><tbody>
+          <tr><td class="mi">Candidate A — <span class="ph">[NAME]</span></td><td class="mi">—</td><td class="mi">—</td><td class="mi">—</td><td class="mi">—</td><td class="mi">—</td><td class="mi">—</td><td class="mi">—</td></tr>
+          <tr><td class="mi">Candidate B — <span class="ph">[NAME]</span></td><td class="mi">—</td><td class="mi">—</td><td class="mi">—</td><td class="mi">—</td><td class="mi">—</td><td class="mi">—</td><td class="mi">—</td></tr>
+          <tr><td class="mi">Candidate C — <span class="ph">[NAME]</span></td><td class="mi">—</td><td class="mi">—</td><td class="mi">—</td><td class="mi">—</td><td class="mi">—</td><td class="mi">—</td><td class="mi">—</td></tr>
+        </tbody></table>
+      </div>
+      <div class="card mt14" style="padding:12px 18px;border-left:3px solid var(--warn);background:#FFFBF2;border-color:#F2E3C4">
+        <p class="sm"><b>The trap to avoid:</b> choosing your most strategically important workflow. That is the second path. Its owner will thank you for not being the one we learned on.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 24 IN / OUT OF SCOPE -->
+<section class="slide" data-sec="The POC">
+  <template class="nt"><p><b>Read the out-of-scope column aloud, in full. Every line.</b> Skipping it is how scope creep gets its foothold — an unread exclusion is not an exclusion.</p><p><b>Then ask the closing question and wait:</b> "Is there anything in the right-hand column that you believed was in the left? Now is the cheapest possible moment to find that out."</p><p>Someone usually names one thing. If it is small, move it and note the trade. If it is large, say: "That is a real requirement and it is phase two. Adding it now costs us one of the six properties — which one would you like to drop?" That question ends the negotiation cleanly, every time.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">04</div><div>
+      <div class="eyebrow">The POC · boundaries</div>
+      <h2>In scope and out of scope, stated explicitly.</h2>
+      <p class="lead">Is there anything on the right that you believed was on the left? This is the cheapest possible moment to find out.</p></div></div>
+    <div class="body">
+      <div class="g2" style="gap:20px;flex:1;min-height:0">
+        <div class="card col" style="border-left:3px solid var(--ok)"><span class="chip ok"><span class="dot ok"></span>In scope · 12 weeks</span>
+          <div class="col mt10" style="gap:8px">
+            <p class="sm">One consequential action on <span class="ph">[FIRST PATH]</span>, end to end through the control boundary</p>
+            <p class="sm">Identity integration with the incumbent provider — human, workload and agent</p>
+            <p class="sm">A policy decision point with a <b>small, business-legible vocabulary</b> and three risk tiers</p>
+            <p class="sm">Capability grants: audience-bound, attenuable, short-lived, offline-verifiable</p>
+            <p class="sm">One mediation boundary enforcing grants in front of one real backend</p>
+            <p class="sm">Telemetry contract and correlated evidence record across at least three systems</p>
+            <p class="sm">Circuit breaker with a measured time-to-stop</p>
+            <p class="sm">Golden-path templates, service page, runbook and the five invariant tests</p>
+            <p class="sm">Control crosswalk with sample evidence, reviewed with your audit team</p>
+          </div></div>
+        <div class="card col" style="border-left:3px solid var(--ink3)"><span class="chip">Out of scope · phase two or later</span>
+          <div class="col mt10" style="gap:8px">
+            <p class="sm">A second path, or generalisation across service families</p>
+            <p class="sm">Enterprise ontology, knowledge graph or semantic federation</p>
+            <p class="sm">New data pipelines, ingestion projects or retrieval infrastructure</p>
+            <p class="sm">Production traffic, production data, or any irreversible action</p>
+            <p class="sm">Replacing the identity provider, gateway, SIEM or observability backend</p>
+            <p class="sm">Model selection, fine-tuning, evaluation harnesses or prompt engineering</p>
+            <p class="sm">Multi-region, disaster recovery or capacity engineering</p>
+            <p class="sm">Certified controls, audit sign-off or a compliance assertion</p>
+            <p class="sm">Organisational change management beyond the one owning team</p>
+          </div></div>
+      </div>
+      <div class="card sig mt14" style="padding:12px 18px">
+        <p class="sm"><b>How we handle a scope request mid-engagement:</b> anything added must displace something of equal size, and the trade is written into the weekly gate note with both names on it. We will not silently absorb scope and we will not silently drop it.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 25 SUCCESS CRITERIA -->
+<section class="slide dense" data-sec="The POC">
+  <template class="nt"><p><b>Executive slide. The thresholds are the deal.</b></p><p><b>Say the honesty line first:</b> "Every threshold in the target column is blank or bracketed on purpose. We will not invent numbers about an estate we have not measured. These get set with your team in week one and they are fixed after week two — nobody moves a goalpost in week nine."</p><p><b>The measurement column matters more than the target column.</b> Point at it: "Every one of these is measured by instrumentation you keep, not by us asserting it in a slide."</p><p><b>If the sponsor asks 'what if we hit five of seven?'</b> — that is exactly the conversation gate 3 exists for. Say so. Partial results are a legitimate outcome with a written recommendation; they are not a quiet pass.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">04</div><div>
+      <div class="eyebrow">The POC · success criteria</div>
+      <h2>Seven measurements. Every threshold set in week one and frozen in week two.</h2>
+      <p class="lead">Targets are bracketed because we will not invent numbers about an estate we have not measured yet. Nobody moves a goalpost in week nine.</p></div></div>
+    <div class="body">
+      <table><thead><tr><th style="width:30px"></th><th style="width:170px">Criterion</th><th style="width:290px">The measurement</th><th style="width:130px">Target</th><th>Instrument · who reads it</th></tr></thead><tbody>
+        <tr><td><span class="num sig">1</span></td><td><b>Attribution latency</b></td><td class="sm">Time to produce actor, human principal, decision, grant and expiry for a randomly selected action</td><td><span class="chip gold">&lt; <span class="ph">[60]</span> sec</span></td><td class="sm">Evidence query · your SRE, unaided</td></tr>
+        <tr><td><span class="num sig">2</span></td><td><b>Enforcement overhead</b></td><td class="sm">Added p99 latency on the golden path versus the measured pre-POC baseline</td><td><span class="chip gold">&lt; <span class="ph">[X]</span> ms</span></td><td class="sm">Your APM · platform engineering</td></tr>
+        <tr><td><span class="num sig">3</span></td><td><b>Time to stop</b></td><td class="sm">From breaker trip to last valid grant expiring, measured under sustained load</td><td><span class="chip gold">&lt; <span class="ph">[X]</span> sec</span></td><td class="sm">Live exercise · SRE and security</td></tr>
+        <tr><td><span class="num sig">4</span></td><td><b>Attenuation integrity</b></td><td class="sm">Adversarial cases attempting privilege amplification through delegation, designed by your team</td><td><span class="chip gold">100% fail closed</span></td><td class="sm">Test suite · your security team</td></tr>
+        <tr><td><span class="num sig">5</span></td><td><b>Bypass resistance</b></td><td class="sm">Direct backend calls that route around the mediation boundary</td><td><span class="chip gold">100% refused at resource</span></td><td class="sm">Test suite · your security team</td></tr>
+        <tr><td><span class="num sig">6</span></td><td><b>Evidence completeness</b></td><td class="sm">Proportion of actions whose full record reconstructs across ≥3 systems with no manual stitching</td><td><span class="chip gold">&gt; <span class="ph">[99]</span>%</span></td><td class="sm">Trace analysis · audit reviews</td></tr>
+        <tr><td><span class="num sig">7</span></td><td><b>Unassisted adoption</b></td><td class="sm">A second team onboards a capability to the golden path using documentation alone, with us out of the room</td><td><span class="chip gold">&lt; <span class="ph">[1]</span> day</span></td><td class="sm">Observed exercise · week 11</td></tr>
+      </tbody></table>
+      <div class="card mt14" style="padding:12px 18px;border-left:3px solid var(--sig)">
+        <p class="sm"><b>Criterion 7 is the one that predicts whether this survives us.</b> The other six prove the architecture works. This one proves it works without its authors in the room — which is the only version worth scaling.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Thresholds fixed at gate 1 · measured with instrumentation you keep</span></div>
+</section>
+
+<!-- 26 KILL CRITERIA -->
+<section class="slide dense dk" data-sec="The POC">
+  <template class="nt"><p><b>Nobody expects this slide. That is exactly why it works.</b></p><p>Deliver it without hedging: "These are the conditions under which we will tell you to stop paying us. Each one is checked at a specific gate, and each has a named owner on your side as well as ours."</p><p><b>The point to make explicit:</b> "A kill criterion is not pessimism. It is what makes the success criteria mean something. Any programme that cannot fail cannot really succeed either."</p><p><b>Then ask for amendments and mean it:</b> "Would you add a sixth? Would you tighten any of these?" If the security lead or the platform lead proposes one, accept it on the spot and write it in. That is decision 5 on the closing slide.</p><p>Sponsors occasionally try to soften these. Hold the line politely: "If we soften the kill criteria today, the week-ten conversation becomes a negotiation instead of a measurement."</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">04</div><div>
+      <div class="eyebrow">The POC · kill criteria</div>
+      <h2>The conditions under which we will tell you to stop.</h2>
+      <p class="lead">A kill criterion is not pessimism — it is what makes a success criterion mean something. Each is checked at a named gate. We would like a sixth from this room.</p></div></div>
+    <div class="body">
+      <table><thead><tr><th style="width:30px"></th><th style="width:280px">If this is true…</th><th>…then this is what it tells us</th><th style="width:96px">Checked at</th></tr></thead><tbody>
+        <tr><td><span class="num">1</span></td><td class="sm">Policy decision adds more than <span class="ph">[X]</span>ms p99 to the golden path and cannot be reduced by caching, attenuation or tiering</td><td class="sm">The <b>enforcement model is wrong</b> for this estate. A control nobody can afford to keep on is not a control.</td><td><span class="chip gold">Gate 2</span></td></tr>
+        <tr><td><span class="num">2</span></td><td class="sm">Revocation consistently takes longer than the grant TTL under sustained load</td><td class="sm">The <b>conveyance model is wrong</b>. If you cannot stop it faster than it expires, the off switch is decorative.</td><td><span class="chip gold">Gate 3</span></td></tr>
+        <tr><td><span class="num">3</span></td><td class="sm">The backend can be reached directly, and closing that route requires rewriting it</td><td class="sm">The <b>boundary is in the wrong place</b> for this system class — and possibly for most of your estate.</td><td><span class="chip gold">Gate 2</span></td></tr>
+        <tr><td><span class="num">4</span></td><td class="sm">Evidence cannot be joined into one trace across three or more systems without manual stitching</td><td class="sm">The <b>telemetry contract is wrong</b>, and every downstream assurance claim rests on sand.</td><td><span class="chip gold">Gate 3</span></td></tr>
+        <tr><td><span class="num">5</span></td><td class="sm">The owning team will not adopt the golden path without us physically in the room</td><td class="sm">The <b>product is wrong</b>. This is the failure mode that kills programmes six months after the consultants leave.</td><td><span class="chip gold">Gate 4</span></td></tr>
+        <tr style="opacity:.62"><td><span class="num">6</span></td><td class="sm"><span class="ph">[YOUR SIXTH — added today]</span></td><td class="sm">Proposed by this room. We will write it in before we leave.</td><td><span class="chip gold">—</span></td></tr>
+      </tbody></table>
+      <div class="card mt14" style="border-left:3px solid var(--gold);background:rgba(245,196,81,.09);border-color:rgba(245,196,81,.28)">
+        <p class="sm"><b>How a kill decision actually works.</b> Any criterion tripping produces a written finding within 48 hours, a joint review inside a week, and one of three outcomes: <b>remediate</b> with a named change and a new date, <b>re-scope</b> to a path where the architecture fits, or <b>stop</b> — with the evidence, the instrumentation and the crosswalk handed over regardless. You keep the artefacts in all three cases.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 27 TWELVE WEEKS -->
+<section class="slide dense" data-sec="The POC">
+  <template class="nt"><p><b>Four minutes. Walk the gates, not the phases.</b> Phases are activity; gates are decisions, and the sponsor only cares about decisions.</p><p><b>Say for each gate:</b> "Written go / no-go, one page, circulated 24 hours before the meeting so nobody is reading it in the room."</p><p><b>The phase-2 point deserves emphasis:</b> "Weeks 3 to 5 are where we find out whether this works at all. If we are wrong, you find out in week five for a fifth of the cost, not in week twelve."</p><p><b>Watch for the holiday question.</b> Ask directly: "What is in this twelve-week window on your side — freezes, audits, quarter close, holidays?" Change freezes around quarter end have derailed more POCs than any technical risk on slide 30.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">04</div><div>
+      <div class="eyebrow">The POC · plan</div>
+      <h2>Twelve weeks, four phases, four written gates.</h2>
+      <p class="lead">Each gate is a one-page go / no-go, circulated 24 hours ahead so nobody reads it for the first time in the room. Starting <span class="ph">[START DATE]</span>.</p></div></div>
+    <div class="body">
+      <div class="tl">
+        <div class="tl-axis"><span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span><span>W7</span><span>W8</span><span>W9</span><span>W10</span><span>W11</span><span>W12</span></div>
+        <div class="tl-row"><div class="bar" style="grid-column:1/3;background:var(--p1)"><b>Phase 1 · Frame</b><small>Actors, actions, risk tiers</small></div></div>
+        <div class="tl-row"><div class="bar" style="grid-column:3/6;background:var(--sig)"><b>Phase 2 · Prove one path</b><small>Latency, revocation, bypass, observability</small></div></div>
+        <div class="tl-row"><div class="bar" style="grid-column:6/10;background:var(--p2)"><b>Phase 3 · Build the golden path</b><small>Registration, templates, tests, dashboards, emergency controls</small></div></div>
+        <div class="tl-row"><div class="bar" style="grid-column:10/13;background:var(--p3)"><b>Phase 4 · Operationalize</b><small>IAM, SIEM, ownership, SLOs, crosswalk, handover</small></div></div>
+        <div class="tl-row" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--rule)">
+          <div class="gate" style="grid-column:2/4"><i></i><span>GATE 1<br>Thresholds<br>frozen</span></div>
+          <div class="gate" style="grid-column:5/7"><i></i><span>GATE 2<br>Path proven<br>or re-scoped</span></div>
+          <div class="gate" style="grid-column:9/11"><i></i><span>GATE 3<br>Invariants<br>tested</span></div>
+          <div class="gate" style="grid-column:12/13;justify-self:end"><i></i><span>GATE 4<br>Handover<br>accepted</span></div>
+        </div>
+      </div>
+      <div class="g4 mt14">
+        <div class="card" style="padding:13px 16px"><p class="mi">GATE 1 · WEEK 2</p><p class="sm mt6">Risk tiers agreed, first path locked, every success threshold fixed in writing.</p></div>
+        <div class="card sig" style="padding:13px 16px"><p class="mi">GATE 2 · WEEK 5</p><p class="sm mt6"><b>The real decision point.</b> Kill criteria 1 and 3 checked. Wrong architecture? You learn it here, for a fifth of the cost.</p></div>
+        <div class="card" style="padding:13px 16px"><p class="mi">GATE 3 · WEEK 9</p><p class="sm mt6">All five invariants tested with your adversarial cases. Crosswalk drafted and reviewed with audit.</p></div>
+        <div class="card" style="padding:13px 16px"><p class="mi">GATE 4 · WEEK 12</p><p class="sm mt6">Unassisted adoption exercise passed, ownership transferred, phase-two recommendation delivered.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 28 JOINT TEAM -->
+<section class="slide dense" data-sec="The POC">
+  <template class="nt"><p><b>The word to stress is joint.</b> "There is no delivery team and client team. There is one team with two employers."</p><p><b>The rigour argument is worth making explicitly:</b> this work succeeds when different kinds of rigour challenge each other. A capability-security thinker and a platform product engineer will disagree — productively — about almost every design decision, and the architecture is better for it.</p><p><b>Then get names.</b> Do not leave this slide with roles unfilled. "I need a name against each of these five rows before we leave, or a date by which I will have one." Unnamed roles are the single most reliable predictor of a slipped gate.</p><p>If they push back on the time commitment, be concrete: "Half a day a week for the data engineer. One day for platform. This fails if it is nobody's job."</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">04</div><div>
+      <div class="eyebrow">The POC · working model</div>
+      <h2>One team with two employers.</h2>
+      <p class="lead">This work succeeds when different forms of rigour challenge each other. We need a name against every row on the right before we leave this room — or a date by which we will have one.</p></div></div>
+    <div class="body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;min-height:0">
+        <div class="col">
+          <p class="mi" style="margin-bottom:8px">WE BRING</p>
+          <div class="col gap8">
+            <div class="card" style="padding:12px 16px"><h4>Capability-security thinker</h4><p class="sm mt6">Sees ambient authority, confused deputies, replay and privilege amplification before they become implementation details.</p></div>
+            <div class="card" style="padding:12px 16px"><h4>Distributed-systems pragmatist</h4><p class="sm mt6">Assumes delay, duplication, partition, stale state and partial failure — and makes degraded behaviour explicit.</p></div>
+            <div class="card" style="padding:12px 16px"><h4>Platform product engineer</h4><p class="sm mt6">Turns control complexity into paved roads, service pages, templates and safe defaults teams willingly adopt.</p></div>
+            <div class="card" style="padding:12px 16px"><h4>Runtime performance engineer</h4><p class="sm mt6">Measures cold start, steady-state overhead, concurrency and host-call cost rather than debating by instinct.</p></div>
+          </div>
+        </div>
+        <div class="col">
+          <p class="mi" style="margin-bottom:8px">YOU NAME — TODAY</p>
+          <table><thead><tr><th>Role</th><th style="width:96px">Commitment</th><th style="width:118px">Name</th></tr></thead><tbody>
+            <tr><td><b>Executive sponsor</b><br><span class="sm">Owns gate decisions and scope trades</span></td><td class="sm">Gates only</td><td class="mi">—</td></tr>
+            <tr><td><b>First-path owner</b><br><span class="sm">Can say yes without convening four teams</span></td><td class="sm">0.5 day/wk</td><td class="mi">—</td></tr>
+            <tr><td><b>Platform engineer</b><br><span class="sm">Authority over the deployment template</span></td><td class="sm">1 day/wk</td><td class="mi">—</td></tr>
+            <tr><td><b>Security / IAM engineer</b><br><span class="sm">Designs the adversarial cases</span></td><td class="sm">1 day/wk</td><td class="mi">—</td></tr>
+            <tr><td><b>Data engineer</b><br><span class="sm">Catalog, sources, freshness</span></td><td class="sm">0.5 day/wk</td><td class="mi">—</td></tr>
+            <tr><td><b>AI practitioner</b><br><span class="sm">Capability inventory and agent design</span></td><td class="sm">1 day/wk</td><td class="mi">—</td></tr>
+            <tr><td><b>SRE / assurance challenger</b><br><span class="sm">Exercises breakers, revocation, recovery</span></td><td class="sm">0.5 day/wk</td><td class="mi">—</td></tr>
+          </tbody></table>
+          <div class="card sig mt10" style="padding:11px 16px"><p class="sm"><b>Unnamed roles are the single most reliable predictor of a slipped gate.</b> Not underestimated effort — unnamed people.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 29 WHAT WE NEED -->
+<section class="slide dense" data-sec="The POC">
+  <template class="nt"><p><b>Access is where twelve-week engagements quietly become sixteen-week engagements.</b> Every row here has a date, and the dates are not negotiable in the sense that slipping them slips the gate — not in the sense that we will be annoyed.</p><p><b>Say the arithmetic out loud:</b> "If namespace access lands in week three instead of week one, gate 2 moves to week seven and the whole plan shifts. I am not being dramatic — that is just the arithmetic."</p><p><b>The environment question is the one people underestimate.</b> Ask directly: "How long does a new namespace and an IdP tenant genuinely take here — not the SLA, the reality?" The honest answer is usually three to six weeks, which means it must start before the contract is signed.</p><p><b>Best possible outcome of this slide:</b> someone says "I can get you that on Thursday" and you write their name next to it.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">04</div><div>
+      <div class="eyebrow">The POC · dependencies</div>
+      <h2>What we need from you, and when.</h2>
+      <p class="lead">If access lands in week three instead of week one, gate 2 moves to week seven. That is not a complaint — it is arithmetic, and it is the most common way this plan slips.</p></div></div>
+    <div class="body">
+      <div class="g3" style="gap:16px;flex:1;min-height:0">
+        <div class="card col"><span class="chip sig">Access</span>
+          <table style="margin-top:8px"><tbody>
+            <tr><td class="sm">Non-production namespace and deploy path</td><td class="mi" style="width:56px">W1</td></tr>
+            <tr><td class="sm">Identity provider tenant — non-prod, with admin</td><td class="mi">W1</td></tr>
+            <tr><td class="sm">Read access to the service catalog / CMDB</td><td class="mi">W1</td></tr>
+            <tr><td class="sm">Observability backend — write and query</td><td class="mi">W2</td></tr>
+            <tr><td class="sm">First-path backend, non-prod instance</td><td class="mi">W2</td></tr>
+            <tr><td class="sm">Gateway / mesh configuration in non-prod</td><td class="mi">W3</td></tr>
+          </tbody></table>
+          <div class="rulehair"></div>
+          <p class="sm"><b>Honest question:</b> how long does a namespace and an IdP tenant genuinely take here — not the SLA, the reality? If it is six weeks, it starts before the contract is signed.</p></div>
+        <div class="card col"><span class="chip sig">Decisions</span>
+          <table style="margin-top:8px"><tbody>
+            <tr><td class="sm">First path confirmed, with accountable owner</td><td class="mi" style="width:56px">Today</td></tr>
+            <tr><td class="sm">Three risk tiers defined, and who assigns them</td><td class="mi">W1</td></tr>
+            <tr><td class="sm">Reuse-first incumbents confirmed</td><td class="mi">W1</td></tr>
+            <tr><td class="sm">Data classes in scope — and the one that is not</td><td class="mi">W1</td></tr>
+            <tr><td class="sm">Success thresholds fixed in writing</td><td class="mi">W2</td></tr>
+            <tr><td class="sm">Policy vocabulary owner named</td><td class="mi">W2</td></tr>
+            <tr><td class="sm">Adversarial test cases agreed with security</td><td class="mi">W4</td></tr>
+          </tbody></table></div>
+        <div class="card col"><span class="chip sig">People &amp; rhythm</span>
+          <table style="margin-top:8px"><tbody>
+            <tr><td class="sm">Seven named roles — slide 28</td><td class="mi" style="width:56px">Today</td></tr>
+            <tr><td class="sm">Weekly 45-minute working session, fixed slot</td><td class="mi">W1</td></tr>
+            <tr><td class="sm">Gate reviews — 60 minutes, sponsor present</td><td class="mi">W2/5/9/12</td></tr>
+            <tr><td class="sm">Shared channel and a single written decision log</td><td class="mi">W1</td></tr>
+            <tr><td class="sm">Access to your change-freeze calendar</td><td class="mi">W1</td></tr>
+          </tbody></table>
+          <div class="rulehair"></div>
+          <p class="sm"><b>One question we need answered today:</b> what falls inside this twelve-week window on your side — change freezes, audits, quarter close, holidays? Freezes have derailed more of these than any technical risk on the next slide.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 30 RISKS & ASSUMPTIONS -->
+<section class="slide dense" data-sec="The POC">
+  <template class="nt"><p><b>Put the risks on the table before anyone has to go looking for them.</b> A risk you name yourself is a risk you are managing; a risk they find is a risk you were hiding.</p><p><b>Note the pattern deliberately:</b> five of the seven mitigations are "find out in week one or two." Say it: "Almost every mitigation here is early detection rather than clever engineering. Nearly all of these are cheap in week two and expensive in week nine."</p><p><b>The assumptions box is a request, not a statement.</b> Read it and ask: "Is any one of these four false? If so, say it now — three of them change the plan materially."</p><p>Risk 3 is the one most often underestimated by the room. If the backend genuinely cannot enforce, that is kill criterion 3 and it is better known in week two.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">04</div><div>
+      <div class="eyebrow">The POC · risks</div>
+      <h2>What could go wrong, and what we do about it.</h2>
+      <p class="lead">Note the pattern: almost every mitigation is early detection rather than clever engineering. These are cheap in week two and expensive in week nine.</p></div></div>
+    <div class="body">
+      <div style="display:grid;grid-template-columns:1.5fr .85fr;gap:20px;flex:1;min-height:0">
+        <table><thead><tr><th style="width:26px"></th><th style="width:230px">Risk</th><th>Mitigation</th><th style="width:74px">Owner</th></tr></thead><tbody>
+          <tr><td><span class="num">1</span></td><td class="sm"><b>Environment access slips</b> beyond week 2</td><td class="sm">Access requests raised on day 1, tracked in the decision log, escalated at the weekly session. Gate 1 will not be declared complete without it.</td><td class="sm">Sponsor</td></tr>
+          <tr><td><span class="num">2</span></td><td class="sm"><b>The first path turns out to be contested</b> or multi-owner</td><td class="sm">Score three candidates today, not one. A named fallback candidate carries no additional cost if we switch before week 3.</td><td class="sm">Joint</td></tr>
+          <tr><td><span class="num">3</span></td><td class="sm"><b>The backend cannot enforce at the resource</b> without a rewrite</td><td class="sm">Tested in week 3, not week 9. If true, this is kill criterion 3 and we re-scope to a path where the boundary fits.</td><td class="sm">Us</td></tr>
+          <tr><td><span class="num">4</span></td><td class="sm"><b>Policy latency exceeds the tolerable budget</b> on the hot path</td><td class="sm">Latency budget agreed in week 1 before design. Tiering, caching and local verification are designed in from the start, not retrofitted.</td><td class="sm">Us</td></tr>
+          <tr><td><span class="num">5</span></td><td class="sm"><b>A change freeze</b> falls inside the window</td><td class="sm">Freeze calendar reviewed in week 1; phase boundaries shifted around it rather than compressed into it.</td><td class="sm">Platform</td></tr>
+          <tr><td><span class="num">6</span></td><td class="sm"><b>Key people are pulled onto an incident</b> for two weeks</td><td class="sm">Named deputy for each of the seven roles. Written decision log means context survives an absence.</td><td class="sm">Sponsor</td></tr>
+          <tr><td><span class="num">7</span></td><td class="sm"><b>Scope widens</b> after an encouraging demo</td><td class="sm">Every addition displaces something of equal size, recorded in the gate note with both names on it.</td><td class="sm">Joint</td></tr>
+        </tbody></table>
+        <div class="card col"><div class="eyebrow">Assumptions we are making</div>
+          <p class="sm mt10">Is any one of these false? Three of the four change the plan materially.</p>
+          <div class="col mt10" style="gap:9px">
+            <p class="sm">→ A non-production environment exists that <b>resembles production</b> closely enough for latency numbers to mean something.</p>
+            <p class="sm">→ There is an <b>incumbent identity provider</b> we can federate with, rather than a greenfield decision.</p>
+            <p class="sm">→ The first-path backend can be <b>configured to refuse un-mediated calls</b> — even if that configuration does not exist yet.</p>
+            <p class="sm">→ <span class="ph">[CLIENT]</span> wants a <b>capability it operates</b>, not a demonstration it commissions.</p>
+          </div>
+          <div class="rulehair"></div>
+          <p class="sm"><b>The fourth is the one that matters most.</b> If what you want is a demonstration, we should design a very different twelve weeks — and we would say so.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 31 DAY 1 / 30 / 90 -->
+<section class="slide" data-sec="The POC">
+  <template class="nt"><p><b>The executive's favourite slide, because it answers the only question they actually hold: "what will exist that does not exist now?"</b></p><p>Every item is a noun — an artefact, a document, a running thing. No verbs, no "workstreams," no "alignment." If it cannot be pointed at, it is not on this slide.</p><p><b>The day-90 line to land:</b> "Everything in the third column is yours whether or not you continue with us. The instrumentation, the templates, the crosswalk, the evidence. That is deliberate — a capability you cannot operate without us is not a capability."</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">04</div><div>
+      <div class="eyebrow">The POC · what exists when</div>
+      <h2>Every item is a noun you can point at.</h2>
+      <p class="lead">No workstreams, no alignment, no enablement. If it cannot be opened, run or read, it is not on this slide.</p></div></div>
+    <div class="body">
+      <div class="g3" style="gap:16px;flex:1;min-height:0">
+        <div class="card col"><span class="chip">Day 1 · end of week 1</span>
+          <div class="col mt10" style="gap:8px">
+            <p class="sm">A written <b>autonomy frame</b> — actors, actions, data classes, reversibility, consequence</p>
+            <p class="sm">Three <b>risk tiers</b>, defined, with an assignment owner</p>
+            <p class="sm">The <b>first path</b> named, with an accountable owner</p>
+            <p class="sm">Seven <b>named people</b> and a fixed weekly slot</p>
+            <p class="sm">A <b>decision log</b> with entries in it</p>
+            <p class="sm">Access requests <b>raised</b>, with dates</p>
+          </div></div>
+        <div class="card sig col"><span class="chip sig">Day 30 · end of week 4</span>
+          <div class="col mt10" style="gap:8px">
+            <p class="sm">One real service <b>running behind the control boundary</b> in non-production</p>
+            <p class="sm">Grants being <b>issued, verified and expiring</b> under real invocation</p>
+            <p class="sm">A <b>correlated evidence record</b> you can query yourself</p>
+            <p class="sm">Measured <b>enforcement overhead</b> against a real baseline</p>
+            <p class="sm">A working <b>circuit breaker</b> with a measured time-to-stop</p>
+            <p class="sm">A frank week-5 gate paper — <b>including whether to stop</b></p>
+          </div></div>
+        <div class="card col"><span class="chip">Day 90 · end of week 12</span>
+          <div class="col mt10" style="gap:8px">
+            <p class="sm">A <b>golden path</b>: registration, policy inheritance, templates, tests, dashboards, emergency controls</p>
+            <p class="sm">Five <b>invariant tests</b> in your CI, run against your adversarial cases</p>
+            <p class="sm">A <b>service page</b> showing capability, owner, health, version, effective policy and the off switch</p>
+            <p class="sm">A <b>control crosswalk</b> with sample evidence, reviewed by your audit team</p>
+            <p class="sm">A <b>runbook</b> and a second team that onboarded without us</p>
+            <p class="sm">A <b>phase-two recommendation</b> — including the honest case for not doing one</p>
+          </div>
+          <div class="rulehair"></div>
+          <p class="sm"><b>All of it is yours whether or not you continue with us.</b> A capability you cannot operate without its authors is not a capability.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+<!-- 32 FIVE DECISIONS -->
+<section class="slide" data-sec="Close">
+  <template class="nt"><p><b>Do not rush this. Ten minutes, and work the room decision by decision.</b></p><p>Put the slide up and say: "I am going to ask for each of these individually. Where we cannot decide today, I want a name and a date rather than a maybe."</p><p><b>Go one at a time. Get an answer or a date. Write it on the slide.</b> A "we'll come back to it" with no owner is a no, and it will surface as a slipped gate in week three.</p><p>Decision 5 is the one that tests whether the room believes you. If they engage seriously with amending the kill criteria — tightening them, adding one — you have a real partnership. If they wave it through, probe: "You are comfortable with all five as written? Genuinely?"</p><p><b>Close the section by reading back what was agreed, out loud, before anyone leaves.</b> Then send it in writing within 24 hours.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">05</div><div>
+      <div class="eyebrow">Close</div>
+      <h2>Five decisions, and we start Monday.</h2>
+      <p class="lead">Taken one at a time. Where we cannot decide today, we need a name and a date rather than a maybe — an undecided item with no owner becomes a slipped gate in week three.</p></div></div>
+    <div class="body">
+      <table><thead><tr><th style="width:32px"></th><th style="width:250px">Decision</th><th>What we need to hear</th><th style="width:120px">Owner</th><th style="width:96px">Status</th></tr></thead><tbody>
+        <tr><td><span class="num sig">1</span></td><td><b>The first path</b></td><td class="sm">A named path and an accountable owner who can say yes without convening four other teams. Plus a named fallback candidate.</td><td class="mi">—</td><td><span class="chip gold">Open</span></td></tr>
+        <tr><td><span class="num sig">2</span></td><td><b>Risk tiers</b></td><td class="sm">Three tiers, roughly defined, and who has the authority to assign a capability to one. We will sharpen the definitions in week 1.</td><td class="mi">—</td><td><span class="chip gold">Open</span></td></tr>
+        <tr><td><span class="num sig">3</span></td><td><b>Reuse-first incumbents</b></td><td class="sm">Confirmation of the identity provider, observability backend and API gateway we integrate with rather than replace.</td><td class="mi">—</td><td><span class="chip gold">Open</span></td></tr>
+        <tr><td><span class="num sig">4</span></td><td><b>The joint team and cadence</b></td><td class="sm">Seven names from slide 28 — or a date by which we will have them — and a fixed weekly slot starting this week.</td><td class="mi">—</td><td><span class="chip gold">Open</span></td></tr>
+        <tr><td><span class="num sig">5</span></td><td><b>The kill criteria</b></td><td class="sm">Approved as written, tightened, or amended today — including whatever sixth criterion this room wants to add.</td><td class="mi">—</td><td><span class="chip gold">Open</span></td></tr>
+      </tbody></table>
+      <div class="g2 mt18" style="gap:16px">
+        <div class="card sig" style="padding:14px 18px"><div class="eyebrow">Within 24 hours</div>
+          <p class="sm mt6">Written confirmation of every decision above, the access requests raised with dates, and the first weekly session in calendars. Nothing agreed in this room survives on memory alone.</p></div>
+        <div class="card" style="padding:14px 18px"><div class="eyebrow">Within 5 working days</div>
+          <p class="sm mt6">The week-1 autonomy-framing workshop — half a day, the seven named people, and the estate map on slide 16 completed properly rather than live-edited.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Enterprise AI Operating Model · POC Kickoff</span></div>
+</section>
+
+<!-- 33 CLOSE -->
+<section class="slide dk" data-sec="Close">
+  <template class="nt"><p><b>The last thing you say in the room. Fifteen seconds, then stop.</b></p><p>Do not add anything after this. Do not offer to take more questions from the front of the room — take them individually, afterwards, while people are packing up. That is where the real objections surface anyway.</p><p><b>If you want one closing line beyond the slide:</b> "One useful service, governed properly, teaches you more about whether this works than a cathedral nobody has moved into."</p></template>
+  <div class="pad" style="justify-content:center">
+    <div style="max-width:1030px">
+      <div style="width:5px;height:150px;background:var(--sig-br);position:absolute;left:72px;top:268px"></div>
+      <div style="padding-left:34px">
+        <h1 style="font-size:52px;line-height:1.16;letter-spacing:-.03em;font-weight:700">Formal enough to preserve<br>the security properties.<br>Pragmatic enough to ship one useful<br>service before building a cathedral.</h1>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span>
+    <span>Standardize the control contract</span><span>·</span><span>Preserve technology choice</span><span>·</span>
+    <span>Prove one consequential path</span><span>·</span><span>Then scale the operating model</span></div>
+</section>
+
+<!-- 34 APPENDIX: INTAKE -->
+<section class="slide" data-sec="Appendix">
+  <template class="nt"><p><b>Not presented. This is the week-0 intake sheet</b> that resolves every bracketed placeholder in the deck.</p><p>Send it ahead of the session where possible. Where it arrives filled in beforehand, the kickoff runs thirty minutes shorter and the estate map on slide 16 stops being a live exercise and becomes a review.</p><p>Press <span class="kbd">E</span> on any slide to highlight every placeholder this sheet resolves.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">A1</div><div>
+      <div class="eyebrow">Appendix · template</div>
+      <h2>Week-0 intake — the fields this deck is parameterised on.</h2>
+      <p class="lead">Every bracketed field in the preceding 33 slides resolves from this sheet. Press <span class="kbd">E</span> on any slide to highlight them.</p></div></div>
+    <div class="body">
+      <div class="g3" style="gap:16px;flex:1;min-height:0">
+        <div class="card col"><div class="eyebrow">Engagement</div>
+          <table style="margin-top:8px"><tbody>
+            <tr><td class="sm"><span class="ph">[CLIENT]</span></td><td class="mi" style="width:46px">—</td></tr>
+            <tr><td class="sm"><span class="ph">[DATE]</span> · kickoff</td><td class="mi">—</td></tr>
+            <tr><td class="sm"><span class="ph">[START DATE]</span> · week 1</td><td class="mi">—</td></tr>
+            <tr><td class="sm"><span class="ph">[ENGAGEMENT ID]</span></td><td class="mi">—</td></tr>
+            <tr><td class="sm"><span class="ph">[DOMAIN]</span> · business area</td><td class="mi">—</td></tr>
+            <tr><td class="sm">Binding regulatory frameworks</td><td class="mi">—</td></tr>
+            <tr><td class="sm">Change freezes in window</td><td class="mi">—</td></tr>
+          </tbody></table></div>
+        <div class="card col"><div class="eyebrow">First path &amp; thresholds</div>
+          <table style="margin-top:8px"><tbody>
+            <tr><td class="sm"><span class="ph">[FIRST PATH]</span></td><td class="mi" style="width:46px">—</td></tr>
+            <tr><td class="sm"><span class="ph">[ACTION]</span> · the capability</td><td class="mi">—</td></tr>
+            <tr><td class="sm">Fallback candidate path</td><td class="mi">—</td></tr>
+            <tr><td class="sm">Attribution latency target</td><td class="mi">—</td></tr>
+            <tr><td class="sm">Enforcement overhead budget · p99</td><td class="mi">—</td></tr>
+            <tr><td class="sm">Time-to-stop target</td><td class="mi">—</td></tr>
+            <tr><td class="sm">Evidence completeness target</td><td class="mi">—</td></tr>
+            <tr><td class="sm">Unassisted adoption target</td><td class="mi">—</td></tr>
+          </tbody></table></div>
+        <div class="card col"><div class="eyebrow">Estate &amp; people</div>
+          <table style="margin-top:8px"><tbody>
+            <tr><td class="sm">Identity provider</td><td class="mi" style="width:46px">—</td></tr>
+            <tr><td class="sm">Observability backend</td><td class="mi">—</td></tr>
+            <tr><td class="sm">API gateway / mesh</td><td class="mi">—</td></tr>
+            <tr><td class="sm">Compute platform</td><td class="mi">—</td></tr>
+            <tr><td class="sm">Service catalog / CMDB</td><td class="mi">—</td></tr>
+            <tr><td class="sm">Workflow engine</td><td class="mi">—</td></tr>
+            <tr><td class="sm">Data classes in scope · and out</td><td class="mi">—</td></tr>
+            <tr><td class="sm">Seven named roles · slide 28</td><td class="mi">—</td></tr>
+          </tbody></table></div>
+      </div>
+      <div class="card mt14" style="padding:12px 18px;border-left:3px solid var(--sig)">
+        <p class="sm"><b>Where this arrives filled in before the session</b>, the kickoff runs thirty minutes shorter and slide 16 becomes a review rather than a live exercise. That is the single highest-leverage piece of preparation available.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Appendix · not presented</span></div>
+</section>
+
+<!-- 35 APPENDIX: GLOSSARY -->
+<section class="slide" data-sec="Appendix">
+  <template class="nt"><p><b>Reference only.</b> Six terms this deck uses precisely and that are commonly used loosely elsewhere. Worth pointing at if a definitional argument starts — a shared vocabulary ends most of them in under a minute.</p></template>
+  <div class="pad">
+    <div class="shead"><div class="snum">A2</div><div>
+      <div class="eyebrow">Appendix · vocabulary</div>
+      <h2>Six terms this deck uses precisely.</h2>
+      <p class="lead">Each is commonly used loosely. Where a definitional argument starts, it usually ends here.</p></div></div>
+    <div class="body">
+      <div class="g2" style="gap:14px;flex:1;min-height:0">
+        <div class="card"><h4>Ambient authority</h4><p class="sm mt6">Permission an actor holds by virtue of <i>where it is running</i> rather than by an explicit, attributable grant. A long-lived service-account key on a pod is ambient authority. It is the default state of most estates and the thing this architecture exists to remove.</p></div>
+        <div class="card"><h4>Capability grant</h4><p class="sm mt6">A short-lived, audience-bound, attenuable credential conveying a <i>specific</i> authorization decision to the point that enforces it. Distinct from a role, which describes what an actor is and persists indefinitely.</p></div>
+        <div class="card"><h4>Attenuation</h4><p class="sm mt6">The property that a holder of authority can pass on a <i>narrower</i> version of it and never a wider one. This is what makes multi-agent delegation governable rather than merely observable.</p></div>
+        <div class="card"><h4>Mediation boundary</h4><p class="sm mt6">The enforcement point that verifies a grant and exposes only the approved interfaces of a resource. May be a sidecar, a gateway plugin, a portable runtime or a native component — the pattern is fixed, the implementation is not.</p></div>
+        <div class="card"><h4>Golden path</h4><p class="sm mt6">The supported, templated, instrumented route by which a team registers and operates a capability. Its quality is measured by adoption without its authors present — success criterion 7.</p></div>
+        <div class="card"><h4>Evidence</h4><p class="sm mt6">Telemetry correlated well enough to answer a question under adversarial scrutiny. Distinct from logs, which are what you have, and dashboards, which are what you look at.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">AEGISES</span><span class="sp"></span><span>Appendix · not presented</span></div>
+</section>
+
+</div></div>
+
+<aside id="pres">
+  <h5>Presenter notes</h5>
+  <div class="clock" id="clk">00:00</div>
+  <div class="nt" id="ntbody" style="margin-top:16px"></div>
+  <div class="nxt" id="nxt"></div>
+</aside>
+<div id="bar"></div>
+<div id="hud"></div>
+<div id="help"><div>
+  <div class="eyebrow" style="margin-bottom:14px">Keyboard</div>
+  <table><tbody>
+    <tr><td style="width:150px"><span class="kbd">→</span> <span class="kbd">space</span> <span class="kbd">PgDn</span></td><td>Next — advances builds first</td></tr>
+    <tr><td><span class="kbd">←</span> <span class="kbd">PgUp</span></td><td>Previous</td></tr>
+    <tr><td><span class="kbd">↓</span> <span class="kbd">↑</span></td><td>Next / previous slide, skipping builds</td></tr>
+    <tr><td><span class="kbd">O</span></td><td>Overview grid — click any slide to jump</td></tr>
+    <tr><td><span class="kbd">P</span></td><td>Presenter notes and timer</td></tr>
+    <tr><td><span class="kbd">T</span></td><td>Reset the timer</td></tr>
+    <tr><td><span class="kbd">E</span></td><td>Highlight every <span class="ph">[PLACEHOLDER]</span></td></tr>
+    <tr><td><span class="kbd">F</span></td><td>Fullscreen</td></tr>
+    <tr><td><span class="kbd">Home</span> <span class="kbd">End</span></td><td>First / last slide</td></tr>
+    <tr><td><span class="kbd">⌘P</span> <span class="kbd">Ctrl+P</span></td><td>Print — one 16:9 page per slide</td></tr>
+    <tr><td><span class="kbd">?</span> <span class="kbd">Esc</span></td><td>Close this</td></tr>
+  </tbody></table>
+</div></div>
+
+<script>
+(function(){
+  var slidesEl=document.getElementById('slides');
+  var raw=[].slice.call(slidesEl.querySelectorAll('.slide'));
+  var slots=raw.map(function(s,i){
+    var d=document.createElement('div');
+    d.className='slot'; d.setAttribute('data-n',i+1);
+    s.parentNode.insertBefore(d,s); d.appendChild(s);
+    d.addEventListener('click',function(){ if(document.body.classList.contains('ov')){ go(i); toggleOv(false);} });
+    return d;
+  });
+  var N=slots.length, cur=0, frag=0;
+  var notes=raw.map(function(s){ var t=s.querySelector('template.nt'); return t?t.innerHTML:'<p>No notes.</p>'; });
+  var titles=raw.map(function(s){ var h=s.querySelector('h1,h2'); return h?h.textContent.trim():'Slide'; });
+  var secs=raw.map(function(s){ return s.getAttribute('data-sec')||''; });
+  var frags=raw.map(function(s){ return [].slice.call(s.querySelectorAll('.frag')); });
+
+  function fit(){
+    if(document.body.classList.contains('ov')) return;
+    var pr=document.body.classList.contains('pres')?380:0;
+    var w=window.innerWidth-pr, h=window.innerHeight;
+    var k=Math.min(w/1280,h/720);
+    slidesEl.style.transform='scale('+k+')';
+    slidesEl.style.marginLeft=(-pr/2)+'px';
+  }
+  function paintFrags(){
+    var f=frags[cur];
+    f.forEach(function(el,i){ el.classList.toggle('vis', i<frag); });
+    if(!f.length) return;
+  }
+  function render(){
+    slots.forEach(function(s,i){ s.classList.toggle('on', i===cur); });
+    document.getElementById('bar').style.width=((cur+1)/N*100)+'%';
+    document.getElementById('hud').textContent=secs[cur]+'  ·  '+(cur+1)+' / '+N;
+    document.getElementById('ntbody').innerHTML=notes[cur];
+    document.getElementById('nxt').innerHTML= cur<N-1
+      ? '<b>Next '+(cur+2)+'</b> &nbsp;'+titles[cur+1]
+      : '<b>End of deck</b>';
+    paintFrags(); pokeHud();
+    if(location.hash!=='#'+(cur+1)) history.replaceState(null,'','#'+(cur+1));
+  }
+  function go(i,endFrag){
+    cur=Math.max(0,Math.min(N-1,i));
+    frag=endFrag?frags[cur].length:0;
+    render();
+  }
+  function next(){
+    if(frag<frags[cur].length){ frag++; paintFrags(); return; }
+    if(cur<N-1) go(cur+1);
+  }
+  function prev(){
+    if(frag>0){ frag--; paintFrags(); return; }
+    if(cur>0) go(cur-1,true);
+  }
+  function toggleOv(on){
+    document.body.classList.toggle('ov', on);
+    if(!on){ fit(); slots[cur].scrollIntoView&&0; } else { slidesEl.style.transform='none'; }
+  }
+  // timer
+  var t0=Date.now(), tick=null;
+  function fmt(ms){ var s=Math.floor(ms/1000); return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0'); }
+  function startClock(){ if(tick) return; tick=setInterval(function(){ document.getElementById('clk').textContent=fmt(Date.now()-t0); },1000); }
+
+  document.addEventListener('keydown',function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey) return;
+    var k=e.key;
+    if(k==='Escape'){ document.body.classList.remove('help'); if(document.body.classList.contains('ov')) toggleOv(false); return; }
+    if(document.body.classList.contains('help')&&k!=='?') { document.body.classList.remove('help'); return; }
+    switch(k){
+      case 'ArrowRight': case ' ': case 'PageDown': e.preventDefault(); next(); break;
+      case 'ArrowLeft': case 'PageUp': e.preventDefault(); prev(); break;
+      case 'ArrowDown': e.preventDefault(); go(cur+1); break;
+      case 'ArrowUp': e.preventDefault(); go(cur-1); break;
+      case 'Home': go(0); break;
+      case 'End': go(N-1); break;
+      case 'o': case 'O': toggleOv(!document.body.classList.contains('ov')); break;
+      case 'p': case 'P': document.body.classList.toggle('pres'); startClock(); fit(); break;
+      case 't': case 'T': t0=Date.now(); document.getElementById('clk').textContent='00:00'; break;
+      case 'e': case 'E': document.body.classList.toggle('ph-hi'); break;
+      case 'f': case 'F': if(document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen(); break;
+      case '?': document.body.classList.toggle('help'); break;
+    }
+  });
+  slidesEl.addEventListener('click',function(e){
+    if(document.body.classList.contains('ov')) return;
+    if(e.clientX < window.innerWidth*0.18) prev(); else next();
+  });
+  var hudEl=document.getElementById('hud'), hudT=null;
+  function pokeHud(){
+    if(document.body.classList.contains('pres')||document.body.classList.contains('ov')) return;
+    hudEl.classList.add('show'); clearTimeout(hudT);
+    hudT=setTimeout(function(){ hudEl.classList.remove('show'); },1800);
+  }
+  window.addEventListener('mousemove',pokeHud);
+  window.addEventListener('resize',fit);
+  window.addEventListener('beforeprint',function(){ document.body.classList.remove('ov','pres'); });
+  // deep links must work while the page is already open, not just on load
+  window.addEventListener('hashchange',function(){
+    var n=parseInt((location.hash||'').slice(1),10);
+    if(isFinite(n)&&n>0&&n-1!==cur) go(n-1);
+  });
+
+  var h=parseInt((location.hash||'').slice(1),10);
+  go(isFinite(h)&&h>0?h-1:0);
+  fit();
+})();
+</script>
+</body>
+</html>
