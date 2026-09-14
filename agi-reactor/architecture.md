@@ -4,7 +4,7 @@ Canonical: https://aegises.org/agi-reactor/
 
 From intent to governed systems
 
-# Reactor
+# Reactor - AEGISES
 
 A Governable Reference Architecture for Enterprise AI Agent Orchestration
 
