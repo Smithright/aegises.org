@@ -1,6 +1,6 @@
 # AGI Reactor — enterprise architecture
 
-Public design draft 1.0 · 14 September 2026. Planned architecture, not a deployment certification.
+Public design draft 1.1 · 14 September 2026. Planned architecture, not a deployment certification.
 
 ## Architectural judgment
 
@@ -129,3 +129,8 @@ Measure completion quality, latency, total cost, recovery time, duplicate effect
 
 
 Primary transport reference: https://docs.nats.io/learn/jetstream/acknowledgment
+
+
+## Executable reference specimen
+
+[RFC-001: accepted effect, worker death and an UNKNOWN backup](https://aegises.org/agi-reactor/conformance/RFC-001.md) specifies the worked failure case, operator contract and executable falsification test. The reference guard uses local HTTP and SQLite; it does not qualify the production NATS/PostgreSQL runtime.

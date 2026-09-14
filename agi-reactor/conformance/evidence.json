@@ -1,0 +1,14 @@
+{
+  "observed_at": "2026-09-14T04:13:43.163499+00:00",
+  "python": "3.9.6",
+  "scope": "isolated reference specimen; not production qualification",
+  "tests_passed": 2,
+  "negative_control_safety_assertion": "fails as expected",
+  "files": {
+    "test_unknown_restore.py": "005d6dd558a180628d3b1e35b2834efaa90b452fe3d1a9ba9a7cc16f9b889002",
+    "RFC-001.md": "01abca6e54ff5f0ec843089097dc2b2d11b748891ae4af4e7c28d13e14254cc6",
+    "guarded-result.json": "7061093df760bce6d339b8cae7da5e7ec0fd4a549323e27d71e0474bd79a5141",
+    "unknown_restore.py": "2774480e9330f8f33d209909ab5675e4cfcf5015657f97d478e101f2e665df5a",
+    "negative-control-result.json": "abda43f1afd144bb05a22c16a89104177fea28e7a510b636d30d47d269533cce"
+  }
+}
