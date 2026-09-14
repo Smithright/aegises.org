@@ -1,6 +1,6 @@
 Canonical publication: https://aegises.org/agi-reactor/
 Author: Ryan Smithright — ryan@smithright.com
-Public design draft 1.4 — 14 September 2026
+Public design draft 1.3 — 14 September 2026
 This full text is generated from the same public article, including its safety scope, diagram labels, coverage map, technical specification and complete worked RFC.
 
 PUBLIC ARCHITECTURE / 01
@@ -16,71 +16,68 @@ AGI Reactor is a reference design for persistent agents that carry knowledge and
 
 Explore the architecture ↓  (https://aegises.org/agi-reactor/#architecture)
 
- Public design draft 1.4 14 September 2026 Architecture and validation criteria · not a deployment certification
+ Public design draft 1.3 14 September 2026 Architecture and validation criteria · not a deployment certification
 
 00 The whole system
 
-## Policy-governed service orchestration is all you need
+## One coherent system. Several necessary boundaries.
 
-The thesis is architectural composition: reasoning, memory, work, policy, learning and recovery are services. Their governed contracts also change the system itself. Durable state, explicit authority and recoverable effects are part of those contracts.
+The architecture keeps four things consistent: what an agent knows, what it owes, what it may do and what it can afford. NATS connects the services; each service owns its state and enforcement.
 
-D1 The machine (https://aegises.org/agi-reactor/#architecture)D2 Objects & bindings (https://aegises.org/agi-reactor/#state)D3 Policy & enforcement (https://aegises.org/agi-reactor/#authority)D4 An operation through time (https://aegises.org/agi-reactor/#work)
-
-One specimen across the diagrams. Message M-17 asks to send an approved report to a named recipient. Ticket T-42, agent AG-7, attempt A-3, logical step STEP-1 and operation OP-9 retain distinct identities. The report service is illustrative; the worked fault test below uses a local HTTP target.
-
-V4 · D1 / The reference machine
+V3.B / Implementation architecture
 
 Full size ↗ (https://aegises.org/agi-reactor/assets/architecture.svg)
 
 [Diagram text; consult the linked SVG for spatial relationships.]
 
-The reference machine
-Planned architecture. Labels, relationships and evidence limits also appear in the article text.
-D1 / REFERENCE DESIGN
-The reference machine
-One governed service model connects intent, cognition, state and external effects.
-People / chat / UI
-M-17: send the approved report to a named recipient
-CONTROL / STATE SERVICE
-One initial deployment; distinct owned contracts.
-Intake + work
-Ticket T-42 / one assignee
-Policy + bindings
-Identity / active rules
-Attempt + operation admission
-Current generation / immutable OP-9 / budget
-submit
-result / unresolved status
-NATS / JetStream
-Core: calls and signals JetStream: durable delivery
-publish
-Commit state + outbox before notification; broker acknowledgment is not work completion.
-PostgreSQL
-Authoritative records Objects / links / operations
-owns transactions
-Compositor
-Permitted context → frame
-resolve context
-Isolated worker
-Reason / plan / propose
-frame
-notify
-claim attempt
-Effect boundary
-Service enforcement + governed adapter
-invoke
-policy + OP-9 admission
-Target / provider
-Tool, model or enterprise API
-send
-reply or loss
-record result / UNKNOWN
-HOST + SUPERVISOR / CONTROL BELOW THE MODEL
-Isolation, scoped egress and resource ceilings apply to execution. Pause blocks new admission; already-admitted operations remain accountable.
-Arrows show logical calls and records. NATS transports crossings; owning services enforce them.
-Policy, models, learning, release and recovery are capabilities composed through governed services.
+V3.B / AGI Reactor / A viable operating system
+Planned architecture. The full contracts and equivalent text are documented on this page.
+V3.B
+AGI Reactor / A viable operating system
+PARALLEL IMPLEMENTATION VIEW · 13 September 2026 · Planned architecture
+V3.B / OVERVIEW  (https://aegises.org/agi-reactor/#architecture)
+Know what matters. Keep commitments. Act within bounds.
+Persistent agency = coherent knowledge + owned work + explicit authority + allocated resources.
+PEOPLE / ENTERPRISE / AGENTS
+Purpose · priorities · acceptance · account & organization · pause / cancel · decisions · usable delivery
+01 / Shared state & work
+Objects + typed links + messages Tickets · edicts · skills · services Single assignee · bounded attempts Dependencies · routines · reactions Atomic revisions + operation records SQL transactions · inbox / outbox
+02 / Intelligence & continuity
+Perceive → compose → reason → act Evaluate outcomes → consolidate learning Authorized, bounded context frames Observations ≠ hypotheses ≠ accepted facts Models and harnesses are replaceable Memory, provenance and contradictions persist
+03 / Authority & effects
+Identity · IAM · scoped delegation Aegis / policy at service boundaries Target revisions · operation identity External adapters · result / reconcile Secrets · data sovereignty · custody Human decisions where required
+Chat
+Ticket
+Result
+One work identity survives execution.
+Frame
+Model
+Lesson
+Evidence updates the next invocation.
+Admit
+Execute
+Verify
+One operation survives an uncertain reply.
+NATS / COMMUNICATION KERNEL
+Core: calls + transient signals JetStream: durable dispatch + committed events + replay
+One invocation contract. Service-owned state and enforcement. Broker delivery is not effect completion.
+04 / Runtime & economics
+Host OS + supervisor · isolated workers Placement · resource admission · budgets Backpressure · health · bounded retries Files / models / providers behind services
+05 / Recovery & evolution
+Durable continuations · outcome lookup Candidate → canary → ramp → stabilize Hot fallback + compatible state Backup / restore · evaluated improvement
+06 / Shared understanding
+World State · shell · diagrams · evidence Same scoped objects, different views Testing · gauntlets · audit · delivery FinOps evidence → reviewed refactoring
+EXPLORE THE CONTRACTS
+V3.B1 State & meaning →  (https://aegises.org/agi-reactor/#state)
+V3.B2 Work & concurrency →  (https://aegises.org/agi-reactor/#work)
+V3.B3 Cognition & learning →  (https://aegises.org/agi-reactor/#cognition)
+V3.B4 Authority & effects →  (https://aegises.org/agi-reactor/#authority)
+V3.B5 Runtime & evolution →  (https://aegises.org/agi-reactor/#runtime)
+V3.B6 Whole-system trial →  (https://aegises.org/agi-reactor/#validation)
+OBJECT · LINK · MESSAGE / INVOKE
+PUBLIC ARCHITECTURE  (https://aegises.org/agi-reactor/#architecture)
 
-Read the owners and labeled crossings. Open full size for an uninterrupted view. Editable whiteboard ↓ (https://aegises.org/agi-reactor/assets/architecture.excalidraw)
+Zoom to inspect. Follow a section link to its contract. Editable whiteboard ↓ (https://aegises.org/agi-reactor/assets/architecture.excalidraw)
 
 Persist obligations.
 Replace execution.
@@ -92,85 +89,6 @@ A model invocation can end. A process can fail. A service can change. Identity, 
 ## A small vocabulary, with real semantics.
 
 Objects retain identity and state. Typed links connect any relevant objects. Messages carry attributed communication. One invocation envelope exposes typed service methods. Each resource has an owning service, revision checks and explicit lifecycle.
-
-D2 / Definitions and durable objects
-
-Full size ↗ (https://aegises.org/agi-reactor/assets/v4-d2.svg)Editable ↓ (https://aegises.org/agi-reactor/assets/v4-d2.excalidraw)
-
-[Diagram text; consult the linked SVG for spatial relationships.]
-
-Definitions compose. Obligations endure.
-Planned architecture. Labels, relationships and evidence limits also appear in the article text.
-D2 / REFERENCE DESIGN
-Definitions compose. Obligations endure.
-Three views of the same object model · proposed relationships · arrows name the relationship
-01
-One source can create several durable objects
-Source attribution is preserved; extraction does not activate a policy or assign work.
-Source message M-17
-“Send the approved report.”
-Edict
-Versioned direction
-Ticket T-42
-Durable obligation
-yields 0..many
-yields 0..many
-Independent relationships
-The same message may yield both, either, or several of each. Each derived object cites M-17.
-02
-Definitions and authority follow different paths
-Owning services version definitions and bindings. Policy authority remains separately controlled.
-Edict
-Proposed direction
-Policy revision
-Validated rule + scope
-Policy binding
-Rule ↔ typed scope
-Enforcer
-Owning service
-authorized promotion
-0..many bindings
-applies at
-Templates
-Examples + edicts
-Skill revision
-Versioned procedure
-Agent type
-Composed profile
-Agent AG-7
-Stable identity
-0..many source links
-0..many skill bindings
-classifies
-Skill ≠ grant
-Type ≠ identity
-Bindings are typed links; definitions are not processes.
-03
-Execution changes; identity and effect intent survive
-Control/state service owns ticket, attempt and operation records/admission. Adapters enforce admitted calls.
-Ticket T-42
-Acceptance + revision Durable result / recovery
-Attempts A-3 → A-4
-0..many over ticket lifetime At most one current attempt
-Operation OP-9
-T-42 / STEP-1 retains the ID Original intent is immutable
-records attempts
-authorized custody may transfer
-Agent AG-7
-Same identity as above
-assigned to 0..1
-Resource revision
-Checked by owning service
-invocation carries expected revision
-Evidence E-9
-Receipt, failure or UNKNOWN
-has 0..many
-One assignee does not lock shared resources.
-Concurrent tickets still require resource-level revision checks or transactions.
-OP-9 binds tenant, original caller, method, target
-and canonical argument digest. Takeover cannot change them.
-
-One source can yield both edicts and tickets. Policy revisions and skill revisions follow distinct paths. An agent type classifies an identity; it is not the running process. The control/state service owns ticket, attempt and operation records in the initial design. Each resource owner enforces its own concurrency contract.
 
 ### Object
 
@@ -186,70 +104,39 @@ An attributed communication. Chat, commands and committed events share transport
 
 One transactional state service owns object changes and an outbox. Consumers deduplicate into an inbox and commit before acknowledging. World State, indexes and embeddings are derived views. PostgreSQL is the default starting point; blob storage remains behind service references.
 
+Explode the state & meaning diagram ＋
+
+Open full-size diagram ↗ (https://aegises.org/agi-reactor/assets/state.svg)
+
+[Diagram text; consult the linked SVG for spatial relationships.]
+
+V3.B1 / State & meaning
+Planned architecture. The full contracts and equivalent text are documented on this page.
+V3.B1
+State & meaning
+Small record vocabulary. Rich domain contracts.
+V3.B / OVERVIEW  (https://aegises.org/agi-reactor/#architecture)
+Three forms. One governed invocation.
+Object / stable identity
+Type · owner · revision · attributed state Ticket / agent / service / skill / edict / observation
+Link / explicit relationship
+Typed endpoints · provenance · revision or time scope Assigned to / depends on / supports / contradicts
+Message / attributed communication
+ID · sender · recipient · causation · body + references Chat, command and event share an envelope; semantics differ.
+INVOKE / ONE ENVELOPE, TYPED METHODS
+Service + method + target + arguments + operation ID Caller authority · expected revision · deadline · budget
+Authoritative state
+One owning service per resource Atomic change + outbox event Inbox dedup + state commit SQL stores objects and graph links. Blob stores retain large artifacts.
+Derived views
+World State · search · embeddings Source revisions and freshness Access before graph traversal Unbounded semantics; bounded queries Rebuild without becoming authority.
+TASTE / COMPRESS PROTOCOLS; PRESERVE MEANING
+A shared record shape never makes a policy, hypothesis and observed result equivalent. A service is a stable contract; its process and storage can change.
+
 02 Work & concurrency
 
 ## A ticket makes an obligation durable.
 
 A ticket preserves outcome, acceptance, state, one assigned agent and a result. It survives the process doing the work. Parallel activity uses linked tickets; assignment is never mistaken for proof of execution.
-
-D4 / One operation through time
-
-Full size ↗ (https://aegises.org/agi-reactor/assets/v4-d4.svg)Editable ↓ (https://aegises.org/agi-reactor/assets/v4-d4.excalidraw)
-
-[Diagram text; consult the linked SVG for spatial relationships.]
-
-One operation through time.
-Planned architecture. Labels, relationships and evidence limits also appear in the article text.
-D4 / REFERENCE DESIGN
-One operation through time.
-A response can reach a worker while the durable obligation remains unresolved.
-M-17 message → T-42 ticket / STEP-1 logical step → A-3 attempt → OP-9 operation
-01 Accept into durable custody
-Chat M-17 arrives through NATS. Commit T-42 + source link + outbox before reporting acceptance.
-02 Dispatch durable notification
-Publish committed outbox to JetStream. Reuse the same event identity. Dispatch does not confer execution rights.
-03 Acquire current attempt
-Deduplicate; atomically claim A-3. T-42 assignee: Agent AG-7. Commit execution custody before ACK.
-ACKNOWLEDGMENT ≠ COMPLETION
-T-42 remains the durable obligation after broker acknowledgment.
-Worker / attempt A-3
-Control / effect service
-External target
-TIME ↓
-A-3 custody committed; bounded execution begins
-Request OP-9 for logical step T-42 / STEP-1
-Commit OP-9 admission
-Bind immutable intent; serialize custody.
-Intent = tenant + original caller + method + target + canonical argument digest
-Commit UNKNOWN before sending
-Adapter sends
-Target commits exactly one effect
-HTTP 200 reaches worker; result has not been committed
-Worker crashes after 200
-No success result is saved.
-Controller knows: UNKNOWN
-It cannot infer success or safe retry.
-External reality: one effect
-Only the test oracle can count it.
-Backup contains UNKNOWN
-Taken after the external effect.
-No transaction spans the controller and this non-idempotent target.
-No idempotency key. No target status lookup.
-RESTORE CONTROL STATE; DO NOT RESTORE EXTERNAL REALITY
-Fence admission
-Establish epoch 2 + recovery hold outside the restored database. Epoch 1 is refused: STALE_EPOCH. T-42 → NEEDS_RECONCILIATION.
-Preserve unresolved identity
-OP-9 stays UNKNOWN. Replay returns OUTCOME_UNKNOWN. Replacement ID for STEP-1 is refused. A new attempt grants no replay right. Changed intent is INTENT_MISMATCH.
-Give uncertainty an owner
-Assign an authorized reconciler. Inspect · record finding · escalate. Without admissible evidence, stop. No ordinary Retry; preserve OP-9.
-After hold release, the per-operation guard must still refuse blind replay.
-RFC-001 / OBSERVED REFERENCE SPECIMEN
-Local HTTP + SQLite + actual worker crash after 200. Guarded restore: 1 effect, 0 duplicates, still UNKNOWN. Unsafe reset: 2 effects; the safety assertion fails.
-PLANNED / REQUIRES DEPLOYMENT QUALIFICATION
-NATS / PostgreSQL, concurrent controllers, real identity and containment are not exercised by this specimen. A backup predating OP-9 requires an additional test.
-M-17 / T-42 / A-3 / OP-9 are diagram aliases; RFC-001 publishes its exact fixture identities and evidence.
-
-State and outbox commit before notification. A consumer acquires and commits current custody before acknowledging. An operation retains its identity across attempts. If a target accepted a non-idempotent request but success was not saved, UNKNOWN survives recovery; a replacement operation is not a safe retry. RFC-001 witnesses only the specific local HTTP/SQLite fault described below.
 
 ### Assignment
 
@@ -265,7 +152,41 @@ A durable service effect bound to immutable intent. Already accepted operations 
 
 The scheduler admits work against capacity, priority and budget. Routines and reactions create or wake work through the same contracts. Resource owners reject conflicting revisions. Queue delivery does not establish assignment; an expired worker cannot admit new effects.
 
-One service contract, several entry points. CLI, UI, routines and event subscribers invoke the same typed operations. A reaction binding names its event type, conditions, input mapping, operation, version and accountable owner. One event may produce several legitimate reactions. Deduplication distinguishes the event and binding while preserving existing operation identities when a binding changes.
+Explode the work & concurrency diagram ＋
+
+Open full-size diagram ↗ (https://aegises.org/agi-reactor/assets/work.svg)
+
+[Diagram text; consult the linked SVG for spatial relationships.]
+
+V3.B2 / Work & concurrency
+Planned architecture. The full contracts and equivalent text are documented on this page.
+V3.B2
+Work & concurrency
+One assigned agent. Recoverable work behind that simple rule.
+V3.B / OVERVIEW  (https://aegises.org/agi-reactor/#architecture)
+DURABLE WORK / PROMOTE IPC WHEN A COMMITMENT NEEDS TO SURVIVE
+Accept
+Intent + acceptance
+Assign
+One agent or none
+Run
+One current attempt
+Ticket / durable abstraction
+Identity · assignee · state · priority Acceptance · links · result · return point Dependencies coordinate separate tickets. Routines and reactions create or wake work. Pause / cancel / deadlines are explicit.
+Attempt / runtime custody
+Atomic assignment and generation Bounded renewal · restart recovery Old workers cannot admit new effects. Accepted operations survive takeover. Queue delivery does not assign an agent.
+COMMIT BEFORE NOTIFY / ACK AFTER DURABLE CUSTODY
+
+Transaction
+State + outbox
+Publish
+Same event ID
+Consume
+Inbox + state → ack
+Concurrency belongs at the resource owner
+Two tickets can touch the same object: expected revision or serialization resolves conflict. An inter-object link does not lock either endpoint. Reject dependency cycles. A deterministic reconciler finds expired work and undelivered events; models need not poll.
+FAILURE SPECIMEN
+Race two workers. Resume the stale one. Redeliver the command. Only current custody admits new work; the same operation is reconciled after lost replies.
 
 03 Cognition & learning
 
@@ -328,66 +249,6 @@ The loop may wait, ask, stop or resume. Budget limits are mechanically enforced.
 
 An aegis binds identity, policy, scoped grants and an attributable operation record. It governs both action and information release. Human control and changes to the governing rules use explicit authority.
 
-D3 / Policy becomes enforcement
-
-Full size ↗ (https://aegises.org/agi-reactor/assets/v4-d3.svg)Editable ↓ (https://aegises.org/agi-reactor/assets/v4-d3.excalidraw)
-
-[Diagram text; consult the linked SVG for spatial relationships.]
-
-Rules become enforceable decisions
-Planned architecture. Labels, relationships and evidence limits also appear in the article text.
-D3 / REFERENCE DESIGN
-Rules become enforceable decisions
-One source can create policies, acceptance conditions and reusable guidance. Each follows its own contract.
-Edict / source span
-Attributed requirement with intended applicability
-Policy candidate
-Typed authorization rules
-propose
-Validate + review
-Schema / tests / impact Authorized approval
-qualify
-Active version
-Exact bytes + scope
-activate
-Skill / procedure
-Versioned guidance + adoption requirements
-derive guidance
-Acceptance / review
-Task-specific criteria Observed evidence required
-derive conditions
-Bindings
-Principal / type Object / action
-bind version
-Policy decision
-Applicable rules + facts Deterministic evaluation
-resolve
-Compositor
-Context informs reasoning It confers no authority.
-compose
-Invocation proposal
-Caller / action / target OP-9 / argument digest
-inform
-acceptance context
-Service enforcement
-Decision + current scope Budget / revision / custody
-request
-evaluate at admission
-facts
-evidence
-Adapter
-Admitted effect
-allow
-Refused / expired / missing required evidence
-Record the reason. No new external effect.
-deny
-RULE CHANGES USE THEIR OWN GOVERNED OPERATIONS
-Privilege expansion requires distinct author and approver.
-Review is conditional on the governing contract; ordinary requests do not require a universal human approval step.
-Revocation blocks new admission. Accepted operations survive policy changes and require explicit reconciliation.
-
-Edicts can produce authorization policy, acceptance conditions and reusable guidance. Activated policy versions bind to typed scopes. The service supplies request facts to the decision and enforces the result together with budget, revision and operation custody. Required evidence is checked by its owning workflow or validator; guidance entering context never grants authority.
-
 ### Before execution
 
 Authenticate the caller; authorize the method, resource, destination and scope; reserve budget; persist operation identity.
@@ -401,6 +262,42 @@ An isolated worker uses scoped adapters. Infrastructure credentials and unrestri
 Record results and inspect effects. A lost reply triggers reconciliation of the same operation, not a replacement.
 
 The operation ID binds tenant, caller, method, target and argument digest. A changed binding is rejected. Target idempotency and outcome queries are used where available. When neither can resolve a sent request, the outcome remains UNKNOWN and automatic replay stops. A successor reconciles under its own scoped authority while preserving the original caller and intent; custody transfers are separately recorded. Policy, identity, budgets and release controls require separate administrative capabilities.
+
+Explode the authority & effects diagram ＋
+
+Open full-size diagram ↗ (https://aegises.org/agi-reactor/assets/authority.svg)
+
+[Diagram text; consult the linked SVG for spatial relationships.]
+
+V3.B4 / Authority & effects
+Planned architecture. The full contracts and equivalent text are documented on this page.
+V3.B4
+Authority & effects
+A safe boundary is a contract that rejects and recovers correctly.
+V3.B / OVERVIEW  (https://aegises.org/agi-reactor/#architecture)
+SERVICE ADMISSION
+Authenticate
+Principal + scope
+Authorize
+Action + resource
+Own operation
+Durable identity
+Aegis / enforced boundary
+IAM · delegation · expiry · revocation Object and account policy at invocation Type/class bindings resolve applicability. NATS permissions constrain transport. An authenticated sender may still be denied.
+Enterprise governance
+Law / standard → enforceable policy SOP / guideline → bounded procedure Examples remain reference material. Approval has scope and conditions. Privileged changes need separate authority.
+SANDBOX → CONTROLLED CROSSING → EXTERNAL DESTINATION
+
+Worker
+No raw egress
+Aegis / adapter
+Action + release policy
+Target / model
+Result or UNKNOWN
+Lost reply is not permission to repeat
+Reuse target idempotency keys where supported. Otherwise query the original operation. If the target cannot deduplicate or reveal outcome, stop retries and retain UNKNOWN. Already admitted effects may finish after a pause or reassignment. Show that state. Operation IDs bind immutable intent; scoped egress prevents bypass and data leakage.
+THREAT MODEL / ENFORCEMENT BELOW THE MODEL
+Sandbox workers; govern model submission, tool access and information release. Separate authority governs changes to policy, budgets and the enforcing controls.
 
 05 Runtime & evolution
 
@@ -866,16 +763,12 @@ Measure completion quality, latency, total cost, recovery time, duplicate effect
 
 Author: Ryan Smithright (ryan@smithright.com). Developed from his architecture work and World State vocabulary, with architecture development, visualization and implementation assistance from Astra / Codex. This revision includes a focused independent AI critique of the design; that is architectural review, not security certification or runtime verification.
 
-The “all you need” formulation proposes a smaller coordinating model: governed service contracts compose the system and its evolution. In the architectural simplification tradition of Attention Is All You Need (https://arxiv.org/abs/1706.03762), the burden is a concrete construction and experiments that can challenge it.
-
 - NATS: acknowledgments and redelivery (https://docs.nats.io/learn/jetstream/acknowledgment) — transport behavior and failure semantics.
 - NATS: pull consumers (https://docs.nats.io/learn/jetstream/pull-consumers) — bounded delivery and worker consumption.
 - NATS: deployment and upgrades (https://docs.nats.io/learn/deployment/) — broker operations, distinct from application rollout policy.
 - Versioned public source (https://github.com/Smithright/aegises.org/tree/main/agi-reactor) — page, diagrams and specification.
 
 The application contracts and safety criteria are proposed architecture. NATS transport guarantees do not establish external-effect idempotency, object authorization or AGI capability.
-
-V4 adds four relationship diagrams. Read preserved public draft 1.3 ↗ (https://aegises.org/agi-reactor/versions/1.3/) · Download the complete V4 whiteboard ↓ (https://aegises.org/agi-reactor/assets/architecture.excalidraw)
 
 For an independent reader
 

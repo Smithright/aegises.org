@@ -6,7 +6,7 @@ Canonical publication: https://aegises.org/agi-reactor/
 
 Complete article, including the safety case, coverage map and worked RFC: https://aegises.org/agi-reactor/agi-reactor.txt
 
-Public design draft 1.4 · 14 September 2026. Planned architecture, not a deployment certification.
+Public design draft 1.3 · 14 September 2026. Planned architecture, not a deployment certification.
 
 ## Architectural judgment
 
@@ -140,9 +140,3 @@ Primary transport reference: https://docs.nats.io/learn/jetstream/acknowledgment
 ## Executable reference specimen
 
 [RFC-001: accepted effect, worker death and an UNKNOWN backup](https://aegises.org/agi-reactor/conformance/RFC-001.md) specifies the worked failure case, operator contract and executable falsification test. The reference guard uses local HTTP and SQLite; it does not qualify the production NATS/PostgreSQL runtime.
-
-## Policy-governed service orchestration is all you need
-
-The composition thesis is that reasoning, memory, work, policy, learning, release and recovery are services. Their governed contracts also change the system itself. Durable state, explicit authority and recoverable effects are part of those contracts.
-
-V4 diagrams: [the machine](https://aegises.org/agi-reactor/assets/v4-d1.svg), [objects and bindings](https://aegises.org/agi-reactor/assets/v4-d2.svg), [policy enforcement](https://aegises.org/agi-reactor/assets/v4-d3.svg), [operation timeline](https://aegises.org/agi-reactor/assets/v4-d4.svg). The full text edition contains their labels and explanations.
