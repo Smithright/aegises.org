@@ -1,0 +1,486 @@
+{
+  "title": "AI Safety Risks",
+  "publication": "AGI Reactor",
+  "version": "2.3-draft",
+  "status": "Proposed controls; implementation and validation required",
+  "author": "Ryan Smithright",
+  "url": "https://aegises.org/agi-reactor/#ai-safety-risks",
+  "method": "Sources inform risk framing. Service responsibilities, controls and qualification exercises are author proposals, not standards conformance claims.",
+  "sources": {
+    "N": {
+      "title": "NIST AI 600-1",
+      "description": "Generative Artificial Intelligence Profile (2024), §2 and lifecycle actions.",
+      "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+    },
+    "A": {
+      "title": "OWASP Agentic Top 10",
+      "description": "Top 10 for Agentic Applications (2026).",
+      "url": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+    },
+    "I": {
+      "title": "International AI Safety Report",
+      "description": "International AI Safety Report 2026, risk and risk-management chapters.",
+      "url": "https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026"
+    },
+    "O": {
+      "title": "OECD AI Principles",
+      "description": "Human rights, transparency, robustness and accountability.",
+      "url": "https://www.oecd.org/en/topics/ai-principles.html"
+    },
+    "S": {
+      "title": "NIST SP 800-218",
+      "description": "Secure Software Development Framework, version 1.1 (2022).",
+      "url": "https://csrc.nist.gov/pubs/sp/800/218/final"
+    },
+    "P": {
+      "title": "SLSA",
+      "description": "Supply-chain security specification, version 1.2.",
+      "url": "https://slsa.dev/spec/v1.2/"
+    }
+  },
+  "risks": [
+    {
+      "id": "R01",
+      "group": "Direction and authority",
+      "risk": "Inadequate policy",
+      "failure": "A permitted action still harms people because the rule omits a hazard, affected party or sequence of effects.",
+      "owner": "Domain risk owner",
+      "service": "Policy and assurance",
+      "records": "Risk assessment · control specification · policy revision · exception",
+      "control": "Define intended use, prohibited outcomes and measurable limits. Link requirements to enforcement points and tests. Block prohibited uses and failures of mandatory controls. Accept remaining risk only through a named authority, recorded justification, bounded scope and expiry. An LLM cannot approve its own policy.",
+      "test": "Try harmful but syntactically permitted actions and action sequences. Test omissions, conflicting rules and misleading attributes.",
+      "residual": "A passing evaluator establishes rule execution, not the adequacy of the rules. Some uses should remain prohibited.",
+      "refs": []
+    },
+    {
+      "id": "R02",
+      "group": "Direction and authority",
+      "risk": "Policy capture and self-authorization",
+      "failure": "An agent, insider or pressured reviewer turns a suggested edict into authority, weakens a control or approves their own exception.",
+      "owner": "Policy authority",
+      "service": "Policy lifecycle and identity",
+      "records": "Edict proposal · policy diff · approval · activation epoch",
+      "control": "Separate proposal, review and activation. Require independent authorized approval for grants, risk limits and control changes. Bind approval to the exact diff, scope and expiry. Enforce separation of duties in the service; invalidate dependent approvals when inputs change.",
+      "test": "Attempt self-approval, stale-diff activation, reviewer impersonation and a grant change hidden inside a routine update.",
+      "residual": "Dual control reduces unilateral abuse; collusion and institutional pressure require external oversight.",
+      "refs": [
+        "A"
+      ]
+    },
+    {
+      "id": "R03",
+      "group": "Direction and authority",
+      "risk": "Impersonation and confused deputies",
+      "failure": "A caller borrows another identity or persuades a more privileged service to act beyond delegated scope.",
+      "owner": "Identity service owner",
+      "service": "Identity and service admission",
+      "records": "Principal · delegation · grant · request audience · revocation",
+      "control": "Derive identity from verified credentials, never request text. Bind delegation to tenant, purpose, target, method, audience and expiry. Preserve the original caller through delegation. Recheck current authority at effect admission; narrow rather than accumulate grants.",
+      "test": "Use a valid credential for the wrong tenant, audience or target; replay a revoked delegation through a privileged intermediary.",
+      "residual": "Stolen root credentials and compromised credential issuers exceed ordinary caller checks; see R05.",
+      "refs": [
+        "A"
+      ]
+    },
+    {
+      "id": "R04",
+      "group": "Direction and authority",
+      "risk": "Bypassed mediation and containment",
+      "failure": "An agent reaches a database, network, filesystem, cloud account or device through an ungoverned path.",
+      "owner": "Platform security owner",
+      "service": "Sandbox, secrets and egress enforcement",
+      "records": "Workload identity · capability manifest · network policy · isolation evidence",
+      "control": "Run untrusted execution without ambient host credentials. Mediate protected I/O, restrict destinations and mount scopes, and separate worker access from control-plane access. Give the enforcement service its own authority and failure domain. Deny new protected effects on enforcement failure.",
+      "test": "Attempt direct resource access, credential discovery and cross-tenant escape from the actual worker environment; interrupt the decision service.",
+      "residual": "Containment depends on the host, device and identity substrate. A gateway alone cannot establish it.",
+      "refs": [
+        "A"
+      ]
+    },
+    {
+      "id": "R05",
+      "group": "Direction and authority",
+      "risk": "Compromised administrators or institutions",
+      "failure": "An authorized root operator changes enforcement, suppresses evidence or uses the system for an abusive institutional purpose.",
+      "owner": "Governing board or accountable executive",
+      "service": "Privileged access and independent audit",
+      "records": "Root-access approval · key custody · break-glass event · external audit copy",
+      "control": "Use separate administrative domains, hardware-protected keys where appropriate, time-bounded privileges and independently retained audit records. Require dual control for root changes; make emergency access attributable and reviewable. Provide an external reporting route and a recovery authority outside the affected domain.",
+      "test": "Exercise emergency access and root-key recovery. Verify an operator cannot silently erase the independent audit copy.",
+      "residual": "This architecture does not protect against all colluding roots or coercive institutions. Some authority must remain external to the system.",
+      "refs": [
+        "O"
+      ]
+    },
+    {
+      "id": "R06",
+      "group": "Meaning, knowledge and data",
+      "risk": "Prompt injection and goal steering",
+      "failure": "Poisoned content changes what an agent proposes or posts, even though its formal permissions remain unchanged.",
+      "owner": "Context service owner",
+      "service": "Intake, compositor and proposal admission",
+      "records": "Source revision · trust label · cognition frame · intent proposal · provenance link",
+      "control": "Keep retrieved content distinct from governing instructions; carry source trust and lineage into frames. Bind consequential proposals to an independently established mandate. Apply deterministic scope checks where possible; route unresolved semantic intent to a qualified reviewer with independent evidence. Treat outbound posts as effects too.",
+      "test": "Plant instructions in a retrieved document and an event payload. Check both grant integrity and whether the resulting proposal violates the mandate within existing grants.",
+      "residual": "Instruction separation and classifiers do not prove semantic immunity. A persuasive, apparently relevant source can still mislead judgment.",
+      "refs": [
+        "A"
+      ]
+    },
+    {
+      "id": "R07",
+      "group": "Meaning, knowledge and data",
+      "risk": "False, stale or unsupported conclusions",
+      "failure": "A fabricated citation, obsolete requirement or incorrect inference becomes a decision, ticket or delivered artifact.",
+      "owner": "Domain knowledge owner",
+      "service": "Knowledge and evidence resolution",
+      "records": "Claim · source locator and revision · observation time · uncertainty · contradiction",
+      "control": "Separate observations from model summaries and conclusions. Resolve cited evidence, record freshness and scope, and expose contradictions. Require domain review or abstention where uncertainty exceeds the use-case threshold. A source link must support the actual claim, not merely exist.",
+      "test": "Inject nonexistent citations, outdated facts and mutually inconsistent sources. Measure false acceptance on representative domain cases.",
+      "residual": "Provenance establishes origin, not truth. Authoritative sources can be wrong and emerging facts can remain unsettled.",
+      "refs": [
+        "N"
+      ]
+    },
+    {
+      "id": "R08",
+      "group": "Meaning, knowledge and data",
+      "risk": "Poisoned memory and self-reinforcing learning",
+      "failure": "An unverified result becomes persistent knowledge, a skill or a training example, then validates itself through repeated reuse.",
+      "owner": "Knowledge lifecycle owner",
+      "service": "Memory, skill and model-data lifecycle",
+      "records": "Candidate memory · source lineage · promotion decision · training manifest · retirement",
+      "control": "Quarantine untrusted additions. Distinguish generated content from observations and independent evidence. Promote reusable knowledge, skills and training data through versioned review. Track downstream consumers so corrections invalidate affected frames and evaluations. Make deletion and rollback explicit.",
+      "test": "Seed a false lesson, reuse it across agents, then revoke it. Verify the original claim is not treated as corroboration and affected consumers are identified.",
+      "residual": "Removing a record does not remove its influence from trained weights or already-issued decisions; retraining and remediation may be required.",
+      "refs": [
+        "A"
+      ]
+    },
+    {
+      "id": "R09",
+      "group": "Meaning, knowledge and data",
+      "risk": "Semantic mismatch and ontology drift",
+      "failure": "Compatible-looking names conceal different units, meanings, permissions or schema versions across services and jurisdictions.",
+      "owner": "Service contract owner",
+      "service": "Type registry and contract resolution",
+      "records": "Type revision · method schema · units · semantic mapping · compatibility decision",
+      "control": "Pin versions and explicit units. Resolve method, target and effect class before admission. Review mappings between vocabularies; reject unknown or lossy conversions for consequential operations. An ontology update must not silently widen policy scope or change a method’s effect.",
+      "test": "Swap units, aliases and schema versions; introduce an apparently compatible mapping that changes authorization or meaning.",
+      "residual": "Type correctness cannot settle contested concepts or guarantee that a shared ontology represents every affected community fairly.",
+      "refs": []
+    },
+    {
+      "id": "R10",
+      "group": "Meaning, knowledge and data",
+      "risk": "Privacy loss, secret leakage and unlawful data use",
+      "failure": "Sensitive information crosses a tenant, purpose, recipient, retention or geographic boundary through context, logs or outputs.",
+      "owner": "Data protection owner",
+      "service": "Data access, compositor and disclosure",
+      "records": "Data classification · purpose and legal-basis decision · retention rule · recipient · transfer review",
+      "control": "Minimize data before model access; enforce tenant, purpose and recipient restrictions at retrieval and disclosure. Keep secrets outside prompts and ordinary logs. Propagate deletion and retention rules to derived stores. Route restricted transfers for an applicable, approved legal determination.",
+      "test": "Plant synthetic secrets and cross-tenant canaries in retrieval, telemetry and output paths. Verify retention expiry and deletion propagation.",
+      "residual": "Inference, memorization and external copies can defeat simple deletion or redaction. Cross-border legality requires jurisdiction-specific assessment.",
+      "refs": [
+        "N"
+      ]
+    },
+    {
+      "id": "R11",
+      "group": "Code, models and capability",
+      "risk": "Harmful generated code",
+      "failure": "An apparently valid change introduces a backdoor, unsafe behavior or a new path around the reference monitor.",
+      "owner": "Release authority",
+      "service": "Isolated build, assurance and release",
+      "records": "Change intent · source and artifact digest · capability diff · test plan · approval · canary result",
+      "control": "Bind release to exact source, dependencies, artifact and target. Build without production credentials. Independently review capability and enforcement changes; derive tests from hazards, not only agent-authored happy paths. Check static, dependency and behavioral evidence. Bound candidate effects and maximum exposure; simulate irreversible effects until separately authorized. Observe staged traffic, qualify schema compatibility and retain a tested hot fallback. Missing mandatory evidence blocks promotion.",
+      "test": "Submit a compiling candidate with an unauthorized egress path, disabled check or forged test result. Verify rejection and exercise rollback under actual load.",
+      "residual": "No general test suite proves arbitrary code benign. Rollback cannot undo disclosed data or accepted external effects. Irreversible changes need separate authority and a qualified recovery plan.",
+      "refs": [
+        "S",
+        "P"
+      ]
+    },
+    {
+      "id": "R12",
+      "group": "Code, models and capability",
+      "risk": "Compromised supply chain",
+      "failure": "A package, model weight, tool description, build runner or artifact is substituted after review or arrives already compromised.",
+      "owner": "Software supply-chain owner",
+      "service": "Artifact registry and build verification",
+      "records": "Dependency manifest · model digest · builder identity · provenance · signature · vulnerability disposition",
+      "control": "Pin reviewed dependencies and artifacts; verify provenance against trusted identities. Separate source approval, build authority and deployment authority. Verify the artifact actually executed matches the admitted digest. Review tool metadata and model provenance as dependencies; define revocation and replacement paths.",
+      "test": "Substitute a dependency or artifact after approval, use an unauthorized builder, and present a valid signature from the wrong trust domain.",
+      "residual": "Authentic provenance does not establish benign behavior. Trusted maintainers, builders and upstream models can still be compromised.",
+      "refs": [
+        "S",
+        "P"
+      ]
+    },
+    {
+      "id": "R13",
+      "group": "Code, models and capability",
+      "risk": "Evaluation gaming and evidence laundering",
+      "failure": "A model recognizes the test, fabricates a receipt or gets its own explanation accepted as proof of success.",
+      "owner": "Independent assurance owner",
+      "service": "Evaluation and evidence custody",
+      "records": "Test revision · held-out case set · executor identity · raw observation · artifact-bound verdict",
+      "control": "Keep material acceptance criteria and observations under independent control. Record exact specimen, environment and raw effects; bind verdicts to tested revisions and expiry. Use blinded cases, negative controls and deployed monitoring. A generated claim or reviewer title cannot constitute execution evidence.",
+      "test": "Submit fabricated receipts, stale results and a candidate that passes the visible suite but fails held-out tasks. Confirm changed artifacts invalidate verdicts.",
+      "residual": "Evaluations sample behavior. Hidden capabilities, distribution shift and evaluation awareness remain possible.",
+      "refs": [
+        "I"
+      ]
+    },
+    {
+      "id": "R14",
+      "group": "Code, models and capability",
+      "risk": "Unreviewed model or capability change",
+      "failure": "A provider update, fine-tune, prompt revision or tool bundle changes behavior beyond the deployment’s evaluated limits.",
+      "owner": "Model lifecycle owner",
+      "service": "Model routing and qualification",
+      "records": "Model release · configuration digest · tool scope · capability evaluation · deployment envelope",
+      "control": "Inventory the complete model configuration, including retrieval and tools. Gate routing changes on use-case evaluations; keep a known compatible fallback or suspend the affected workflow. Monitor behavioral drift when providers cannot supply immutable versions. Higher capability does not inherit prior approval automatically.",
+      "test": "Change the model or tool set behind the same endpoint. Verify detection, qualification invalidation and controlled fallback.",
+      "residual": "Provider opacity and incomplete capability tests limit assurance; some deployments must require stronger version guarantees.",
+      "refs": [
+        "N"
+      ]
+    },
+    {
+      "id": "R15",
+      "group": "Code, models and capability",
+      "risk": "Dangerous or abusive use",
+      "failure": "A permitted workflow materially assists cyber abuse, weapons development, exploitation or another prohibited high-harm purpose.",
+      "owner": "Abuse prevention authority",
+      "service": "Use-case admission and capability controls",
+      "records": "Purpose assessment · restricted capability class · authorized operator · escalation · abuse incident",
+      "control": "Assess purpose and capability together. Restrict high-risk tools, datasets and execution environments; impose limits across linked requests rather than only individual prompts. Require qualified specialist review for exceptional access. Suspend prohibited or inadequately controlled uses and preserve an appeal path for legitimate research.",
+      "test": "Use controlled, non-operational misuse evaluations to test decomposition across requests, delegation and inconsistent purpose declarations.",
+      "residual": "Dual-use intent is ambiguous; content filters and identity checks cannot eliminate misuse or access through other providers.",
+      "refs": [
+        "I"
+      ]
+    },
+    {
+      "id": "R16",
+      "group": "Execution and recovery",
+      "risk": "Stale workers and conflicting effects",
+      "failure": "Two attempts act as current, or separate valid tickets overwrite the same resource.",
+      "owner": "Work service owner",
+      "service": "Work custody and resource admission",
+      "records": "Ticket · assignee · attempt generation · lease · resource revision · operation",
+      "control": "Claim attempts atomically; bind effect admission to current generation, operation identity and resource revision. Keep at most one current attempt per ticket. Resource owners serialize conflicts. Do not dispatch a conflicting successor while prior dispatch remains unresolved unless the target provides effective fencing. Queue delivery is never a claim.",
+      "test": "Pause a worker after admission but before target acceptance; expire its lease and start a successor. Also race two valid tickets against one resource revision.",
+      "residual": "An external target that cannot enforce fencing needs a serialized adapter or narrower automation; local leases alone cannot stop it.",
+      "refs": []
+    },
+    {
+      "id": "R17",
+      "group": "Execution and recovery",
+      "risk": "Unknown outcomes and duplicate effects",
+      "failure": "A target accepts an operation, the reply is lost, and retry creates a second external effect.",
+      "owner": "Integration service owner",
+      "service": "Operation journal and reconciliation",
+      "records": "Immutable operation identity · target receipt · UNKNOWN case · reconciliation decision",
+      "control": "Persist intent before send. Bind operation identity to tenant, caller, method, target and argument digest. Record target deduplication scope, retention and status-consistency guarantees. Preserve UNKNOWN and assign reconciliation. Treat absent or expired target records as unresolved unless authoritative evidence excludes acceptance and any outstanding dispatch. Prohibit blind replay.",
+      "test": "Crash after target acceptance but before the local receipt. Exercise redelivery, delayed target visibility and expired idempotency records; verify reconciliation without duplicate effects.",
+      "residual": "Without target idempotency or status lookup, both completion and non-duplication may be impossible to guarantee. A person may have to resolve the case.",
+      "refs": []
+    },
+    {
+      "id": "R18",
+      "group": "Execution and recovery",
+      "risk": "Restore revives obsolete authority or work",
+      "failure": "A backup predates an external effect, a revoked grant or a completed obligation, and recovery replays it.",
+      "owner": "Recovery authority",
+      "service": "Backup, restoration and operation reconciliation",
+      "records": "Backup checkpoint · restore epoch · revocation watermark · external effect ledger · resume approval",
+      "control": "Begin restore with new effect admission held and previous execution fenced. Keep operation and revocation watermarks outside the restored failure domain. Establish their freshness and completeness; reconcile newer effects, completed work and authority changes before reopening each scope. Unknown evidence keeps that scope restricted. Keep recovery keys outside ordinary artifact storage.",
+      "test": "Restore a backup taken before an accepted effect and a later revocation. Confirm neither duplicate execution nor resurrected permission.",
+      "residual": "If the independent evidence is missing, the system may have to remain restricted. A successful database restore is not permission to resume effects.",
+      "refs": []
+    },
+    {
+      "id": "R19",
+      "group": "Execution and recovery",
+      "risk": "Ineffective stop or unsafe restart",
+      "failure": "Pausing the agent leaves queued effects, child workers, credentials or a physical process active; restart repeats unfinished actions.",
+      "owner": "Operations safety owner",
+      "service": "Independent supervisor and effect admission",
+      "records": "Stop scope and epoch · worker inventory · pending effect · stop observation · resume authority",
+      "control": "Block new effects at their owners, revoke scoped execution custody and account for queued and in-flight work. Keep stop control independent of the model and worker. Define bounded stop behavior per adapter and device; resume through reconciliation and explicit authority. Preserve a usable manual control path.",
+      "test": "Stop during a tool call, a queue backlog and a network partition. Observe target state and elapsed stop time; test restart with unresolved effects.",
+      "residual": "An accepted payment, released message or moving machine may not be reversible. Stopping compute is not necessarily stopping harm.",
+      "refs": [
+        "I"
+      ]
+    },
+    {
+      "id": "R20",
+      "group": "Execution and recovery",
+      "risk": "Runaway delegation and feedback loops",
+      "failure": "Agents, reactions and routines amplify one event into unbounded work, spending or service disruption.",
+      "owner": "Workload operations owner",
+      "service": "Scheduler, budget reservations and event admission",
+      "records": "Causal event chain · occurrence key · delegation budget · reservation · circuit-breaker state",
+      "control": "Deduplicate triggers, bound fan-out and recurrence, reserve shared budgets atomically, and enforce depth, time and effect limits across descendants. Propagate cancellation and backpressure. Separate a semantic event from a command; receiving it grants no work or authority by itself.",
+      "test": "Replay a trigger, create a reaction cycle and fan out concurrent children against one budget. Verify caps and recovery without losing accepted obligations.",
+      "residual": "Useful workloads can resemble abuse. Limits trade throughput and responsiveness for a bounded failure radius.",
+      "refs": [
+        "A"
+      ]
+    },
+    {
+      "id": "R21",
+      "group": "People and consequential decisions",
+      "risk": "High-consequence domain error",
+      "failure": "A mistaken recommendation or action affects health, physical safety, essential services or substantial assets.",
+      "owner": "Accountable domain professional",
+      "service": "Domain decision and actuation",
+      "records": "Validated operating envelope · qualified operator · decision rationale · interlock · intervention",
+      "control": "Constrain automation to qualified conditions and thresholds. Separate advice from authority to act. Require appropriately qualified review and independent interlocks where consequences demand them. Define fallback behavior for uncertainty, delayed review and unavailable communication before activation.",
+      "test": "Exercise boundary conditions, sensor or source failure, reviewer absence and out-of-envelope requests in an appropriate controlled environment.",
+      "residual": "The reference architecture cannot supply clinical, engineering or sector-specific assurance. Some functions should retain human or separately certified control.",
+      "refs": [
+        "N"
+      ]
+    },
+    {
+      "id": "R22",
+      "group": "People and consequential decisions",
+      "risk": "Discrimination and exclusion",
+      "failure": "Decisions systematically disadvantage protected, vulnerable or poorly represented people, including through proxy variables.",
+      "owner": "Decision-system owner",
+      "service": "Decision assurance and contestability",
+      "records": "Impact assessment · population coverage · subgroup outcomes · accommodation · appeal",
+      "control": "Evaluate the actual decision and population, not just aggregate model accuracy. Record justified criteria, data limitations and legally appropriate disparity measures. Restrict consequential use when evidence is inadequate; provide accessible alternatives and correction routes. Protect sensitive assessment data.",
+      "test": "Evaluate intersecting groups, languages and accessibility needs; trace adverse decisions and test whether appeals can change outcomes.",
+      "residual": "Fairness measures can conflict. Metrics cannot choose legitimate social objectives or replace affected-party participation.",
+      "refs": [
+        "O"
+      ]
+    },
+    {
+      "id": "R23",
+      "group": "People and consequential decisions",
+      "risk": "Manipulation, deception and information harm",
+      "failure": "Personalized or mass output impersonates a person, obscures sponsorship, exploits vulnerability or spreads unsupported claims.",
+      "owner": "Communication policy owner",
+      "service": "Publication, identity disclosure and audience controls",
+      "records": "Sender identity · audience and purpose · consent · claim evidence · publication decision",
+      "control": "Govern posting, targeting and amplification as effects. Enforce identity disclosure, recipient scope and frequency limits. Require evidence and review for consequential claims; restrict prohibited persuasion and impersonation. Retain correction and withdrawal paths linked to the original publication.",
+      "test": "Attempt undisclosed impersonation, prohibited targeting and repeated distribution of a retracted claim across agents and channels.",
+      "residual": "Authentic origin does not establish truth. Persuasion, cultural context and downstream redistribution resist complete technical control.",
+      "refs": [
+        "N"
+      ]
+    },
+    {
+      "id": "R24",
+      "group": "People and consequential decisions",
+      "risk": "Rubber-stamp oversight and absent redress",
+      "failure": "A nominal human approver lacks time, context or authority to intervene, while affected people cannot challenge the result.",
+      "owner": "Business process owner",
+      "service": "Review, decision and appeal workflow",
+      "records": "Review assignment · conflict check · evidence bundle · decision · appeal · response deadline",
+      "control": "Assign a qualified reviewer with actual power to refuse. Present alternatives, uncertainty and consequences; avoid default acceptance. Enforce review capacity and escalation deadlines. Let affected people seek reasons, correction and an independent reconsideration appropriate to the decision.",
+      "test": "Give reviewers a plausible but flawed proposal under realistic workload. Exercise refusal, escalation, accessibility and appeal through to an observed remedy.",
+      "residual": "A click is not meaningful oversight. Staffing, incentives and independence are institutional controls that software can record but not manufacture.",
+      "refs": [
+        "O"
+      ]
+    },
+    {
+      "id": "R25",
+      "group": "People and consequential decisions",
+      "risk": "Harmful composition of permitted actions",
+      "failure": "Individually allowed steps combine into an unauthorized outcome, cumulative exposure or coordinated harm across agents.",
+      "owner": "Workflow risk owner",
+      "service": "Plan admission and shared exposure accounting",
+      "records": "Declared objective · action graph · affected resources · cumulative exposure · cross-agent lineage",
+      "control": "Apply limits to the plan and accumulated effects, not only each method call. Maintain shared exposure counters and causal links across agents and tickets. Require re-admission when the objective, participants or consequence envelope changes. Review coordinated patterns and independent-domain interactions.",
+      "test": "Split a forbidden aggregate outcome into individually permitted calls and distribute them across agents. Check that shared limits still bind.",
+      "residual": "Not all harmful compositions can be predicted. Independent enterprises may lack the visibility or authority needed for a shared bound.",
+      "refs": [
+        "I"
+      ]
+    },
+    {
+      "id": "R26",
+      "group": "Institutional and systemic risk",
+      "risk": "Strategic deception and loss of control",
+      "failure": "A system conceals consequential behavior, acquires resources or propagates execution to frustrate oversight and shutdown.",
+      "owner": "Deployment risk authority",
+      "service": "Capability admission and independent supervision",
+      "records": "Capability evaluation · replication permission · compute allocation · external monitor finding · stop decision",
+      "control": "Withhold open-ended infrastructure, credential issuance and replication authority by default. Bound tools, compute, network reach and operating duration. Evaluate oversight evasion and unauthorized persistence in controlled settings; keep monitors and stop authority outside worker control. Suspend access when evidence is insufficient for the consequence envelope.",
+      "test": "Test unauthorized resource acquisition, undeclared child execution and misleading reports of completion or shutdown. Verify observations outside the model’s own account.",
+      "residual": "These are containment proposals, not a solution to alignment. Forecasts and evaluations cannot establish the absence of strategic behavior or future loss-of-control risk.",
+      "refs": [
+        "I"
+      ]
+    },
+    {
+      "id": "R27",
+      "group": "Institutional and systemic risk",
+      "risk": "Conflicting laws and governance profiles",
+      "failure": "A shared definition or policy is applied where it has no legal authority, or conflicts across jurisdictions remain hidden.",
+      "owner": "Legal and governance owner",
+      "service": "Obligation registry and jurisdictional policy resolution",
+      "records": "Source law or mandate · applicability opinion · jurisdiction · effective date · profile conflict · exception",
+      "control": "Keep public vocabulary separate from local authority. Attach approved applicability decisions to deployer, use case and affected jurisdiction. Version obligations, surface conflicts and route them to competent authorities. Hold affected operations when required authority cannot be established; do not treat a consortium profile as law.",
+      "test": "Change an effective date or jurisdiction and introduce incompatible obligations. Verify review and scoped suspension rather than silent precedence.",
+      "residual": "Legal interpretation and public legitimacy cannot be computed from an ontology. Conflicts may require courts, regulators or negotiated institutional decisions.",
+      "refs": [
+        "O"
+      ]
+    },
+    {
+      "id": "R28",
+      "group": "Institutional and systemic risk",
+      "risk": "Concentration and common-mode dependency failure",
+      "failure": "Many systems share one provider, model, policy source or infrastructure component, producing correlated errors or a widespread outage.",
+      "owner": "Enterprise resilience owner",
+      "service": "Dependency inventory and continuity planning",
+      "records": "Critical dependency · correlated exposure · provider commitment · exit plan · fallback qualification",
+      "control": "Map shared dependencies across deployments. Qualify provider loss, degraded operation and data export. Use independent checks for critical decisions where feasible; test alternative routes before relying on them. Limit automatic propagation of a failing model or policy revision across the fleet.",
+      "test": "Remove a critical provider and inject the same erroneous input into multiple agents. Measure continuity and correlated decision failures.",
+      "residual": "Multiple models may share data, infrastructure and failure modes. Enterprise redundancy alone cannot resolve market concentration or systemic dependence.",
+      "refs": [
+        "I"
+      ]
+    },
+    {
+      "id": "R29",
+      "group": "Institutional and systemic risk",
+      "risk": "Unaccounted social and environmental costs",
+      "failure": "Deployment shifts costs onto workers, communities or ecosystems while optimizing only local financial performance.",
+      "owner": "Executive impact owner",
+      "service": "Impact assessment and resource accounting",
+      "records": "Affected-party assessment · workforce transition · energy and water estimate · supplier assumptions · mitigation decision",
+      "control": "Record distributional impacts and resource consumption alongside benefits. Consult affected parties; set reviewable procurement and usage limits. Assign funded mitigation and transition commitments to accountable owners. Report measurement boundaries and uncertainty rather than unsupported sustainability or productivity claims.",
+      "test": "Compare projected and observed impacts, including who receives benefits and bears costs. Audit estimation boundaries and follow mitigation commitments to outcomes.",
+      "residual": "Accounting does not resolve distributive choices, labor rights or ecological limits. Public policy and institutional bargaining remain necessary.",
+      "refs": [
+        "N",
+        "O"
+      ]
+    },
+    {
+      "id": "R30",
+      "group": "Institutional and systemic risk",
+      "risk": "Undetected incidents and unowned residual risk",
+      "failure": "Warnings disappear, adverse outcomes remain unreported, or a risk acceptance outlives its evidence and accountable owner.",
+      "owner": "Incident and assurance authority",
+      "service": "Monitoring, incident response and risk review",
+      "records": "Signal · incident · affected deployment · risk acceptance and expiry · notification decision · corrective ticket",
+      "control": "Monitor control failures and real outcomes through an independent channel. Define reporting and escalation responsibilities for the applicable context. Link incidents to affected policies, artifacts and users; assign containment and remediation. Expire risk acceptances and re-open review on material change. Protect reporting and whistleblowing routes.",
+      "test": "Suppress a telemetry source, submit an adverse-outcome report and expire a risk acceptance. Verify detection, accountable escalation and a completed corrective action.",
+      "residual": "Absence of detected incidents is not evidence of absence. Observation coverage, incentives and protected external scrutiny remain essential.",
+      "refs": [
+        "O"
+      ]
+    }
+  ]
+}
