@@ -1,0 +1,48 @@
+{
+  "specimen": "Reactor local contract demonstrator 0.1",
+  "observed_at_utc": "2026-09-14T12:37:25Z",
+  "python": "3.9.6",
+  "platform": "macOS-26.5.1-arm64-arm-64bit",
+  "evidence_class": "local source-derived composition; not deployed Qthonic qualification",
+  "baseline": {
+    "exit": 0,
+    "output": "test_crash_after_acceptance_does_not_replay (test_kernel.KernelContract) ... ok\ntest_current_attempt_delivers_and_settles (test_kernel.KernelContract) ... ok\ntest_endpoint_and_work_step_are_not_worker_choices (test_kernel.KernelContract) ... ok\ntest_missing_authority_store_fails_closed (test_kernel.KernelContract) ... ok\ntest_payload_is_frozen_before_admission (test_kernel.KernelContract) ... ok\ntest_poisoned_source_cannot_widen_recipient_scope (test_kernel.KernelContract) ... ok\ntest_restore_older_than_effect_and_revocation (test_kernel.KernelContract) ... ok\ntest_semantic_residual_is_visible (test_kernel.KernelContract) ... ok\ntest_stale_attempt_has_no_effect (test_kernel.KernelContract) ... ok\ntest_stop_blocks_new_admission_but_inflight_can_complete (test_kernel.KernelContract) ... ok\ntest_two_agents_share_one_atomic_budget (test_kernel.KernelContract) ... ok\ntest_two_processes_only_one_current_claim (test_kernel.KernelContract) ... ok\ntest_unresolved_dispatch_blocks_successor_even_after_takeover (test_kernel.KernelContract) ... ok\ntest_wrong_holder_and_forged_fence (test_kernel.KernelContract) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 6.267s\n\nOK\n"
+  },
+  "mutation_controls": [
+    {
+      "mutation": "disabled-fence",
+      "detected": true,
+      "exit": 1,
+      "output": "test_stale_attempt_has_no_effect (test_kernel.KernelContract) ... FAIL\n\n======================================================================\nFAIL: test_stale_attempt_has_no_effect (test_kernel.KernelContract)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/1x/qzlxyv6d10s648xdpy2jmvqc0000gn/T/tmpv6q2ft_r/test_kernel.py\", line 97, in test_stale_attempt_has_no_effect\n    self.refuses('stale-fence',self.k.execute,old,'op-old','report',ARGS,url)\n  File \"/private/var/folders/1x/qzlxyv6d10s648xdpy2jmvqc0000gn/T/tmpv6q2ft_r/test_kernel.py\", line 67, in refuses\n    with self.assertRaises(Refused) as e:fn(*args,**kwargs)\nAssertionError: Refused not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.526s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "mutation": "unsafe-replay",
+      "detected": true,
+      "exit": 1,
+      "output": "test_crash_after_acceptance_does_not_replay (test_kernel.KernelContract) ... FAIL\n\n======================================================================\nFAIL: test_crash_after_acceptance_does_not_replay (test_kernel.KernelContract)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/1x/qzlxyv6d10s648xdpy2jmvqc0000gn/T/tmpl12jofq5/test_kernel.py\", line 169, in test_crash_after_acceptance_does_not_replay\n    self.refuses('OUTCOME_UNKNOWN',self.k.execute,t,'op-1','report',ARGS,url)\n  File \"/private/var/folders/1x/qzlxyv6d10s648xdpy2jmvqc0000gn/T/tmpl12jofq5/test_kernel.py\", line 67, in refuses\n    with self.assertRaises(Refused) as e:fn(*args,**kwargs)\nAssertionError: Refused not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.589s\n\nFAILED (failures=1)\n"
+    }
+  ],
+  "admission_timing": {
+    "samples": 100,
+    "warmup": 20,
+    "median_ms": 0.6326035,
+    "p95_ms": 0.775166,
+    "max_ms": 1.280709,
+    "scope": "single-host fcntl + SQLite + Python allowlist + custody check + committed effect reservation/evidence; excludes Cedar, NATS, network, model, human review and external effect"
+  },
+  "observed_limitations": [
+    "Permitted misleading report content is accepted. No semantic safety claim.",
+    "Classification is a declared fixture label, not verified content classification.",
+    "Effects admitted before stop may be accepted after stop.",
+    "UNKNOWN stays reserved; no automated reconciliation or recovery-release gate is implemented.",
+    "Authority journal and revocations must survive the work-only restore. Complete authority-store rollback is unqualified.",
+    "Caller identity and OS isolation are fixture assumptions.",
+    "No model calls, deployed gateway, cross-host consensus, power-loss or production capacity testing."
+  ],
+  "source_sha256": {
+    "kernel.py": "eaebda82e0d09725d8b1f2a260967d5be18304fef33c2648834e6ab1558e3169",
+    "qthonic_decisions.py": "471daacd98e6448460785aa4cd4d22ed642483208f09dcbba443da519db3161e",
+    "run.py": "a85bda6e7b6e9256da370efe01fc1c63a584d80dd436023c461e38c5f675a3bb",
+    "test_kernel.py": "bbb6d121d9b5bb3eb41c1723e01cb99b0e3d26fc4d1e01809eeea64e58b4e92c"
+  }
+}
