@@ -586,7 +586,7 @@ Animation source: TypeScript · CSS · Archived previous edition.
 
 ## Design artifacts
 
-Whiteboard Architecture 13 September 2026Open the source +
+Whiteboard Architecture 13 September 2026View drawing
 
 Ryan Smithright’s original drawing. The animation preserves its construction: definitions → bindings → agents → governed delivery.
 
