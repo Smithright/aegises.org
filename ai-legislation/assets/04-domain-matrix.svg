@@ -1,0 +1,520 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1220" role="img" aria-labelledby="title desc"><title id="title">State-by-domain evidence matrix</title><desc id="desc">Eight domains, 50 states and DC. Filled circle means primary-supported enacted anchor, open circle means mixed or secondary verification, P means proposal, dash means not assessed. Counts measure this corpus only.</desc><style>text{font-family:Inter,Arial,sans-serif}.serif{font-family:Georgia,serif}a:focus rect{stroke:#fff;stroke-width:4}</style>
+<rect width="1200" height="1220" fill="#f5f6f0"/>
+<text x="40" y="42" font-size="12" fill="#597078" font-weight="600" text-anchor="start" class="">AEGISES   /   STATE AI LEGISLATIVE MATURITY   /   FIGURE 04</text>
+<text x="40" y="86" font-size="32" fill="#15313d" font-weight="500" text-anchor="start" class="serif">Where the selected evidence sits</text>
+<text x="40" y="119" font-size="16" fill="#597078" font-weight="400" text-anchor="start" class="">One filled cell establishes an anchor in this corpus. A dash does not establish an absence of law.</text>
+<text x="151" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Decisions</text>
+<text x="209" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Frontier</text>
+<text x="267" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Chatbots</text>
+<text x="325" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Health</text>
+<text x="383" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Jobs</text>
+<text x="441" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Media</text>
+<text x="499" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Public</text>
+<text x="557" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Infra.</text>
+<rect x="40" y="184" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="50" y="207" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">AL</text>
+<text x="151" y="207" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="207" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="207" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="207" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="207" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="441" cy="202" r="6" fill="#f5f6f0" stroke="#087e80" stroke-width="2"/>
+<text x="499" y="207" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="207" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="50" y="240" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">AK</text>
+<text x="151" y="240" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="240" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="240" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="240" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="240" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="441" y="240" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="499" cy="235" r="6" fill="#f5f6f0" stroke="#087e80" stroke-width="2"/>
+<text x="557" y="240" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="40" y="250" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="50" y="273" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">AZ</text>
+<text x="151" y="273" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="273" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="273" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="325" cy="268" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="383" y="273" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="441" y="273" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="499" y="273" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="273" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="50" y="306" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">AR</text>
+<text x="151" y="306" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="306" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="306" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="306" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="306" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="441" cy="301" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="499" y="306" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="306" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="40" y="316" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="50" y="339" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">CA</text>
+<text x="151" y="339" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="209" cy="334" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<circle cx="267" cy="334" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="325" y="339" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="339" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="441" y="339" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="499" y="339" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="339" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="50" y="372" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">CO</text>
+<circle cx="151" cy="367" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="209" y="372" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="372" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="372" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="372" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="441" y="372" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="499" y="372" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="372" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="40" y="382" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="50" y="405" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">CT</text>
+<text x="151" y="405" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="405" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="405" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="405" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="405" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="441" y="405" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="499" cy="400" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="557" y="405" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="50" y="438" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">DE</text>
+<text x="151" y="438" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="438" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="438" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="438" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="438" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="441" y="438" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="499" cy="433" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="557" y="438" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="40" y="448" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="50" y="471" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">FL</text>
+<text x="151" y="471" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="471" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="471" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="471" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="471" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="441" cy="466" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="499" y="471" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="471" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="50" y="504" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">GA</text>
+<text x="151" y="504" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="504" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="267" cy="499" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="325" y="504" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="504" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="441" y="504" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="499" y="504" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="504" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="40" y="514" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="50" y="537" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">HI</text>
+<text x="151" y="537" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="537" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="537" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="537" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="537" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="441" cy="532" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="499" y="537" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="537" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="50" y="570" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">ID</text>
+<text x="151" y="570" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="570" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="570" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="570" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="570" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="441" cy="565" r="6" fill="#f5f6f0" stroke="#087e80" stroke-width="2"/>
+<text x="499" y="570" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="570" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="40" y="580" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="50" y="603" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">IL</text>
+<text x="151" y="603" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="603" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="603" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="603" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="383" cy="598" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="441" y="603" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="499" y="603" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="603" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="50" y="636" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">IN</text>
+<text x="151" y="636" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="636" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="636" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="636" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="636" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="441" y="636" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="499" cy="631" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="557" y="636" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="40" y="646" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="50" y="669" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">IA</text>
+<text x="151" y="669" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="669" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="669" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="669" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="669" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="441" cy="664" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="499" y="669" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="669" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="50" y="702" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">KS</text>
+<text x="151" y="702" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="702" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="702" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="702" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="702" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="441" cy="697" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="499" y="702" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="702" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="40" y="712" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="50" y="735" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">KY</text>
+<text x="151" y="735" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="735" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="735" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="735" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="735" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="441" cy="730" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="499" y="735" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="735" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="50" y="768" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">LA</text>
+<text x="151" y="768" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="768" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="768" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="768" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="768" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="441" cy="763" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="499" y="768" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="768" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="40" y="778" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="50" y="801" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">ME</text>
+<text x="151" y="801" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="801" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="267" cy="796" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="325" y="801" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="801" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="441" y="801" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="499" y="801" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="801" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="50" y="834" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">MD</text>
+<text x="151" y="834" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="834" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="834" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="834" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="834" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="441" y="834" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="499" cy="829" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="557" y="834" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="40" y="844" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="50" y="867" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">MA</text>
+<text x="151" y="867" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="867" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="867" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="867" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="867" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="441" cy="862" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="499" y="867" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="867" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="50" y="900" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">MI</text>
+<text x="151" y="900" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="900" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="900" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="900" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="900" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="441" cy="895" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="499" y="900" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="900" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="40" y="910" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="50" y="933" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">MN</text>
+<circle cx="151" cy="928" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="209" y="933" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="933" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="933" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="933" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="441" y="933" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="499" y="933" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="933" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="50" y="966" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">MS</text>
+<text x="151" y="966" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="966" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="966" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="966" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="966" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="441" cy="961" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="499" y="966" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="966" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="40" y="976" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="50" y="999" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">MO</text>
+<text x="151" y="999" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="999" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="999" font-size="15" fill="#b47a32" font-weight="600" text-anchor="middle" class="">P</text>
+<text x="325" y="999" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="999" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="441" y="999" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="499" y="999" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="557" y="999" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="50" y="1032" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">MT</text>
+<text x="151" y="1032" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="209" y="1032" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="267" y="1032" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="325" y="1032" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="383" y="1032" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="441" y="1032" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="499" y="1032" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="557" cy="1027" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="731" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Decisions</text>
+<text x="789" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Frontier</text>
+<text x="847" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Chatbots</text>
+<text x="905" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Health</text>
+<text x="963" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Jobs</text>
+<text x="1021" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Media</text>
+<text x="1079" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Public</text>
+<text x="1137" y="166" font-size="12" fill="#597078" font-weight="600" text-anchor="middle" class="">Infra.</text>
+<rect x="620" y="184" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="630" y="207" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">NE</text>
+<circle cx="731" cy="202" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="789" y="207" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="207" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="207" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="207" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1021" y="207" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1079" y="207" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="207" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="630" y="240" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">NV</text>
+<text x="731" y="240" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="240" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="240" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="905" cy="235" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="963" y="240" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1021" y="240" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1079" y="240" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="240" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="620" y="250" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="630" y="273" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">NH</text>
+<text x="731" y="273" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="273" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="273" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="273" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="273" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1021" y="273" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1079" cy="268" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1137" y="273" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="630" y="306" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">NJ</text>
+<text x="731" y="306" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="306" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="306" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="306" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="306" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1021" cy="301" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1079" y="306" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="306" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="620" y="316" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="630" y="339" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">NM</text>
+<text x="731" y="339" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="339" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="339" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="339" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="339" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1021" cy="334" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1079" y="339" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="339" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="630" y="372" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">NY</text>
+<text x="731" y="372" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="789" cy="367" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="847" y="372" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="372" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="372" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1021" y="372" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1079" y="372" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="372" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="620" y="382" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="630" y="405" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">NC</text>
+<text x="731" y="405" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="405" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="405" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="405" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="405" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1021" cy="400" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1079" y="405" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="405" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="630" y="438" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">ND</text>
+<text x="731" y="438" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="438" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="438" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="438" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="438" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1021" cy="433" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1079" y="438" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="438" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="620" y="448" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="630" y="471" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">OH</text>
+<text x="731" y="471" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="471" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="471" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="471" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="471" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1021" y="471" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1079" cy="466" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1137" y="471" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="630" y="504" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">OK</text>
+<text x="731" y="504" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="504" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="504" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="504" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="504" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1021" cy="499" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1079" y="504" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="504" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="620" y="514" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="630" y="537" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">OR</text>
+<text x="731" y="537" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="537" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="537" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="905" cy="532" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="963" y="537" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1021" y="537" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1079" y="537" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="537" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="630" y="570" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">PA</text>
+<text x="731" y="570" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="570" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="570" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="570" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="570" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1021" cy="565" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1079" y="570" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="570" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="620" y="580" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="630" y="603" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">RI</text>
+<circle cx="731" cy="598" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="789" y="603" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="603" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="603" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="603" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1021" y="603" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1079" y="603" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="603" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="630" y="636" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">SC</text>
+<text x="731" y="636" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="636" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="636" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="636" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="636" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1021" cy="631" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1079" y="636" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="636" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="620" y="646" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="630" y="669" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">SD</text>
+<text x="731" y="669" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="669" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="669" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="669" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="669" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1021" cy="664" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1079" y="669" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="669" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="630" y="702" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">TN</text>
+<text x="731" y="702" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="702" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="702" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="702" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="702" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1021" cy="697" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1079" y="702" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="702" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="620" y="712" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="630" y="735" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">TX</text>
+<circle cx="731" cy="730" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="789" y="735" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="847" cy="730" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="905" y="735" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="735" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1021" y="735" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1079" cy="730" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1137" y="735" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="630" y="768" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">UT</text>
+<text x="731" y="768" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="768" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="847" cy="763" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<circle cx="905" cy="763" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="963" y="768" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1021" y="768" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1079" cy="763" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1137" y="768" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="620" y="778" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="630" y="801" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">VT</text>
+<text x="731" y="801" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="801" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="801" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="801" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="801" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1021" y="801" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1079" cy="796" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1137" y="801" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="630" y="834" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">VA</text>
+<circle cx="731" cy="829" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="789" y="834" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="834" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="834" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="834" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1021" y="834" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1079" y="834" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="834" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="620" y="844" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="630" y="867" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">WA</text>
+<text x="731" y="867" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="867" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="847" cy="862" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="905" y="867" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="867" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1021" y="867" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1079" y="867" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="867" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="630" y="900" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">WV</text>
+<text x="731" y="900" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="900" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="900" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="900" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="900" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1021" y="900" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1079" cy="895" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1137" y="900" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="620" y="910" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="630" y="933" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">WI</text>
+<text x="731" y="933" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="933" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="933" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="933" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="933" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1021" cy="928" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1079" y="933" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="933" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="630" y="966" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">WY</text>
+<text x="731" y="966" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="966" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="966" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="966" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="966" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="1021" cy="961" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="1079" y="966" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="966" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<rect x="620" y="976" width="551" height="32" rx="0" fill="#eaf0ec" stroke="none"/>
+<text x="630" y="999" font-size="17" fill="#15313d" font-weight="600" text-anchor="start" class="">DC</text>
+<text x="731" y="999" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="789" y="999" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="847" y="999" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="905" y="999" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="963" y="999" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1021" y="999" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1079" y="999" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<text x="1137" y="999" font-size="13" fill="#8da09f" font-weight="400" text-anchor="middle" class="">—</text>
+<circle cx="55" cy="1100" r="6" fill="#087e80" stroke="none" stroke-width="2"/>
+<text x="72" y="1105" font-size="16" fill="#15313d" font-weight="400" text-anchor="start" class="">Enacted · primary</text>
+<circle cx="307" cy="1100" r="6" fill="#f5f6f0" stroke="#087e80" stroke-width="2"/>
+<text x="324" y="1105" font-size="16" fill="#15313d" font-weight="400" text-anchor="start" class="">Enacted · mixed / secondary</text>
+<text x="690" y="1105" font-size="16" fill="#b47a32" font-weight="600" text-anchor="start" class="">P</text>
+<text x="712" y="1105" font-size="16" fill="#15313d" font-weight="400" text-anchor="start" class="">Proposal</text>
+<text x="870" y="1105" font-size="16" fill="#597078" font-weight="400" text-anchor="start" class="">—</text>
+<text x="896" y="1105" font-size="16" fill="#15313d" font-weight="400" text-anchor="start" class="">Not assessed</text>
+<text x="40" y="1141" font-size="15" fill="#597078" font-weight="400" text-anchor="start" class="">Media includes election integrity, likeness, intimate imagery and synthetic-content interests.</text>
+<line x1="40" y1="1165" x2="1160" y2="1165" stroke="#d5dfdd" stroke-width="1" stroke-dasharray=""/>
+<text x="40" y="1192" font-size="13" fill="#597078" font-weight="400" text-anchor="start" class="">Sources: machine-readable state ledger. Coverage of this review is not coverage of each state’s law.</text>
+<text x="1160" y="1192" font-size="12" fill="#597078" font-weight="400" text-anchor="end" class="">14 SEP 2026 · v1.0</text>
+<metadata>{&quot;publication&quot;: &quot;https://aegises.org/ai-legislation/&quot;, &quot;as_of&quot;: &quot;2026-09-14&quot;, &quot;sources&quot;: [{&quot;state&quot;: &quot;AL&quot;, &quot;url&quot;: &quot;https://alison.legislature.state.al.us/files/pdf/SearchableInstruments/2024RS/HB172-enr.pdf&quot;}, {&quot;state&quot;: &quot;AK&quot;, &quot;url&quot;: &quot;https://www.akleg.gov/basis/Committee/Details/34?code=HHB53&quot;}, {&quot;state&quot;: &quot;AZ&quot;, &quot;url&quot;: &quot;https://www.azleg.gov/legtext/57leg/1r/laws/0165.htm&quot;}, {&quot;state&quot;: &quot;AR&quot;, &quot;url&quot;: &quot;https://www.arkleg.state.ar.us/Acts/FTPDocument?ddBienniumSession=2025%2F2025R&amp;file=927.pdf&amp;path=%2FACTS%2F2025R%2FPublic%2F&quot;}, {&quot;state&quot;: &quot;CA&quot;, &quot;url&quot;: &quot;https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB53&quot;}, {&quot;state&quot;: &quot;CO&quot;, &quot;url&quot;: &quot;https://leg.colorado.gov/bills/sb26-189&quot;}, {&quot;state&quot;: &quot;CT&quot;, &quot;url&quot;: &quot;https://www.cga.ct.gov/current/pub/chap_057.htm#sec_4a-2e&quot;}, {&quot;state&quot;: &quot;DE&quot;, &quot;url&quot;: &quot;https://legis.delaware.gov/BillDetail?LegislationId=140866&quot;}, {&quot;state&quot;: &quot;FL&quot;, &quot;url&quot;: &quot;https://www.flsenate.gov/Session/Bill/2024/919&quot;}, {&quot;state&quot;: &quot;GA&quot;, &quot;url&quot;: &quot;https://senatepress.net/majority-leader-jason-anavitarte-applauds-signing-of-sb-540-to-protect-children-online.html&quot;}, {&quot;state&quot;: &quot;HI&quot;, &quot;url&quot;: &quot;https://data.capitol.hawaii.gov/hrscurrent/Vol01_Ch0001-0042F/HRS0011/HRS_0011-0303.htm&quot;}, {&quot;state&quot;: &quot;ID&quot;, &quot;url&quot;: &quot;https://legiscan.com/ID/supplement/H0664/id/442216&quot;}, {&quot;state&quot;: &quot;IL&quot;, &quot;url&quot;: &quot;https://www.ilga.gov/Legislation/publicacts/view/103-0804&quot;}, {&quot;state&quot;: &quot;IN&quot;, &quot;url&quot;: &quot;https://www.in.gov/dor/files/2024-legislative-synopsis.pdf&quot;}, {&quot;state&quot;: &quot;IA&quot;, &quot;url&quot;: &quot;https://www.legis.iowa.gov/legislation/billTracking/billHistory?billName=HF+2240&amp;ga=90&quot;}, {&quot;state&quot;: &quot;KS&quot;, &quot;url&quot;: &quot;https://www.governor.ks.gov/Home/Components/News/News/648/56&quot;}, {&quot;state&quot;: &quot;KY&quot;, &quot;url&quot;: &quot;https://apps.legislature.ky.gov/law/acts/24RS/documents/0015.pdf&quot;}, {&quot;state&quot;: &quot;LA&quot;, &quot;url&quot;: &quot;https://legis.la.gov/Legis/Law.aspx?d=1388452&quot;}, {&quot;state&quot;: &quot;ME&quot;, &quot;url&quot;: &quot;https://legislature.maine.gov/legis/statutes/10/title10sec1500-DD.html&quot;}, {&quot;state&quot;: &quot;MD&quot;, &quot;url&quot;: &quot;https://mgaleg.maryland.gov/2024RS/chapters_noln/Ch_496_sb0818E.pdf&quot;}, {&quot;state&quot;: &quot;MA&quot;, &quot;url&quot;: &quot;https://www.mass.gov/news/governor-healey-signs-bill-banning-revenge-porn-expanding-protections-against-abuse-and-exploitation&quot;}, {&quot;state&quot;: &quot;MI&quot;, &quot;url&quot;: &quot;https://www.michigan.gov/ag/consumer-protection/election-protection-2026/protecting-michigan-voters-from-ai-generated-election-misinformation&quot;}, {&quot;state&quot;: &quot;MN&quot;, &quot;url&quot;: &quot;https://www.revisor.mn.gov/statutes/cite/325M.14&quot;}, {&quot;state&quot;: &quot;MS&quot;, &quot;url&quot;: &quot;https://www.legislature.ms.gov/media/1352/senate_summary_final_2024_v3.pdf&quot;}, {&quot;state&quot;: &quot;MO&quot;, &quot;url&quot;: &quot;https://www.senate.mo.gov/BillTracking/Bills/BillInformation?BillID=307&amp;year=2026&quot;}, {&quot;state&quot;: &quot;MT&quot;, &quot;url&quot;: &quot;https://docs.legmt.gov/download-ticket?ticketId=ab38ae4c-551c-4b8c-bd8f-1226b2d67085&quot;}, {&quot;state&quot;: &quot;NE&quot;, &quot;url&quot;: &quot;https://nebraskalegislature.gov/laws/statutes.php?statute=87-1116&quot;}, {&quot;state&quot;: &quot;NV&quot;, &quot;url&quot;: &quot;https://www.leg.state.nv.us/nrs/nrs-629.html&quot;}, {&quot;state&quot;: &quot;NH&quot;, &quot;url&quot;: &quot;https://gc.nh.gov/bill_status/legacy/bs2016/billText.aspx?id=1597&amp;sy=2024&amp;txtFormat=pdf&amp;v=current&quot;}, {&quot;state&quot;: &quot;NJ&quot;, &quot;url&quot;: &quot;https://pub.njleg.state.nj.us/Bills/2024/AL25/40_.HTM&quot;}, {&quot;state&quot;: &quot;NM&quot;, &quot;url&quot;: &quot;https://www.sos.nm.gov/2024/03/06/secretary-of-state-responds-to-priority-election-bills-becoming-law/&quot;}, {&quot;state&quot;: &quot;NY&quot;, &quot;url&quot;: &quot;https://www.nysenate.gov/legislation/bills/2025/S8828&quot;}, {&quot;state&quot;: &quot;NC&quot;, &quot;url&quot;: &quot;https://dashboard.ncleg.gov/api/Services/BillSummary/2025/H934-SMTQ-35%28e1%29-v-2&quot;}, {&quot;state&quot;: &quot;ND&quot;, &quot;url&quot;: &quot;https://ndlegis.gov/assembly/69-2025/regular/bill-overview/bo1167.html?search=artificial+i&quot;}, {&quot;state&quot;: &quot;OH&quot;, &quot;url&quot;: &quot;https://codes.ohio.gov/ohio-revised-code/section-3301.24&quot;}, {&quot;state&quot;: &quot;OK&quot;, &quot;url&quot;: &quot;https://www.okhouse.gov/posts/news-20250507_4&quot;}, {&quot;state&quot;: &quot;OR&quot;, &quot;url&quot;: &quot;https://www.oregonlegislature.gov/bills_laws/ors/ors678.html&quot;}, {&quot;state&quot;: &quot;PA&quot;, &quot;url&quot;: &quot;https://www.legis.state.pa.us/WU01/LI/LI/CT/HTM/18/00.063.012.000..HTM&quot;}, {&quot;state&quot;: &quot;RI&quot;, &quot;url&quot;: &quot;https://webserver.rilegislature.gov/Statutes/TITLE6/6-48.1/6-48.1-7.htm&quot;}, {&quot;state&quot;: &quot;SC&quot;, &quot;url&quot;: &quot;https://www.governor.sc.gov/news/2025-05/gov-henry-mcmaster-signs-unauthorized-disclosure-intimate-images-bill-law&quot;}, {&quot;state&quot;: &quot;SD&quot;, &quot;url&quot;: &quot;https://sdlegislature.gov/Session/Bill/24991&quot;}, {&quot;state&quot;: &quot;TN&quot;, &quot;url&quot;: &quot;https://www.tn.gov/governor/news/2024/4/25/gov--lee-marks-the-close-of-the-2024-legislative-session.html&quot;}, {&quot;state&quot;: &quot;TX&quot;, &quot;url&quot;: &quot;https://capitol.texas.gov/tlodocs/89R/billtext/html/HB00149F.htm&quot;}, {&quot;state&quot;: &quot;UT&quot;, &quot;url&quot;: &quot;https://commerce.utah.gov/ai/ai-faq/&quot;}, {&quot;state&quot;: &quot;VT&quot;, &quot;url&quot;: &quot;https://legislature.vermont.gov/statutes/section/03/069/05022&quot;}, {&quot;state&quot;: &quot;VA&quot;, &quot;url&quot;: &quot;https://law.lis.virginia.gov/vacode/title59.1/chapter53/section59.1-577/&quot;}, {&quot;state&quot;: &quot;WA&quot;, &quot;url&quot;: &quot;https://app.leg.wa.gov/billsummary?BillNumber=2225&amp;Initiative=false&amp;Year=2026&quot;}, {&quot;state&quot;: &quot;WV&quot;, &quot;url&quot;: &quot;https://code.wvlegislature.gov/5A-6-9/&quot;}, {&quot;state&quot;: &quot;WI&quot;, &quot;url&quot;: &quot;https://ethics.wi.gov/Resources/Candidate%20Overview%20Webinar%202024%20Slides.pdf&quot;}, {&quot;state&quot;: &quot;WY&quot;, &quot;url&quot;: &quot;https://www.wyoleg.gov/2026/Summaries/HB0102.pdf&quot;}, {&quot;state&quot;: &quot;DC&quot;, &quot;url&quot;: &quot;https://dccouncil.gov/legislation/&quot;}]}</metadata>
+</svg>

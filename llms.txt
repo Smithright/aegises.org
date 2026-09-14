@@ -14,6 +14,16 @@ Public design draft 1.7.1, 14 September 2026. Safety claims are scoped to the sa
 - [RFC-001](https://aegises.org/agi-reactor/conformance/RFC-001.md): Accepted external effect, worker death and recovery from an UNKNOWN backup.
 - [Executable reference specimen](https://github.com/Smithright/aegises.org/tree/main/agi-reactor/conformance): Guarded recovery and a deliberately failing negative control. An isolated HTTP/SQLite specimen, not production runtime qualification.
 
+## State AI legislative maturity atlas
+
+Beyond the Bill Count — AEGISES research edition 1.0, observed September 14, 2026. A representative legislative corpus across all 50 states, with DC separately unclassified. This is not an exhaustive legal inventory, a numeric state ranking or an outcomes evaluation. Missing domain cells mean not assessed, not no law.
+
+- [Publication page](https://aegises.org/ai-legislation/): Complete initial HTML, six original analytical figures and a searchable state ledger.
+- [Complete text](https://aegises.org/ai-legislation/ai-legislation.txt): Original analysis, limitations and source links.
+- [Structured evidence](https://aegises.org/ai-legislation/data/states.json): Instruments, source types, claims, interpretation boundaries and observation date.
+- [CSV ledger](https://aegises.org/ai-legislation/data/states.csv)
+- [PDF publication](https://aegises.org/ai-legislation/state-ai-legislative-maturity.pdf)
+
 ## Related architectures
 
 - [Sovereign Compute Architecture](https://aegises.org/architecture/)

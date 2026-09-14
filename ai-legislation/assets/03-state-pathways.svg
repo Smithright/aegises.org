@@ -1,0 +1,282 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1020" role="img" aria-labelledby="title desc"><title id="title">Fifty states, several legislative pathways</title><desc id="desc">Equal-area tile cartogram. Each state is colored by its selected anchor pathway, not its full legal portfolio. Missouri proposal and DC research gap are unclassified. Numbers are category keys, not maturity scores.</desc><style>text{font-family:Inter,Arial,sans-serif}.serif{font-family:Georgia,serif}a:focus rect{stroke:#fff;stroke-width:4}</style>
+<rect width="1200" height="1020" fill="#102c39"/>
+<text x="40" y="42" font-size="12" fill="#b4c7ca" font-weight="600" text-anchor="start" class="">AEGISES   /   STATE AI LEGISLATIVE MATURITY   /   FIGURE 03</text>
+<text x="40" y="86" font-size="32" fill="#f3f5ee" font-weight="500" text-anchor="start" class="serif">A national mosaic, not a league table</text>
+<text x="40" y="119" font-size="16" fill="#b4c7ca" font-weight="400" text-anchor="start" class="">Representative anchors for all 50 states; the District of Columbia is shown separately.</text>
+<g><title>Alabama: Targeted harm / content. HB172 (2024)</title>
+<rect x="601" y="645" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="613" y="677" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">AL</text>
+<text x="670" y="700" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+<text x="613" y="701" font-size="16" fill="#102c39" font-weight="400" text-anchor="start" class="">†</text>
+</g>
+<g><title>Alaska: Public institutions / programs. HB53 / ch. 10 SLA 2025</title>
+<rect x="43" y="165" width="84" height="70" rx="2" fill="#a0b7ae" stroke="none"/>
+<text x="55" y="197" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">AK</text>
+<text x="112" y="220" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">4</text>
+<text x="55" y="221" font-size="16" fill="#102c39" font-weight="400" text-anchor="start" class="">†</text>
+</g>
+<g><title>Arizona: Sector / interaction safeguards. HB2175 / ch. 165 (2025)</title>
+<rect x="136" y="565" width="84" height="70" rx="2" fill="#d4a45d" stroke="none"/>
+<text x="148" y="597" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">AZ</text>
+<text x="205" y="620" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">2</text>
+</g>
+<g><title>Arkansas: Targeted harm / content. HB1876 / Act 927 (2025)</title>
+<rect x="415" y="565" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="427" y="597" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">AR</text>
+<text x="484" y="620" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>California: Structured accountability. SB53 / ch. 138 (2025); SB243 / ch. 677 (2025)</title>
+<rect x="43" y="485" width="84" height="70" rx="2" fill="#43c1b5" stroke="none"/>
+<text x="55" y="517" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">CA</text>
+<text x="112" y="540" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">5</text>
+</g>
+<g><title>Colorado: Structured accountability. SB26-189 (2026)</title>
+<rect x="229" y="485" width="84" height="70" rx="2" fill="#43c1b5" stroke="none"/>
+<text x="241" y="517" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">CO</text>
+<text x="298" y="540" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">5</text>
+</g>
+<g><title>Connecticut: Public institutions / programs. PA23-16 / §4a-2e</title>
+<rect x="880" y="405" width="84" height="70" rx="2" fill="#a0b7ae" stroke="none"/>
+<text x="892" y="437" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">CT</text>
+<text x="949" y="460" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">4</text>
+</g>
+<g><title>Delaware: Public institutions / programs. HB333 (2024)</title>
+<rect x="880" y="485" width="84" height="70" rx="2" fill="#a0b7ae" stroke="none"/>
+<text x="892" y="517" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">DE</text>
+<text x="949" y="540" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">4</text>
+</g>
+<g><title>Florida: Targeted harm / content. HB919 / ch. 2024-126</title>
+<rect x="787" y="725" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="799" y="757" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">FL</text>
+<text x="856" y="780" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>Georgia: Sector / interaction safeguards. SB540 (2026)</title>
+<rect x="694" y="645" width="84" height="70" rx="2" fill="#d4a45d" stroke="none"/>
+<text x="706" y="677" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">GA</text>
+<text x="763" y="700" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">2</text>
+</g>
+<g><title>Hawaii: Targeted harm / content. HRS §11-303 / Act 191 (2024)</title>
+<rect x="43" y="725" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="55" y="757" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">HI</text>
+<text x="112" y="780" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>Idaho: Targeted harm / content. HB664 / ch. 172 (2024)</title>
+<rect x="136" y="325" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="148" y="357" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">ID</text>
+<text x="205" y="380" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+<text x="148" y="381" font-size="16" fill="#102c39" font-weight="400" text-anchor="start" class="">†</text>
+</g>
+<g><title>Illinois: Sector / interaction safeguards. HB3773 / PA103-0804</title>
+<rect x="508" y="325" width="84" height="70" rx="2" fill="#d4a45d" stroke="none"/>
+<text x="520" y="357" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">IL</text>
+<text x="577" y="380" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">2</text>
+</g>
+<g><title>Indiana: Public institutions / programs. SEA150 / PL108-2024</title>
+<rect x="508" y="405" width="84" height="70" rx="2" fill="#a0b7ae" stroke="none"/>
+<text x="520" y="437" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">IN</text>
+<text x="577" y="460" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">4</text>
+</g>
+<g><title>Iowa: Targeted harm / content. HF2240 / ch. 1065 (2024)</title>
+<rect x="415" y="405" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="427" y="437" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">IA</text>
+<text x="484" y="460" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>Kansas: Targeted harm / content. SB186 (2025)</title>
+<rect x="322" y="565" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="334" y="597" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">KS</text>
+<text x="391" y="620" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>Kentucky: Targeted harm / content. HB207 / Act 15 (2024)</title>
+<rect x="508" y="485" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="520" y="517" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">KY</text>
+<text x="577" y="540" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>Louisiana: Targeted harm / content. RS14:73.14</title>
+<rect x="415" y="645" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="427" y="677" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">LA</text>
+<text x="484" y="700" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>Maine: Sector / interaction safeguards. 10 MRSA §1500-DD / PL2025 c. 294</title>
+<rect x="1066" y="165" width="84" height="70" rx="2" fill="#d4a45d" stroke="none"/>
+<text x="1078" y="197" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">ME</text>
+<text x="1135" y="220" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">2</text>
+</g>
+<g><title>Maryland: Public institutions / programs. SB818 / ch. 496 (2024)</title>
+<rect x="787" y="485" width="84" height="70" rx="2" fill="#a0b7ae" stroke="none"/>
+<text x="799" y="517" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">MD</text>
+<text x="856" y="540" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">4</text>
+</g>
+<g><title>Massachusetts: Targeted harm / content. 2024 intimate-image legislation</title>
+<rect x="973" y="325" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="985" y="357" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">MA</text>
+<text x="1042" y="380" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>Michigan: Targeted harm / content. MCL168.932f</title>
+<rect x="601" y="325" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="613" y="357" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">MI</text>
+<text x="670" y="380" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>Minnesota: Consumer decision rights. §325M.14, Consumer Data Privacy Act</title>
+<rect x="415" y="325" width="84" height="70" rx="2" fill="#5c9ba1" stroke="none"/>
+<text x="427" y="357" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">MN</text>
+<text x="484" y="380" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">3</text>
+</g>
+<g><title>Mississippi: Targeted harm / content. SB2577 (2024)</title>
+<rect x="508" y="645" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="520" y="677" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">MS</text>
+<text x="577" y="700" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>Missouri: Unclassified / proposal. SB1324 (2026), proposal</title>
+<rect x="415" y="485" width="84" height="70" rx="2" fill="#344956" stroke="#728691"/>
+<text x="427" y="517" font-size="25" fill="#f3f5ee" font-weight="600" text-anchor="start" class="">MO</text>
+<text x="484" y="540" font-size="14" fill="#f3f5ee" font-weight="600" text-anchor="end" class="">?</text>
+</g>
+<g><title>Montana: Structured accountability. SB212 (2025), Right to Compute Act</title>
+<rect x="229" y="325" width="84" height="70" rx="2" fill="#43c1b5" stroke="none"/>
+<text x="241" y="357" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">MT</text>
+<text x="298" y="380" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">5</text>
+</g>
+<g><title>Nebraska: Consumer decision rights. §87-1116 / LB1074 (2024)</title>
+<rect x="322" y="485" width="84" height="70" rx="2" fill="#5c9ba1" stroke="none"/>
+<text x="334" y="517" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">NE</text>
+<text x="391" y="540" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">3</text>
+</g>
+<g><title>Nevada: Sector / interaction safeguards. NRS629.610 / AB406 (2025)</title>
+<rect x="136" y="405" width="84" height="70" rx="2" fill="#d4a45d" stroke="none"/>
+<text x="148" y="437" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">NV</text>
+<text x="205" y="460" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">2</text>
+</g>
+<g><title>New Hampshire: Public institutions / programs. HB1688 / ch. 209 (2024)</title>
+<rect x="1066" y="245" width="84" height="70" rx="2" fill="#a0b7ae" stroke="none"/>
+<text x="1078" y="277" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">NH</text>
+<text x="1135" y="300" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">4</text>
+</g>
+<g><title>New Jersey: Targeted harm / content. PL2025 c. 40 / A3540</title>
+<rect x="787" y="405" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="799" y="437" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">NJ</text>
+<text x="856" y="460" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>New Mexico: Targeted harm / content. HB182 / ch. 57 (2024)</title>
+<rect x="229" y="565" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="241" y="597" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">NM</text>
+<text x="298" y="620" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>New York: Structured accountability. S6953B / ch. 699 (2025), amended by S8828 / ch. 96 (2026)</title>
+<rect x="880" y="325" width="84" height="70" rx="2" fill="#43c1b5" stroke="none"/>
+<text x="892" y="357" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">NY</text>
+<text x="949" y="380" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">5</text>
+</g>
+<g><title>North Carolina: Targeted harm / content. GS14-190.5A, as amended in 2024</title>
+<rect x="601" y="565" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="613" y="597" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">NC</text>
+<text x="670" y="620" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>North Dakota: Targeted harm / content. HB1167 (2025)</title>
+<rect x="322" y="325" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="334" y="357" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">ND</text>
+<text x="391" y="380" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>Ohio: Public institutions / programs. ORC3301.24 / HB96 (2025)</title>
+<rect x="601" y="405" width="84" height="70" rx="2" fill="#a0b7ae" stroke="none"/>
+<text x="613" y="437" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">OH</text>
+<text x="670" y="460" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">4</text>
+</g>
+<g><title>Oklahoma: Targeted harm / content. HB1364 (2025)</title>
+<rect x="322" y="645" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="334" y="677" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">OK</text>
+<text x="391" y="700" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>Oregon: Sector / interaction safeguards. ORS678.027 (2025 edition)</title>
+<rect x="43" y="405" width="84" height="70" rx="2" fill="#d4a45d" stroke="none"/>
+<text x="55" y="437" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">OR</text>
+<text x="112" y="460" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">2</text>
+</g>
+<g><title>Pennsylvania: Targeted harm / content. 18 PaCS §6312 / Act 125 (2024)</title>
+<rect x="694" y="405" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="706" y="437" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">PA</text>
+<text x="763" y="460" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>Rhode Island: Consumer decision rights. §6-48.1-7, Data Transparency and Privacy Protection Act</title>
+<rect x="973" y="405" width="84" height="70" rx="2" fill="#5c9ba1" stroke="none"/>
+<text x="985" y="437" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">RI</text>
+<text x="1042" y="460" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">3</text>
+</g>
+<g><title>South Carolina: Targeted harm / content. H3058 (2025)</title>
+<rect x="694" y="565" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="706" y="597" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">SC</text>
+<text x="763" y="620" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>South Dakota: Targeted harm / content. SB79 (2024)</title>
+<rect x="322" y="405" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="334" y="437" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">SD</text>
+<text x="391" y="460" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>Tennessee: Targeted harm / content. ELVIS Act (2024)</title>
+<rect x="508" y="565" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="520" y="597" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">TN</text>
+<text x="577" y="620" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>Texas: Structured accountability. HB149 (2025), TRAIGA</title>
+<rect x="322" y="725" width="84" height="70" rx="2" fill="#43c1b5" stroke="none"/>
+<text x="334" y="757" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">TX</text>
+<text x="391" y="780" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">5</text>
+</g>
+<g><title>Utah: Public institutions / programs. AI Policy Act and subsequent amendments</title>
+<rect x="136" y="485" width="84" height="70" rx="2" fill="#a0b7ae" stroke="none"/>
+<text x="148" y="517" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">UT</text>
+<text x="205" y="540" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">4</text>
+</g>
+<g><title>Vermont: Public institutions / programs. 3 VSA §5022 / Act 132 (2022)</title>
+<rect x="973" y="245" width="84" height="70" rx="2" fill="#a0b7ae" stroke="none"/>
+<text x="985" y="277" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">VT</text>
+<text x="1042" y="300" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">4</text>
+</g>
+<g><title>Virginia: Consumer decision rights. §59.1-577, Consumer Data Protection Act</title>
+<rect x="694" y="485" width="84" height="70" rx="2" fill="#5c9ba1" stroke="none"/>
+<text x="706" y="517" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">VA</text>
+<text x="763" y="540" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">3</text>
+</g>
+<g><title>Washington: Sector / interaction safeguards. ESHB2225 / ch. 168 (2026)</title>
+<rect x="43" y="325" width="84" height="70" rx="2" fill="#d4a45d" stroke="none"/>
+<text x="55" y="357" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">WA</text>
+<text x="112" y="380" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">2</text>
+</g>
+<g><title>West Virginia: Public institutions / programs. §5A-6-9 / HB3187 (2025)</title>
+<rect x="601" y="485" width="84" height="70" rx="2" fill="#a0b7ae" stroke="none"/>
+<text x="613" y="517" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">WV</text>
+<text x="670" y="540" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">4</text>
+</g>
+<g><title>Wisconsin: Targeted harm / content. 2023 Wisconsin Act 123</title>
+<rect x="508" y="245" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="520" y="277" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">WI</text>
+<text x="577" y="300" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>Wyoming: Targeted harm / content. HB0102 / ch. 91 (2026)</title>
+<rect x="229" y="405" width="84" height="70" rx="2" fill="#7b8290" stroke="none"/>
+<text x="241" y="437" font-size="25" fill="#102c39" font-weight="600" text-anchor="start" class="">WY</text>
+<text x="298" y="460" font-size="14" fill="#102c39" font-weight="600" text-anchor="end" class="">1</text>
+</g>
+<g><title>District of Columbia: Unclassified / proposal. No anchor classified in this edition</title>
+<rect x="787" y="565" width="84" height="70" rx="2" fill="#344956" stroke="#728691"/>
+<text x="799" y="597" font-size="25" fill="#f3f5ee" font-weight="600" text-anchor="start" class="">DC</text>
+<text x="856" y="620" font-size="14" fill="#f3f5ee" font-weight="600" text-anchor="end" class="">?</text>
+</g>
+<text x="890" y="690" font-size="14" fill="#b4c7ca" font-weight="400" text-anchor="start" class="">DC shown</text>
+<text x="890" y="712" font-size="14" fill="#b4c7ca" font-weight="400" text-anchor="start" class="">separately</text>
+<rect x="43" y="831" width="22" height="22" rx="0" fill="#7b8290" stroke="none"/>
+<text x="77" y="848" font-size="17" fill="#f3f5ee" font-weight="400" text-anchor="start" class="">1  Targeted harm / content</text>
+<rect x="608" y="831" width="22" height="22" rx="0" fill="#d4a45d" stroke="none"/>
+<text x="642" y="848" font-size="17" fill="#f3f5ee" font-weight="400" text-anchor="start" class="">2  Sector / interaction safeguards</text>
+<rect x="43" y="868" width="22" height="22" rx="0" fill="#5c9ba1" stroke="none"/>
+<text x="77" y="885" font-size="17" fill="#f3f5ee" font-weight="400" text-anchor="start" class="">3  Consumer decision rights</text>
+<rect x="608" y="868" width="22" height="22" rx="0" fill="#a0b7ae" stroke="none"/>
+<text x="642" y="885" font-size="17" fill="#f3f5ee" font-weight="400" text-anchor="start" class="">4  Public institutions / programs</text>
+<rect x="43" y="905" width="22" height="22" rx="0" fill="#43c1b5" stroke="none"/>
+<text x="77" y="922" font-size="17" fill="#f3f5ee" font-weight="400" text-anchor="start" class="">5  Structured accountability</text>
+<rect x="608" y="905" width="22" height="22" rx="0" fill="#344956" stroke="#728691"/>
+<text x="642" y="922" font-size="17" fill="#f3f5ee" font-weight="400" text-anchor="start" class="">?  Unclassified / proposal</text>
+<line x1="40" y1="965" x2="1160" y2="965" stroke="#35505b" stroke-width="1" stroke-dasharray=""/>
+<text x="40" y="992" font-size="13" fill="#b4c7ca" font-weight="400" text-anchor="start" class="">Category numbers are keys, not scores. † Mixed / secondary verification. Selected corpus; see ledger.</text>
+<text x="1160" y="992" font-size="12" fill="#b4c7ca" font-weight="400" text-anchor="end" class="">14 SEP 2026 · v1.0</text>
+<metadata>{&quot;publication&quot;: &quot;https://aegises.org/ai-legislation/&quot;, &quot;as_of&quot;: &quot;2026-09-14&quot;, &quot;sources&quot;: [{&quot;state&quot;: &quot;AL&quot;, &quot;url&quot;: &quot;https://alison.legislature.state.al.us/files/pdf/SearchableInstruments/2024RS/HB172-enr.pdf&quot;}, {&quot;state&quot;: &quot;AK&quot;, &quot;url&quot;: &quot;https://www.akleg.gov/basis/Committee/Details/34?code=HHB53&quot;}, {&quot;state&quot;: &quot;AZ&quot;, &quot;url&quot;: &quot;https://www.azleg.gov/legtext/57leg/1r/laws/0165.htm&quot;}, {&quot;state&quot;: &quot;AR&quot;, &quot;url&quot;: &quot;https://www.arkleg.state.ar.us/Acts/FTPDocument?ddBienniumSession=2025%2F2025R&amp;file=927.pdf&amp;path=%2FACTS%2F2025R%2FPublic%2F&quot;}, {&quot;state&quot;: &quot;CA&quot;, &quot;url&quot;: &quot;https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB53&quot;}, {&quot;state&quot;: &quot;CO&quot;, &quot;url&quot;: &quot;https://leg.colorado.gov/bills/sb26-189&quot;}, {&quot;state&quot;: &quot;CT&quot;, &quot;url&quot;: &quot;https://www.cga.ct.gov/current/pub/chap_057.htm#sec_4a-2e&quot;}, {&quot;state&quot;: &quot;DE&quot;, &quot;url&quot;: &quot;https://legis.delaware.gov/BillDetail?LegislationId=140866&quot;}, {&quot;state&quot;: &quot;FL&quot;, &quot;url&quot;: &quot;https://www.flsenate.gov/Session/Bill/2024/919&quot;}, {&quot;state&quot;: &quot;GA&quot;, &quot;url&quot;: &quot;https://senatepress.net/majority-leader-jason-anavitarte-applauds-signing-of-sb-540-to-protect-children-online.html&quot;}, {&quot;state&quot;: &quot;HI&quot;, &quot;url&quot;: &quot;https://data.capitol.hawaii.gov/hrscurrent/Vol01_Ch0001-0042F/HRS0011/HRS_0011-0303.htm&quot;}, {&quot;state&quot;: &quot;ID&quot;, &quot;url&quot;: &quot;https://legiscan.com/ID/supplement/H0664/id/442216&quot;}, {&quot;state&quot;: &quot;IL&quot;, &quot;url&quot;: &quot;https://www.ilga.gov/Legislation/publicacts/view/103-0804&quot;}, {&quot;state&quot;: &quot;IN&quot;, &quot;url&quot;: &quot;https://www.in.gov/dor/files/2024-legislative-synopsis.pdf&quot;}, {&quot;state&quot;: &quot;IA&quot;, &quot;url&quot;: &quot;https://www.legis.iowa.gov/legislation/billTracking/billHistory?billName=HF+2240&amp;ga=90&quot;}, {&quot;state&quot;: &quot;KS&quot;, &quot;url&quot;: &quot;https://www.governor.ks.gov/Home/Components/News/News/648/56&quot;}, {&quot;state&quot;: &quot;KY&quot;, &quot;url&quot;: &quot;https://apps.legislature.ky.gov/law/acts/24RS/documents/0015.pdf&quot;}, {&quot;state&quot;: &quot;LA&quot;, &quot;url&quot;: &quot;https://legis.la.gov/Legis/Law.aspx?d=1388452&quot;}, {&quot;state&quot;: &quot;ME&quot;, &quot;url&quot;: &quot;https://legislature.maine.gov/legis/statutes/10/title10sec1500-DD.html&quot;}, {&quot;state&quot;: &quot;MD&quot;, &quot;url&quot;: &quot;https://mgaleg.maryland.gov/2024RS/chapters_noln/Ch_496_sb0818E.pdf&quot;}, {&quot;state&quot;: &quot;MA&quot;, &quot;url&quot;: &quot;https://www.mass.gov/news/governor-healey-signs-bill-banning-revenge-porn-expanding-protections-against-abuse-and-exploitation&quot;}, {&quot;state&quot;: &quot;MI&quot;, &quot;url&quot;: &quot;https://www.michigan.gov/ag/consumer-protection/election-protection-2026/protecting-michigan-voters-from-ai-generated-election-misinformation&quot;}, {&quot;state&quot;: &quot;MN&quot;, &quot;url&quot;: &quot;https://www.revisor.mn.gov/statutes/cite/325M.14&quot;}, {&quot;state&quot;: &quot;MS&quot;, &quot;url&quot;: &quot;https://www.legislature.ms.gov/media/1352/senate_summary_final_2024_v3.pdf&quot;}, {&quot;state&quot;: &quot;MO&quot;, &quot;url&quot;: &quot;https://www.senate.mo.gov/BillTracking/Bills/BillInformation?BillID=307&amp;year=2026&quot;}, {&quot;state&quot;: &quot;MT&quot;, &quot;url&quot;: &quot;https://docs.legmt.gov/download-ticket?ticketId=ab38ae4c-551c-4b8c-bd8f-1226b2d67085&quot;}, {&quot;state&quot;: &quot;NE&quot;, &quot;url&quot;: &quot;https://nebraskalegislature.gov/laws/statutes.php?statute=87-1116&quot;}, {&quot;state&quot;: &quot;NV&quot;, &quot;url&quot;: &quot;https://www.leg.state.nv.us/nrs/nrs-629.html&quot;}, {&quot;state&quot;: &quot;NH&quot;, &quot;url&quot;: &quot;https://gc.nh.gov/bill_status/legacy/bs2016/billText.aspx?id=1597&amp;sy=2024&amp;txtFormat=pdf&amp;v=current&quot;}, {&quot;state&quot;: &quot;NJ&quot;, &quot;url&quot;: &quot;https://pub.njleg.state.nj.us/Bills/2024/AL25/40_.HTM&quot;}, {&quot;state&quot;: &quot;NM&quot;, &quot;url&quot;: &quot;https://www.sos.nm.gov/2024/03/06/secretary-of-state-responds-to-priority-election-bills-becoming-law/&quot;}, {&quot;state&quot;: &quot;NY&quot;, &quot;url&quot;: &quot;https://www.nysenate.gov/legislation/bills/2025/S8828&quot;}, {&quot;state&quot;: &quot;NC&quot;, &quot;url&quot;: &quot;https://dashboard.ncleg.gov/api/Services/BillSummary/2025/H934-SMTQ-35%28e1%29-v-2&quot;}, {&quot;state&quot;: &quot;ND&quot;, &quot;url&quot;: &quot;https://ndlegis.gov/assembly/69-2025/regular/bill-overview/bo1167.html?search=artificial+i&quot;}, {&quot;state&quot;: &quot;OH&quot;, &quot;url&quot;: &quot;https://codes.ohio.gov/ohio-revised-code/section-3301.24&quot;}, {&quot;state&quot;: &quot;OK&quot;, &quot;url&quot;: &quot;https://www.okhouse.gov/posts/news-20250507_4&quot;}, {&quot;state&quot;: &quot;OR&quot;, &quot;url&quot;: &quot;https://www.oregonlegislature.gov/bills_laws/ors/ors678.html&quot;}, {&quot;state&quot;: &quot;PA&quot;, &quot;url&quot;: &quot;https://www.legis.state.pa.us/WU01/LI/LI/CT/HTM/18/00.063.012.000..HTM&quot;}, {&quot;state&quot;: &quot;RI&quot;, &quot;url&quot;: &quot;https://webserver.rilegislature.gov/Statutes/TITLE6/6-48.1/6-48.1-7.htm&quot;}, {&quot;state&quot;: &quot;SC&quot;, &quot;url&quot;: &quot;https://www.governor.sc.gov/news/2025-05/gov-henry-mcmaster-signs-unauthorized-disclosure-intimate-images-bill-law&quot;}, {&quot;state&quot;: &quot;SD&quot;, &quot;url&quot;: &quot;https://sdlegislature.gov/Session/Bill/24991&quot;}, {&quot;state&quot;: &quot;TN&quot;, &quot;url&quot;: &quot;https://www.tn.gov/governor/news/2024/4/25/gov--lee-marks-the-close-of-the-2024-legislative-session.html&quot;}, {&quot;state&quot;: &quot;TX&quot;, &quot;url&quot;: &quot;https://capitol.texas.gov/tlodocs/89R/billtext/html/HB00149F.htm&quot;}, {&quot;state&quot;: &quot;UT&quot;, &quot;url&quot;: &quot;https://commerce.utah.gov/ai/ai-faq/&quot;}, {&quot;state&quot;: &quot;VT&quot;, &quot;url&quot;: &quot;https://legislature.vermont.gov/statutes/section/03/069/05022&quot;}, {&quot;state&quot;: &quot;VA&quot;, &quot;url&quot;: &quot;https://law.lis.virginia.gov/vacode/title59.1/chapter53/section59.1-577/&quot;}, {&quot;state&quot;: &quot;WA&quot;, &quot;url&quot;: &quot;https://app.leg.wa.gov/billsummary?BillNumber=2225&amp;Initiative=false&amp;Year=2026&quot;}, {&quot;state&quot;: &quot;WV&quot;, &quot;url&quot;: &quot;https://code.wvlegislature.gov/5A-6-9/&quot;}, {&quot;state&quot;: &quot;WI&quot;, &quot;url&quot;: &quot;https://ethics.wi.gov/Resources/Candidate%20Overview%20Webinar%202024%20Slides.pdf&quot;}, {&quot;state&quot;: &quot;WY&quot;, &quot;url&quot;: &quot;https://www.wyoleg.gov/2026/Summaries/HB0102.pdf&quot;}, {&quot;state&quot;: &quot;DC&quot;, &quot;url&quot;: &quot;https://dccouncil.gov/legislation/&quot;}]}</metadata>
+</svg>

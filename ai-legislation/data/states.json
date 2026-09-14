@@ -1,0 +1,973 @@
+{
+  "title": "Beyond the bill count: State AI legislative maturity atlas",
+  "edition": "1.0",
+  "as_of": "2026-09-14",
+  "scope": "Representative legislative anchors across all 50 states; District of Columbia separate. Not an exhaustive legal inventory or state ranking. Empty domain cells mean not assessed in the selected corpus.",
+  "states": [
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "pathway": "targeted",
+      "instrument": "HB172 (2024)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "mixed",
+      "source_url": "https://alison.legislature.state.al.us/files/pdf/SearchableInstruments/2024RS/HB172-enr.pdf",
+      "claim": "Deceptive election media: disclosure and remedies in the enrolled measure.",
+      "boundary": "Enactment cross-checked against NCSL; enrolled text alone is not proof of signature.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": "https://www.ncsl.org/technology-and-communication/artificial-intelligence-2024-legislation",
+      "additional_sources": [
+        {
+          "title": "NCSL enactment cross-check",
+          "url": "https://www.ncsl.org/technology-and-communication/artificial-intelligence-2024-legislation"
+        }
+      ]
+    },
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "pathway": "institutional",
+      "instrument": "HB53 / ch. 10 SLA 2025",
+      "domains": [
+        "public"
+      ],
+      "status": "enacted",
+      "source_type": "mixed",
+      "source_url": "https://www.akleg.gov/basis/Committee/Details/34?code=HHB53",
+      "claim": "Budget legislation includes state AI planning and project provisions.",
+      "boundary": "Official history confirms enactment; AI scope is identified by NCSL. Spending and delivery were not audited.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": "https://www.ncsl.org/technology-and-communication/artificial-intelligence-2025-legislation/ftag",
+      "additional_sources": [
+        {
+          "title": "NCSL budget scope cross-check",
+          "url": "https://www.ncsl.org/technology-and-communication/artificial-intelligence-2025-legislation/ftag"
+        }
+      ]
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "pathway": "sectoral",
+      "instrument": "HB2175 / ch. 165 (2025)",
+      "domains": [
+        "health"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.azleg.gov/legtext/57leg/1r/laws/0165.htm",
+      "claim": "Medical-necessity denials require independent medical-director review rather than sole reliance on recommendations.",
+      "boundary": "A technology-neutral insurance safeguard; applies from July 1, 2026. Not a general AI law.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "pathway": "targeted",
+      "instrument": "HB1876 / Act 927 (2025)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.arkleg.state.ar.us/Acts/FTPDocument?ddBienniumSession=2025%2F2025R&file=927.pdf&path=%2FACTS%2F2025R%2FPublic%2F",
+      "claim": "Allocates specified ownership interests associated with AI output and training, including employment circumstances.",
+      "boundary": "State-law allocation does not establish federal copyright eligibility or eliminate existing rights.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "pathway": "lifecycle",
+      "instrument": "SB53 / ch. 138 (2025); SB243 / ch. 677 (2025)",
+      "domains": [
+        "frontier",
+        "interaction"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB53",
+      "claim": "Frontier-model risk frameworks and incident reporting; a separate companion-chatbot law addresses disclosure and user safeguards.",
+      "boundary": "Different laws, covered entities and thresholds. An official reporting portal is an implementation artifact, not demonstrated risk reduction.",
+      "observed_at": "2026-09-14",
+      "implementation": "public artifact observed; effectiveness not assessed",
+      "secondary_url": null,
+      "additional_sources": [
+        {
+          "title": "SB243 companion-chatbot law",
+          "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB243"
+        },
+        {
+          "title": "Cal OES reporting surface",
+          "url": "https://www.caloes.ca.gov/office-of-the-director/operations/homeland-security/california-cybersecurity-integration-center/transparency-in-frontier-ai-act-reporting/"
+        }
+      ]
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "pathway": "lifecycle",
+      "instrument": "SB26-189 (2026)",
+      "domains": [
+        "decisions"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://leg.colorado.gov/bills/sb26-189",
+      "claim": "The replacement automated-decision framework assigns documentation, notice, correction and meaningful human-review duties.",
+      "boundary": "Core requirements begin January 1, 2027. The earlier SB24-205 regime is not the current implementation baseline.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "pathway": "institutional",
+      "instrument": "PA23-16 / §4a-2e",
+      "domains": [
+        "public"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.cga.ct.gov/current/pub/chap_057.htm#sec_4a-2e",
+      "claim": "Annual state-agency AI inventory and ongoing assessment duties.",
+      "boundary": "This entry assesses the 2023 public-sector mechanism. The complete effect of PA26-15 is outside this edition's assessed corpus.",
+      "observed_at": "2026-09-14",
+      "implementation": "public artifact observed; effectiveness not assessed",
+      "secondary_url": null,
+      "additional_sources": [
+        {
+          "title": "Published 2023 inventory",
+          "url": "https://portal.ct.gov/das/-/media/das-beta/pdf/legislative-testimony/presentation-and-reports/2023-state-of-connecticut-executive-branch-artificial-intelligence-inventory.pdf"
+        }
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "pathway": "institutional",
+      "instrument": "HB333 (2024)",
+      "domains": [
+        "public"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://legis.delaware.gov/BillDetail?LegislationId=140866",
+      "claim": "Creates an AI commission with inventory and recommendation responsibilities.",
+      "boundary": "A legislative institution is not proof that private-sector controls or recommendations have been implemented.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "pathway": "targeted",
+      "instrument": "HB919 / ch. 2024-126",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.flsenate.gov/Session/Bill/2024/919",
+      "claim": "Requires disclaimers for covered political advertising using generated media.",
+      "boundary": "Election-specific scope and statutory intent conditions; effective July 1, 2024.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "pathway": "sectoral",
+      "instrument": "SB540 (2026)",
+      "domains": [
+        "interaction"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://senatepress.net/majority-leader-jason-anavitarte-applauds-signing-of-sb-540-to-protect-children-online.html",
+      "claim": "Signed legislation addresses conversational AI interactions with minors and crisis-resource access.",
+      "boundary": "Official Senate signing account supports this narrow description; provision-level effective dates were not independently resolved here.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "pathway": "targeted",
+      "instrument": "HRS §11-303 / Act 191 (2024)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://data.capitol.hawaii.gov/hrscurrent/Vol01_Ch0001-0042F/HRS0011/HRS_0011-0303.htm",
+      "claim": "Addresses materially deceptive campaign media with disclosure exceptions.",
+      "boundary": "Election-period and media-format conditions matter; not a general synthetic-content prohibition.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "pathway": "targeted",
+      "instrument": "HB664 / ch. 172 (2024)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "secondary",
+      "source_url": "https://legiscan.com/ID/supplement/H0664/id/442216",
+      "claim": "The FAIR Elections Act addresses deceptive generated election media.",
+      "boundary": "Secondary-source verification only: the legislature's website was inaccessible to this review. Not included in primary-only comparisons.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "pathway": "sectoral",
+      "instrument": "HB3773 / PA103-0804",
+      "domains": [
+        "employment"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.ilga.gov/Legislation/publicacts/view/103-0804",
+      "claim": "Extends employment civil-rights protections to discriminatory AI use and requires notice.",
+      "boundary": "Effective January 1, 2026. Rulemaking and employer compliance were not audited.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "pathway": "institutional",
+      "instrument": "SEA150 / PL108-2024",
+      "domains": [
+        "public"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.in.gov/dor/files/2024-legislative-synopsis.pdf",
+      "claim": "Creates public AI governance arrangements, including standards for voluntary public-entity inventories.",
+      "boundary": "The inventory submission provision is permissive. Its July 1, 2025 start does not make all inventories mandatory.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "pathway": "targeted",
+      "instrument": "HF2240 / ch. 1065 (2024)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.legis.iowa.gov/legislation/billTracking/billHistory?billName=HF+2240&ga=90",
+      "claim": "Addresses dissemination of altered explicit depictions as harassment.",
+      "boundary": "A targeted likeness safeguard; not a general model-development or deployment framework.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": [
+        {
+          "title": "Education department enacted-law summary",
+          "url": "https://educate.iowa.gov/media/10356/download"
+        }
+      ]
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "pathway": "targeted",
+      "instrument": "SB186 (2025)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.governor.ks.gov/Home/Components/News/News/648/56",
+      "claim": "Signed legislation addresses AI-generated sexual depictions and related privacy harms.",
+      "boundary": "Offense-specific scope; enactment does not establish implementation or enforcement outcomes.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "pathway": "targeted",
+      "instrument": "HB207 / Act 15 (2024)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://apps.legislature.ky.gov/law/acts/24RS/documents/0015.pdf",
+      "claim": "Extends protections concerning sexual depictions of minors to specified computer-generated material.",
+      "boundary": "This selected criminal-law anchor does not represent Kentucky's full privacy or AI portfolio.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "pathway": "targeted",
+      "instrument": "RS14:73.14",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://legis.la.gov/Legis/Law.aspx?d=1388452",
+      "claim": "Addresses nonconsensual AI-generated nude images.",
+      "boundary": "The selected offense has particular knowledge, consent and depiction elements; no general AI maturity score is inferred.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "pathway": "sectoral",
+      "instrument": "10 MRSA §1500-DD / PL2025 c. 294",
+      "domains": [
+        "interaction"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://legislature.maine.gov/legis/statutes/10/title10sec1500-DD.html",
+      "claim": "Requires disclosures for consumer-facing chatbots where users could be misled into believing they are interacting with a human.",
+      "boundary": "A consumer transparency mechanism, not a general audit or risk-management obligation.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "pathway": "institutional",
+      "instrument": "SB818 / ch. 496 (2024)",
+      "domains": [
+        "public"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://mgaleg.maryland.gov/2024RS/chapters_noln/Ch_496_sb0818E.pdf",
+      "claim": "Directs public-sector AI inventories, policies and assessment arrangements.",
+      "boundary": "Applies to state governance; this record does not characterize Maryland's separate consumer privacy regime.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "pathway": "targeted",
+      "instrument": "2024 intimate-image legislation",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.mass.gov/news/governor-healey-signs-bill-banning-revenge-porn-expanding-protections-against-abuse-and-exploitation",
+      "claim": "Extends protections against image-based abuse; state guidance addresses student deepfake incidents.",
+      "boundary": "The selected legislation and 2026 school guidance are distinct evidence objects; guidance is not evidence of universal school compliance.",
+      "observed_at": "2026-09-14",
+      "implementation": "public artifact observed; effectiveness not assessed",
+      "secondary_url": null,
+      "additional_sources": [
+        {
+          "title": "2026 school deepfake guidance",
+          "url": "https://www.mass.gov/news/governor-healey-provides-guidance-to-schools-to-investigate-deepfake-images-and-videos-to-protect-students"
+        }
+      ]
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "pathway": "targeted",
+      "instrument": "MCL168.932f",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.michigan.gov/ag/consumer-protection/election-protection-2026/protecting-michigan-voters-from-ai-generated-election-misinformation",
+      "claim": "Regulates specified deceptive election media, as explained in the Attorney General's 2026 voter-protection guidance.",
+      "boundary": "Campaign context, timing and statutory exceptions limit applicability.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "pathway": "rights",
+      "instrument": "§325M.14, Consumer Data Privacy Act",
+      "domains": [
+        "decisions"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.revisor.mn.gov/statutes/cite/325M.14",
+      "claim": "Provides covered consumers with profiling-related rights, including information and review-related protections.",
+      "boundary": "Consumer privacy thresholds and exemptions apply. This is not a universal right governing every AI decision.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "pathway": "targeted",
+      "instrument": "SB2577 (2024)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.legislature.ms.gov/media/1352/senate_summary_final_2024_v3.pdf",
+      "claim": "Addresses deceptive election digitizations within a specified pre-election window.",
+      "boundary": "Effective July 1, 2024; this entry uses the legislature's enacted-bill summary.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "pathway": "unclassified",
+      "instrument": "SB1324 (2026), proposal",
+      "domains": [
+        "interaction"
+      ],
+      "status": "proposal",
+      "source_type": "primary",
+      "source_url": "https://www.senate.mo.gov/BillTracking/Bills/BillInformation?BillID=307&year=2026",
+      "claim": "The official record shows a committee do-pass status for an AI online-content proposal.",
+      "boundary": "No enactment is established for this instrument. The displayed prospective effective date is not evidence that it became law.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "pathway": "lifecycle",
+      "instrument": "SB212 (2025), Right to Compute Act",
+      "domains": [
+        "infrastructure"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://docs.legmt.gov/download-ticket?ticketId=ab38ae4c-551c-4b8c-bd8f-1226b2d67085",
+      "claim": "Combines computing protections with risk-management provisions for AI controlling critical infrastructure.",
+      "boundary": "Narrow infrastructure trigger. The final law should not be described as containing the proposal's discarded shutdown requirement.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "pathway": "rights",
+      "instrument": "§87-1116 / LB1074 (2024)",
+      "domains": [
+        "decisions"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://nebraskalegislature.gov/laws/statutes.php?statute=87-1116",
+      "claim": "Requires data-protection assessments for covered high-risk processing, including specified profiling.",
+      "boundary": "A consumer privacy mechanism with thresholds and exemptions, not an AI-only statute.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "pathway": "sectoral",
+      "instrument": "NRS629.610 / AB406 (2025)",
+      "domains": [
+        "health"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.leg.state.nv.us/nrs/nrs-629.html",
+      "claim": "Restricts licensed mental- and behavioral-health providers' use of AI to deliver direct care, with administrative exceptions.",
+      "boundary": "A professional-care boundary; does not prohibit every AI use in health services.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "pathway": "institutional",
+      "instrument": "HB1688 / ch. 209 (2024)",
+      "domains": [
+        "public"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://gc.nh.gov/bill_status/legacy/bs2016/billText.aspx?id=1597&sy=2024&txtFormat=pdf&v=current",
+      "claim": "Addresses state-government AI use, transparency and human oversight.",
+      "boundary": "Public-sector scope; it should not be presented as a private-sector omnibus regime.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "pathway": "targeted",
+      "instrument": "PL2025 c. 40 / A3540",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://pub.njleg.state.nj.us/Bills/2024/AL25/40_.HTM",
+      "claim": "Creates targeted civil and criminal protections involving deceptive generated media.",
+      "boundary": "Specific injury, conduct and intent elements matter; publication of synthetic media is not uniformly unlawful.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "pathway": "targeted",
+      "instrument": "HB182 / ch. 57 (2024)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.sos.nm.gov/2024/03/06/secretary-of-state-responds-to-priority-election-bills-becoming-law/",
+      "claim": "Adds campaign disclosure requirements for covered AI-generated media.",
+      "boundary": "Election safeguards do not establish general AI-provider accountability duties.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "pathway": "lifecycle",
+      "instrument": "S6953B / ch. 699 (2025), amended by S8828 / ch. 96 (2026)",
+      "domains": [
+        "frontier"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.nysenate.gov/legislation/bills/2025/S8828",
+      "claim": "The amended RAISE framework addresses frontier-model safety and regulatory accountability.",
+      "boundary": "Effective January 1, 2027. The 2026 amendment controls this edition's date treatment.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "pathway": "targeted",
+      "instrument": "GS14-190.5A, as amended in 2024",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://dashboard.ncleg.gov/api/Services/BillSummary/2025/H934-SMTQ-35%28e1%29-v-2",
+      "claim": "Existing law covers specified AI-generated private images and sexual-exploitation material.",
+      "boundary": "The cited legislative analysis describes existing law separately from H934's proposed changes; only its current-law discussion supports this entry.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "pathway": "targeted",
+      "instrument": "HB1167 (2025)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://ndlegis.gov/assembly/69-2025/regular/bill-overview/bo1167.html?search=artificial+i",
+      "claim": "Requires identification of covered AI impersonation in political communications.",
+      "boundary": "Campaign-specific trigger. Routine text assistance should not be conflated with covered impersonation.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "pathway": "institutional",
+      "instrument": "ORC3301.24 / HB96 (2025)",
+      "domains": [
+        "public"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://codes.ohio.gov/ohio-revised-code/section-3301.24",
+      "claim": "Requires a state model AI policy and school-system adoption of AI-use policies by July 1, 2026.",
+      "boundary": "The model policy is publicly available; local adoption and policy effectiveness were not audited.",
+      "observed_at": "2026-09-14",
+      "implementation": "public artifact observed; effectiveness not assessed",
+      "secondary_url": null,
+      "additional_sources": [
+        {
+          "title": "Department model policy",
+          "url": "https://education.ohio.gov/Topics/AI-in-Ohio-s-Education/Model-Policy"
+        }
+      ]
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "pathway": "targeted",
+      "instrument": "HB1364 (2025)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.okhouse.gov/posts/news-20250507_4",
+      "claim": "Signed legislation extends protections against nonconsensual intimate imagery to AI-generated material.",
+      "boundary": "Targeted criminal-law protection; not evidence of a comprehensive AI accountability system.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "pathway": "sectoral",
+      "instrument": "ORS678.027 (2025 edition)",
+      "domains": [
+        "health"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.oregonlegislature.gov/bills_laws/ors/ors678.html",
+      "claim": "Restricts nonhuman AI use of protected nursing titles.",
+      "boundary": "A professional-title rule. The cited code edition does not incorporate all 2026 session changes.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "pathway": "targeted",
+      "instrument": "18 PaCS §6312 / Act 125 (2024)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.legis.state.pa.us/WU01/LI/LI/CT/HTM/18/00.063.012.000..HTM",
+      "claim": "Updates child-sexual-abuse depiction provisions to address specified synthetic material.",
+      "boundary": "The selected criminal statute is not a full account of state AI legislation or administrative use.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "pathway": "rights",
+      "instrument": "§6-48.1-7, Data Transparency and Privacy Protection Act",
+      "domains": [
+        "decisions"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://webserver.rilegislature.gov/Statutes/TITLE6/6-48.1/6-48.1-7.htm",
+      "claim": "Requires assessments for covered high-risk processing, including specified profiling.",
+      "boundary": "Effective January 1, 2026; consumer-data scope and exemptions apply.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "pathway": "targeted",
+      "instrument": "H3058 (2025)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.governor.sc.gov/news/2025-05/gov-henry-mcmaster-signs-unauthorized-disclosure-intimate-images-bill-law",
+      "claim": "Signed legislation addresses unauthorized intimate-image disclosure, including AI-generated depictions.",
+      "boundary": "May 12, 2025 signature and May 29 ceremonial event are distinct dates.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "pathway": "targeted",
+      "instrument": "SB79 (2024)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://sdlegislature.gov/Session/Bill/24991",
+      "claim": "Extends child-sexual-abuse material definitions to specified AI-generated depictions.",
+      "boundary": "Depiction and offense elements constrain scope; not a general ban on generative AI.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "pathway": "targeted",
+      "instrument": "ELVIS Act (2024)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.tn.gov/governor/news/2024/4/25/gov--lee-marks-the-close-of-the-2024-legislative-session.html",
+      "claim": "Protects voice and likeness interests against specified AI-related misuse.",
+      "boundary": "Publicity and likeness rights operate differently from model-safety regulation.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "pathway": "lifecycle",
+      "instrument": "HB149 (2025), TRAIGA",
+      "domains": [
+        "decisions",
+        "interaction",
+        "public"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://capitol.texas.gov/tlodocs/89R/billtext/html/HB00149F.htm",
+      "claim": "Sets prohibited uses, specified disclosure duties and an enforcement and sandbox structure.",
+      "boundary": "Effective January 1, 2026. The enacted discrimination standard is intentional conduct, not a general disparate-impact test.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "pathway": "institutional",
+      "instrument": "AI Policy Act and subsequent amendments",
+      "domains": [
+        "interaction",
+        "health",
+        "public"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://commerce.utah.gov/ai/ai-faq/",
+      "claim": "An AI policy office and regulatory-mitigation program coexist with disclosure and mental-health chatbot safeguards.",
+      "boundary": "The office describes a bounded prescription-renewal pilot. Agency-reported operation is not independent validation of clinical safety.",
+      "observed_at": "2026-09-14",
+      "implementation": "agency reports bounded program operation; outcomes not independently assessed",
+      "secondary_url": null,
+      "additional_sources": [
+        {
+          "title": "Office of AI Policy",
+          "url": "https://commerce.utah.gov/ai/"
+        }
+      ]
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "pathway": "institutional",
+      "instrument": "3 VSA §5022 / Act 132 (2022)",
+      "domains": [
+        "public"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://legislature.vermont.gov/statutes/section/03/069/05022",
+      "claim": "Assigns public AI review, inventory and reporting responsibilities to a state division.",
+      "boundary": "Institutional duties are assessed here; performance of every mandated review is not established.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "pathway": "rights",
+      "instrument": "§59.1-577, Consumer Data Protection Act",
+      "domains": [
+        "decisions"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://law.lis.virginia.gov/vacode/title59.1/chapter53/section59.1-577/",
+      "claim": "Gives covered consumers profiling opt-out rights and an appeal process for rights requests.",
+      "boundary": "Consumer privacy coverage and exemptions apply; this is not an omnibus AI-specific assessment.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "pathway": "sectoral",
+      "instrument": "ESHB2225 / ch. 168 (2026)",
+      "domains": [
+        "interaction"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://app.leg.wa.gov/billsummary?BillNumber=2225&Initiative=false&Year=2026",
+      "claim": "Enacts a companion-chatbot regulatory framework.",
+      "boundary": "Signed March 24, 2026; effective January 1, 2027. Enacted and effective are visibly separated in this atlas.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "pathway": "institutional",
+      "instrument": "§5A-6-9 / HB3187 (2025)",
+      "domains": [
+        "public"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://code.wvlegislature.gov/5A-6-9/",
+      "claim": "Establishes a state AI task force and governance responsibilities.",
+      "boundary": "This institutional anchor does not imply that every recommendation has become a binding rule.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "pathway": "targeted",
+      "instrument": "2023 Wisconsin Act 123",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://ethics.wi.gov/Resources/Candidate%20Overview%20Webinar%202024%20Slides.pdf",
+      "claim": "Requires AI disclosures in covered political advertising.",
+      "boundary": "Official Ethics Commission implementation material; effective March 23, 2024. The review does not assess enforcement outcomes.",
+      "observed_at": "2026-09-14",
+      "implementation": "public artifact observed; effectiveness not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "pathway": "targeted",
+      "instrument": "HB0102 / ch. 91 (2026)",
+      "domains": [
+        "media"
+      ],
+      "status": "enacted",
+      "source_type": "primary",
+      "source_url": "https://www.wyoleg.gov/2026/Summaries/HB0102.pdf",
+      "claim": "Addresses AI-enabled harms involving minors, with specified criminal and developer-liability provisions.",
+      "boundary": "Effective July 1, 2026. Particular knowledge and intent conditions matter.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "pathway": "unclassified",
+      "instrument": "No anchor classified in this edition",
+      "domains": [],
+      "status": "unassessed",
+      "source_type": "none",
+      "source_url": "https://dccouncil.gov/legislation/",
+      "claim": "Included separately from the 50 states; legislative classification remains unassessed.",
+      "boundary": "This is a research gap, not a finding that the District has no applicable law.",
+      "observed_at": "2026-09-14",
+      "implementation": "not assessed",
+      "secondary_url": null,
+      "additional_sources": []
+    }
+  ]
+}

@@ -1,0 +1,793 @@
+Beyond the Bill Count — State AI Legislative Maturity Atlas | AEGISES
+
+Skip to publication
+AEGISESINTELLIGENCE WITH INTEGRITYPOLICY & GOVERNANCE
+RESEARCH PAPER  /  01Read. Inspect. Reuse. ↗
+
+STATE AI LEGISLATIVE MATURITY ATLASRESEARCH EDITION 1.0
+
+Beyond
+the bill count.
+
+The maturity of AI legislation
+across the United States.
+
+American AI law is developing through distinct legal pathways. The consequential question is how a statute becomes an accountable institution.
+
+An original AEGISES analysis of selected legislative anchors across the 50 states, with the District of Columbia shown separately.Read the findings ↓
+50 + DC Jurisdictions in the ledger06 Original analytical figures14 SEP 2026 Research observation date
+
+01 EXECUTIVE FINDINGS
+
+Maturity is an
+evidence claim.
+
+A state can legislate extensively while the institutions needed to implement its laws remain untested. Another can create a narrow, enforceable protection through an existing legal system. A useful maturity assessment must preserve both possibilities.
+
+This atlas separates legislative architecture—who must do what, under which conditions—from implementation evidence and demonstrated outcomes. It examines mechanisms rather than awarding states a single composite score.
+
+I
+
+There is more than one route.
+
+Decision rights, frontier-model duties, sector safeguards, public institutions and targeted harm protections solve different problems. Their scope and accountability structures should be compared explicitly.
+
+II
+
+The legal version matters.
+
+Colorado’s 2026 replacement and New York’s 2026 amendment materially change the baseline. Both have central requirements beginning January 1, 2027. An older legislative snapshot can misstate present obligations. [CO] [NY]
+
+III
+
+Delivery needs its own evidence.
+
+California’s reporting surface, Connecticut’s published inventory and Ohio’s model policy demonstrate identifiable implementation artifacts. They do not establish universal compliance or reduced harm. [CA] [CT] [OH]
+How to read this edition
+
+The state atlas is a representative, source-linked corpus, not an exhaustive inventory or a league table. A state’s map color describes its selected anchor, not its entire legal regime. Empty matrix cells mean “not assessed in this corpus.” They never mean “no law.” Idaho relies on secondary verification; Alabama and Alaska use mixed verification. Missouri’s selected instrument is a proposal; DC remains unclassified. Read the method and limitations.
+
+02 THE MATURITY MODEL
+
+From enactment
+to consequence.
+
+We define institutional maturity as the extent to which a legal mechanism has an identifiable scope, accountable actors, an executable procedure and evidence that the procedure works. Each part requires a different observation.
+
+A bill establishes an intention. An enacted act establishes legal authority. An effective provision creates an operative requirement. Published rules and systems show implementation work. Actual decisions and remedies show use. Credible evaluation is needed to establish results.
+FIGURE 01Download SVG ↗Swipe to read the figure · tap to open at full size
+
+01 / Maturity requires distinct evidence at each stage. The examples establish limited observations for named mechanisms; they do not score entire states.
+ANALYTICAL PRINCIPLE
+
+The highest evidenced stage belongs to a named mechanism, at a stated time.
+
+A ladder of evidence, not an inevitable progression
+
+These stages can overlap. Agencies may build a reporting system before a law takes effect. Courts may apply an existing remedy before an AI-specific statute exists. A later amendment can reset an implementation plan. The ladder therefore identifies the evidence needed to support a claim; it does not assume every jurisdiction moves through a uniform sequence.
+
+For California’s frontier framework, the Cal OES reporting page supports a claim that a public reporting surface exists. It does not show that we submitted an incident, that a regulator processed one correctly, or that the regime prevented a catastrophe. Connecticut’s published 2023 inventory establishes an inventory artifact, not the completeness of every subsequent annual inventory. Ohio’s released model policy establishes a state deliverable, not adoption by every covered school body. [Implementation sources]
+
+Utah provides a different kind of observation: its AI policy office describes a bounded prescription-renewal program. That is an agency account of operation under a regulatory arrangement. The office’s account is not an independent clinical evaluation, and this paper does not infer one. [UT]
+
+What a higher stage does—and does not—mean
+
+An evaluated regime need not be more restrictive. Evaluation may justify narrowing a rule, changing an exemption or discontinuing an ineffective intervention. Maturity concerns the quality of institutional learning and accountability; it is not a proxy for the number of prohibitions, the severity of penalties or the volume of legislative activity.
+
+03 THE LEGISLATIVE LANDSCAPE
+
+Compare the mechanism.
+Preserve the scope.
+
+The landscape uses two categorical dimensions: legal reach and accountability mechanism. It borrows the clarity of an analyst matrix while avoiding fabricated precision and a universal “leader” quadrant.
+
+Each placement is an editorial interpretation of a selected instrument. Moving upward means a different kind of accountability architecture, not demonstrated superior performance.
+FIGURE 02Download SVG ↗Swipe to read the figure · tap to open at full size
+
+02 / Selected instruments positioned by legal reach and accountability mechanism. Categorical placements are editorial judgments, not measured scores. Relevant sources are linked in the state ledger.
+
+01
+
+Targeted harm and content protections
+
+Election impersonation, intimate imagery, child exploitation and likeness protections attach legal consequences to particular conduct. Tennessee’s voice-and-likeness route illustrates why AI governance cannot be reduced to model regulation. Such laws may use established enforcement institutions, but their existence does not establish general developer or deployer accountability. [TN]
+
+02
+
+Sector and interaction safeguards
+
+Illinois addresses AI use within employment civil rights. Arizona protects medical review in insurance decisions through a technology-neutral rule. Maine regulates misleading chatbot interactions. Nevada draws a professional-care boundary for certain AI uses. These are different legal triggers, even when a single product could encounter several of them. [IL] [AZ] [ME] [NV]
+
+03
+
+Consumer decision rights
+
+Privacy statutes can govern profiling without using an AI-specific architecture. Minnesota, Nebraska, Rhode Island and Virginia supply selected examples of consumer rights or assessment duties. Coverage thresholds, exemptions and the distinction between consumer and employment contexts prevent these provisions from being read as universal rights over all automated decisions. [MN] [NE] [RI] [VA]
+
+04
+
+Public institutions and bounded programs
+
+Inventories, oversight offices, public-use policies and regulatory programs build a government’s capacity to understand and govern AI. Their first deliverable may be institutional knowledge rather than a new private-sector restriction. A commission’s creation should therefore be recorded separately from its recommendations, adopted rules and observed effects. [DE] [MD] [VT]
+
+05
+
+Structured accountability
+
+California and New York focus on frontier developers; Colorado addresses covered automated decisions; Texas combines specified prohibitions with enforcement and a sandbox; Montana couples computing protections with a critical-infrastructure risk-management trigger. These instruments organize continuing responsibilities, but their target populations and legal standards differ substantially. The category is a family of architectures, not a claim of equivalence. [CA] [NY] [CO] [TX] [MT]
+
+04 THE NATIONAL ATLAS
+
+Fifty states.
+Several pathways.
+
+The map gives every state equal visual weight. Its categories describe the representative instruments in the accompanying ledger. They do not claim to identify a state’s dominant pathway or the strongest provision anywhere in its legal portfolio.
+
+For example, a state shown under targeted harm may also have important privacy or public-sector legislation. The matrix makes the selected domains visible, allowing readers to distinguish the geography of this evidence from a complete geography of law.
+FIGURE 03Download SVG ↗Swipe to read the figure · tap to open at full size
+
+03 / An equal-area cartogram of selected legislative anchors. Category keys are not rankings. Alabama and Alaska use mixed verification; Idaho uses secondary verification. Missouri and DC remain unclassified.
+Explore the 51-jurisdiction ledger ↓Download source data · CSV ↗
+FIGURE 04Download SVG ↗Swipe to read the figure · tap to open at full size
+
+04 / Eight analytical domains. A filled cell means an enacted primary-supported anchor in this corpus; an open circle means mixed or secondary verification. A dash means not assessed, never no law.
+READING THE MATRIX
+
+Evidence coverage is not legislative coverage.
+
+The matrix uses eight practical domains: consequential decisions and profiling, frontier systems, chatbot interactions, health, employment, media, public operations and critical infrastructure. These are analytical groupings, not standardized statutory definitions. Media includes several legally distinct concerns, from election integrity to likeness and sexual-exploitation material.
+
+A filled cell indicates an enacted anchor supported by a primary source. An open circle indicates mixed or secondary verification. A “P” indicates the selected proposal. A dash records an unassessed domain. Multiple cells for a state reflect the scope of the selected instrument or explicitly included companion law; they do not measure the number of statutes.
+
+This design deliberately avoids a misleading negative inference. A complete claim that a state lacks a particular safeguard would require a systematic search of statutes, session laws, regulations and relevant amendments, including technology-neutral law. This edition does not make that claim.
+
+05 THE OBLIGATION HORIZON
+
+The calendar is part
+of the legal design.
+
+An enactment date, a provision’s effective date, an agency deadline and a first reporting date answer different questions. The timeline preserves those distinctions and marks the research observation date.
+
+The chart is a selected planning horizon, not a complete compliance calendar. A plotted milestone does not establish that every prerequisite rule or institution is ready.
+FIGURE 05Download SVG ↗Swipe to read the figure · tap to open at full size
+
+05 / A selected timeline of effective dates, an adoption deadline and a reporting start. The shaded area lies after the September 14, 2026 observation date. See the ledger for source instruments.
+
+Colorado: replace the baseline
+
+SB26-189 repeals and reenacts the earlier framework. Its central developer and deployer requirements begin January 1, 2027. Preparing only against the original SB24-205 design risks implementing the wrong obligations. [CO]
+
+New York: read the amendment
+
+The 2026 amendment to the RAISE framework establishes the January 1, 2027 effective date used here. The original 2025 signing announcement cannot by itself establish the amended law’s current timetable. [NY]
+
+California: distinguish the event
+
+The July 1, 2027 marker concerns the start of annual companion-chatbot reporting under SB243. It is not presented as the effective date of California’s entire chatbot or frontier-model regime. [CA]
+
+06 IMPLICATIONS FOR GOVERNED AI
+
+Build around
+accountable obligations.
+
+For an operator, the useful unit is an obligation attached to a covered actor and a concrete event. “We comply with state AI law” is too coarse to guide system design or to support an auditable claim.
+
+The diagram translates four legal mechanisms into possible operating controls. The evidence objects are AEGISES design suggestions; they are not additional duties imposed by the cited laws.
+FIGURE 06Download SVG ↗Swipe to read the figure · tap to open at full size
+
+06 / Suggested evidence objects translate legal mechanisms into operating controls. These suggestions are analytical, not additional statutory requirements. Scope and exceptions must be checked against the law.
+QTHONIC PERSPECTIVE
+
+Connect authority, action, evidence and recourse.
+
+For organizations deploying AI
+
+Begin with coverage: actor, affected person, jurisdiction, use, threshold, exception and date. Assign a responsible owner to each applicable obligation. Connect the owner to the decision point where the duty arises, then retain proportionate evidence that the required action occurred. A notice template and a delivered notice are different objects; a human-review policy and a completed review are different events.
+
+Design that evidence without treating every interaction as a reason to collect more personal data. The record should establish the relevant action and authority while respecting retention limits and privacy duties. An operational system should also distinguish unresolved applicability from confirmed non-applicability; an empty field should not silently become an exemption.
+
+For legislators and public agencies
+
+Specify the institution as carefully as the prohibition. Who receives a report? Who has authority to investigate? What information must be retained, and for how long? What happens when a person challenges a decision? Which public deliverable will reveal whether the mechanism is operating? These questions connect the legal text to an implementable procedure.
+
+Publish artifacts that allow external scrutiny: rules, forms, inventories, reasoned guidance and appropriately protected performance summaries. Pair counts with denominators and interpretation. A rise in complaints may reflect greater harm, better access to redress or greater awareness. A low incident count may reflect safety, underreporting or a narrow reporting definition.
+
+For future comparative assessment
+
+The next defensible step is a mechanism-level panel: the same legal triggers followed over time, with versioned sources and comparable observations. A credible outcomes study would examine response times, access to correction, review reversals, reporting quality, implementation cost and distributional effects. This paper proposes those measures; it does not claim to have measured them.
+
+There is no sound shortcut from bill volume to institutional effectiveness. The research program should reward accurate scope, attributable delivery and the ability to revise a failing intervention. That is the sense in which AI legislative maturity can become an empirical question.
+
+A STATE-BY-STATE EVIDENCE
+
+Inspect the basis
+for every placement.
+
+Every entry identifies the selected instrument, a narrow supported observation, the verification basis and a boundary on interpretation. Source links lead to legislatures, statutes or responsible public institutions wherever available.
+
+“Enacted” describes the selected instrument. It does not mean all its provisions are already effective. Dates and unassessed implementation are stated separately.
+
+All entries are visible below. Browser search works without JavaScript.
+
+No entries match. Change the search or reset the filters.
+
+AL
+
+AlabamaTargeted harm / contentEnactedMixed verification
+
+Deceptive election media: disclosure and remedies in the enrolled measure.
+
+Boundary. Enactment cross-checked against NCSL; enrolled text alone is not proof of signature.
+
+Implementation evidence: not assessed.HB172 (2024) ↗ (https://alison.legislature.state.al.us/files/pdf/SearchableInstruments/2024RS/HB172-enr.pdf)NCSL enactment cross-check ↗ (https://www.ncsl.org/technology-and-communication/artificial-intelligence-2024-legislation)
+
+AK
+
+AlaskaPublic institutions / programsEnactedMixed verification
+
+Budget legislation includes state AI planning and project provisions.
+
+Boundary. Official history confirms enactment; AI scope is identified by NCSL. Spending and delivery were not audited.
+
+Implementation evidence: not assessed.HB53 / ch. 10 SLA 2025 ↗ (https://www.akleg.gov/basis/Committee/Details/34?code=HHB53)NCSL budget scope cross-check ↗ (https://www.ncsl.org/technology-and-communication/artificial-intelligence-2025-legislation/ftag)
+
+AZ
+
+ArizonaSector / interaction safeguardsEnactedPrimary source
+
+Medical-necessity denials require independent medical-director review rather than sole reliance on recommendations.
+
+Boundary. A technology-neutral insurance safeguard; applies from July 1, 2026. Not a general AI law.
+
+Implementation evidence: not assessed.HB2175 / ch. 165 (2025) ↗ (https://www.azleg.gov/legtext/57leg/1r/laws/0165.htm)
+
+AR
+
+ArkansasTargeted harm / contentEnactedPrimary source
+
+Allocates specified ownership interests associated with AI output and training, including employment circumstances.
+
+Boundary. State-law allocation does not establish federal copyright eligibility or eliminate existing rights.
+
+Implementation evidence: not assessed.HB1876 / Act 927 (2025) ↗ (https://www.arkleg.state.ar.us/Acts/FTPDocument?ddBienniumSession=2025%2F2025R&file=927.pdf&path=%2FACTS%2F2025R%2FPublic%2F)
+
+CA
+
+CaliforniaStructured accountabilityEnactedPrimary source
+
+Frontier-model risk frameworks and incident reporting; a separate companion-chatbot law addresses disclosure and user safeguards.
+
+Boundary. Different laws, covered entities and thresholds. An official reporting portal is an implementation artifact, not demonstrated risk reduction.
+
+Implementation evidence: public artifact observed; effectiveness not assessed.SB53 / ch. 138 (2025); SB243 / ch. 677 (2025) ↗ (https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB53)SB243 companion-chatbot law ↗ (https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB243)Cal OES reporting surface ↗ (https://www.caloes.ca.gov/office-of-the-director/operations/homeland-security/california-cybersecurity-integration-center/transparency-in-frontier-ai-act-reporting/)
+
+CO
+
+ColoradoStructured accountabilityEnactedPrimary source
+
+The replacement automated-decision framework assigns documentation, notice, correction and meaningful human-review duties.
+
+Boundary. Core requirements begin January 1, 2027. The earlier SB24-205 regime is not the current implementation baseline.
+
+Implementation evidence: not assessed.SB26-189 (2026) ↗ (https://leg.colorado.gov/bills/sb26-189)
+
+CT
+
+ConnecticutPublic institutions / programsEnactedPrimary source
+
+Annual state-agency AI inventory and ongoing assessment duties.
+
+Boundary. This entry assesses the 2023 public-sector mechanism. The complete effect of PA26-15 is outside this edition's assessed corpus.
+
+Implementation evidence: public artifact observed; effectiveness not assessed.PA23-16 / §4a-2e ↗ (https://www.cga.ct.gov/current/pub/chap_057.htm#sec_4a-2e)Published 2023 inventory ↗ (https://portal.ct.gov/das/-/media/das-beta/pdf/legislative-testimony/presentation-and-reports/2023-state-of-connecticut-executive-branch-artificial-intelligence-inventory.pdf)
+
+DE
+
+DelawarePublic institutions / programsEnactedPrimary source
+
+Creates an AI commission with inventory and recommendation responsibilities.
+
+Boundary. A legislative institution is not proof that private-sector controls or recommendations have been implemented.
+
+Implementation evidence: not assessed.HB333 (2024) ↗ (https://legis.delaware.gov/BillDetail?LegislationId=140866)
+
+FL
+
+FloridaTargeted harm / contentEnactedPrimary source
+
+Requires disclaimers for covered political advertising using generated media.
+
+Boundary. Election-specific scope and statutory intent conditions; effective July 1, 2024.
+
+Implementation evidence: not assessed.HB919 / ch. 2024-126 ↗ (https://www.flsenate.gov/Session/Bill/2024/919)
+
+GA
+
+GeorgiaSector / interaction safeguardsEnactedPrimary source
+
+Signed legislation addresses conversational AI interactions with minors and crisis-resource access.
+
+Boundary. Official Senate signing account supports this narrow description; provision-level effective dates were not independently resolved here.
+
+Implementation evidence: not assessed.SB540 (2026) ↗ (https://senatepress.net/majority-leader-jason-anavitarte-applauds-signing-of-sb-540-to-protect-children-online.html)
+
+HI
+
+HawaiiTargeted harm / contentEnactedPrimary source
+
+Addresses materially deceptive campaign media with disclosure exceptions.
+
+Boundary. Election-period and media-format conditions matter; not a general synthetic-content prohibition.
+
+Implementation evidence: not assessed.HRS §11-303 / Act 191 (2024) ↗ (https://data.capitol.hawaii.gov/hrscurrent/Vol01_Ch0001-0042F/HRS0011/HRS_0011-0303.htm)
+
+ID
+
+IdahoTargeted harm / contentEnactedSecondary verification
+
+The FAIR Elections Act addresses deceptive generated election media.
+
+Boundary. Secondary-source verification only: the legislature's website was inaccessible to this review. Not included in primary-only comparisons.
+
+Implementation evidence: not assessed.HB664 / ch. 172 (2024) ↗ (https://legiscan.com/ID/supplement/H0664/id/442216)
+
+IL
+
+IllinoisSector / interaction safeguardsEnactedPrimary source
+
+Extends employment civil-rights protections to discriminatory AI use and requires notice.
+
+Boundary. Effective January 1, 2026. Rulemaking and employer compliance were not audited.
+
+Implementation evidence: not assessed.HB3773 / PA103-0804 ↗ (https://www.ilga.gov/Legislation/publicacts/view/103-0804)
+
+IN
+
+IndianaPublic institutions / programsEnactedPrimary source
+
+Creates public AI governance arrangements, including standards for voluntary public-entity inventories.
+
+Boundary. The inventory submission provision is permissive. Its July 1, 2025 start does not make all inventories mandatory.
+
+Implementation evidence: not assessed.SEA150 / PL108-2024 ↗ (https://www.in.gov/dor/files/2024-legislative-synopsis.pdf)
+
+IA
+
+IowaTargeted harm / contentEnactedPrimary source
+
+Addresses dissemination of altered explicit depictions as harassment.
+
+Boundary. A targeted likeness safeguard; not a general model-development or deployment framework.
+
+Implementation evidence: not assessed.HF2240 / ch. 1065 (2024) ↗ (https://www.legis.iowa.gov/legislation/billTracking/billHistory?billName=HF+2240&ga=90)Education department enacted-law summary ↗ (https://educate.iowa.gov/media/10356/download)
+
+KS
+
+KansasTargeted harm / contentEnactedPrimary source
+
+Signed legislation addresses AI-generated sexual depictions and related privacy harms.
+
+Boundary. Offense-specific scope; enactment does not establish implementation or enforcement outcomes.
+
+Implementation evidence: not assessed.SB186 (2025) ↗ (https://www.governor.ks.gov/Home/Components/News/News/648/56)
+
+KY
+
+KentuckyTargeted harm / contentEnactedPrimary source
+
+Extends protections concerning sexual depictions of minors to specified computer-generated material.
+
+Boundary. This selected criminal-law anchor does not represent Kentucky's full privacy or AI portfolio.
+
+Implementation evidence: not assessed.HB207 / Act 15 (2024) ↗ (https://apps.legislature.ky.gov/law/acts/24RS/documents/0015.pdf)
+
+LA
+
+LouisianaTargeted harm / contentEnactedPrimary source
+
+Addresses nonconsensual AI-generated nude images.
+
+Boundary. The selected offense has particular knowledge, consent and depiction elements; no general AI maturity score is inferred.
+
+Implementation evidence: not assessed.RS14:73.14 ↗ (https://legis.la.gov/Legis/Law.aspx?d=1388452)
+
+ME
+
+MaineSector / interaction safeguardsEnactedPrimary source
+
+Requires disclosures for consumer-facing chatbots where users could be misled into believing they are interacting with a human.
+
+Boundary. A consumer transparency mechanism, not a general audit or risk-management obligation.
+
+Implementation evidence: not assessed.10 MRSA §1500-DD / PL2025 c. 294 ↗ (https://legislature.maine.gov/legis/statutes/10/title10sec1500-DD.html)
+
+MD
+
+MarylandPublic institutions / programsEnactedPrimary source
+
+Directs public-sector AI inventories, policies and assessment arrangements.
+
+Boundary. Applies to state governance; this record does not characterize Maryland's separate consumer privacy regime.
+
+Implementation evidence: not assessed.SB818 / ch. 496 (2024) ↗ (https://mgaleg.maryland.gov/2024RS/chapters_noln/Ch_496_sb0818E.pdf)
+
+MA
+
+MassachusettsTargeted harm / contentEnactedPrimary source
+
+Extends protections against image-based abuse; state guidance addresses student deepfake incidents.
+
+Boundary. The selected legislation and 2026 school guidance are distinct evidence objects; guidance is not evidence of universal school compliance.
+
+Implementation evidence: public artifact observed; effectiveness not assessed.2024 intimate-image legislation ↗ (https://www.mass.gov/news/governor-healey-signs-bill-banning-revenge-porn-expanding-protections-against-abuse-and-exploitation)2026 school deepfake guidance ↗ (https://www.mass.gov/news/governor-healey-provides-guidance-to-schools-to-investigate-deepfake-images-and-videos-to-protect-students)
+
+MI
+
+MichiganTargeted harm / contentEnactedPrimary source
+
+Regulates specified deceptive election media, as explained in the Attorney General's 2026 voter-protection guidance.
+
+Boundary. Campaign context, timing and statutory exceptions limit applicability.
+
+Implementation evidence: not assessed.MCL168.932f ↗ (https://www.michigan.gov/ag/consumer-protection/election-protection-2026/protecting-michigan-voters-from-ai-generated-election-misinformation)
+
+MN
+
+MinnesotaConsumer decision rightsEnactedPrimary source
+
+Provides covered consumers with profiling-related rights, including information and review-related protections.
+
+Boundary. Consumer privacy thresholds and exemptions apply. This is not a universal right governing every AI decision.
+
+Implementation evidence: not assessed.§325M.14, Consumer Data Privacy Act ↗ (https://www.revisor.mn.gov/statutes/cite/325M.14)
+
+MS
+
+MississippiTargeted harm / contentEnactedPrimary source
+
+Addresses deceptive election digitizations within a specified pre-election window.
+
+Boundary. Effective July 1, 2024; this entry uses the legislature's enacted-bill summary.
+
+Implementation evidence: not assessed.SB2577 (2024) ↗ (https://www.legislature.ms.gov/media/1352/senate_summary_final_2024_v3.pdf)
+
+MO
+
+MissouriUnclassified / proposalProposalPrimary source
+
+The official record shows a committee do-pass status for an AI online-content proposal.
+
+Boundary. No enactment is established for this instrument. The displayed prospective effective date is not evidence that it became law.
+
+Implementation evidence: not assessed.SB1324 (2026), proposal ↗ (https://www.senate.mo.gov/BillTracking/Bills/BillInformation?BillID=307&year=2026)
+
+MT
+
+MontanaStructured accountabilityEnactedPrimary source
+
+Combines computing protections with risk-management provisions for AI controlling critical infrastructure.
+
+Boundary. Narrow infrastructure trigger. The final law should not be described as containing the proposal's discarded shutdown requirement.
+
+Implementation evidence: not assessed.SB212 (2025), Right to Compute Act ↗ (https://docs.legmt.gov/download-ticket?ticketId=ab38ae4c-551c-4b8c-bd8f-1226b2d67085)
+
+NE
+
+NebraskaConsumer decision rightsEnactedPrimary source
+
+Requires data-protection assessments for covered high-risk processing, including specified profiling.
+
+Boundary. A consumer privacy mechanism with thresholds and exemptions, not an AI-only statute.
+
+Implementation evidence: not assessed.§87-1116 / LB1074 (2024) ↗ (https://nebraskalegislature.gov/laws/statutes.php?statute=87-1116)
+
+NV
+
+NevadaSector / interaction safeguardsEnactedPrimary source
+
+Restricts licensed mental- and behavioral-health providers' use of AI to deliver direct care, with administrative exceptions.
+
+Boundary. A professional-care boundary; does not prohibit every AI use in health services.
+
+Implementation evidence: not assessed.NRS629.610 / AB406 (2025) ↗ (https://www.leg.state.nv.us/nrs/nrs-629.html)
+
+NH
+
+New HampshirePublic institutions / programsEnactedPrimary source
+
+Addresses state-government AI use, transparency and human oversight.
+
+Boundary. Public-sector scope; it should not be presented as a private-sector omnibus regime.
+
+Implementation evidence: not assessed.HB1688 / ch. 209 (2024) ↗ (https://gc.nh.gov/bill_status/legacy/bs2016/billText.aspx?id=1597&sy=2024&txtFormat=pdf&v=current)
+
+NJ
+
+New JerseyTargeted harm / contentEnactedPrimary source
+
+Creates targeted civil and criminal protections involving deceptive generated media.
+
+Boundary. Specific injury, conduct and intent elements matter; publication of synthetic media is not uniformly unlawful.
+
+Implementation evidence: not assessed.PL2025 c. 40 / A3540 ↗ (https://pub.njleg.state.nj.us/Bills/2024/AL25/40_.HTM)
+
+NM
+
+New MexicoTargeted harm / contentEnactedPrimary source
+
+Adds campaign disclosure requirements for covered AI-generated media.
+
+Boundary. Election safeguards do not establish general AI-provider accountability duties.
+
+Implementation evidence: not assessed.HB182 / ch. 57 (2024) ↗ (https://www.sos.nm.gov/2024/03/06/secretary-of-state-responds-to-priority-election-bills-becoming-law/)
+
+NY
+
+New YorkStructured accountabilityEnactedPrimary source
+
+The amended RAISE framework addresses frontier-model safety and regulatory accountability.
+
+Boundary. Effective January 1, 2027. The 2026 amendment controls this edition's date treatment.
+
+Implementation evidence: not assessed.S6953B / ch. 699 (2025), amended by S8828 / ch. 96 (2026) ↗ (https://www.nysenate.gov/legislation/bills/2025/S8828)
+
+NC
+
+North CarolinaTargeted harm / contentEnactedPrimary source
+
+Existing law covers specified AI-generated private images and sexual-exploitation material.
+
+Boundary. The cited legislative analysis describes existing law separately from H934's proposed changes; only its current-law discussion supports this entry.
+
+Implementation evidence: not assessed.GS14-190.5A, as amended in 2024 ↗ (https://dashboard.ncleg.gov/api/Services/BillSummary/2025/H934-SMTQ-35%28e1%29-v-2)
+
+ND
+
+North DakotaTargeted harm / contentEnactedPrimary source
+
+Requires identification of covered AI impersonation in political communications.
+
+Boundary. Campaign-specific trigger. Routine text assistance should not be conflated with covered impersonation.
+
+Implementation evidence: not assessed.HB1167 (2025) ↗ (https://ndlegis.gov/assembly/69-2025/regular/bill-overview/bo1167.html?search=artificial+i)
+
+OH
+
+OhioPublic institutions / programsEnactedPrimary source
+
+Requires a state model AI policy and school-system adoption of AI-use policies by July 1, 2026.
+
+Boundary. The model policy is publicly available; local adoption and policy effectiveness were not audited.
+
+Implementation evidence: public artifact observed; effectiveness not assessed.ORC3301.24 / HB96 (2025) ↗ (https://codes.ohio.gov/ohio-revised-code/section-3301.24)Department model policy ↗ (https://education.ohio.gov/Topics/AI-in-Ohio-s-Education/Model-Policy)
+
+OK
+
+OklahomaTargeted harm / contentEnactedPrimary source
+
+Signed legislation extends protections against nonconsensual intimate imagery to AI-generated material.
+
+Boundary. Targeted criminal-law protection; not evidence of a comprehensive AI accountability system.
+
+Implementation evidence: not assessed.HB1364 (2025) ↗ (https://www.okhouse.gov/posts/news-20250507_4)
+
+OR
+
+OregonSector / interaction safeguardsEnactedPrimary source
+
+Restricts nonhuman AI use of protected nursing titles.
+
+Boundary. A professional-title rule. The cited code edition does not incorporate all 2026 session changes.
+
+Implementation evidence: not assessed.ORS678.027 (2025 edition) ↗ (https://www.oregonlegislature.gov/bills_laws/ors/ors678.html)
+
+PA
+
+PennsylvaniaTargeted harm / contentEnactedPrimary source
+
+Updates child-sexual-abuse depiction provisions to address specified synthetic material.
+
+Boundary. The selected criminal statute is not a full account of state AI legislation or administrative use.
+
+Implementation evidence: not assessed.18 PaCS §6312 / Act 125 (2024) ↗ (https://www.legis.state.pa.us/WU01/LI/LI/CT/HTM/18/00.063.012.000..HTM)
+
+RI
+
+Rhode IslandConsumer decision rightsEnactedPrimary source
+
+Requires assessments for covered high-risk processing, including specified profiling.
+
+Boundary. Effective January 1, 2026; consumer-data scope and exemptions apply.
+
+Implementation evidence: not assessed.§6-48.1-7, Data Transparency and Privacy Protection Act ↗ (https://webserver.rilegislature.gov/Statutes/TITLE6/6-48.1/6-48.1-7.htm)
+
+SC
+
+South CarolinaTargeted harm / contentEnactedPrimary source
+
+Signed legislation addresses unauthorized intimate-image disclosure, including AI-generated depictions.
+
+Boundary. May 12, 2025 signature and May 29 ceremonial event are distinct dates.
+
+Implementation evidence: not assessed.H3058 (2025) ↗ (https://www.governor.sc.gov/news/2025-05/gov-henry-mcmaster-signs-unauthorized-disclosure-intimate-images-bill-law)
+
+SD
+
+South DakotaTargeted harm / contentEnactedPrimary source
+
+Extends child-sexual-abuse material definitions to specified AI-generated depictions.
+
+Boundary. Depiction and offense elements constrain scope; not a general ban on generative AI.
+
+Implementation evidence: not assessed.SB79 (2024) ↗ (https://sdlegislature.gov/Session/Bill/24991)
+
+TN
+
+TennesseeTargeted harm / contentEnactedPrimary source
+
+Protects voice and likeness interests against specified AI-related misuse.
+
+Boundary. Publicity and likeness rights operate differently from model-safety regulation.
+
+Implementation evidence: not assessed.ELVIS Act (2024) ↗ (https://www.tn.gov/governor/news/2024/4/25/gov--lee-marks-the-close-of-the-2024-legislative-session.html)
+
+TX
+
+TexasStructured accountabilityEnactedPrimary source
+
+Sets prohibited uses, specified disclosure duties and an enforcement and sandbox structure.
+
+Boundary. Effective January 1, 2026. The enacted discrimination standard is intentional conduct, not a general disparate-impact test.
+
+Implementation evidence: not assessed.HB149 (2025), TRAIGA ↗ (https://capitol.texas.gov/tlodocs/89R/billtext/html/HB00149F.htm)
+
+UT
+
+UtahPublic institutions / programsEnactedPrimary source
+
+An AI policy office and regulatory-mitigation program coexist with disclosure and mental-health chatbot safeguards.
+
+Boundary. The office describes a bounded prescription-renewal pilot. Agency-reported operation is not independent validation of clinical safety.
+
+Implementation evidence: agency reports bounded program operation; outcomes not independently assessed.AI Policy Act and subsequent amendments ↗ (https://commerce.utah.gov/ai/ai-faq/)Office of AI Policy ↗ (https://commerce.utah.gov/ai/)
+
+VT
+
+VermontPublic institutions / programsEnactedPrimary source
+
+Assigns public AI review, inventory and reporting responsibilities to a state division.
+
+Boundary. Institutional duties are assessed here; performance of every mandated review is not established.
+
+Implementation evidence: not assessed.3 VSA §5022 / Act 132 (2022) ↗ (https://legislature.vermont.gov/statutes/section/03/069/05022)
+
+VA
+
+VirginiaConsumer decision rightsEnactedPrimary source
+
+Gives covered consumers profiling opt-out rights and an appeal process for rights requests.
+
+Boundary. Consumer privacy coverage and exemptions apply; this is not an omnibus AI-specific assessment.
+
+Implementation evidence: not assessed.§59.1-577, Consumer Data Protection Act ↗ (https://law.lis.virginia.gov/vacode/title59.1/chapter53/section59.1-577/)
+
+WA
+
+WashingtonSector / interaction safeguardsEnactedPrimary source
+
+Enacts a companion-chatbot regulatory framework.
+
+Boundary. Signed March 24, 2026; effective January 1, 2027. Enacted and effective are visibly separated in this atlas.
+
+Implementation evidence: not assessed.ESHB2225 / ch. 168 (2026) ↗ (https://app.leg.wa.gov/billsummary?BillNumber=2225&Initiative=false&Year=2026)
+
+WV
+
+West VirginiaPublic institutions / programsEnactedPrimary source
+
+Establishes a state AI task force and governance responsibilities.
+
+Boundary. This institutional anchor does not imply that every recommendation has become a binding rule.
+
+Implementation evidence: not assessed.§5A-6-9 / HB3187 (2025) ↗ (https://code.wvlegislature.gov/5A-6-9/)
+
+WI
+
+WisconsinTargeted harm / contentEnactedPrimary source
+
+Requires AI disclosures in covered political advertising.
+
+Boundary. Official Ethics Commission implementation material; effective March 23, 2024. The review does not assess enforcement outcomes.
+
+Implementation evidence: public artifact observed; effectiveness not assessed.2023 Wisconsin Act 123 ↗ (https://ethics.wi.gov/Resources/Candidate%20Overview%20Webinar%202024%20Slides.pdf)
+
+WY
+
+WyomingTargeted harm / contentEnactedPrimary source
+
+Addresses AI-enabled harms involving minors, with specified criminal and developer-liability provisions.
+
+Boundary. Effective July 1, 2026. Particular knowledge and intent conditions matter.
+
+Implementation evidence: not assessed.HB0102 / ch. 91 (2026) ↗ (https://www.wyoleg.gov/2026/Summaries/HB0102.pdf)
+
+DC
+
+District of ColumbiaUnclassified / proposalUnassessedResearch gap
+
+Included separately from the 50 states; legislative classification remains unassessed.
+
+Boundary. This is a research gap, not a finding that the District has no applicable law.
+
+Implementation evidence: not assessed.No anchor classified in this edition ↗ (https://dccouncil.gov/legislation/)
+
+B METHODOLOGY & LIMITATIONS
+
+What the evidence
+can sustain.
+
+This is a qualitative research edition with a representative legislative corpus. It is designed for inspection and correction, not numerical certainty.
+
+Observation date: September 14, 2026. Relevant older laws remain in scope. A recent observation date does not mean every underlying code publication has incorporated every 2026 amendment.
+
+1. Unit of analysis
+
+The primary unit is a named legislative instrument or codified mechanism. The geographic ledger contains all 50 states and DC. Map categories characterize selected anchors, not entire state portfolios. No composite index, percentile or weighted state score is calculated.
+
+2. Discovery and verification
+
+NCSL trackers and targeted searches supplied discovery leads. The review then consulted enacted text, official histories, codified provisions and official implementation materials. Some entries use official summaries rather than full provision-by-provision analysis. Source type is explicit. [Discovery sources]
+
+3. Status and time
+
+Proposals are not counted as enacted law. The timeline uses selected provision-level dates. Missouri’s displayed prospective effective date is not treated as proof of enactment. The Colorado and New York comparisons incorporate the identified 2026 replacement or amendment.
+
+4. Categorical interpretation
+
+Pathways and landscape positions are AEGISES analytical judgments grounded in the cited mechanisms. Category numbers are labels, not ordinal scores. “Structured accountability” denotes organized responsibilities; it does not certify implementation, comprehensiveness or effectiveness.
+
+5. Known coverage limits
+
+This is not an exhaustive census of 2026 enactments. It does not comprehensively reconcile every amendment, regulation, court challenge, enforcement action or federal interaction. The Connecticut entry assesses its 2023 public-sector mechanism; its full 2026 legislative package is not assessed. DC is a research gap.
+
+6. Evidence and outcomes
+
+Implementation examples are deliberately bounded. Public availability is not operational qualification. Agency reports are attributed as such. Comparative outcomes, causal effects and compliance costs were not evaluated. A lack of such evidence in this paper is not proof that none exists.
+PROVENANCE
+
+Original analysis.
+Inspectable sources.
+No implied endorsement.
+
+The diagrams are original AEGISES work, using an analyst-style visual framework. They are not Gartner research and are not affiliated with or endorsed by Gartner. Research and production were AI-assisted. This edition does not claim independent peer review.
+
+The paper is a policy and systems analysis, not a determination that a particular deployment complies with applicable law. General privacy, civil-rights, consumer-protection and professional duties may apply even where this corpus contains no AI-specific anchor. Federal and local regimes require separate analysis.
+
+For updates, preserve the instrument identity, exact source, changed provision and observation date. Replacing a record without retaining its prior basis would make longitudinal maturity claims difficult to audit.
+
+Implementation specimens
+
+California Cal OES: Transparency in Frontier AI Act reporting (https://www.caloes.ca.gov/office-of-the-director/operations/homeland-security/california-cybersecurity-integration-center/transparency-in-frontier-ai-act-reporting/) — published reporting surface; no submission or processing test performed.
+
+Connecticut: 2023 executive-branch AI inventory (https://portal.ct.gov/das/-/media/das-beta/pdf/legislative-testimony/presentation-and-reports/2023-state-of-connecticut-executive-branch-artificial-intelligence-inventory.pdf) — a specific published inventory, not certification of later inventory completeness.
+
+Ohio Department of Education and Workforce: model AI policy (https://education.ohio.gov/Topics/AI-in-Ohio-s-Education/Model-Policy) — state deliverable; local adoption not audited.
+
+Utah Office of AI Policy: program and policy FAQ (https://commerce.utah.gov/ai/ai-faq/) — agency account of bounded program operation; outcomes not independently evaluated.
+
+Discovery resources
+
+NCSL AI legislation database (https://www.ncsl.org/financial-services/artificial-intelligence-legislation-database); NCSL 2025 legislation snapshot (https://www.ncsl.org/technology-and-communication/artificial-intelligence-2025-legislation/ftag); NCSL 2024 legislation snapshot (https://www.ncsl.org/technology-and-communication/artificial-intelligence-2024-legislation). Historical snapshot totals are not presented as current national totals. NCSL's database is not reproduced here; the ledger and interpretations are independently prepared.
+
+THE RESEARCH, OPEN TO INSPECTION
+
+Take the evidence
+with you.
+
+Vector figures retain sharp labels at publication size.
+The ledger is available in human- and machine-readable form.Publication PDFPrint edition ↗State source ledgerCSV ↗Structured evidenceJSON ↗Complete text editionPlain text ↗Six original diagramsSVG bundle ↗
+
+AEGISES
+
+Beyond the bill count · Research edition 1.0 · September 2026
+Original analysis and diagrams. Source institutions retain responsibility for their own publications.Back to top ↑

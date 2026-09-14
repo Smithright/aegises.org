@@ -24,10 +24,15 @@ curl -fsSL https://aegises.org/agi-reactor/agi-reactor.txt
 
 The canonical page includes all substantive content in its initial HTML. The text edition is generated from the same article. Discovery is supported by a homepage link, canonical and author metadata, TechArticle structured data, a sitemap, permissive robots.txt and an llms.txt reader index. These mechanisms aid access and discovery; they do not establish search indexing or training-dataset inclusion.
 
-## Deployment  
+## State AI legislative maturity atlas
+
+`/ai-legislation/` contains **Beyond the Bill Count**, an AEGISES research publication with six original SVG diagrams, a searchable 50-state-plus-DC ledger, CSV/JSON evidence, a text edition and a PDF. The corpus is representative, not an exhaustive inventory or state ranking. Its observation date is September 14, 2026; proposal status and verification gaps are explicit.
+
+See [publication build and research notes](ai-legislation/research/README.md). All substantive article content is present without JavaScript. Adding files to this checkout prepares a publication; live deployment is a separate event.
+
+## Deployment
 - **Live Site:** [https://aegises.org](https://aegises.org)  
 - **GitHub Pages:** [https://smithright.github.io/aegises.org](https://smithright.github.io/aegises.org)  
 
 ## Contributing  
 For inquiries or collaboration: **contact@aegises.org**  
-

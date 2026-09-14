@@ -1,0 +1,50 @@
+{
+  "checked_at": "2026-09-14T05:27:56.419Z",
+  "preview": "http://127.0.0.1:8874/ai-legislation/",
+  "counts": {
+    "states": 51,
+    "figures": 6,
+    "missingAnchors": []
+  },
+  "local_files": 11,
+  "svg_text_audit": [
+    {
+      "file": "01-evidence-ladder.svg",
+      "clip": [],
+      "overlaps": []
+    },
+    {
+      "file": "02-architecture-landscape.svg",
+      "clip": [],
+      "overlaps": []
+    },
+    {
+      "file": "03-state-pathways.svg",
+      "clip": [],
+      "overlaps": []
+    },
+    {
+      "file": "04-domain-matrix.svg",
+      "clip": [],
+      "overlaps": []
+    },
+    {
+      "file": "05-obligation-horizon.svg",
+      "clip": [],
+      "overlaps": []
+    },
+    {
+      "file": "06-obligation-to-control.svg",
+      "clip": [],
+      "overlaps": []
+    }
+  ],
+  "search": true,
+  "empty_recovery": true,
+  "filter": true,
+  "citation_recovery": true,
+  "mobile_390": true,
+  "tablet_768": true,
+  "no_javascript_content": true,
+  "browser_errors": []
+}
