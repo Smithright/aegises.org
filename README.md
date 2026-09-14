@@ -12,11 +12,11 @@ The homepage organizes public research around governance, accountable systems an
 
 ## AGI Reactor
 
-[AGI Reactor: A Safe, Governable Reference Architecture for Enterprise AGI](https://aegises.org/agi-reactor/)
+[AGI Reactor: A Governable Reference Architecture for Enterprise AGI](https://aegises.org/agi-reactor/)
 
 **Author: Ryan Smithright** — [Qthonic Labs](https://qthonic.com/) — [ryan@smithright.com](mailto:ryan@smithright.com).
 
-A public reference design for persistent agents, durable obligations, explicit authority, bounded resources and recoverable effects. Safety is scoped to the documented safeguards and trust assumptions; this is not certification of a deployed system or a claim of general alignment.
+A public reference design for persistent agents, durable obligations, explicit authority, bounded resources and recoverable effects. The proposed controls require implementation and validation; this is not certification of a deployed system or a claim of general alignment.
 
 - [Complete plain-text article](https://aegises.org/agi-reactor/agi-reactor.txt)
 - [Technical specification](https://aegises.org/agi-reactor/architecture.md)
