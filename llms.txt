@@ -6,7 +6,7 @@
 
 Author: Ryan Smithright · [Qthonic Labs](https://qthonic.com/) · ryan@smithright.com.
 AGI Reactor: A Governable Reference Architecture for Enterprise AGI.
-Public design draft 2.2.5, 14 September 2026. A proposed governable architecture, not a validated implementation, certified deployment or claim of general alignment.
+Public design draft 2.2.6, 14 September 2026. A proposed governable architecture, not a validated implementation, certified deployment or claim of general alignment.
 
 - [Canonical article](https://aegises.org/agi-reactor/): Complete static HTML, interactive system map and worked journeys.
 - [Complete plain-text article](https://aegises.org/agi-reactor/agi-reactor.txt): Generated from the same article, including diagram labels and architecture explanations; readable without JavaScript.
