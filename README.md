@@ -4,7 +4,11 @@
 AEGISES is an initiative exploring the governance, autonomy, and ethical evolution of artificial intelligence.  
 We believe in **earned autonomy, robust safeguards, and AI systems designed with integrity.**  
 
-This repository contains the **official landing page** for Aegesis.org, built with GitHub Pages.  
+This repository contains the **official landing page** for AEGISES.org, built with GitHub Pages.
+
+## Homepage
+
+The homepage organizes public research around governance, accountable systems and enforceable boundaries. Two featured publications lead into four technical dossiers, the initiative's approach, and participation links. The page is complete without JavaScript and uses local assets and system fonts. See [homepage design and validation notes](home/research/README.md).
 
 ## AGI Reactor
 
