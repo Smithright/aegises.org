@@ -3,7 +3,7 @@
 <header class="masthead"><a class="brand" href="/">AEGISES</a><span class="edition">REFERENCE DESIGN · 2.0 DRAFT</span><a href="agi-reactor.txt">Read as text ↗</a></header>
 <main><section class="hero" id="top"><div><div class="eyebrow">From intent to governed systems</div><h1>AGI Reactor</h1><p class="subtitle">A Safe, Governable Reference Architecture for Enterprise AGI</p></div><div class="hero-right"><p class="thesis">Policy-governed service orchestration is all you need.</p><div class="author"><span class="kicker">Author</span><strong>Ryan Smithright</strong> — <a href="https://qthonic.com/">Qthonic Labs</a><a class="mail" href="mailto:ryan@smithright.com">ryan@smithright.com</a></div></div></section>
 <details class="origin"><summary><img src="assets/original-whiteboard.jpg" alt="Ryan’s original whiteboard"><span>From the original drawing <small>13 September 2026</small></span><span>Open the source +</span></summary><img src="assets/original-whiteboard.jpg" alt="Original architecture: chat divides into tickets, edicts and commentary; policy, template and example types bind into skills and agent types; context composition feeds agents, reactions, routines and delivery; NATS spans the system and typed objects underpin it."><figcaption>Ryan Smithright’s original drawing. The animation preserves its construction: definitions → bindings → agents → governed delivery.</figcaption></details>
-<section class="system-overview" id="architecture"><header><h2>The whole system.</h2><p>Language becomes commitments. Definitions compose execution.</p></header><div class="system-window" tabindex="0" aria-label="High-level system architecture; scroll to explore at narrow widths."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 420" role="img" aria-labelledby="system-title system-desc"><title id="system-title">The Reactor: one system, two kinds of commitment</title><desc id="system-desc">Human intent becomes tickets and edicts. Tickets retain work. Edicts inform versioned definitions and policy. Typed bindings compose skills and agent profiles; the context compositor assembles a frame for an agent. Governed services produce delivery. Reactions and routines continue the loop. NATS connects the services and owned objects preserve state.</desc><defs><marker id="sys-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="none" stroke="#879c86"/></marker></defs>
+<section class="system-overview" id="architecture"><header><h2>The whole system.</h2><p>Language becomes commitments. Definitions compose execution.</p></header><p class="pan-hint">Swipe the diagram to follow the system →</p><div class="system-window" tabindex="0" aria-label="High-level system architecture; scroll to explore at narrow widths."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 420" role="img" aria-labelledby="system-title system-desc"><title id="system-title">The Reactor: one system, two kinds of commitment</title><desc id="system-desc">Human intent becomes tickets and edicts. Tickets retain work. Edicts inform versioned definitions and policy. Typed bindings compose skills and agent profiles; the context compositor assembles a frame for an agent. Governed services produce delivery. Reactions and routines continue the loop. NATS connects the services and owned objects preserve state.</desc><defs><marker id="sys-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="none" stroke="#879c86"/></marker></defs>
 <g fill="none" stroke="#aebfaa" stroke-width="1.5" marker-end="url(#sys-arrow)"><path d="M195 184H240Q264 184 264 118H320"/><path d="M240 184Q264 184 264 263H320"/><path d="M467 118H884Q910 118 910 191"/><path d="M467 263H542"/><path d="M664 263H692"/><path d="M799 229H870"/><path d="M949 229H1042"/><path d="M1191 229H1277"/><path d="M910 191C966 97 1078 98 1120 179"/><path d="M1120 270C1079 326 946 322 918 268"/><path d="M746 340V287"/></g>
 <g class="overview-rail"><text x="42" y="42" class="rail-label">NATS</text><path d="M138 36H1398" stroke="#b8c6af"/><text x="1065" y="27" class="rail-sub">Communication across the system</text></g>
 <path d="M51 141H173Q195 141 195 163V205Q195 226 173 226H92L67 246V226H51Q33 226 33 207V162Q33 141 51 141Z" fill="#fffef9" stroke="#a2b49b"/>
@@ -30,7 +30,7 @@
 </div><div class="system-caption"><p>Tickets preserve work. Edicts preserve direction. Typed bindings connect reusable definitions to agents; governed services turn their actions into results.</p><a href="#example">Follow one mandate ↓</a></div></section><section id="example"><div class="factory-intro"><div><h2>A mandate becomes a system.</h2><p>Watch the factory. Select any component to inspect its role.</p></div><div class="legend"><span><i></i>Work</span><span><i></i>Authority</span><span><i></i>Evidence</span></div></div>
 <div class="dictation"><div><div class="kicker">Spike ticket</div><p>“Design and implement Compliance for the AI Kill Switch Act.”</p></div><div><div class="kicker">Edict</div><p>“And moving forward, get the right leaders together monthly to review your AI Compliance News Report.”</p></div></div>
 <p class="source-note">Example source: <a href="https://www.govinfo.gov/app/details/BILLS-119hr9917ih">H.R. 9917, introduced text ↗</a>. The spike establishes current status, applicability and requirements; the title alone creates no compliance conclusion.</p>
-<div class="factory paused" id="factory" data-stage="0"><div class="factory-top"><i class="signal" aria-hidden="true"></i><span id="run-state">READY</span><span class="sim-label">Illustrative architecture</span><div class="scene-tools"><button type="button" class="text-button" id="zoom">Zoom +</button><button type="button" class="text-button" id="expand" aria-expanded="false">Expand ↗</button></div></div><div class="scene-window fit" id="scene-window" tabindex="0" aria-label="Factory diagram. Scroll to explore at narrow widths."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 660" role="img" aria-labelledby="scene-title scene-desc">
+<div class="factory paused" id="factory" data-stage="0"><div class="factory-top"><i class="signal" aria-hidden="true"></i><span id="run-state">READY</span><span class="sim-label">Illustrative architecture</span><div class="scene-tools"><button type="button" class="text-button" id="zoom">Zoom +</button><button type="button" class="text-button" id="expand" aria-expanded="false">Expand ↗</button></div></div><div class="scene-window fit" id="scene-window" tabindex="0" aria-label="Factory diagram. Scroll to explore at narrow widths."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 660" role="group" aria-labelledby="scene-title scene-desc">
 <title id="scene-title">A compliance mandate becomes governed work</title>
 <desc id="scene-desc">A compliance request branches into a spike ticket and a monthly-review edict. Policy, templates and examples bind into reusable skills and an agent profile. The compositor assembles permitted context. An agent produces code; tests and policy admission precede delivery. NATS carries communication across the system. Objects and typed links persist underneath it.</desc>
 <defs>
@@ -83,7 +83,7 @@
  <rect x="320" y="76" width="215" height="104" rx="4" class="paper" filter="url(#soft-shadow)"/>
  <path d="M334 87V169" stroke="#b98346" stroke-width="3"/>
  <text x="352" y="104" class="small-cap">SPIKE TICKET</text><text x="352" y="133" class="node-title">AI Kill Switch Act</text>
- <text x="352" y="159" class="node-sub" id="ticket-label">Research → design → implement</text>
+ <text x="352" y="159" class="node-sub ticket-status" id="ticket-label">Research → implementation</text>
 </g>
 <text x="592" y="111" class="wire-caption">durable obligation</text>
 <g class="component node-edict" data-inspect="edict" role="button" tabindex="0" aria-label="Inspect the edict">
@@ -173,268 +173,96 @@
 <title id="split-scene-title">One dictation becomes a spike ticket and a standing edict</title>
 <desc id="split-scene-desc">A compliance request branches into a spike ticket and a monthly-review edict. Policy, templates and examples bind into reusable skills and an agent profile. The compositor assembles permitted context. An agent produces code; tests and policy admission precede delivery. NATS carries communication across the system. Objects and typed links persist underneath it.</desc>
 <defs>
- <pattern id="split-dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".7" fill="#d4dad3"/></pattern>
- <linearGradient id="split-core-fill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffef8"/><stop offset="1" stop-color="#e3ece4"/></linearGradient>
- <linearGradient id="split-wire-fill"><stop stop-color="#246f56"/><stop offset="1" stop-color="#416ba2"/></linearGradient>
- <marker id="split-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#9aa99c" stroke-width="1"/></marker>
- <filter id="split-soft-shadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#243f2b" flood-opacity=".08"/></filter>
+ <pattern id="split-dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".7" fill="#d4dad3" /></pattern>
+ <linearGradient id="split-core-fill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffef8" /><stop offset="1" stop-color="#e3ece4" /></linearGradient>
+ <linearGradient id="split-wire-fill"><stop stop-color="#246f56" /><stop offset="1" stop-color="#416ba2" /></linearGradient>
+ <marker id="split-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#9aa99c" stroke-width="1" /></marker>
+ <filter id="split-soft-shadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#243f2b" flood-opacity=".08" /></filter>
 </defs>
-<rect width="1440" height="660" fill="url(#split-dots)"/>
-<!-- One communication rail spans the construction. -->
-<g class="bus" data-active="all"><text x="42" y="37" class="rail-label">NATS</text><text x="108" y="37" class="rail-sub">calls · events · traces</text><path d="M300 32H1375" class="rail"/><circle cx="1375" cy="32" r="4" fill="#276a52"/><path d="M300 32H1375" class="packet bus-packet"/></g>
-<!-- Actual relationships, drawn behind the objects. -->
+<rect width="1440" height="660" fill="url(#split-dots)" />
+
 <g class="wires" fill="none">
- <path d="M250 195C292 195 282 126 320 126" class="wire wire-intent"/>
- <path d="M250 195C294 195 280 288 320 288" class="wire wire-intent"/>
- <path d="M250 207C292 207 258 583 291 583" class="wire wire-context"/>
- <path d="M537 124H775Q802 124 802 152V244" class="wire wire-work"/>
- <path d="M437 330V358" class="wire wire-definitions"/>
- <path d="M466 390C620 390 624 300 713 300" class="wire wire-bind"/>
- <path d="M466 451C621 451 624 325 707 325" class="wire wire-bind"/>
- <path d="M466 512C620 512 639 350 713 350" class="wire wire-bind"/>
- <path d="M321 583V609H664Q739 609 768 413" class="wire wire-context"/>
- <path d="M885 329H960" class="wire wire-compose"/>
- <path d="M1048 329H1110" class="wire wire-build"/>
- <path d="M1247 428V469" class="wire wire-check"/>
- <path d="M1247 505V542" class="wire wire-deliver"/>
- <path d="M1040 284C1152 158 929 151 998 280" class="wire loop wire-build"/>
- <path d="M998 380C908 492 1056 479 1030 377" class="wire loop wire-build"/>
- <path d="M1333 567C1430 567 1420 107 1335 107H848" class="wire return wire-deliver"/>
- <path d="M250 195C292 195 282 126 320 126" class="packet flow-intent"/>
- <path d="M250 195C294 195 280 288 320 288" class="packet flow-intent"/>
- <path d="M466 390C620 390 624 300 713 300" class="packet flow-bind"/>
- <path d="M466 451C621 451 624 325 707 325" class="packet flow-bind"/>
- <path d="M466 512C620 512 639 350 713 350" class="packet flow-bind"/>
- <path d="M885 329H960" class="packet flow-compose"/>
- <path d="M1048 329H1110" class="packet flow-build"/>
- <path d="M1247 428V469" class="packet flow-check"/>
- <path d="M1247 505V542" class="packet flow-deliver"/>
-</g>
-<!-- Conversation: a speech form, not a service box. -->
+ <path d="M250 195C292 195 282 126 320 126" class="wire wire-intent" />
+ <path d="M250 195C294 195 280 288 320 288" class="wire wire-intent" />
+ </g>
+
 <g class="component node-intent" aria-label="Inspect chat and intent">
- <path d="M56 122H231Q251 122 251 142V221Q251 242 230 242H97L70 264V242H56Q36 242 36 222V142Q36 122 56 122Z" class="chat-shape" filter="url(#split-soft-shadow)"/>
- <circle cx="65" cy="153" r="4" fill="#2c7258"/><text x="81" y="158" class="small-cap">CHAT</text>
+ <path d="M56 122H231Q251 122 251 142V221Q251 242 230 242H97L70 264V242H56Q36 242 36 222V142Q36 122 56 122Z" class="chat-shape" filter="url(#split-soft-shadow)" />
+ <circle cx="65" cy="153" r="4" fill="#2c7258" /><text x="81" y="158" class="small-cap">CHAT</text>
  <text x="58" y="193" class="request"><tspan x="58">“Design AI</tspan><tspan x="58" dy="27">compliance.”</tspan></text>
 </g>
-<text x="45" y="316" class="margin-note">A request becomes</text><text x="45" y="338" class="margin-note">work and direction.</text>
 <g class="component node-work" aria-label="Inspect the durable ticket">
- <rect x="330" y="83" width="210" height="101" rx="4" fill="#dce6db" transform="rotate(3 435 133)"/>
- <rect x="320" y="76" width="215" height="104" rx="4" class="paper" filter="url(#split-soft-shadow)"/>
- <path d="M334 87V169" stroke="#b98346" stroke-width="3"/>
+ <rect x="330" y="83" width="210" height="101" rx="4" fill="#dce6db" transform="rotate(3 435 133)" />
+ <rect x="320" y="76" width="215" height="104" rx="4" class="paper" filter="url(#split-soft-shadow)" />
+ <path d="M334 87V169" stroke="#b98346" stroke-width="3" />
  <text x="352" y="104" class="small-cap">SPIKE TICKET</text><text x="352" y="133" class="node-title">AI Kill Switch Act</text>
- <text x="352" y="159" class="node-sub" id="split-ticket-label">Research → design → implement</text>
+ <text x="352" y="159" class="node-sub ticket-status" id="split-ticket-label">Research → implementation</text>
 </g>
-<text x="592" y="111" class="wire-caption">durable obligation</text>
 <g class="component node-edict" aria-label="Inspect the edict">
- <path d="M320 243H515L536 265V331H320Z" class="edict-paper"/>
- <path d="M515 243V265H536" fill="none" stroke="#8ca0b3"/>
+ <path d="M320 243H515L536 265V331H320Z" class="edict-paper" />
+ <path d="M515 243V265H536" fill="none" stroke="#8ca0b3" />
  <text x="339" y="268" class="small-cap">EDICT</text><text x="339" y="295" class="node-title edict-title">Monthly leadership review</text>
  <text x="339" y="317" class="node-sub">AI Compliance News Report</text>
 </g>
-<!-- Indexed definitions: distinct shelves join into a loom of bindings. -->
-<g class="component definitions node-definitions" aria-label="Inspect policy, templates and examples">
- <text x="323" y="365" class="small-cap">REUSABLE DEFINITIONS</text>
- <path d="M320 375V535M320 407H463M320 468H463M320 529H463" class="shelf"/>
- <circle cx="321" cy="389" r="4" fill="#416ba2"/><text x="340" y="395" class="definition-label">Policy</text>
- <text x="340" y="418" class="micro">Who may stop or resume?</text>
- <circle cx="321" cy="450" r="4" fill="#a97937"/><text x="340" y="456" class="definition-label">Templates</text>
- <text x="340" y="479" class="micro">Control contracts</text>
- <circle cx="321" cy="511" r="4" fill="#7e789e"/><text x="340" y="517" class="definition-label">Examples</text>
- <text x="340" y="540" class="micro">Assurance patterns</text>
-</g>
-<g class="component node-bind" aria-label="Inspect typed bindings">
- <text x="556" y="286" class="small-cap">TYPED BINDINGS</text>
- <rect x="553" y="332" width="130" height="30" rx="15" class="binding-pill"/><text x="618" y="352" text-anchor="middle" class="micro">skill + agent type</text>
-</g>
-<g class="component node-context" aria-label="Inspect other permitted context">
- <circle cx="306" cy="583" r="15" class="context-disc"/><path d="M299 583H313M306 576V590" stroke="#4f685a"/>
- <text x="336" y="589" class="node-sub">Other permitted context</text>
-</g>
-<!-- Compositor: definitions and context converge into one working frame. -->
-<g class="component node-compositor" aria-label="Inspect the context compositor">
- <circle cx="797" cy="329" r="97" class="core-halo"/>
- <circle cx="797" cy="329" r="85" fill="none" stroke="#c5d2c3" stroke-width="1"/>
- <g class="rotor"><circle cx="797" cy="329" r="75" class="rotor-ring"/><circle cx="797" cy="254" r="5" fill="#2b7458"/></g>
- <circle cx="797" cy="329" r="65" fill="url(#split-core-fill)" stroke="#9ab29c" filter="url(#split-soft-shadow)"/>
- <path d="M780 313L797 303L814 313V334L797 344L780 334ZM780 313L797 324L814 313M797 324V344" fill="none" stroke="#28674e" stroke-width="1.5"/>
- <text x="797" y="369" text-anchor="middle" class="small-cap">COMPOSITOR</text>
- <text x="797" y="448" text-anchor="middle" class="node-title">Context becomes a frame.</text>
- <text x="797" y="472" text-anchor="middle" class="node-sub">Guidance informs. Policy governs.</text>
-</g>
-<!-- Agent and its feedback loop. -->
-<g class="component node-agent" aria-label="Inspect agent execution">
- <circle cx="1007" cy="329" r="47" class="agent-ring"/>
- <circle cx="1007" cy="317" r="10" fill="none" stroke="#2e654f" stroke-width="1.7"/>
- <path d="M987 346Q987 331 1007 331Q1027 331 1027 346" fill="none" stroke="#2e654f" stroke-width="1.7"/>
- <text x="1007" y="401" text-anchor="middle" class="small-cap">AGENT</text>
-</g>
-<text x="1050" y="185" class="small-cap">REACTIONS</text><text x="1050" y="205" class="micro">News → report → leaders</text><text x="967" y="464" class="small-cap">MONTHLY REVIEW</text>
-<text x="1055" y="284" class="wire-caption">produce</text>
-<!-- Code is an actual text surface overlaid here by HTML. -->
-<g class="component node-code" aria-label="Inspect the generated service">
- <path d="M1125 221H1361L1383 244V422H1125Z" class="code-paper"/>
- <path d="M1361 221V244H1383" fill="none" stroke="#b4bcb0"/>
- <text x="1143" y="250" class="small-cap">compliance-control.ts</text>
- <path d="M1143 264H1364" stroke="#dedfd7"/>
- <text x="1143" y="293" class="code-line"><tspan class="code-keyword">export</tspan> control</text>
- <text x="1143" y="318" class="code-line">  admit: policy</text>
- <text x="1143" y="343" class="code-line">  halt: independent</text>
- <text x="1143" y="368" class="code-line">  resume: authorized</text>
- <text x="1143" y="402" class="micro" id="split-code-label">Illustrative control candidate</text>
-</g>
-<g class="component node-gate" aria-label="Inspect testing and policy admission">
- <path d="M1154 487H1198M1297 487H1340" stroke="#95a992"/>
- <path d="M1214 467H1280V508H1214" class="gate-shape"/>
- <path d="M1225 488L1239 499L1266 474" class="gate-tick"/>
- <path d="M1233 477L1259 500M1259 477L1233 500" class="gate-cross"/>
- <text x="1247" y="452" text-anchor="middle" class="small-cap">TEST + POLICY GATE</text>
- <text x="1247" y="528" text-anchor="middle" class="micro" id="split-gate-label">Admission required</text>
-</g>
-<g class="component node-delivery" aria-label="Inspect delivery and service evolution">
- <rect x="1158" y="546" width="177" height="46" rx="23" class="delivery-shape"/>
- <circle cx="1180" cy="569" r="4" class="delivery-light"/><text x="1200" y="575" class="delivery-label" id="split-delivery-label">DELIVERY</text>
-</g>
-<text x="1030" y="93" class="wire-caption">evidence returns to the ticket</text>
-<!-- Persistent object foundation, spanning every stage. -->
-<g class="foundation"><path d="M40 630H1400" stroke="#bfcabe"/>
- <text x="42" y="653" class="small-cap">PERSISTENT OBJECTS</text><text x="270" y="653" class="rail-sub">types · links · policies · service methods · evidence</text>
- <text x="1398" y="653" text-anchor="end" class="rail-sub">Services change. Obligations remain.</text>
-</g>
-</svg>
-<figcaption>The original dictation remains linked to both objects.</figcaption></figure></article>
-<article class="journey"><div><div class="journey-num">02</div><h3>Compose the capability.</h3><p>Bind policy, reusable patterns and relevant skills. Add current work and permitted sources. The resulting frame gives the agent its place and purpose.</p><a href="#factory" data-jump="2">Watch composition ↗</a></div><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="295 225 800 385" role="img" aria-labelledby="compose-scene-title compose-scene-desc">
+
+</svg><figcaption>The original dictation remains linked to both objects.</figcaption></figure></article>
+<article class="journey"><div><div class="journey-num">02</div><h3>Compose the capability.</h3><p>Bind policy, reusable patterns and relevant skills. Add current work and permitted sources. The resulting frame gives the agent its place and purpose.</p><a href="#factory" data-jump="2">Watch composition ↗</a></div><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="280 220 810 410" role="img" aria-labelledby="compose-scene-title compose-scene-desc">
 <title id="compose-scene-title">Definitions and permitted context compose an agent frame</title>
 <desc id="compose-scene-desc">A compliance request branches into a spike ticket and a monthly-review edict. Policy, templates and examples bind into reusable skills and an agent profile. The compositor assembles permitted context. An agent produces code; tests and policy admission precede delivery. NATS carries communication across the system. Objects and typed links persist underneath it.</desc>
 <defs>
- <pattern id="compose-dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".7" fill="#d4dad3"/></pattern>
- <linearGradient id="compose-core-fill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffef8"/><stop offset="1" stop-color="#e3ece4"/></linearGradient>
- <linearGradient id="compose-wire-fill"><stop stop-color="#246f56"/><stop offset="1" stop-color="#416ba2"/></linearGradient>
- <marker id="compose-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#9aa99c" stroke-width="1"/></marker>
- <filter id="compose-soft-shadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#243f2b" flood-opacity=".08"/></filter>
+ <pattern id="compose-dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".7" fill="#d4dad3" /></pattern>
+ <linearGradient id="compose-core-fill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffef8" /><stop offset="1" stop-color="#e3ece4" /></linearGradient>
+ <linearGradient id="compose-wire-fill"><stop stop-color="#246f56" /><stop offset="1" stop-color="#416ba2" /></linearGradient>
+ <marker id="compose-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#9aa99c" stroke-width="1" /></marker>
+ <filter id="compose-soft-shadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#243f2b" flood-opacity=".08" /></filter>
 </defs>
-<rect width="1440" height="660" fill="url(#compose-dots)"/>
-<!-- One communication rail spans the construction. -->
-<g class="bus" data-active="all"><text x="42" y="37" class="rail-label">NATS</text><text x="108" y="37" class="rail-sub">calls · events · traces</text><path d="M300 32H1375" class="rail"/><circle cx="1375" cy="32" r="4" fill="#276a52"/><path d="M300 32H1375" class="packet bus-packet"/></g>
-<!-- Actual relationships, drawn behind the objects. -->
+<rect width="1440" height="660" fill="url(#compose-dots)" />
+
 <g class="wires" fill="none">
- <path d="M250 195C292 195 282 126 320 126" class="wire wire-intent"/>
- <path d="M250 195C294 195 280 288 320 288" class="wire wire-intent"/>
- <path d="M250 207C292 207 258 583 291 583" class="wire wire-context"/>
- <path d="M537 124H775Q802 124 802 152V244" class="wire wire-work"/>
- <path d="M437 330V358" class="wire wire-definitions"/>
- <path d="M466 390C620 390 624 300 713 300" class="wire wire-bind"/>
- <path d="M466 451C621 451 624 325 707 325" class="wire wire-bind"/>
- <path d="M466 512C620 512 639 350 713 350" class="wire wire-bind"/>
- <path d="M321 583V609H664Q739 609 768 413" class="wire wire-context"/>
- <path d="M885 329H960" class="wire wire-compose"/>
- <path d="M1048 329H1110" class="wire wire-build"/>
- <path d="M1247 428V469" class="wire wire-check"/>
- <path d="M1247 505V542" class="wire wire-deliver"/>
- <path d="M1040 284C1152 158 929 151 998 280" class="wire loop wire-build"/>
- <path d="M998 380C908 492 1056 479 1030 377" class="wire loop wire-build"/>
- <path d="M1333 567C1430 567 1420 107 1335 107H848" class="wire return wire-deliver"/>
- <path d="M250 195C292 195 282 126 320 126" class="packet flow-intent"/>
- <path d="M250 195C294 195 280 288 320 288" class="packet flow-intent"/>
- <path d="M466 390C620 390 624 300 713 300" class="packet flow-bind"/>
- <path d="M466 451C621 451 624 325 707 325" class="packet flow-bind"/>
- <path d="M466 512C620 512 639 350 713 350" class="packet flow-bind"/>
- <path d="M885 329H960" class="packet flow-compose"/>
- <path d="M1048 329H1110" class="packet flow-build"/>
- <path d="M1247 428V469" class="packet flow-check"/>
- <path d="M1247 505V542" class="packet flow-deliver"/>
-</g>
-<!-- Conversation: a speech form, not a service box. -->
-<g class="component node-intent" aria-label="Inspect chat and intent">
- <path d="M56 122H231Q251 122 251 142V221Q251 242 230 242H97L70 264V242H56Q36 242 36 222V142Q36 122 56 122Z" class="chat-shape" filter="url(#compose-soft-shadow)"/>
- <circle cx="65" cy="153" r="4" fill="#2c7258"/><text x="81" y="158" class="small-cap">CHAT</text>
- <text x="58" y="193" class="request"><tspan x="58">“Design AI</tspan><tspan x="58" dy="27">compliance.”</tspan></text>
-</g>
-<text x="45" y="316" class="margin-note">A request becomes</text><text x="45" y="338" class="margin-note">work and direction.</text>
-<g class="component node-work" aria-label="Inspect the durable ticket">
- <rect x="330" y="83" width="210" height="101" rx="4" fill="#dce6db" transform="rotate(3 435 133)"/>
- <rect x="320" y="76" width="215" height="104" rx="4" class="paper" filter="url(#compose-soft-shadow)"/>
- <path d="M334 87V169" stroke="#b98346" stroke-width="3"/>
- <text x="352" y="104" class="small-cap">SPIKE TICKET</text><text x="352" y="133" class="node-title">AI Kill Switch Act</text>
- <text x="352" y="159" class="node-sub" id="compose-ticket-label">Research → design → implement</text>
-</g>
-<text x="592" y="111" class="wire-caption">durable obligation</text>
-<g class="component node-edict" aria-label="Inspect the edict">
- <path d="M320 243H515L536 265V331H320Z" class="edict-paper"/>
- <path d="M515 243V265H536" fill="none" stroke="#8ca0b3"/>
- <text x="339" y="268" class="small-cap">EDICT</text><text x="339" y="295" class="node-title edict-title">Monthly leadership review</text>
- <text x="339" y="317" class="node-sub">AI Compliance News Report</text>
-</g>
-<!-- Indexed definitions: distinct shelves join into a loom of bindings. -->
+ <path d="M466 390C620 390 624 300 713 300" class="wire wire-bind" />
+ <path d="M466 451C621 451 624 325 707 325" class="wire wire-bind" />
+ <path d="M466 512C620 512 639 350 713 350" class="wire wire-bind" />
+ <path d="M321 583V609H664Q739 609 768 413" class="wire wire-context" />
+ <path d="M885 329H960" class="wire wire-compose" />
+ </g>
+
 <g class="component definitions node-definitions" aria-label="Inspect policy, templates and examples">
  <text x="323" y="365" class="small-cap">REUSABLE DEFINITIONS</text>
- <path d="M320 375V535M320 407H463M320 468H463M320 529H463" class="shelf"/>
- <circle cx="321" cy="389" r="4" fill="#416ba2"/><text x="340" y="395" class="definition-label">Policy</text>
+ <path d="M320 375V535M320 407H463M320 468H463M320 529H463" class="shelf" />
+ <circle cx="321" cy="389" r="4" fill="#416ba2" /><text x="340" y="395" class="definition-label">Policy</text>
  <text x="340" y="418" class="micro">Who may stop or resume?</text>
- <circle cx="321" cy="450" r="4" fill="#a97937"/><text x="340" y="456" class="definition-label">Templates</text>
+ <circle cx="321" cy="450" r="4" fill="#a97937" /><text x="340" y="456" class="definition-label">Templates</text>
  <text x="340" y="479" class="micro">Control contracts</text>
- <circle cx="321" cy="511" r="4" fill="#7e789e"/><text x="340" y="517" class="definition-label">Examples</text>
+ <circle cx="321" cy="511" r="4" fill="#7e789e" /><text x="340" y="517" class="definition-label">Examples</text>
  <text x="340" y="540" class="micro">Assurance patterns</text>
 </g>
 <g class="component node-bind" aria-label="Inspect typed bindings">
  <text x="556" y="286" class="small-cap">TYPED BINDINGS</text>
- <rect x="553" y="332" width="130" height="30" rx="15" class="binding-pill"/><text x="618" y="352" text-anchor="middle" class="micro">skill + agent type</text>
+ <rect x="553" y="332" width="130" height="30" rx="15" class="binding-pill" /><text x="618" y="352" text-anchor="middle" class="micro">skill + agent type</text>
 </g>
 <g class="component node-context" aria-label="Inspect other permitted context">
- <circle cx="306" cy="583" r="15" class="context-disc"/><path d="M299 583H313M306 576V590" stroke="#4f685a"/>
+ <circle cx="306" cy="583" r="15" class="context-disc" /><path d="M299 583H313M306 576V590" stroke="#4f685a" />
  <text x="336" y="589" class="node-sub">Other permitted context</text>
 </g>
-<!-- Compositor: definitions and context converge into one working frame. -->
+
 <g class="component node-compositor" aria-label="Inspect the context compositor">
- <circle cx="797" cy="329" r="97" class="core-halo"/>
- <circle cx="797" cy="329" r="85" fill="none" stroke="#c5d2c3" stroke-width="1"/>
- <g class="rotor"><circle cx="797" cy="329" r="75" class="rotor-ring"/><circle cx="797" cy="254" r="5" fill="#2b7458"/></g>
- <circle cx="797" cy="329" r="65" fill="url(#compose-core-fill)" stroke="#9ab29c" filter="url(#compose-soft-shadow)"/>
- <path d="M780 313L797 303L814 313V334L797 344L780 334ZM780 313L797 324L814 313M797 324V344" fill="none" stroke="#28674e" stroke-width="1.5"/>
+ <circle cx="797" cy="329" r="97" class="core-halo" />
+ <circle cx="797" cy="329" r="85" fill="none" stroke="#c5d2c3" stroke-width="1" />
+ <g class="rotor"><circle cx="797" cy="329" r="75" class="rotor-ring" /><circle cx="797" cy="254" r="5" fill="#2b7458" /></g>
+ <circle cx="797" cy="329" r="65" fill="url(#compose-core-fill)" stroke="#9ab29c" filter="url(#compose-soft-shadow)" />
+ <path d="M780 313L797 303L814 313V334L797 344L780 334ZM780 313L797 324L814 313M797 324V344" fill="none" stroke="#28674e" stroke-width="1.5" />
  <text x="797" y="369" text-anchor="middle" class="small-cap">COMPOSITOR</text>
  <text x="797" y="448" text-anchor="middle" class="node-title">Context becomes a frame.</text>
  <text x="797" y="472" text-anchor="middle" class="node-sub">Guidance informs. Policy governs.</text>
 </g>
-<!-- Agent and its feedback loop. -->
+
 <g class="component node-agent" aria-label="Inspect agent execution">
- <circle cx="1007" cy="329" r="47" class="agent-ring"/>
- <circle cx="1007" cy="317" r="10" fill="none" stroke="#2e654f" stroke-width="1.7"/>
- <path d="M987 346Q987 331 1007 331Q1027 331 1027 346" fill="none" stroke="#2e654f" stroke-width="1.7"/>
+ <circle cx="1007" cy="329" r="47" class="agent-ring" />
+ <circle cx="1007" cy="317" r="10" fill="none" stroke="#2e654f" stroke-width="1.7" />
+ <path d="M987 346Q987 331 1007 331Q1027 331 1027 346" fill="none" stroke="#2e654f" stroke-width="1.7" />
  <text x="1007" y="401" text-anchor="middle" class="small-cap">AGENT</text>
 </g>
-<text x="1050" y="185" class="small-cap">REACTIONS</text><text x="1050" y="205" class="micro">News → report → leaders</text><text x="967" y="464" class="small-cap">MONTHLY REVIEW</text>
-<text x="1055" y="284" class="wire-caption">produce</text>
-<!-- Code is an actual text surface overlaid here by HTML. -->
-<g class="component node-code" aria-label="Inspect the generated service">
- <path d="M1125 221H1361L1383 244V422H1125Z" class="code-paper"/>
- <path d="M1361 221V244H1383" fill="none" stroke="#b4bcb0"/>
- <text x="1143" y="250" class="small-cap">compliance-control.ts</text>
- <path d="M1143 264H1364" stroke="#dedfd7"/>
- <text x="1143" y="293" class="code-line"><tspan class="code-keyword">export</tspan> control</text>
- <text x="1143" y="318" class="code-line">  admit: policy</text>
- <text x="1143" y="343" class="code-line">  halt: independent</text>
- <text x="1143" y="368" class="code-line">  resume: authorized</text>
- <text x="1143" y="402" class="micro" id="compose-code-label">Illustrative control candidate</text>
-</g>
-<g class="component node-gate" aria-label="Inspect testing and policy admission">
- <path d="M1154 487H1198M1297 487H1340" stroke="#95a992"/>
- <path d="M1214 467H1280V508H1214" class="gate-shape"/>
- <path d="M1225 488L1239 499L1266 474" class="gate-tick"/>
- <path d="M1233 477L1259 500M1259 477L1233 500" class="gate-cross"/>
- <text x="1247" y="452" text-anchor="middle" class="small-cap">TEST + POLICY GATE</text>
- <text x="1247" y="528" text-anchor="middle" class="micro" id="compose-gate-label">Admission required</text>
-</g>
-<g class="component node-delivery" aria-label="Inspect delivery and service evolution">
- <rect x="1158" y="546" width="177" height="46" rx="23" class="delivery-shape"/>
- <circle cx="1180" cy="569" r="4" class="delivery-light"/><text x="1200" y="575" class="delivery-label" id="compose-delivery-label">DELIVERY</text>
-</g>
-<text x="1030" y="93" class="wire-caption">evidence returns to the ticket</text>
-<!-- Persistent object foundation, spanning every stage. -->
-<g class="foundation"><path d="M40 630H1400" stroke="#bfcabe"/>
- <text x="42" y="653" class="small-cap">PERSISTENT OBJECTS</text><text x="270" y="653" class="rail-sub">types · links · policies · service methods · evidence</text>
- <text x="1398" y="653" text-anchor="end" class="rail-sub">Services change. Obligations remain.</text>
-</g>
-</svg>
-<figcaption>Definitions inform the agent. The service independently enforces authority.</figcaption></figure></article>
+</svg><figcaption>Definitions inform the agent. The service independently enforces authority.</figcaption></figure></article>
 <article class="journey"><div><div class="journey-num">03</div><h3>The review becomes<br>part of the system.</h3><p>A sourced report reaches the right leaders each month. Decisions create owned follow-up work. That work informs the next review.</p><a href="#factory" data-jump="5">Follow the continuing loop ↗</a></div><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 390" role="img" aria-labelledby="review-title review-desc"><title id="review-title">The edict keeps a monthly review alive</title><desc id="review-desc">Sourced AI compliance news becomes a report. Proposed legal, security, engineering and accountable AI leadership roles review it monthly. Decisions create owned follow-up tickets. The routine continues under its standing edict.</desc>
 <defs><marker id="review-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="none" stroke="#759270"/></marker></defs>
 <path d="M67 145H185L200 161V254H67Z" fill="#fffef7" stroke="#a2b19b"/><path d="M83 189H180M83 204H166M83 219H178M83 234H147" stroke="#c2ccba"/><text x="83" y="172" class="small-cap">NEWS REPORT</text><text x="130" y="280" text-anchor="middle" class="node-sub">Sources + changes</text>

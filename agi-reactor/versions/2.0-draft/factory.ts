@@ -1,12 +1,12 @@
 // The factory is an explanation, not a live agent or deployment controller.
 type Phase = { title: string; detail: string; ticket: string; code: string; gate: string };
 const phases: Phase[] = [
- {title:'One dictation. Two durable commitments.',detail:'“Design and implement Compliance for the AI Kill Switch Act.” becomes a spike ticket. Monthly leadership review becomes a standing edict.',ticket:'Spike accepted · one assignee',code:'Awaiting research and context',gate:'Admission required'},
- {title:'Bind the right knowledge and rules.',detail:'The spike resolves the bill text, status and applicability. Policy, control templates and assurance examples bind to the task; the edict defines the continuing review.',ticket:'Research → design → implement',code:'Sources and requirements linked',gate:'Rules remain separately governed'},
- {title:'Compose the agent’s working frame.',detail:'The compositor assembles the brief, verified sources, relevant skills and pending work. Legal, security, engineering and the accountable AI owner are proposed review roles.',ticket:'Context linked to the obligation',code:'Working frame composed',gate:'Context does not grant authority'},
- {title:'Produce a control candidate.',detail:'The agent drafts service code, tests and requirement mappings. News feeds a sourced AI Compliance News Report; findings can create linked follow-up tickets.',ticket:'Candidate → checks → review',code:'Control + tests + source mapping',gate:'Candidate awaits admission'},
+ {title:'One dictation. Two durable commitments.',detail:'“Design and implement Compliance for the AI Kill Switch Act.” becomes a spike ticket. Monthly leadership review becomes a standing edict.',ticket:'Accepted · one assignee',code:'Awaiting research and context',gate:'Admission required'},
+ {title:'Bind the right knowledge and rules.',detail:'The spike resolves the bill text, status and applicability. Policy, control templates and assurance examples bind to the task; the edict defines the continuing review.',ticket:'Research → implementation',code:'Sources and requirements linked',gate:'Rules remain separately governed'},
+ {title:'Compose the agent’s working frame.',detail:'The compositor assembles the brief, verified sources, relevant skills and pending work. Legal, security, engineering and the accountable AI owner are proposed review roles.',ticket:'Working context linked',code:'Working frame composed',gate:'Context does not grant authority'},
+ {title:'Produce a control candidate.',detail:'The agent drafts service code, tests and requirement mappings. News feeds a sourced AI Compliance News Report; findings can create linked follow-up tickets.',ticket:'Candidate → review',code:'Control + tests + source mapping',gate:'Candidate awaits admission'},
  {title:'Check the work. Enforce the boundary.',detail:'The illustration admits a reviewed candidate only within its policy and release scope. A denied caller cannot cross the same boundary. Actual compliance needs qualified controls and evidence.',ticket:'Review and admission',code:'Candidate held at service boundary',gate:'Illustrated admission: permitted'},
- {title:'Deliver now. Keep reviewing.',detail:'A governed release can deliver the control. The edict continues as a monthly review of the AI Compliance News Report, with an owner, the right leaders and linked decisions.',ticket:'Result linked · review continues',code:'Candidate and review plan delivered',gate:'Illustrated admission: permitted'}
+ {title:'Deliver now. Keep reviewing.',detail:'A governed release can deliver the control. The edict continues as a monthly review of the AI Compliance News Report, with an owner, the right leaders and linked decisions.',ticket:'Result linked · review due',code:'Candidate and review plan delivered',gate:'Illustrated admission: permitted'}
 ];
 const notes: Record<string,[string,string]> = {
  chat:['Dictation','The original words remain attributable. One message can create both owned work and enduring direction.'],
@@ -40,7 +40,7 @@ function render():void {
  q('#play-icon').textContent=running?'Ⅱ':stage===5?'↺':'▶';
  play.setAttribute('aria-pressed',String(running));
  steps.forEach((button,index)=>{if(index===stage)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');});
- q('#run-state').textContent=running?'RUNNING':stage===5?'COMPLETE': 'READY';
+ q('#run-state').textContent=denied&&stage>=4?'HELD':running?'RUNNING':stage===5?'COMPLETE':stage>0||elapsed>0?'PAUSED':'READY';
  q('#outcome').textContent=denied&&stage>=4?'Illustrated outcome: release refused.':'Illustration only · no model calls, meetings or deployments.';
 }
 function jump(next:number):void {stage=Math.max(0,Math.min(5,next));elapsed=0;running=false;render();updateProgress();}

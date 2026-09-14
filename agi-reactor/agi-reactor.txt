@@ -20,6 +20,8 @@ Ryan Smithright’s original drawing. The animation preserves its construction: 
 
 Language becomes commitments. Definitions compose execution.
 
+Swipe the diagram to follow the system →
+
 The Reactor: one system, two kinds of commitmentHuman intent becomes tickets and edicts. Tickets retain work. Edicts inform versioned definitions and policy. Typed bindings compose skills and agent profiles; the context compositor assembles a frame for an agent. Governed services produce delivery. Reactions and routines continue the loop. NATS connects the services and owned objects preserve state.
 
 NATS
@@ -96,7 +98,7 @@ work and direction.
 SPIKE TICKET
 AI Kill Switch Act
 
-Research → design → implement
+Research → implementation
 
 durable obligation
 
@@ -172,7 +174,6 @@ The compliance request becomes a spike ticket. Monthly leadership review becomes
 
 Inside the factory
 
-### 
 
 Illustration only · no model calls, meetings or deployments.Download the example output ↓
 
@@ -188,86 +189,19 @@ The spike investigates and implements compliance. The edict keeps leadership rev
 One dictation becomes a spike ticket and a standing edict
 A compliance request branches into a spike ticket and a monthly-review edict. Policy, templates and examples bind into reusable skills and an agent profile. The compositor assembles permitted context. An agent produces code; tests and policy admission precede delivery. NATS carries communication across the system. Objects and typed links persist underneath it.
 
-NATS
-calls · events · traces
-
 CHAT
 
 “Design AIcompliance.”
 
-A request becomes
-work and direction.
-
 SPIKE TICKET
 AI Kill Switch Act
 
-Research → design → implement
-
-durable obligation
+Research → implementation
 
 EDICT
 Monthly leadership review
 
 AI Compliance News Report
-
-REUSABLE DEFINITIONS
-
-Policy
-
-Who may stop or resume?
-
-Templates
-
-Control contracts
-
-Examples
-
-Assurance patterns
-
-TYPED BINDINGS
-
-skill + agent type
-
-Other permitted context
-
-COMPOSITOR
-
-Context becomes a frame.
-
-Guidance informs. Policy governs.
-
-AGENT
-
-REACTIONS
-News → report → leaders
-MONTHLY REVIEW
-
-produce
-
-compliance-control.ts
-
-export control
-
-admit: policy
-
-halt: independent
-
-resume: authorized
-
-Illustrative control candidate
-
-TEST + POLICY GATE
-
-Admission required
-
-DELIVERY
-
-evidence returns to the ticket
-
-PERSISTENT OBJECTS
-types · links · policies · service methods · evidence
-
-Services change. Obligations remain.
 
 The original dictation remains linked to both objects.
 
@@ -279,28 +213,6 @@ Bind policy, reusable patterns and relevant skills. Add current work and permitt
 Definitions and permitted context compose an agent frame
 A compliance request branches into a spike ticket and a monthly-review edict. Policy, templates and examples bind into reusable skills and an agent profile. The compositor assembles permitted context. An agent produces code; tests and policy admission precede delivery. NATS carries communication across the system. Objects and typed links persist underneath it.
 
-NATS
-calls · events · traces
-
-CHAT
-
-“Design AIcompliance.”
-
-A request becomes
-work and direction.
-
-SPIKE TICKET
-AI Kill Switch Act
-
-Research → design → implement
-
-durable obligation
-
-EDICT
-Monthly leadership review
-
-AI Compliance News Report
-
 REUSABLE DEFINITIONS
 
 Policy
@@ -328,37 +240,6 @@ Context becomes a frame.
 Guidance informs. Policy governs.
 
 AGENT
-
-REACTIONS
-News → report → leaders
-MONTHLY REVIEW
-
-produce
-
-compliance-control.ts
-
-export control
-
-admit: policy
-
-halt: independent
-
-resume: authorized
-
-Illustrative control candidate
-
-TEST + POLICY GATE
-
-Admission required
-
-DELIVERY
-
-evidence returns to the ticket
-
-PERSISTENT OBJECTS
-types · links · policies · service methods · evidence
-
-Services change. Obligations remain.
 
 Definitions inform the agent. The service independently enforces authority.
 
