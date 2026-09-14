@@ -1,0 +1,26 @@
+[
+  {
+    "id": "smithright2026agireactor-v1.5",
+    "type": "report",
+    "title": "AGI Reactor \u2014 A Safe, Governable Reference Architecture for Enterprise AGI",
+    "author": [
+      {
+        "given": "Ryan",
+        "family": "Smithright"
+      }
+    ],
+    "publisher": "AEGISES",
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          14
+        ]
+      ]
+    },
+    "version": "1.5",
+    "number": "Public design draft 1.5",
+    "URL": "https://aegises.org/agi-reactor/versions/1.5/"
+  }
+]

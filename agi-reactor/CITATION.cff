@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "Cite the specific version of this reference architecture."
+type: software
+title: "AGI Reactor — A Safe, Governable Reference Architecture for Enterprise AGI"
+authors:
+  - family-names: Smithright
+    given-names: Ryan
+version: "1.5"
+date-released: 2026-09-14
+url: "https://aegises.org/agi-reactor/versions/1.5/"
+preferred-citation:
+  type: report
+  title: "AGI Reactor — A Safe, Governable Reference Architecture for Enterprise AGI"
+  authors:
+    - family-names: Smithright
+      given-names: Ryan
+  institution:
+    name: AEGISES
+  year: 2026
+  version: "1.5"
+  url: "https://aegises.org/agi-reactor/versions/1.5/"

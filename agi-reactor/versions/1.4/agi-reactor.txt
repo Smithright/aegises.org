@@ -1,6 +1,6 @@
 Canonical publication: https://aegises.org/agi-reactor/
 Author: Ryan Smithright — ryan@smithright.com
-Public design draft 1.5 — 14 September 2026
+Public design draft 1.4 — 14 September 2026
 This full text is generated from the same public article, including its safety scope, diagram labels, coverage map, technical specification and complete worked RFC.
 
 PUBLIC ARCHITECTURE / 01
@@ -16,9 +16,9 @@ AGI Reactor is a reference design for persistent agents that carry knowledge and
 
 Explore the architecture ↓  (https://aegises.org/agi-reactor/#architecture)
 
- Public design draft 1.5 14 September 2026 Architecture and validation criteria · not a deployment certification
+ Public design draft 1.4 14 September 2026 Architecture and validation criteria · not a deployment certification
 
-01 The whole system
+00 The whole system
 
 ## Policy-governed service orchestration is all you need
 
@@ -87,69 +87,7 @@ Replace execution.
 
 A model invocation can end. A process can fail. A service can change. Identity, commitments, unresolved operations and evidence remain recoverable in service-owned state.
 
-02 Security foundations
-
-Established foundation · architectural application
-
-## A reference monitor’s safety is as strong as its policies.
-
-Enforcement makes a rule binding. Policy determines what that rule permits. A credible safety case must examine both.
-
-James P. Anderson’s Computer Security Technology Planning Study (1972) describes a reference monitor that mediates authorized access between subjects and objects. Its implementation—the reference validation mechanism—must resist tampering, be invoked for every protected reference, and be sufficiently small for comprehensive analysis and testing. These are requirements for a trustworthy enforcement mechanism. [1] (https://aegises.org/agi-reactor/#ref-anderson)
-
-The section title states a necessary limit, not a sufficient condition for safety. A monitor that correctly enforces an overbroad permission will correctly permit the resulting access. Conversely, adequate policy provides no protection along an unmediated path. The safety argument therefore depends on the adequacy of the rules, the integrity of the facts used to evaluate them, and the fidelity of enforcement within a declared threat model.
-
-Saltzer and Schroeder’s principles of fail-safe defaults, complete mediation and least privilege sharpen the design obligation: permission should be explicit, access must be checked, and authority should be limited to what the task requires. [2] (https://aegises.org/agi-reactor/#ref-saltzer-schroeder) AGI Reactor applies this discipline to service invocation, information disclosure, resource allocation and changes to the controls themselves.
-
-Three distinct claims in the Reactor safety argument
-
- | Claim | Required evidence | Failure to challenge
- | Policy adequacy | Trace identified hazards to explicit constraints, exceptions and accountable decisions. | An authorized report submission discloses information to an inappropriate recipient.
- | Decision integrity | Bind authenticated identity, current authority, object revision and policy version to the actual request. | A stale classification or forged attribute turns a prohibited disclosure into an apparent permission.
- | Enforcement fidelity | Exercise every effect path, including adapters, retries, administrative changes and recovery. | A denied operation reaches the target through an alternate credential or a replay.
-
-### Policy must govern its own change.
-
-In this reference design, policies are versioned artifacts with an identified issuer, scope, rationale, tests and activation authority. A proposal becomes active only through an authorized transition. Privilege expansion requires distinct authoring and approval roles. Revocation, emergency suspension and recovery have explicit effect on new admission; already accepted operations retain an accountable reconciliation path.
-
-Model-generated guidance can propose a rule or supply evidence for review. It cannot alter its own grants by entering a context frame. The service boundary evaluates trusted request facts and enforces the applicable policy, budget, revision and operation-custody checks. The policy-enforcement diagram (https://aegises.org/agi-reactor/#authority) specifies that path; the safety case (https://aegises.org/agi-reactor/#safety) identifies the corresponding challenges.
-
-The resulting research obligation is twofold: demonstrate that the system enforces its stated policy, and justify why that policy addresses the hazards claimed. Neither demonstration substitutes for the other.
-
-03 International governance
-
-Institutional proposal · open to public examination
-
-## A formal public ontology is an international governance surface for AGI.
-
-A formal public ontology, governable by the Internet Society, gives institutions a common language in which to specify, contest and test the boundaries of AGI systems.
-
-The proposal is a public semantic contract: stable identifiers and formally specified relationships for principals, actions, resources, authority, obligations and evidence. It makes the objects of governance inspectable across vendors and jurisdictions. W3C’s OWL 2 provides an established basis for ontologies with formally defined meaning, including classes, properties and individuals. [3] (https://aegises.org/agi-reactor/#ref-owl) A vocabulary alone does not grant authority or execute a policy; implementations must bind those meanings to enforceable service contracts.
-
-### Internet Society stewardship: a proposed mandate.
-
-We propose that the Internet Society consider convening and stewarding this work under an explicit, publicly reviewed charter. Its documented approach emphasizes community consultation and technically grounded policy advocacy; it describes itself as an advocate rather than a policy-making body. [4] (https://aegises.org/agi-reactor/#ref-isoc-process) Its multistakeholder framework emphasizes inclusion, transparency, shared responsibility and distributed governance. [5] (https://aegises.org/agi-reactor/#ref-isoc-governance) These provide an institutional starting point. Stewardship of an AGI ontology would require a new mandate accepted by the Society and participating stakeholders; no endorsement or commitment is asserted here.
-
-The charter should give affected communities, civil society, technical implementers, researchers, enterprises and public authorities meaningful participation. It should specify how proposals are admitted, reviewed and decided; how conflicts of interest and funding are disclosed; and how objections, appeals and minority positions remain on the public record. Representation and resources to participate are governance requirements, not consequences of publishing a repository.
-
-Proposed distribution of responsibility
-
- | Layer | Public artifact | Accountable decision
- | Common ontology | Identifiers, definitions, relationships, version history and compatibility rules. | A chartered stewardship process approves changes to shared meanings.
- | Policy profiles | Named rules, intended scope, hazard rationale, exceptions and conformance cases. | The identified jurisdiction, sector or adopting institution authorizes its profile.
- | Operational adoption | Declared ontology/profile versions, service mappings and scoped assurance evidence. | The operator admits an exact release and remains responsible for enforcement.
-
-A shared core should support explicit jurisdictional and sectoral extensions. Conflicting requirements must be identified and resolved through a declared authority and conflict procedure; a semantic merge cannot settle a normative disagreement. Stewardship of definitions would confer no universal grant over deployments. Publication of a new ontology or policy profile would not automatically activate it in a running system.
-
-### Make public commitments mechanically testable.
-
-An adoption record should identify the ontology version, applicable profile, issuer, authority, effective interval and implementation mapping. A protected invocation should retain those references with its policy decision and outcome. Changes to a term’s meaning must be reviewed as potentially security-relevant changes: expanding a resource class can expand a grant without changing the policy’s text.
-
-The first useful milestone is deliberately bounded: publish a minimal vocabulary and one disclosure-policy profile; implement it independently in two service stacks; then run shared cases for permitted disclosure, denial, conflicting scope, revocation and stale evidence. Agreement on an intended answer is a testable interoperability claim. An inconclusive safety result must remain inconclusive in the public record. Public schemas and aggregate conformance evidence can be inspected while sensitive operational records remain access-controlled.
-
-The governance surface connects public reasons to typed rules, typed rules to local adoption, and adoption to inspectable enforcement. Its legitimacy rests on accountable institutions; its technical value rests on demonstrable conformance.
-
-04 State & meaning
+01 State & meaning
 
 ## A small vocabulary, with real semantics.
 
@@ -248,7 +186,7 @@ An attributed communication. Chat, commands and committed events share transport
 
 One transactional state service owns object changes and an outbox. Consumers deduplicate into an inbox and commit before acknowledging. World State, indexes and embeddings are derived views. PostgreSQL is the default starting point; blob storage remains behind service references.
 
-05 Work & concurrency
+02 Work & concurrency
 
 ## A ticket makes an obligation durable.
 
@@ -329,7 +267,7 @@ The scheduler admits work against capacity, priority and budget. Routines and re
 
 One service contract, several entry points. CLI, UI, routines and event subscribers invoke the same typed operations. A reaction binding names its event type, conditions, input mapping, operation, version and accountable owner. One event may produce several legitimate reactions. Deduplication distinguishes the event and binding while preserving existing operation identities when a binding changes.
 
-06 Cognition & learning
+03 Cognition & learning
 
 ## Intelligence returns with its place intact.
 
@@ -384,7 +322,7 @@ Skills, memory procedures and model routes evolve through representative evaluat
 HUMAN + AGENT CONTROL
 The loop may wait, ask, stop or resume. Budget limits are mechanically enforced. A returning agent recovers obligations and uncertainty before admitting another effect.
 
-07 Authority & effects
+04 Authority & effects
 
 ## Every consequential crossing has a boundary.
 
@@ -464,7 +402,7 @@ Record results and inspect effects. A lost reply triggers reconciliation of the 
 
 The operation ID binds tenant, caller, method, target and argument digest. A changed binding is rejected. Target idempotency and outcome queries are used where available. When neither can resolve a sent request, the outcome remains UNKNOWN and automatic replay stops. A successor reconciles under its own scoped authority while preserving the original caller and intent; custody transfers are separately recorded. Policy, identity, budgets and release controls require separate administrative capabilities.
 
-08 Runtime & evolution
+05 Runtime & evolution
 
 ## Replace services. Preserve the system.
 
@@ -519,7 +457,7 @@ Failed/stale canary → stop promotion Breached criteria → hot fallback Expand
 VIABLE FIRST / SCALE WHEN THE OUTAGE BUDGET REQUIRES IT
 One recoverable host is not host high availability. Prove backups and restore. Broker, database and host maintenance remain separate operational responsibilities.
 
-09 The safety case
+06 The safety case
 
 ## Safety must be inspectable.
 
@@ -542,7 +480,7 @@ Design invariant → enforcing mechanism → validation specimen → evidence st
 
 “Designed” means the contract and challenge are specified here. This publication does not supply end-to-end runtime test receipts. A future verified claim must link the exact implementation, environment, specimen, result and date. Documentation alone is not certification.
 
-10 The viability test
+07 The viability test
 
 ## Prove the journey, including the interruption.
 
@@ -639,7 +577,7 @@ Task quality · latency · total cost · recovery time · duplicate effects · r
 PUBLIC ACCEPTANCE / aegises.org/agi-reactor
 An outside human or AI can reconstruct the system, its safety contracts and its limits.
 
-11 Enterprise / coverage map
+08 Enterprise / coverage map
 
 ## Complete without multiplying primitives.
 
@@ -658,7 +596,7 @@ Orientation vocabulary mapped into the reference architecture; no account record
  | Improvement & assurance | Code Repos · Testing · Gauntlets · Observability · FinOps → Dynamic Refactoring · AGI Reactor Engineering | Exact artifacts, independent challenge, measured outcomes, safe change and recovery. Contract ↗ (https://aegises.org/agi-reactor/#validation)
  | Research & participation | Research Labs · Aegises.org · PanSigna.org · Community · Civic Engagement · Careers · Partners · Investors | Research and participation connect to owned work; these are organizational surfaces, not kernel primitives. Contract ↗ (https://aegises.org/agi-reactor/#scope)
 
-12 RFC-001 / Executable failure specimen
+08A RFC-001 / Executable failure specimen
 
 ## One effect. Two possible recoveries.
 
@@ -788,7 +726,7 @@ Zero observed duplicates is necessary for this specimen to pass. It is not an ex
 
 The backup in this specimen is taken after the target effect, while the controller still records UNKNOWN. Restore from a backup predating the operation, concurrent admission and production barrier release remain separate qualification cases. Zero observed duplicates in this specimen is not a universal exactly-once guarantee.
 
-13 Implementation specification
+09 Implementation specification
 
 ## The decisions behind the diagram.
 
@@ -922,31 +860,13 @@ Measure completion quality, latency, total cost, recovery time, duplicate effect
 - Evaluate learning and usefulness as seriously as delivery and authorization.
 - Make continuing, stopping and recovering understandable to both human and agent.
 
-14 Basis & revision
+10 Basis & revision
 
 ## An architecture open to examination.
 
 Author: Ryan Smithright (ryan@smithright.com). Developed from his architecture work and World State vocabulary, with architecture development, visualization and implementation assistance from Astra / Codex. This revision includes a focused independent AI critique of the design; that is architectural review, not security certification or runtime verification.
 
 The “all you need” formulation proposes a smaller coordinating model: governed service contracts compose the system and its evolution. In the architectural simplification tradition of Attention Is All You Need (https://arxiv.org/abs/1706.03762), the burden is a concrete construction and experiments that can challenge it.
-
-### Foundational references
-
-- James P. Anderson. Computer Security Technology Planning Study, Volume I. ESD-TR-73-51, October 1972, §§3.2.1–3.2.2, pp. 8–10; §3.7, p. 13. Electronic Systems Division, AFSC. Original report, NIST archive. Primary source ↗ (https://csrc.nist.gov/files/pubs/conference/1998/10/08/proceedings-of-the-21st-nissc-1998/final/docs/early-cs-papers/ande72a.pdf#page=16)
-- Jerome H. Saltzer and Michael D. Schroeder. “The Protection of Information in Computer Systems.” Proceedings of the IEEE 63(9), 1975, pp. 1278–1308, §I.A.3. Author-hosted text. Primary source ↗ (https://web.mit.edu/saltzer/www/publications/protection/Basic.html)
-- W3C OWL Working Group. OWL 2 Web Ontology Language: Document Overview, Second Edition. W3C Recommendation, 11 December 2012, §§2.1–2.3. Primary source ↗ (https://www.w3.org/TR/2012/REC-owl2-overview-20121211/)
-- Internet Society. Policy Development Process at the Internet Society. 25 May 2018; updated September 2025. “Policy Development Approach” and “Consultation approach.” Accessed 14 September 2026. Primary source ↗ (https://www.internetsociety.org/about-internet-society/policy-development-process/)
-- Internet Society. Internet Governance: Why the Multistakeholder Approach Works. 26 April 2016. Executive summary and attributes of successful decision-making. Accessed 14 September 2026. Primary source ↗ (https://www.internetsociety.org/resources/doc/2016/internet-governance-why-the-multistakeholder-approach-works/)
-
-### Cite this publication
-
-Smithright, Ryan. AGI Reactor — A Safe, Governable Reference Architecture for Enterprise AGI. AEGISES, public design draft 1.5, 14 September 2026. Sections 02–03: security foundations and the public ontology proposal.
-
-Version 1.5 permalink ↗ (https://aegises.org/agi-reactor/versions/1.5/) preserves this edition. Cite the version and section anchor so subsequent revisions do not change the referenced argument. This is an authored technical-policy reference design; it has not undergone journal peer review.
-
-BibTeX ↓ (https://aegises.org/agi-reactor/citation.bib)CSL-JSON ↓ (https://aegises.org/agi-reactor/citation.json)Citation File Format ↓ (https://aegises.org/agi-reactor/CITATION.cff)Foundational references ↑ (https://aegises.org/agi-reactor/#academic-references)
-
-### Architecture and implementation sources
 
 - NATS: acknowledgments and redelivery (https://docs.nats.io/learn/jetstream/acknowledgment) — transport behavior and failure semantics.
 - NATS: pull consumers (https://docs.nats.io/learn/jetstream/pull-consumers) — bounded delivery and worker consumption.
@@ -955,7 +875,7 @@ BibTeX ↓ (https://aegises.org/agi-reactor/citation.bib)CSL-JSON ↓ (https://a
 
 The application contracts and safety criteria are proposed architecture. NATS transport guarantees do not establish external-effect idempotency, object authorization or AGI capability.
 
-Draft 1.5 adds the reference-monitor foundation, a public-ontology governance proposal and versioned citation records. V4’s four relationship diagrams remain unchanged. Read preserved draft 1.4 ↗ (https://aegises.org/agi-reactor/versions/1.4/) · Read preserved public draft 1.3 ↗ (https://aegises.org/agi-reactor/versions/1.3/) · Download the complete V4 whiteboard ↓ (https://aegises.org/agi-reactor/assets/architecture.excalidraw)
+V4 adds four relationship diagrams. Read preserved public draft 1.3 ↗ (https://aegises.org/agi-reactor/versions/1.3/) · Download the complete V4 whiteboard ↓ (https://aegises.org/agi-reactor/assets/architecture.excalidraw)
 
 For an independent reader
 

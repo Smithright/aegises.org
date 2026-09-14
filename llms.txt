@@ -6,7 +6,7 @@
 
 Author: Ryan Smithright — [Qthonic Labs](https://qthonic.com/) — ryan@smithright.com.
 AGI Reactor — A Safe, Governable Reference Architecture for Enterprise AGI.
-Public design draft 1.4, 14 September 2026. Safety claims are scoped to the safeguards and trust assumptions specified in the architecture; this is not certification of a deployed system or a claim of general alignment.
+Public design draft 1.5, 14 September 2026. Safety claims are scoped to the safeguards and trust assumptions specified in the architecture; this is not certification of a deployed system or a claim of general alignment.
 
 - [Canonical article](https://aegises.org/agi-reactor/): Complete static HTML, interactive system map, safety case, coverage map and specification.
 - [Complete plain-text article](https://aegises.org/agi-reactor/agi-reactor.txt): Generated from the same article, including diagram labels and the complete worked RFC; readable without JavaScript.

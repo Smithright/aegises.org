@@ -6,7 +6,7 @@ Canonical publication: https://aegises.org/agi-reactor/
 
 Complete article, including the safety case, coverage map and worked RFC: https://aegises.org/agi-reactor/agi-reactor.txt
 
-Public design draft 1.5 · 14 September 2026. Planned architecture, not a deployment certification.
+Public design draft 1.4 · 14 September 2026. Planned architecture, not a deployment certification.
 
 ## Architectural judgment
 
@@ -140,81 +140,6 @@ Primary transport reference: https://docs.nats.io/learn/jetstream/acknowledgment
 ## Executable reference specimen
 
 [RFC-001: accepted effect, worker death and an UNKNOWN backup](https://aegises.org/agi-reactor/conformance/RFC-001.md) specifies the worked failure case, operator contract and executable falsification test. The reference guard uses local HTTP and SQLite; it does not qualify the production NATS/PostgreSQL runtime.
-
-
-02 Security foundations
-
-Established foundation · architectural application
-
-## A reference monitor’s safety is as strong as its policies.
-
-Enforcement makes a rule binding. Policy determines what that rule permits. A credible safety case must examine both.
-
-James P. Anderson’s Computer Security Technology Planning Study (1972) describes a reference monitor that mediates authorized access between subjects and objects. Its implementation—the reference validation mechanism—must resist tampering, be invoked for every protected reference, and be sufficiently small for comprehensive analysis and testing. These are requirements for a trustworthy enforcement mechanism. [1] (https://aegises.org/agi-reactor/#ref-anderson)
-
-The section title states a necessary limit, not a sufficient condition for safety. A monitor that correctly enforces an overbroad permission will correctly permit the resulting access. Conversely, adequate policy provides no protection along an unmediated path. The safety argument therefore depends on the adequacy of the rules, the integrity of the facts used to evaluate them, and the fidelity of enforcement within a declared threat model.
-
-Saltzer and Schroeder’s principles of fail-safe defaults, complete mediation and least privilege sharpen the design obligation: permission should be explicit, access must be checked, and authority should be limited to what the task requires. [2] (https://aegises.org/agi-reactor/#ref-saltzer-schroeder) AGI Reactor applies this discipline to service invocation, information disclosure, resource allocation and changes to the controls themselves.
-
-Three distinct claims in the Reactor safety argument
-
- | Claim | Required evidence | Failure to challenge
- | Policy adequacy | Trace identified hazards to explicit constraints, exceptions and accountable decisions. | An authorized report submission discloses information to an inappropriate recipient.
- | Decision integrity | Bind authenticated identity, current authority, object revision and policy version to the actual request. | A stale classification or forged attribute turns a prohibited disclosure into an apparent permission.
- | Enforcement fidelity | Exercise every effect path, including adapters, retries, administrative changes and recovery. | A denied operation reaches the target through an alternate credential or a replay.
-
-### Policy must govern its own change.
-
-In this reference design, policies are versioned artifacts with an identified issuer, scope, rationale, tests and activation authority. A proposal becomes active only through an authorized transition. Privilege expansion requires distinct authoring and approval roles. Revocation, emergency suspension and recovery have explicit effect on new admission; already accepted operations retain an accountable reconciliation path.
-
-Model-generated guidance can propose a rule or supply evidence for review. It cannot alter its own grants by entering a context frame. The service boundary evaluates trusted request facts and enforces the applicable policy, budget, revision and operation-custody checks. The policy-enforcement diagram (https://aegises.org/agi-reactor/#authority) specifies that path; the safety case (https://aegises.org/agi-reactor/#safety) identifies the corresponding challenges.
-
-The resulting research obligation is twofold: demonstrate that the system enforces its stated policy, and justify why that policy addresses the hazards claimed. Neither demonstration substitutes for the other.
-
-03 International governance
-
-Institutional proposal · open to public examination
-
-## A formal public ontology is an international governance surface for AGI.
-
-A formal public ontology, governable by the Internet Society, gives institutions a common language in which to specify, contest and test the boundaries of AGI systems.
-
-The proposal is a public semantic contract: stable identifiers and formally specified relationships for principals, actions, resources, authority, obligations and evidence. It makes the objects of governance inspectable across vendors and jurisdictions. W3C’s OWL 2 provides an established basis for ontologies with formally defined meaning, including classes, properties and individuals. [3] (https://aegises.org/agi-reactor/#ref-owl) A vocabulary alone does not grant authority or execute a policy; implementations must bind those meanings to enforceable service contracts.
-
-### Internet Society stewardship: a proposed mandate.
-
-We propose that the Internet Society consider convening and stewarding this work under an explicit, publicly reviewed charter. Its documented approach emphasizes community consultation and technically grounded policy advocacy; it describes itself as an advocate rather than a policy-making body. [4] (https://aegises.org/agi-reactor/#ref-isoc-process) Its multistakeholder framework emphasizes inclusion, transparency, shared responsibility and distributed governance. [5] (https://aegises.org/agi-reactor/#ref-isoc-governance) These provide an institutional starting point. Stewardship of an AGI ontology would require a new mandate accepted by the Society and participating stakeholders; no endorsement or commitment is asserted here.
-
-The charter should give affected communities, civil society, technical implementers, researchers, enterprises and public authorities meaningful participation. It should specify how proposals are admitted, reviewed and decided; how conflicts of interest and funding are disclosed; and how objections, appeals and minority positions remain on the public record. Representation and resources to participate are governance requirements, not consequences of publishing a repository.
-
-Proposed distribution of responsibility
-
- | Layer | Public artifact | Accountable decision
- | Common ontology | Identifiers, definitions, relationships, version history and compatibility rules. | A chartered stewardship process approves changes to shared meanings.
- | Policy profiles | Named rules, intended scope, hazard rationale, exceptions and conformance cases. | The identified jurisdiction, sector or adopting institution authorizes its profile.
- | Operational adoption | Declared ontology/profile versions, service mappings and scoped assurance evidence. | The operator admits an exact release and remains responsible for enforcement.
-
-A shared core should support explicit jurisdictional and sectoral extensions. Conflicting requirements must be identified and resolved through a declared authority and conflict procedure; a semantic merge cannot settle a normative disagreement. Stewardship of definitions would confer no universal grant over deployments. Publication of a new ontology or policy profile would not automatically activate it in a running system.
-
-### Make public commitments mechanically testable.
-
-An adoption record should identify the ontology version, applicable profile, issuer, authority, effective interval and implementation mapping. A protected invocation should retain those references with its policy decision and outcome. Changes to a term’s meaning must be reviewed as potentially security-relevant changes: expanding a resource class can expand a grant without changing the policy’s text.
-
-The first useful milestone is deliberately bounded: publish a minimal vocabulary and one disclosure-policy profile; implement it independently in two service stacks; then run shared cases for permitted disclosure, denial, conflicting scope, revocation and stale evidence. Agreement on an intended answer is a testable interoperability claim. An inconclusive safety result must remain inconclusive in the public record. Public schemas and aggregate conformance evidence can be inspected while sensitive operational records remain access-controlled.
-
-The governance surface connects public reasons to typed rules, typed rules to local adoption, and adoption to inspectable enforcement. Its legitimacy rests on accountable institutions; its technical value rests on demonstrable conformance.
-
-
-### Foundational references
-
-1. James P. Anderson. Computer Security Technology Planning Study, Volume I. ESD-TR-73-51, October 1972, §§3.2.1–3.2.2, pp. 8–10; §3.7, p. 13. Electronic Systems Division, AFSC. Original report, NIST archive. https://csrc.nist.gov/files/pubs/conference/1998/10/08/proceedings-of-the-21st-nissc-1998/final/docs/early-cs-papers/ande72a.pdf#page=16
-2. Jerome H. Saltzer and Michael D. Schroeder. “The Protection of Information in Computer Systems.” Proceedings of the IEEE 63(9), 1975, pp. 1278–1308, §I.A.3. Author-hosted text. https://web.mit.edu/saltzer/www/publications/protection/Basic.html
-3. W3C OWL Working Group. OWL 2 Web Ontology Language: Document Overview, Second Edition. W3C Recommendation, 11 December 2012, §§2.1–2.3. https://www.w3.org/TR/2012/REC-owl2-overview-20121211/
-4. Internet Society. Policy Development Process at the Internet Society. 25 May 2018; updated September 2025. “Policy Development Approach” and “Consultation approach.” Accessed 14 September 2026. https://www.internetsociety.org/about-internet-society/policy-development-process/
-5. Internet Society. Internet Governance: Why the Multistakeholder Approach Works. 26 April 2016. Executive summary and attributes of successful decision-making. Accessed 14 September 2026. https://www.internetsociety.org/resources/doc/2016/internet-governance-why-the-multistakeholder-approach-works/
-
-Versioned publication: https://aegises.org/agi-reactor/versions/1.5/
-Citation records: https://aegises.org/agi-reactor/citation.bib
 
 ## Policy-governed service orchestration is all you need
 
