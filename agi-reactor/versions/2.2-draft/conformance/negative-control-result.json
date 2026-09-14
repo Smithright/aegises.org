@@ -1,0 +1,21 @@
+{
+  "specimen": "RFC-001",
+  "implementation": "isolated-reference-guard",
+  "mode": "unsafe-reset-on-restore",
+  "worker_exit": 86,
+  "target_effects_before_restore": 1,
+  "snapshot_state": "UNKNOWN",
+  "before_restore_retry": "OUTCOME_UNKNOWN",
+  "current_epoch": 2,
+  "old_worker": "STALE_EPOCH",
+  "changed_arguments": "INTENT_MISMATCH",
+  "replacement_operation": "STEP_ALREADY_HAS_OPERATION",
+  "same_operation": "SUCCEEDED",
+  "same_without_global_hold": "NOT_DISPATCHABLE",
+  "replacement_without_global_hold": "STEP_ALREADY_HAS_OPERATION",
+  "operation_state": "SUCCEEDED",
+  "ticket_state": "NEEDS_RECONCILIATION",
+  "target_effect_count": 2,
+  "duplicate_effect_count": 1,
+  "scope": "real loopback HTTP and process exit; SQLite reference model; no production qualification"
+}
