@@ -10,19 +10,19 @@ This repository contains the **official landing page** for AEGISES.org, built wi
 
 The homepage organizes public research around governance, accountable systems and enforceable boundaries. Two featured publications lead into four technical dossiers, the initiative's approach, and participation links. The page is complete without JavaScript and uses local assets and system fonts. See [homepage design and validation notes](home/research/README.md).
 
-## AGI Reactor
+## Reactor
 
-[AGI Reactor: A Governable Reference Architecture for Enterprise AGI](https://aegises.org/agi-reactor/)
+[Reactor: A Governable Reference Architecture for Enterprise AI Agent Orchestration](https://aegises.org/agi-reactor/)
 
 **Author: Ryan Smithright** — [Qthonic Labs](https://qthonic.com/) — [ryan@smithright.com](mailto:ryan@smithright.com).
 
 A public reference design for persistent agents, durable obligations, explicit authority, bounded resources and recoverable effects. The proposed controls require implementation and validation; this is not certification of a deployed system or a claim of general alignment.
 
-- [Complete plain-text article](https://aegises.org/agi-reactor/agi-reactor.txt)
+- [Complete plain-text article](https://aegises.org/agi-reactor/reactor.txt)
 - [Technical specification](https://aegises.org/agi-reactor/architecture.md)
 
 ```sh
-curl -fsSL https://aegises.org/agi-reactor/agi-reactor.txt
+curl -fsSL https://aegises.org/agi-reactor/reactor.txt
 ```
 
 The canonical page includes all substantive content in its initial HTML. The text edition is generated from the same article. Discovery is supported by a homepage link, canonical and author metadata, TechArticle structured data, a sitemap, permissive robots.txt and an llms.txt reader index. These mechanisms aid access and discovery; they do not establish search indexing or training-dataset inclusion.

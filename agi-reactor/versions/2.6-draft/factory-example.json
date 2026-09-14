@@ -1,0 +1,28 @@
+{
+  "kind": "illustrative-architecture-output",
+  "scenario": "AI Kill Switch Act compliance spike and monthly leadership review",
+  "status": "Proposed design; not legal advice, verified compliance or a live schedule",
+  "source": "https://www.govinfo.gov/app/details/BILLS-119hr9917ih",
+  "spike": {
+    "intent": "Design and implement Compliance for the AI Kill Switch Act.",
+    "acceptance": [
+      "Verify source, status, applicability and requirements",
+      "Map requirements to owned controls",
+      "Implement candidate and qualification specimens",
+      "Admit release through policy and hot-fallback stages"
+    ]
+  },
+  "edict": {
+    "intent": "And moving forward, get the right leaders together monthly to review your AI Compliance News Report.",
+    "cadence": "monthly",
+    "proposed_roles": [
+      "Legal",
+      "Security",
+      "Engineering",
+      "Accountable AI owner"
+    ],
+    "decision_record": "Report sources, findings, owner, decisions and linked follow-up tickets",
+    "activation": "Owner, actual participants and schedule require governed adoption"
+  },
+  "code": "// Illustrative contract: implementation and qualification required.\nexport interface ComplianceControl {\n  suspend(request: {\n    operationId: string;\n    target: string;\n    expectedRevision: number;\n    reasonRef: string;\n  }): Promise<{ status: \"refused\" | \"accepted\" | \"unknown\"; evidenceRef: string }>;\n  resume(request: {\n    operationId: string;\n    target: string;\n    approvalRef: string;\n    expectedRevision: number;\n  }): Promise<{ status: \"refused\" | \"accepted\" | \"unknown\"; evidenceRef: string }>;\n}\n// The owning service supplies authentication, policy evaluation,\n// durable operation custody and independent enforcement.\n"
+}

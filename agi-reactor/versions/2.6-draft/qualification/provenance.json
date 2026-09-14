@@ -1,0 +1,15 @@
+{
+  "source_repository": "https://github.com/Smithright/qthonic",
+  "source_revision": "7544fd7ad7c6be5221e1966c4c67a73ad1bacabe",
+  "source_path": "services/tickets/assignment.py",
+  "source_sha256": "88b757bcd77f615c3499ad78f9a370faf24dadc0b403b9afbd42a87ee09cac07",
+  "extracted_functions": [
+    "_int",
+    "lease_of",
+    "fence_verdict",
+    "grant"
+  ],
+  "extracted_sha256": "471daacd98e6448460785aa4cd4d22ed642483208f09dcbba443da519db3161e",
+  "extraction": "Function text preserved; import and default TTL supplied locally. Specimen always passes explicit TTL. This is selected decision code, not the complete Qthonic gateway.",
+  "new_code": "kernel.py and test_kernel.py are a local qualification composition, not deployed Qthonic services."
+}

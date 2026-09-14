@@ -5,7 +5,7 @@ Editorial redesign, September 14, 2026. The page presents the existing public re
 ## Design decisions
 
 - Institutional identity first: Intelligence with Integrity, the initiative's established purpose, and three connected research questions.
-- Two featured publications: AGI Reactor and the State AI Legislative Maturity Atlas. Their descriptions distinguish a reference design from a representative research corpus.
+- Two featured publications: Reactor and the State AI Legislative Maturity Atlas. Their descriptions distinguish a reference design from a representative research corpus.
 - Four technical dossiers in a compact index: Typed Policy Reactor, Sovereign Compute Architecture, the CHERI policy ontology, and the CHERI–seL4–NixOS gap map.
 - The approach and participation sections retain earned autonomy, explicit authority, inspectable evidence, the existing contact address and RFC roadmap.
 - Paper, navy and teal maintain continuity with the legislative atlas. Typography and rules establish hierarchy; motion is limited to link feedback and respects reduced-motion settings.
