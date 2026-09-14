@@ -309,8 +309,8 @@ Receipt, failure or UNKNOWN
 has 0..many
 One assignee does not lock shared resources.
 Concurrent tickets still require resource-level revision checks or transactions.
-An operation binds tenant, caller, method, target
-and canonical argument digest. Takeover cannot change them.
+An operation binds tenant, original caller, method
+target and canonical argument digest. Takeover cannot change them.
 
 One source can yield both edicts and tickets. Policy revisions and skill revisions follow distinct paths. An agent type classifies an identity; it is not the running process. The control/state service owns ticket, attempt and operation records in the initial design. Each resource owner enforces its own concurrency contract.
 
