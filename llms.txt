@@ -28,7 +28,7 @@ Beyond the Bill Count — AEGISES research edition 1.0, observed September 14, 2
 
 - [Sovereign Compute Architecture](https://aegises.org/architecture/)
 - [Public Policy Ontology for CHERI](https://aegises.org/cheri/)
-- [PanSigna](https://aegises.org/pansigna/)
+- [Typed Policy Reactor](https://aegises.org/pansigna/)
 - [CHERI-seL4-NixOS](https://aegises.org/gap-map/)
 
 ## Visual specification

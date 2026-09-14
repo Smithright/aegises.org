@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PanSigna — Typed Policy Reactor Monitor-Compiler</title>
+<title>Typed Policy Reactor — Monitor-Compiler</title>
 <style>
   :root {
     color-scheme: light dark;
@@ -98,8 +98,7 @@
     font-weight: 680; font-size: clamp(38px, 6.4vw, 76px); line-height: 0.98;
     letter-spacing: -0.028em; margin: 0 0 8px; text-wrap: balance;
   }
-  h1 .pan { color: var(--ink); }
-  h1 .sigwd { color: var(--seal); }
+  h1 .reactor-name { color: var(--seal); }
   .subtitle {
     font-family: var(--sans); font-weight: 500; font-size: clamp(17px, 2.1vw, 22px);
     letter-spacing: -0.01em; color: var(--muted); margin: 0 0 26px;
@@ -286,12 +285,12 @@
 </style>
 </head>
 <body>
-<h2 class="sr-only">PanSigna: the architecture of a Typed Policy Reactor Monitor-Compiler — a capability-secured reference monitor that compiles typed, default-deny policies down a multi-level IR to CHERI, seL4, WASM, and inline enforcement targets.</h2>
+<h2 class="sr-only">Typed Policy Reactor: the architecture of a monitor-compiler — a capability-secured reference monitor that compiles typed, default-deny policies down a multi-level IR to CHERI, seL4, WASM, and inline enforcement targets.</h2>
 
 <header class="hero">
   <div class="wrap hero-inner">
     <div class="seal-row">
-      <svg class="sigil" width="60" height="60" viewBox="0 0 60 60" role="img" aria-label="PanSigna sigil">
+      <svg class="sigil" width="60" height="60" viewBox="0 0 60 60" role="img" aria-label="Typed Policy Reactor sigil">
         <circle cx="30" cy="30" r="28" fill="none" stroke="var(--seal)" stroke-width="1.4"/>
         <circle cx="30" cy="30" r="22" fill="none" stroke="var(--seal)" stroke-width="0.8" opacity="0.5"/>
         <path d="M30 8 L30 52 M8 30 L52 30 M14.5 14.5 L45.5 45.5 M45.5 14.5 L14.5 45.5" stroke="var(--seal)" stroke-width="0.7" opacity="0.4"/>
@@ -304,8 +303,8 @@
       </div>
     </div>
 
-    <h1><span class="pan">Pan</span><span class="sigwd">Signa</span></h1>
-    <p class="subtitle">A Typed Policy Reactor Monitor-Compiler</p>
+    <h1>Typed Policy <span class="reactor-name">Reactor</span></h1>
+    <p class="subtitle">A capability-secured monitor-compiler</p>
 
     <p class="thesis">One reference monitor for a whole machine — where authority is a <span class="seal-t">typed, default-deny policy</span> that is not <em>interpreted</em> at each call but <b>compiled</b>, once, down a multi-level IR into whatever can enforce it fastest: a CHERI capability, an seL4 kernel object, a WASM import table, or a residual inline guard. <b>The decision is proved equal to the policy; the enforcement runs at the speed of the silicon.</b></p>
 
@@ -386,7 +385,7 @@
           </tr>
           <tr>
             <td><span class="guar">Policy semantics are sound</span></td>
-            <td class="mech">Authorizer &amp; validator proved in Lean (default-deny, deny-overrides, order-independent) — of the <em>model</em>; the Rust engine is differential-tested against it. PanSigna mandates schema-validated policies so Cedar's skip-on-error can't drop a <code>forbid</code>.</td>
+            <td class="mech">Authorizer &amp; validator proved in Lean (default-deny, deny-overrides, order-independent) — of the <em>model</em>; the Rust engine is differential-tested against it. Typed Policy Reactor mandates schema-validated policies so Cedar's skip-on-error can't drop a <code>forbid</code>.</td>
             <td class="shoulder">Cedar / Lean (cedar-spec)</td>
             <td><span class="badge b-proven">model-proved</span></td>
           </tr>
@@ -422,7 +421,7 @@
   <!-- §3 performance thesis -->
   <section id="performance">
     <div class="sechead"><span class="secno">§3</span><h2>Compile, don't interpret</h2></div>
-    <p class="lede">Every policy engine in production pays a tax on the hot path: it <b>interprets</b> a rule set on each request. PanSigna's thesis is that a reference monitor is a <b>compiler target</b> — the policy is fixed long before the call, so the decision can be <b>lowered ahead of time</b> into a primitive the substrate enforces for free.</p>
+    <p class="lede">Every policy engine in production pays a tax on the hot path: it <b>interprets</b> a rule set on each request. Typed Policy Reactor's thesis is that a reference monitor is a <b>compiler target</b> — the policy is fixed long before the call, so the decision can be <b>lowered ahead of time</b> into a primitive the substrate enforces for free.</p>
     <div class="contrast">
       <div class="old">
         <span class="tag">The interpreted monitor — everyone else</span>
@@ -430,7 +429,7 @@
         <p>Request arrives → marshal context → evaluate rule tree in a policy VM → return allow/deny. Predictable overhead on <em>every</em> access; the engine is on the critical path forever, and its correctness is re-litigated at runtime.</p>
       </div>
       <div class="new">
-        <span class="tag">The compiled monitor — PanSigna</span>
+        <span class="tag">The compiled monitor — Typed Policy Reactor</span>
         <span class="big">Decision cost paid once, at compile</span>
         <p>Policy compiled per sha256 into a CHERI capability set / seL4 CNode / WASM import table. At call time the substrate <em>is</em> the check — a bounds test in silicon, a cap lookup in the kernel. Zero policy-VM on the hot path.</p>
       </div>
@@ -571,7 +570,7 @@
         <div class="depcat-b">
           <div class="depitem">
             <div class="pick"><div class="pickname">Rust-native SSA IR</div><div class="over">MLIR <em>discipline</em>, not <s>melior</s></div></div>
-            <div class="why">Progressive lowering through dialects is the proven shape for "one source, many backends" — but PanSigna's value <em>is</em> custom dialects with verified rewrites, exactly what <code>melior</code> can't express (new dialects still need C++ TableGen behind an alpha C API). So we take MLIR's <b>method</b> and build the IR in Rust (<code>pliron</code>-class base), keeping MLIR-compatible textual syntax. <span class="lane research">research</span>
+            <div class="why">Progressive lowering through dialects is the proven shape for "one source, many backends" — but Typed Policy Reactor's value <em>is</em> custom dialects with verified rewrites, exactly what <code>melior</code> can't express (new dialects still need C++ TableGen behind an alpha C API). So we take MLIR's <b>method</b> and build the IR in Rust (<code>pliron</code>-class base), keeping MLIR-compatible textual syntax. <span class="lane research">research</span>
               <div class="trade"><span class="lab">Trade</span> we forfeit MLIR's mature pass manager and upstream lowerings, and take on a pre-1.0 IR core to own — bought back as a cargo-only build (clean flake, plausibly self-hostable on CHERI-seL4) and a Lean semantics that binds to the SSA calculus, not a C++ artifact. Precedent: NVIDIA's cuda-oxide (2026), lean-mlir.</div>
             </div>
           </div>
@@ -596,7 +595,7 @@
           <div class="depitem">
             <div class="pick"><div class="pickname">CHERI · seL4</div><div class="over">the two proved floors</div></div>
             <div class="why">Hardware referential safety and a formally verified kernel are the <b>two strongest enforcement primitives in existence</b> — and the reason this project belongs to this audience. Policy lowers <em>into</em> them. <span class="lane prod">production</span>
-              <div class="trade"><span class="lab">Trade</span> CHERI×hypervisor semantics are still draft (v1.0 excludes the hyp chapter) — an area PanSigna's substrate work feeds back into the spec.</div>
+              <div class="trade"><span class="lab">Trade</span> CHERI×hypervisor semantics are still draft (v1.0 excludes the hyp chapter) — an area Typed Policy Reactor's substrate work feeds back into the spec.</div>
             </div>
           </div>
           <div class="depitem">
@@ -634,7 +633,7 @@
     <div class="sechead"><span class="secno">§6</span><h2>The repository, as governed structure</h2></div>
     <p class="lede">The layout <b>enacts the reference monitor</b>: a small trusted <span style="color:var(--proof);font-weight:600">core</span> that alone touches authority, a ring of <span style="color:var(--muted);font-weight:600">perimeter</span> edges that are pure <code>invoke</code> clients, and a <span style="color:var(--deny);font-weight:600">compile-time guard</span> that fails the build if the ring ever reaches past it. You can read the security property off the directory tree.</p>
     <div class="treewrap">
-      <div class="tree"><span class="dir">pansigna/</span>
+      <div class="tree"><span class="dir">typed-policy-reactor/</span>
 ├─ <span class="dir">flake.nix</span>                 <span class="cmt"># the reproducibility spine — one command</span>
 ├─ <span class="guard">build.rs</span>                  <span class="cmt"># DEFAULT-DENY GUARD · perimeter→core = build fail</span>
 │
@@ -707,7 +706,7 @@
 
   <footer>
     <div class="foot">
-      <span>PanSigna · Typed Policy Reactor Monitor-Compiler</span>
+      <span>Typed Policy Reactor · Monitor-Compiler</span>
       <span>everything a typed thing · through one door · default-deny</span>
     </div>
   </footer>
