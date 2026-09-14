@@ -5,3 +5,14 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media print{body{background:white;font-size:11px}.section-nav,.map-toolbar,.primary,.skip{display:none}.hero,.chapter{padding:25px 0}.hero-grid,.chapter-head{gap:25px}.hero h1{font-size:50px}h2{font-size:30px}.hero-statement{font-size:26px}.masthead,footer{padding:15px 0}.publication{font-size:9px}#map-viewport{max-height:none!important}#map-viewport svg{width:100%!important}.table-scroll{overflow:visible}table{min-width:0;font-size:10px}th,td{padding:10px 8px 10px 0}a{color:inherit}.diagram-detail,.full-spec{break-inside:auto}.chapter-head,.triptych article,.trial li{break-inside:avoid}.prose{padding:15px 0;max-width:none;font-size:11px}}
 .rfc-links{display:flex;flex-wrap:wrap;gap:14px 26px;font-size:13px;margin:25px 0}.prose pre{background:#142b38;color:#e7eeeb;padding:22px;overflow:auto;line-height:1.65;font-size:13px;border-radius:3px}.prose pre code{background:none;color:inherit;font-size:inherit;padding:0;overflow-wrap:normal}#rfc-001>.fine{margin-top:24px}
+/* Publication identity: the full claim and accountable author share the opening frame. */
+.hero-subtitle{display:block;font-size:clamp(30px,3.05vw,45px);line-height:1.17;letter-spacing:-.025em;margin-top:24px;max-width:660px;color:var(--teal)}
+.author{display:grid;gap:5px;margin-top:32px;padding-left:18px;border-left:2px solid var(--copper);font-family:var(--sans)}
+.author-label{font-size:10px;letter-spacing:.18em;font-weight:650;color:var(--muted)}
+.author-name{font-size:25px;letter-spacing:-.02em;font-weight:550;line-height:1.4}
+.author a{font-size:14px;width:fit-content;text-decoration:none;letter-spacing:.01em}
+.author a:hover{text-decoration:underline}
+.hero-copy .claim-scope{font-size:15px;line-height:1.75;margin-top:22px}
+@media(max-width:900px){.hero-subtitle{font-size:36px;max-width:650px}.hero-grid{gap:30px}.author{margin-top:28px}}
+@media(max-width:580px){.hero-subtitle{font-size:30px}.author-name{font-size:23px}.hero h1{font-size:clamp(52px,12vw,66px)}}
+@media print{.hero-subtitle{font-size:25px}.author-name{font-size:18px}.author{margin-top:20px}.author a{font-size:12px}}

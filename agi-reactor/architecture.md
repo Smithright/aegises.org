@@ -1,6 +1,12 @@
-# AGI Reactor — enterprise architecture
+# AGI Reactor — A Safe, Governable Reference Architecture for Enterprise AGI
 
-Public design draft 1.1 · 14 September 2026. Planned architecture, not a deployment certification.
+Author: Ryan Smithright — ryan@smithright.com
+
+Canonical publication: https://aegises.org/agi-reactor/
+
+Complete article, including the safety case, coverage map and worked RFC: https://aegises.org/agi-reactor/agi-reactor.txt
+
+Public design draft 1.2 · 14 September 2026. Planned architecture, not a deployment certification.
 
 ## Architectural judgment
 

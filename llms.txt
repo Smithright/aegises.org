@@ -1,0 +1,22 @@
+# AEGISES
+
+> Intelligence with integrity. Public reference architectures for governable intelligence and sovereign compute.
+
+## AGI Reactor
+
+Author: Ryan Smithright — ryan@smithright.com.
+AGI Reactor — A Safe, Governable Reference Architecture for Enterprise AGI.
+Public design draft 1.2, 14 September 2026. Safety claims are scoped to the safeguards and trust assumptions specified in the architecture; this is not certification of a deployed system or a claim of general alignment.
+
+- [Canonical article](https://aegises.org/agi-reactor/): Complete static HTML, interactive system map, safety case, coverage map and specification.
+- [Complete plain-text article](https://aegises.org/agi-reactor/agi-reactor.txt): Generated from the same article, including diagram labels and the complete worked RFC; readable without JavaScript.
+- [Technical specification](https://aegises.org/agi-reactor/architecture.md): Record semantics, concurrency, authority, effect recovery and upgrade contracts in Markdown.
+- [RFC-001](https://aegises.org/agi-reactor/conformance/RFC-001.md): Accepted external effect, worker death and recovery from an UNKNOWN backup.
+- [Executable reference specimen](https://github.com/Smithright/aegises.org/tree/main/agi-reactor/conformance): Guarded recovery and a deliberately failing negative control. An isolated HTTP/SQLite specimen, not production runtime qualification.
+
+## Related architectures
+
+- [Sovereign Compute Architecture](https://aegises.org/architecture/)
+- [Public Policy Ontology for CHERI](https://aegises.org/cheri/)
+- [PanSigna](https://aegises.org/pansigna/)
+- [CHERI-seL4-NixOS](https://aegises.org/gap-map/)

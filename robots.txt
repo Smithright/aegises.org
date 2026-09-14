@@ -1,0 +1,12 @@
+# Public pages are accessible to search and training crawlers.
+User-agent: *
+Allow: /
+
+# Explicit independent access for OpenAI search and training crawlers.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+Sitemap: https://aegises.org/sitemap.xml
