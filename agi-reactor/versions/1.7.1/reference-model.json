@@ -1,0 +1,198 @@
+{
+  "title": "AGI Reactor proposed semantic and record contracts",
+  "version": "1.7",
+  "status": "Planned reference design; not an executable schema or ontology",
+  "definitions": [
+    {
+      "id": "object",
+      "term": "Object",
+      "definition": "A service-owned entity with a stable ID, tenant scope, type, revision and attributed state. A file or database row is a storage representation of an object."
+    },
+    {
+      "id": "principal",
+      "term": "Principal / agent",
+      "definition": "A principal is an authenticated identity. An agent is a persistent accountable identity with linked work and context; a worker process or model invocation executes on its behalf."
+    },
+    {
+      "id": "service",
+      "term": "Service / method",
+      "definition": "A service owns resources and exposes typed methods. A method defines inputs, outputs, errors, authority and recovery. Service identity survives implementation replacement."
+    },
+    {
+      "id": "message",
+      "term": "Message / chat",
+      "definition": "Attributed communication between people and services. Chat is an IPC surface. A message may yield several tickets or edicts; receipt alone does not establish acceptance of work."
+    },
+    {
+      "id": "ticket",
+      "term": "Ticket",
+      "definition": "A durable obligation: intended outcome, acceptance criteria, state, zero or one assigned agent, and a result or explicit unresolved condition. Linked tickets express decomposition and dependencies."
+    },
+    {
+      "id": "attempt",
+      "term": "Attempt",
+      "definition": "One execution generation of a ticket, with bounded custody and a return point. A ticket may have many historical attempts and at most one current attempt."
+    },
+    {
+      "id": "operation",
+      "term": "Operation",
+      "definition": "A durable invocation identity bound to tenant, original caller, method, target and canonical argument digest. Custody may change; accepted intent cannot."
+    },
+    {
+      "id": "edict",
+      "term": "Edict / policy",
+      "definition": "An edict is attributed, versioned direction. It may produce guidance, acceptance conditions or an authorization policy. Only its authorized promotion and activation make a policy enforceable."
+    },
+    {
+      "id": "binding",
+      "term": "Link / binding",
+      "definition": "A link is a typed, attributed relationship between objects. A binding is a link with operational applicability, such as a policy version applied to a typed scope. A link never creates authority by itself."
+    },
+    {
+      "id": "skill",
+      "term": "Skill / template / example",
+      "definition": "A skill is a versioned procedure assembled from guidance, templates and examples. It informs execution; it does not grant permission. These are content profiles, not separate kernel mechanisms."
+    },
+    {
+      "id": "frame",
+      "term": "Compositor / context frame",
+      "definition": "The compositor resolves permitted sources into bounded working context with a source manifest, obligations, constraints, uncertainty and pending effects. A frame informs reasoning and confers no capability."
+    },
+    {
+      "id": "evidence",
+      "term": "Evidence / projection",
+      "definition": "Evidence is an attributed observation or receipt with a declared scope. A projection is a derived view, index or summary of source records. Neither an inference nor a projection silently replaces its source."
+    },
+    {
+      "id": "reaction",
+      "term": "Reaction / routine",
+      "definition": "A reaction binds a typed event to a governed method under explicit conditions; a routine adds a schedule. Both use normal admission, work and operation contracts."
+    },
+    {
+      "id": "aegis",
+      "term": "Aegis / reference monitor",
+      "definition": "An aegis is this design\u2019s protected action boundary: identity, applicable policy, scoped authority and operation accountability. Its reference-monitor role must mediate access, resist bypass and be analyzable; the host and implementation must establish those properties."
+    }
+  ],
+  "records": [
+    {
+      "record": "Common object envelope",
+      "semantic_fields": "id, tenant_id, type_id, schema_version, owner_service_id, revision, provenance",
+      "invariants": "Stable identity; owner controls writes. Tenant and ownership changes require explicit governed migration."
+    },
+    {
+      "record": "Typed link / binding",
+      "semantic_fields": "id, relation_type, source_id, target_id, scope, revision, provenance",
+      "invariants": "0..many per object; endpoint types and relation-specific cardinalities are validated. Protected links are written only through their owning method."
+    },
+    {
+      "record": "Principal / agent",
+      "semantic_fields": "principal_id, identity_issuer, tenant_scope, status, profile_refs",
+      "invariants": "The authenticated identity is distinct from a worker instance. Assignee, caller and reconciler remain separately attributable."
+    },
+    {
+      "record": "Grant / resource allowance",
+      "semantic_fields": "principal_ref, scope, issuer, effective_interval, revision; allowance: dimensions, reserved, consumed",
+      "invariants": "Grants require an authorized issuer and revocation checks. Admission reserves bounded resources atomically; concurrent reservations cannot exceed the allowance."
+    },
+    {
+      "record": "Service / method",
+      "semantic_fields": "service_id, method_id, contract_version, input_schema, output_schema, errors, recovery",
+      "invariants": "A method binds a stable service role to its current implementation. Discovery does not grant invocation permission."
+    },
+    {
+      "record": "Message",
+      "semantic_fields": "sender_principal, conversation_id, content_ref, sent_at, correlation_id",
+      "invariants": "0..many source links to derived edicts and tickets. A transport envelope is not evidence that an obligation was accepted."
+    },
+    {
+      "record": "Ticket",
+      "semantic_fields": "outcome, acceptance, status, assignee_id?, result_refs, return_point",
+      "invariants": "0..1 assignee; 0..many attempts and dependency links. Accepted work is committed before acknowledgment."
+    },
+    {
+      "record": "Attempt",
+      "semantic_fields": "ticket_id, agent_id, generation, custody_expiry, recovery_epoch, status",
+      "invariants": "Exactly 1 ticket per attempt; at most 1 current attempt per ticket. Current custody is checked at effect admission."
+    },
+    {
+      "record": "Operation",
+      "semantic_fields": "ticket_id, logical_step, original_caller, method, target, argument_digest, outcome, custodian",
+      "invariants": "Each record binds one immutable intent. Multiple operations per ticket are allowed; replay and replacement cannot bypass an unresolved logical step."
+    },
+    {
+      "record": "Edict / policy revision",
+      "semantic_fields": "source_refs, version, applicability; policy: rules, schema_ref, approval_refs, activation",
+      "invariants": "0..many derivation and scope bindings. Authoring, approval and activation remain attributable transitions; an edict is not automatically active policy."
+    },
+    {
+      "record": "Type / skill / service definition",
+      "semantic_fields": "stable_id, version, schema_or_contract, source_refs, lifecycle",
+      "invariants": "Instances cite a definition version. Upgrading a definition must preserve existing instance interpretation or provide an explicit migration."
+    },
+    {
+      "record": "Context frame / evidence",
+      "semantic_fields": "source_ids_and_revisions, observed_at, scope, transformation; frame: compiler_version, required_context",
+      "invariants": "0..many inputs; provenance survives derivation. A receipt, hypothesis and verified result retain distinct evidence kinds."
+    }
+  ],
+  "information_layers": [
+    {
+      "layer": "Authority",
+      "contents": "Resource records, tickets, policy versions, grants, operations",
+      "contract": "The owning service is the write authority. Reads and mutations use its contract; the control/state service can host several owners as modules."
+    },
+    {
+      "layer": "Discovery",
+      "contents": "Catalog, graph lookup, search, embeddings, World State",
+      "contract": "Locate permitted objects by identity, type and relationship. Show source revision, observed time and coverage; rebuild projections from authoritative records."
+    },
+    {
+      "layer": "Composition",
+      "contents": "Context manifest, required continuity, optional retrieved material",
+      "contract": "Resolve access before serialization. Preserve obligations, current attempt, pending operations, contradictions and return point. Missing required context is explicit."
+    },
+    {
+      "layer": "Presentation",
+      "contents": "Chat, object detail, diagrams, dashboards and agent frames",
+      "contract": "Render the same semantic records for each permitted consumer. A navigation category, frame or UI label does not become a separate source of truth."
+    },
+    {
+      "layer": "Evidence and learning",
+      "contents": "Receipts, observations, comparisons, corrections, proposed skills",
+      "contract": "Link result to operation, ticket, input revisions and evaluation. Preserve contradiction and supersession; promote reusable changes through their owning workflow."
+    },
+    {
+      "layer": "Lifecycle",
+      "contents": "Sensitivity, retention, revocation, deletion and archival",
+      "contract": "Carry source restrictions into derived material. Invalidate affected caches and indexes; handle expired frames and retained audit obligations under an explicit policy."
+    }
+  ],
+  "ontology_primitives": [
+    {
+      "primitive": "Identity",
+      "meaning": "A stable referent inside an explicit scope",
+      "expression": "Object IDs and principal IDs; identity does not depend on a current process or display label."
+    },
+    {
+      "primitive": "Type",
+      "meaning": "Versioned meaning and admissible structure",
+      "expression": "Ticket, Agent, Service, Edict, Skill, Observation and Operation are domain profiles. Type definitions are themselves objects."
+    },
+    {
+      "primitive": "Relation",
+      "meaning": "Typed endpoints, direction, cardinality and provenance",
+      "expression": "assignedTo: Ticket \u2192 Agent [0..1]; dependsOn: Ticket \u2192 Ticket [0..many]; derivedFrom: Object \u2192 Object [0..many]."
+    },
+    {
+      "primitive": "Method",
+      "meaning": "A governed request with a typed contract",
+      "expression": "ticket.assign or report.send: input, output, error, authority and recovery semantics. Invocation is a message envelope; a durable effect has an Operation record."
+    },
+    {
+      "primitive": "Constraint",
+      "meaning": "An invariant or rule with a named enforcement point",
+      "expression": "One current attempt; immutable operation intent; permitted policy scopes. Structural validation, authorization and lifecycle transitions have different checks."
+    }
+  ]
+}
