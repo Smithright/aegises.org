@@ -10,7 +10,7 @@ This repository contains the **official landing page** for Aegesis.org, built wi
 
 [AGI Reactor — A Safe, Governable Reference Architecture for Enterprise AGI](https://aegises.org/agi-reactor/)
 
-**Author: Ryan Smithright** — [ryan@smithright.com](mailto:ryan@smithright.com).
+**Author: Ryan Smithright** — [Qthonic Labs](https://qthonic.com/) — [ryan@smithright.com](mailto:ryan@smithright.com).
 
 A public reference design for persistent agents, durable obligations, explicit authority, bounded resources and recoverable effects. Safety is scoped to the documented safeguards and trust assumptions; this is not certification of a deployed system or a claim of general alignment.
 

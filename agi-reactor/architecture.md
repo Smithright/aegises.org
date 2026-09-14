@@ -1,18 +1,18 @@
 # AGI Reactor — A Safe, Governable Reference Architecture for Enterprise AGI
 
-Author: Ryan Smithright — ryan@smithright.com
+Author: Ryan Smithright — [Qthonic Labs](https://qthonic.com/) — ryan@smithright.com
 
 Canonical publication: https://aegises.org/agi-reactor/
 
 Complete article, including the safety case, coverage map and worked RFC: https://aegises.org/agi-reactor/agi-reactor.txt
 
-Public design draft 1.2 · 14 September 2026. Planned architecture, not a deployment certification.
+Public design draft 1.3 · 14 September 2026. Planned architecture, not a deployment certification.
 
 ## Architectural judgment
 
-Qthonic should make a persistent agent's knowledge, commitments, authority and resources coherent across replaceable executions. Its defining quality is continuity with consequence: it can resume useful work without guessing what happened, exceed neither its authority nor its resource allocation, and improve without discarding its obligations.
+The architecture should make a persistent agent's knowledge, commitments, authority and resources coherent across replaceable executions. Its defining quality is continuity with consequence: it can resume useful work without guessing what happened, exceed neither its authority nor its resource allocation, and improve without discarding its obligations.
 
-NATS is the communication kernel. Qthonic's kernel contract is larger: authenticated invocation, owned state transitions, durable commitments and recoverable operations. The host OS still isolates and schedules processes. These are deliberate responsibility boundaries, not objections to a service-oriented system.
+NATS is the communication kernel. The kernel contract is larger: authenticated invocation, owned state transitions, durable commitments and recoverable operations. The host OS still isolates and schedules processes. These are deliberate responsibility boundaries, not objections to a service-oriented system.
 
 The compressed semantic surface is **object, link, message; invoke**. This is a working design constraint, not a claim that three universal tables solve every domain. State machines, authorization, transactional storage, scheduling and reconciliation remain real implementation responsibilities. If compression hides one of these, it has failed.
 
@@ -121,7 +121,7 @@ Use a small representative service change requested through chat, with acceptanc
 
 Measure completion quality, latency, total cost, recovery time, duplicate effects, stale-worker refusals and usability of the result. Set numerical SLOs from the chosen workload before implementation qualification. These are planned acceptance specimens, not reported test results.
 
-## Qthonic taste / explicit decisions
+## Design judgment / explicit decisions
 
 - Persist obligations and evidence; make model executions replaceable.
 - Prefer rich domain meaning over many protocols or transport-specific nouns.

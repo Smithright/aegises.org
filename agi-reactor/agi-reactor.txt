@@ -1,6 +1,6 @@
 Canonical publication: https://aegises.org/agi-reactor/
 Author: Ryan Smithright — ryan@smithright.com
-Public design draft 1.2 — 14 September 2026
+Public design draft 1.3 — 14 September 2026
 This full text is generated from the same public article, including its safety scope, diagram labels, coverage map, technical specification and complete worked RFC.
 
 PUBLIC ARCHITECTURE / 01
@@ -8,15 +8,15 @@ PUBLIC ARCHITECTURE / 01
 # AGI Reactor  — A Safe, Governable Reference Architecture for Enterprise AGI
 
 AUTHOR
-Ryan Smithright ryan@smithright.com (mailto:ryan@smithright.com)
+Ryan Smithright — Qthonic Labs (https://qthonic.com/)  ryan@smithright.com (mailto:ryan@smithright.com)
 
-Qthonic is a design for persistent agents that carry knowledge and commitments across replaceable executions—with explicit authority, bounded resources, recoverable effects and human control.
+AGI Reactor is a reference design for persistent agents that carry knowledge and commitments across replaceable executions—with explicit authority, bounded resources, recoverable effects and human control.
 
 “Safe” describes the architecture’s specified safeguards within its declared scope and trust assumptions (https://aegises.org/agi-reactor/#safety). This is a reference design, not certification of a deployed system or a claim of general alignment.
 
 Explore the architecture ↓  (https://aegises.org/agi-reactor/#architecture)
 
- Public design draft 1.2 14 September 2026 Architecture and validation criteria · not a deployment certification
+ Public design draft 1.3 14 September 2026 Architecture and validation criteria · not a deployment certification
 
 00 The whole system
 
@@ -30,10 +30,10 @@ Full size ↗ (https://aegises.org/agi-reactor/assets/architecture.svg)
 
 [Diagram text; consult the linked SVG for spatial relationships.]
 
-V3.B / Qthonic / A viable operating system
+V3.B / AGI Reactor / A viable operating system
 Planned architecture. The full contracts and equivalent text are documented on this page.
 V3.B
-Qthonic / A viable operating system
+AGI Reactor / A viable operating system
 PARALLEL IMPLEMENTATION VIEW · 13 September 2026 · Planned architecture
 V3.B / OVERVIEW  (https://aegises.org/agi-reactor/#architecture)
 Know what matters. Keep commitments. Act within bounds.
@@ -474,24 +474,24 @@ Task quality · latency · total cost · recovery time · duplicate effects · r
 PUBLIC ACCEPTANCE / aegises.org/agi-reactor
 An outside human or AI can reconstruct the system, its safety contracts and its limits.
 
-08 Qthonic / coverage map
+08 Enterprise / coverage map
 
 ## Complete without multiplying primitives.
 
-Qthonic’s orientation sections describe the operating world. They map into a small set of contracts; a heading does not require a new daemon, protocol or authority.
+The enterprise orientation sections describe the operating world. They map into a small set of contracts; a heading does not require a new daemon, protocol or authority.
 
-Orientation vocabulary mapped from Qthonic's section definitions; no account records or operational census are included.
+Orientation vocabulary mapped into the reference architecture; no account records or operational census are included.
 
- | Responsibility | Qthonic sections | Architectural home
+ | Responsibility | Enterprise sections | Architectural home
  | People & enterprise | Enterprise · Account · Org Chart · Projects · Roadmap · Campaigns | Purpose, stakeholders, ownership, priorities and acceptance. Contract ↗ (https://aegises.org/agi-reactor/#work)
- | Interaction & orientation | Qth · Chat · Topics · Channels · Sessions · Tickets · Pinned · Urgent! · Dashboards · System Diagrams | Shared intent, bounded invocation, interruption, decisions and intelligible delivery. Contract ↗ (https://aegises.org/agi-reactor/#work)
+ | Interaction & orientation | Service Shell · Chat · Topics · Channels · Sessions · Tickets · Pinned · Urgent! · Dashboards · System Diagrams | Shared intent, bounded invocation, interruption, decisions and intelligible delivery. Contract ↗ (https://aegises.org/agi-reactor/#work)
  | Meaning & knowledge | Ontology · Wiki · FAQ · Files · Skills · Memory Agents · Data Sovereignty | Typed state, attributed knowledge, custody, retention, correction and retrieval. Contract ↗ (https://aegises.org/agi-reactor/#state)
  | Intelligence | Agents · Agent Onboarding · AI · Code Harnesses | Persistent identity, bounded context, model routing, learning and recovery. Contract ↗ (https://aegises.org/agi-reactor/#cognition)
  | Work & time | Ticketing · Dispatch · Workflows · Routines · Reactions | Single ownership, dependencies, attempts, triggers and bounded execution. Contract ↗ (https://aegises.org/agi-reactor/#work)
  | Authority & custody | Aegises · IAM · Keys · Policies · Wallets · Transactions | Scoped powers, controlled data release, accountable finance and reconciliation. Contract ↗ (https://aegises.org/agi-reactor/#authority)
- | Execution & economy | Qthonic Stack · Core Services · Integrations · Network · Hosts · Fleets · Domains · Billing · Budgets | Service placement, connectivity, dependencies, capacity and resource limits. Contract ↗ (https://aegises.org/agi-reactor/#runtime)
+ | Execution & economy | Platform Stack · Core Services · Integrations · Network · Hosts · Fleets · Domains · Billing · Budgets | Service placement, connectivity, dependencies, capacity and resource limits. Contract ↗ (https://aegises.org/agi-reactor/#runtime)
  | Improvement & assurance | Code Repos · Testing · Gauntlets · Observability · FinOps → Dynamic Refactoring · AGI Reactor Engineering | Exact artifacts, independent challenge, measured outcomes, safe change and recovery. Contract ↗ (https://aegises.org/agi-reactor/#validation)
- | Research & participation | Qthonic Labs · Aegises.org · PanSigna.org · Community · Civic Engagement · Careers · Partners · Investors | Research and participation connect to owned work; these are organizational surfaces, not kernel primitives. Contract ↗ (https://aegises.org/agi-reactor/#scope)
+ | Research & participation | Research Labs · Aegises.org · PanSigna.org · Community · Civic Engagement · Careers · Partners · Investors | Research and participation connect to owned work; these are organizational surfaces, not kernel primitives. Contract ↗ (https://aegises.org/agi-reactor/#scope)
 
 08A RFC-001 / Executable failure specimen
 
@@ -509,7 +509,7 @@ Reset UNKNOWN to ready and clear the hold: two effects. The same safety assertio
 
 ### What was exercised
 
-Real loopback HTTP, worker termination and SQLite backup. This is an isolated reference specimen, not qualification of Qthonic’s NATS/PostgreSQL runtime.
+Real loopback HTTP, worker termination and SQLite backup. This is an isolated reference specimen, not qualification of a production NATS/PostgreSQL runtime.
 
 The test oracle can count the external effects. The recovering controller cannot. An honest unresolved result is required when no admissible evidence can close the gap.
 
@@ -531,7 +531,7 @@ The supplied reference guard uses Python's standard library, a real loopback HTT
 
 The target implements neither an idempotency key nor a status route. Each POST appends another record. Only the test oracle reads the target ledger to count effects; the recovering guard never receives that path or a query capability. Oracle knowledge must not become production evidence.
 
-This is a small, single-controller reference implementation for falsifying a recovery algorithm. It does not exercise NATS, PostgreSQL, concurrent admission, distributed custody, real authentication, actual sandbox containment, provider behavior, multi-host failure or Qthonic deployment. The local epoch file represents recovery authority outside the restored database; it is not a production implementation of that authority. Its persistence, monotonicity and exclusion of old processes remain deployment obligations.
+This is a small, single-controller reference implementation for falsifying a recovery algorithm. It does not exercise NATS, PostgreSQL, concurrent admission, distributed custody, real authentication, actual sandbox containment, provider behavior, multi-host failure or production deployment. The local epoch file represents recovery authority outside the restored database; it is not a production implementation of that authority. Its persistence, monotonicity and exclusion of old processes remain deployment obligations.
 
 ### Fixed input
 
@@ -635,9 +635,9 @@ Read the full technical specification ＋
 
 ### Architectural judgment
 
-Qthonic should make a persistent agent's knowledge, commitments, authority and resources coherent across replaceable executions. Its defining quality is continuity with consequence: it can resume useful work without guessing what happened, exceed neither its authority nor its resource allocation, and improve without discarding its obligations.
+The architecture should make a persistent agent's knowledge, commitments, authority and resources coherent across replaceable executions. Its defining quality is continuity with consequence: it can resume useful work without guessing what happened, exceed neither its authority nor its resource allocation, and improve without discarding its obligations.
 
-NATS is the communication kernel. Qthonic's kernel contract is larger: authenticated invocation, owned state transitions, durable commitments and recoverable operations. The host OS still isolates and schedules processes. These are deliberate responsibility boundaries, not objections to a service-oriented system.
+NATS is the communication kernel. The kernel contract is larger: authenticated invocation, owned state transitions, durable commitments and recoverable operations. The host OS still isolates and schedules processes. These are deliberate responsibility boundaries, not objections to a service-oriented system.
 
 The compressed semantic surface is object, link, message; invoke. This is a working design constraint, not a claim that three universal tables solve every domain. State machines, authorization, transactional storage, scheduling and reconciliation remain real implementation responsibilities. If compression hides one of these, it has failed.
 
@@ -745,7 +745,7 @@ Use a small representative service change requested through chat, with acceptanc
 
 Measure completion quality, latency, total cost, recovery time, duplicate effects, stale-worker refusals and usability of the result. Set numerical SLOs from the chosen workload before implementation qualification. These are planned acceptance specimens, not reported test results.
 
-### Qthonic taste / explicit decisions
+### Design judgment / explicit decisions
 
 - Persist obligations and evidence; make model executions replaceable.
 - Prefer rich domain meaning over many protocols or transport-specific nouns.
@@ -761,7 +761,7 @@ Measure completion quality, latency, total cost, recovery time, duplicate effect
 
 ## An architecture open to examination.
 
-Author: Ryan Smithright (ryan@smithright.com). Developed from his Qthonic architecture work and World State vocabulary, with architecture development, visualization and implementation assistance from Astra / Codex. This revision includes a focused independent AI critique of the design; that is architectural review, not security certification or runtime verification.
+Author: Ryan Smithright (ryan@smithright.com). Developed from his architecture work and World State vocabulary, with architecture development, visualization and implementation assistance from Astra / Codex. This revision includes a focused independent AI critique of the design; that is architectural review, not security certification or runtime verification.
 
 - NATS: acknowledgments and redelivery (https://docs.nats.io/learn/jetstream/acknowledgment) — transport behavior and failure semantics.
 - NATS: pull consumers (https://docs.nats.io/learn/jetstream/pull-consumers) — bounded delivery and worker consumption.

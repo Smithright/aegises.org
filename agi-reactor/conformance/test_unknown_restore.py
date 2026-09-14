@@ -1,4 +1,4 @@
-"""Executable RFC-001 specimen; isolated reference guard, not Qthonic qualification.
+"""Executable RFC-001 specimen; isolated reference guard, not production qualification.
 Run: python3 -m unittest discover -s agi-reactor/conformance -v
 The target oracle is available only to tests, never to the recovering controller.
 """
