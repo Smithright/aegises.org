@@ -6,13 +6,11 @@
 
 Author: Ryan Smithright — [Qthonic Labs](https://qthonic.com/) — ryan@smithright.com.
 AGI Reactor — A Safe, Governable Reference Architecture for Enterprise AGI.
-Public design draft 2.2, 14 September 2026. Safety claims are scoped to the safeguards and trust assumptions specified in the architecture; this is not certification of a deployed system or a claim of general alignment.
+Public design draft 2.2.1, 14 September 2026. Safety claims are scoped to the safeguards and trust assumptions specified in the architecture; this is not certification of a deployed system or a claim of general alignment.
 
-- [Canonical article](https://aegises.org/agi-reactor/): Complete static HTML, interactive system map, safety case, coverage map and specification.
-- [Complete plain-text article](https://aegises.org/agi-reactor/agi-reactor.txt): Generated from the same article, including diagram labels and the complete worked RFC; readable without JavaScript.
+- [Canonical article](https://aegises.org/agi-reactor/): Complete static HTML, interactive system map and worked journeys.
+- [Complete plain-text article](https://aegises.org/agi-reactor/agi-reactor.txt): Generated from the same article, including diagram labels and architecture explanations; readable without JavaScript.
 - [Technical specification](https://aegises.org/agi-reactor/architecture.md): Record semantics, concurrency, authority, effect recovery and upgrade contracts in Markdown.
-- [RFC-001](https://aegises.org/agi-reactor/conformance/RFC-001.md): Accepted external effect, worker death and recovery from an UNKNOWN backup.
-- [Executable reference specimen](https://github.com/Smithright/aegises.org/tree/main/agi-reactor/conformance): Guarded recovery and a deliberately failing negative control. An isolated HTTP/SQLite specimen, not production runtime qualification.
 
 ## State AI legislative maturity atlas
 
@@ -33,6 +31,6 @@ Beyond the Bill Count — AEGISES research edition 1.0, observed September 14, 2
 
 ## Visual specification
 
-The architectural thesis is “Policy-governed service orchestration is all you need”: services compose cognition, memory, work, policy, learning and recovery under explicit contracts. Four relationship diagrams expose service topology, object/type bindings, policy enforcement and a durable operation through failure. Their complete labels and explanations are in the plain-text article above.
+The architectural thesis is “Policy-governed service orchestration is all you need”: services compose cognition, memory, work, policy, learning and recovery under explicit contracts. The diagrams distinguish agentic judgment from process and follow ingress, artifact lineage, concurrent work, typed bindings and service enforcement. Their complete labels and explanations are in the plain-text article above.
 
 - [Preserved public draft 1.3](https://aegises.org/agi-reactor/versions/1.3/)

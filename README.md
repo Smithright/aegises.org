@@ -20,7 +20,6 @@ A public reference design for persistent agents, durable obligations, explicit a
 
 - [Complete plain-text article](https://aegises.org/agi-reactor/agi-reactor.txt)
 - [Technical specification](https://aegises.org/agi-reactor/architecture.md)
-- [Executable UNKNOWN/restore reference specimen](agi-reactor/conformance/)
 
 ```sh
 curl -fsSL https://aegises.org/agi-reactor/agi-reactor.txt
