@@ -12,7 +12,7 @@ The homepage organizes public research around governance, accountable systems an
 
 ## AGI Reactor
 
-[AGI Reactor — A Safe, Governable Reference Architecture for Enterprise AGI](https://aegises.org/agi-reactor/)
+[AGI Reactor: A Safe, Governable Reference Architecture for Enterprise AGI](https://aegises.org/agi-reactor/)
 
 **Author: Ryan Smithright** — [Qthonic Labs](https://qthonic.com/) — [ryan@smithright.com](mailto:ryan@smithright.com).
 
